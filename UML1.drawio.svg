@@ -1,0 +1,444 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1805px" height="738px" viewBox="-0.5 -0.5 1805 738" content="&lt;mxfile&gt;&lt;diagram id=&quot;f399t2aZWs9bin0v2o39&quot; name=&quot;Page-1&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-4-31-321-26-0">
+            <rect x="4" y="31" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-57-321-26-0">
+            <rect x="4" y="57" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-83-321-26-0">
+            <rect x="4" y="83" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-109-321-26-0">
+            <rect x="4" y="109" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-135-321-26-0">
+            <rect x="4" y="135" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-161-321-26-0">
+            <rect x="4" y="161" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-187-321-26-0">
+            <rect x="4" y="187" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-213-321-26-0">
+            <rect x="4" y="213" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-247-321-26-0">
+            <rect x="4" y="247" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-273-321-26-0">
+            <rect x="4" y="273" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-4-299-321-26-0">
+            <rect x="4" y="299" width="321" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-43-384-26-0">
+            <rect x="573" y="43" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-69-384-26-0">
+            <rect x="573" y="69" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-95-384-26-0">
+            <rect x="573" y="95" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-121-384-26-0">
+            <rect x="573" y="121" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-147-384-26-0">
+            <rect x="573" y="147" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-173-384-26-0">
+            <rect x="573" y="173" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-199-384-26-0">
+            <rect x="573" y="199" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-225-384-26-0">
+            <rect x="573" y="225" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-251-384-26-0">
+            <rect x="573" y="251" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-285-384-26-0">
+            <rect x="573" y="285" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-311-384-26-0">
+            <rect x="573" y="311" width="384" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-443-318-26-0">
+            <rect x="573" y="443" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-469-318-26-0">
+            <rect x="573" y="469" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-495-318-26-0">
+            <rect x="573" y="495" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-529-318-26-0">
+            <rect x="573" y="529" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-555-318-26-0">
+            <rect x="573" y="555" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-573-581-318-26-0">
+            <rect x="573" y="581" width="318" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-443-329-26-0">
+            <rect x="1054" y="443" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-469-329-26-0">
+            <rect x="1054" y="469" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-495-329-26-0">
+            <rect x="1054" y="495" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-521-329-26-0">
+            <rect x="1054" y="521" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-547-329-26-0">
+            <rect x="1054" y="547" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-573-329-26-0">
+            <rect x="1054" y="573" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-599-329-26-0">
+            <rect x="1054" y="599" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-625-329-26-0">
+            <rect x="1054" y="625" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-651-329-26-0">
+            <rect x="1054" y="651" width="329" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1054-685-329-41-0">
+            <rect x="1054" y="685" width="329" height="41"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-443-340-26-0">
+            <rect x="1459" y="443" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-469-340-26-0">
+            <rect x="1459" y="469" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-495-340-26-0">
+            <rect x="1459" y="495" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-521-340-26-0">
+            <rect x="1459" y="521" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-547-340-26-0">
+            <rect x="1459" y="547" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-573-340-26-0">
+            <rect x="1459" y="573" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-599-340-26-0">
+            <rect x="1459" y="599" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-625-340-26-0">
+            <rect x="1459" y="625" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-651-340-26-0">
+            <rect x="1459" y="651" width="340" height="26"/>
+        </clipPath>
+        <clipPath id="mx-clip-1459-685-340-54-0">
+            <rect x="1459" y="685" width="340" height="54"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 0 26 L 0 0 L 329 0 L 329 26" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 26 L 0 320 L 329 320 L 329 26" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 26 L 329 26" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="164" y="17.5">
+                Game
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-31-321-26-0)" font-size="12px">
+            <text x="5.5" y="43.5">
+                + WIDTH: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-57-321-26-0)" font-size="12px">
+            <text x="5.5" y="69.5">
+                + HEIGHT: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-83-321-26-0)" font-size="12px">
+            <text x="5.5" y="95.5">
+                + PLAYERS_COUNT: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-109-321-26-0)" font-size="12px">
+            <text x="5.5" y="121.5">
+                - tiles[][]: Tile
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-135-321-26-0)" font-size="12px">
+            <text x="5.5" y="147.5">
+                - players: ArrayList&lt;User&gt;
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-161-321-26-0)" font-size="12px">
+            <text x="5.5" y="173.5">
+                - currentPlayer: User
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-187-321-26-0)" font-size="12px">
+            <text x="5.5" y="199.5">
+                - currentTurn: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-213-321-26-0)" font-size="12px">
+            <text x="5.5" y="225.5">
+                - countTurns: int
+            </text>
+        </g>
+        <path d="M 0 238 L 329 238" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-247-321-26-0)" font-size="12px">
+            <text x="5.5" y="259.5">
+                + Game(WIDTH: int, HEIGHT: int, players: ArrayList&lt;User&gt;)
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-273-321-26-0)" font-size="12px">
+            <text x="5.5" y="285.5">
+                - generateRandomMap(): void
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-4-299-321-26-0)" font-size="12px">
+            <text x="5.5" y="311.5">
+                + nextTurn(): void
+            </text>
+        </g>
+        <path d="M 569 38 L 569 12 L 961 12 L 961 38" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 38 L 569 332 L 961 332 L 961 38" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 38 L 961 38" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="764.5" y="29.5">
+                Tile
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-43-384-26-0)" font-size="12px">
+            <text x="574.5" y="55.5">
+                + X: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-69-384-26-0)" font-size="12px">
+            <text x="574.5" y="81.5">
+                + Y: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-95-384-26-0)" font-size="12px">
+            <text x="574.5" y="107.5">
+                - borders[6]: TileBorder
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-121-384-26-0)" font-size="12px">
+            <text x="574.5" y="133.5">
+                + TERRAIN: Terrain
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-147-384-26-0)" font-size="12px">
+            <text x="574.5" y="159.5">
+                - owner: Civilization
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-173-384-26-0)" font-size="12px">
+            <text x="574.5" y="185.5">
+                - militaryUnit: MilitaryUnit
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-199-384-26-0)" font-size="12px">
+            <text x="574.5" y="211.5">
+                - civilianUnit: CivilianUnit
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-225-384-26-0)" font-size="12px">
+            <text x="574.5" y="237.5">
+                - ruin: Ruin
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-251-384-26-0)" font-size="12px">
+            <text x="574.5" y="263.5">
+                - roadType: int
+            </text>
+        </g>
+        <path d="M 569 276 L 961 276" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-285-384-26-0)" font-size="12px">
+            <text x="574.5" y="297.5">
+                + Tile(X: int, Y: int, TERRAIN: Terrain)
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-311-384-26-0)" font-size="12px">
+            <text x="574.5" y="323.5">
+                + isTerrainFeatureCompatible(terrainFeature: TerrainFeature): boolean
+            </text>
+        </g>
+        <path d="M 569 438 L 569 412 L 895 412 L 895 438" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 438 L 569 602 L 895 602 L 895 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 569 438 L 895 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="731.5" y="429.5">
+                TileBorder
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-443-318-26-0)" font-size="12px">
+            <text x="574.5" y="455.5">
+                - FIRST: Tile
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-469-318-26-0)" font-size="12px">
+            <text x="574.5" y="481.5">
+                - SECOND: Tile
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-495-318-26-0)" font-size="12px">
+            <text x="574.5" y="507.5">
+                - RIVER: boolean
+            </text>
+        </g>
+        <path d="M 569 520 L 895 520" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-529-318-26-0)" font-size="12px">
+            <text x="574.5" y="541.5">
+                + TileBorder(FIRST: Tile, SECOND: Tile, RIVER: boolean)
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-555-318-26-0)" font-size="12px">
+            <text x="574.5" y="567.5">
+                + getOtherSide(tile: Tile): Tile
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-573-581-318-26-0)" font-size="12px">
+            <text x="574.5" y="593.5">
+                + isRiver(): boolean
+            </text>
+        </g>
+        <path d="M 1050 438 L 1050 412 L 1387 412 L 1387 438" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1050 438 L 1050 721 L 1387 721 L 1387 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1050 438 L 1387 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="1218" y="429.5">
+                Terrain
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-443-329-26-0)" font-size="12px">
+            <text x="1055.5" y="455.5">
+                + food: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-469-329-26-0)" font-size="12px">
+            <text x="1055.5" y="481.5">
+                + production: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-495-329-26-0)" font-size="12px">
+            <text x="1055.5" y="507.5">
+                + gold: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-521-329-26-0)" font-size="12px">
+            <text x="1055.5" y="533.5">
+                + combat: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-547-329-26-0)" font-size="12px">
+            <text x="1055.5" y="559.5">
+                + MP: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-573-329-26-0)" font-size="12px">
+            <text x="1055.5" y="585.5">
+                + passable: boolean
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-599-329-26-0)" font-size="12px">
+            <text x="1055.5" y="611.5">
+                + resources: ArrayList&lt;Resource&gt;
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-625-329-26-0)" font-size="12px">
+            <text x="1055.5" y="637.5">
+                + terrainFeature: TerrainFeature
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-651-329-26-0)" font-size="12px">
+            <text x="1055.5" y="663.5">
+                + improvement: Improvement
+            </text>
+        </g>
+        <path d="M 1050 676 L 1387 676" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1054-685-329-41-0)" font-size="12px">
+            <text x="1055.5" y="697.5">
+                + Terrain(food: int, production: int, gold: int, combat: int,
+            </text>
+            <text x="1055.5" y="711.5">
+                MP: int, passable: boolean, resources: ArrayList&lt;Resource&gt;)
+            </text>
+        </g>
+        <path d="M 1455 438 L 1455 412 L 1803 412 L 1803 438" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1455 438 L 1455 734 L 1803 734 L 1803 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1455 438 L 1803 438" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="1628.5" y="429.5">
+                TerrainFeature
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-443-340-26-0)" font-size="12px">
+            <text x="1460.5" y="455.5">
+                + food: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-469-340-26-0)" font-size="12px">
+            <text x="1460.5" y="481.5">
+                + production: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-495-340-26-0)" font-size="12px">
+            <text x="1460.5" y="507.5">
+                + gold: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-521-340-26-0)" font-size="12px">
+            <text x="1460.5" y="533.5">
+                + combat: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-547-340-26-0)" font-size="12px">
+            <text x="1460.5" y="559.5">
+                + MP: int
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-573-340-26-0)" font-size="12px">
+            <text x="1460.5" y="585.5">
+                + passable: boolean
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-599-340-26-0)" font-size="12px">
+            <text x="1460.5" y="611.5">
+                + resources: ArrayList&lt;Resource&gt;
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-625-340-26-0)" font-size="12px">
+            <text x="1460.5" y="637.5">
+                + needRiver: boolean
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-651-340-26-0)" font-size="12px">
+            <text x="1460.5" y="663.5">
+                + onlyPlacedOn: Terrain
+            </text>
+        </g>
+        <path d="M 1455 676 L 1803 676" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-1459-685-340-54-0)" font-size="12px">
+            <text x="1460.5" y="697.5">
+                + TerrainFeature(food: int, production: int, gold: int, combat: int,
+            </text>
+            <text x="1460.5" y="711.5">
+                MP: int,passable: boolean, resources: ArrayList&lt;Resource&gt;,
+            </text>
+            <text x="1460.5" y="725.5">
+                needRiver: boolean, onlyPlacedOn: Terrain)
+            </text>
+        </g>
+    </g>
+</svg>
