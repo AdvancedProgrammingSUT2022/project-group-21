@@ -25,8 +25,7 @@ public class Civilization {
         return 0;
     }
     public int countResource(Resource resource) {
-        //TODO
-        return 0;
+        return resources.get(resource);
     }
     public boolean isTileVisible(int x, int y){
         //TODO

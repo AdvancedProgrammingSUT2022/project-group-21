@@ -22,7 +22,7 @@ public class User {
     }
     public static boolean doesNicknameExist(String nickname) {
         for (User user : allUsers)
-            if (user.getNickname().equals(nickname))    return true;
+            return user.getNickname().equals(nickname);
         return false;
     }
     public boolean isPasswordEqualTo(String password) {
