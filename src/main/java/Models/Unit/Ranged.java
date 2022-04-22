@@ -5,7 +5,10 @@ import Models.Tile;
 
 public class Ranged extends MilitaryUnit{
     public void rangeAttack(Tile tile) {}
-    public boolean isInRange(Tile tile) {}
+    public boolean isInRange(Tile tile) {
+        //TODO
+        return false;
+    }
     public void attackToCity(City city) {}
 
 

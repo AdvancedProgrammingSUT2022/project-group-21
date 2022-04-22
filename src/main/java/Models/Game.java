@@ -6,7 +6,7 @@ public class Game {
     public final int WIDTH;
     public final int HEIGHT;
     public int PLAYER_COUNT;
-    private Tile[100][100] tiles;
+    //private Tile[100][100] tiles;
     private ArrayList<User> players;
     private User currentPlayer;
     private int currentTurn;

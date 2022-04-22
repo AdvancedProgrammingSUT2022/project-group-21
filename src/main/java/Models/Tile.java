@@ -1,11 +1,14 @@
 package Models;
 
+import Models.Unit.CivilianUnit;
+import Models.Unit.MilitaryUnit;
+
 public class Tile {
     public final int X;
     public final int Y;
     public Terrain TERRAIN;
-    private TileBorder borders[6];
-    private Civillization owner;
+    //private TileBorder borders[6];
+    private Civilization owner;
     private MilitaryUnit militaryUnit;
     private CivilianUnit civilianUnit;
     private Citizen workingCitizen;

@@ -1,6 +1,8 @@
 package Models.Resource;
 
 import Models.Civilization;
+import Models.Technology;
+import Models.Improvement;
 
 public class StrategicResource extends Resource{
     public Technology technologyNeeded;
@@ -9,5 +11,8 @@ public class StrategicResource extends Resource{
         super(food, production, gold, improvementNeeded);
         this.technologyNeeded = technologyNeeded;
     }
-    public boolean isVisible(Civilization civilization) {}
+    public boolean isVisible(Civilization civilization) {
+        //TODO
+        return false;
+    }
 }

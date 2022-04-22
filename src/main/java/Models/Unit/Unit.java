@@ -16,10 +16,19 @@ public class Unit {
         this.combatStrength = combatStrength;
         this.COST = COST;
     }
-    public boolean isMovePossible(int x, int y) {}
-    public boolean move() {}
+    public boolean isMovePossible(int x, int y) {
+        //TODO
+        return false;
+    }
+    public boolean move() {
+        //TODO
+        return false;
+    }
     public int getCombatStrength() {
         return combatStrength;
     }
-    public boolean isTileVisible(int x, int y) {}
+    public boolean isTileVisible(int x, int y) {
+        //TODO
+        return false;
+    }
 }

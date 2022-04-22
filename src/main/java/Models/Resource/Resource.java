@@ -1,13 +1,15 @@
 package Models.Resource;
 
+import Models.Improvement;
+
 public class Resource {
     private int food;
     private int production;
     private int gold;
-    public improvement improvementNeeded;
+    public Improvement improvementNeeded;
 
     public Resource(int food, int production, int gold,
-                    improvement improvementNeeded) {
+                    Improvement improvementNeeded) {
         this.food = food;
         this.production = production;
         this.gold = gold;

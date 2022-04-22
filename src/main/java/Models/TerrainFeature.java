@@ -1,5 +1,7 @@
 package Models;
 
+import Models.Resource.Resource;
+
 import java.util.ArrayList;
 
 public class TerrainFeature {

@@ -1,5 +1,7 @@
 package Models;
 
+import Models.Unit.MilitaryUnit;
+
 import java.util.ArrayList;
 
 public class City {
