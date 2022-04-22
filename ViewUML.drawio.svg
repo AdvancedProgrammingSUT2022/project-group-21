@@ -255,12 +255,12 @@
         <path d="M 822 410 L 1184.38 410" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="14px">
             <text x="1002.69" y="403.5">
-                ProfileMenu
+                View.ProfileMenu
             </text>
         </g>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-decoration="underline" pointer-events="none" clip-path="url(#mx-clip-826-415-354-26-0)" font-size="14px">
             <text x="827.5" y="429.5">
-                - instance : ProfileMenu
+                - instance : View.ProfileMenu
             </text>
         </g>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-826-441-354-26-0)" font-size="14px">
@@ -271,17 +271,17 @@
         <path d="M 822 466 L 1184.38 466" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="none"/>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-826-475-354-26-0)" font-size="14px">
             <text x="827.5" y="489.5">
-                - ProfileMenu()
+                - View.ProfileMenu()
             </text>
         </g>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-decoration="underline" pointer-events="none" clip-path="url(#mx-clip-826-501-354-26-0)" font-size="14px">
             <text x="827.5" y="515.5">
-                - setInstance(instance : ProfileMenu) : void
+                - setInstance(instance : View.ProfileMenu) : void
             </text>
         </g>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-decoration="underline" pointer-events="none" clip-path="url(#mx-clip-826-527-354-26-0)" font-size="14px">
             <text x="827.5" y="541.5">
-                + getInstance() : ProfileMenu
+                + getInstance() : View.ProfileMenu
             </text>
         </g>
         <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-826-553-354-26-0)" font-size="14px">
