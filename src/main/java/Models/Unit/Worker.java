@@ -2,7 +2,7 @@ package Models.Unit;
 
 import Models.Tile;
 
-public class Worker extends Unit{
+public class Worker extends CivilianUnit{
     Worker(int HP, int MP, Tile tile, int combatStrength, int COST) {
         super(HP, MP, tile, combatStrength, COST);
     }

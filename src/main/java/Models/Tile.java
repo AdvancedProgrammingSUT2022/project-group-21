@@ -18,26 +18,17 @@ public class Tile {
 	private Civilization owner;
 	private MilitaryUnit militaryUnit;
 	private CivilianUnit civilianUnit;
-
-	public Worker getWorker() {
-		return worker;
-	}
-
-	private Worker worker;
-
-	public MilitaryUnit getMilitaryUnit() {
-		return militaryUnit;
-	}
-
-	public CivilianUnit getCivilianUnit() {
-		return civilianUnit;
-	}
-
-	public Citizen getWorkingCitizen() {
-		return workingCitizen;
-	}
-
 	private Citizen workingCitizen;
+
+	public Worker getWorker(){
+		if (civilianUnit instanceof Worker) return (Worker) civilianUnit;
+		return null;
+	}
+	public MilitaryUnit getMilitaryUnit(){ return militaryUnit;}
+	public CivilianUnit getCivilianUnit(){ return civilianUnit;}
+	public Citizen getWorkingCitizen(){ return workingCitizen;}
+	
+
 
 	public Tile(int X, int Y, Terrain terrain) {
 		this.X = X;
