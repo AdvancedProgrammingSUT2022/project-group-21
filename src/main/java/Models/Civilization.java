@@ -2,6 +2,7 @@ package Models;
 
 import Models.Resource.Resource;
 import Models.Unit.Unit;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,8 +16,9 @@ public class Civilization {
     private boolean[][] fogOfWar;
     private ArrayList<Unit> units;
 
-    public Civilization(Tile tile) {
 
+    public Civilization(Tile tile) {
+        this.capitalCity = new City(0, 0 , "", tile);
     }
 
     public int hasTechnology(Technology technology) {
@@ -26,7 +28,7 @@ public class Civilization {
     public int countResource(Resource resource) {
         return resources.get(resource);
     }
-    public boolean isTileVisible(int x, int y){
+    public boolean isTileVisible(Tile tile){
         //TODO
         return false;
     }

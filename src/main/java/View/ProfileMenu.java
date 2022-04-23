@@ -1,10 +1,9 @@
 package View;
-
-import Contoller.ProfileController;
+import Contoller.UserController;
 
 public class ProfileMenu extends Menu{
     private static ProfileMenu instance;
-    private ProfileController controller;
+    private UserController controller;
 
     private ProfileMenu() {}
     private static void setInstance(ProfileMenu instance) {}
