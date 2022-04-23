@@ -22,6 +22,10 @@ public class City {
         this.tile = tile;
     }
     public boolean isTileVisible(int x, int y) {
+        //TODO
         return false;
+    }
+    public void checkingGarrison(){
+        //TODO
     }
 }

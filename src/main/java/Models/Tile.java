@@ -2,6 +2,7 @@ package Models;
 
 import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
+import Models.Unit.Worker;
 
 public class Tile {
 	public final int X;
@@ -17,6 +18,25 @@ public class Tile {
 	private Civilization owner;
 	private MilitaryUnit militaryUnit;
 	private CivilianUnit civilianUnit;
+
+	public Worker getWorker() {
+		return worker;
+	}
+
+	private Worker worker;
+
+	public MilitaryUnit getMilitaryUnit() {
+		return militaryUnit;
+	}
+
+	public CivilianUnit getCivilianUnit() {
+		return civilianUnit;
+	}
+
+	public Citizen getWorkingCitizen() {
+		return workingCitizen;
+	}
+
 	private Citizen workingCitizen;
 
 	public Tile(int X, int Y, Terrain terrain) {

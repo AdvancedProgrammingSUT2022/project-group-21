@@ -7,6 +7,8 @@ public class Citizen {
     public Citizen(City city) {
         this.city = city;
     }
-    public void die() {}
+    public void die() {
+        //TODO
+    }
 
 }

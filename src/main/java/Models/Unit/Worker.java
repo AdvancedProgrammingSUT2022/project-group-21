@@ -20,4 +20,15 @@ public class Worker extends Unit{
     public void removeJungle(Tile tile) {}
     public void removeMarsh(Tile tile) {}
     public void createQuarry(Tile tile) {}
+    public boolean isMovePossible(Tile tile) {
+        if (tile.getWorker() == null){
+            return true;
+        }
+        return false;
+    }
+    public void move(Tile tile) {
+        if (isMovePossible(tile)){
+            this.setTile(tile);
+        }
+    }
 }

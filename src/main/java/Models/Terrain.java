@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 public enum Terrain {
 	// use the names from main english charts.
-	
 	DESERT(0, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.OASIS, TerrainFeature.FLOOD_PLAINS)),
 		new ArrayList<Resource>(Arrays.asList())),

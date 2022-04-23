@@ -23,10 +23,27 @@ public class MilitaryUnit extends Unit{
         this.lastActionTurn = lastActionTurn;
     }
     public void sleep() {
-
+        this.isSleep = true;
     }
-    public void fortify() {}
-    public void alert() {}
-    public void garrison() {}
+    public void fortify() {
+        this.isOnFortify = true;
+    }
+    public void alert() {
+        this.isOnAlert = true;
+    }
+    public void garrison() {
+        this.isOnGarrison = true;
+    }
+    public boolean isMovePossible(Tile tile) {
+        if (tile.getMilitaryUnit() == null){
+            return true;
+        }
+        return false;
+    }
+    public void move(Tile tile) {
+        if (isMovePossible(tile)){
+            this.setTile(tile);
+        }
+    }
 
 }

@@ -9,6 +9,10 @@ public class Unit {
     private int combatStrength;
     public final int COST;
 
+    public Tile getTile() {
+        return tile;
+    }
+
     Unit(int HP, int MP, Tile tile, int combatStrength, int COST) {
         this.HP = HP;
         this.MP = MP;
@@ -16,14 +20,11 @@ public class Unit {
         this.combatStrength = combatStrength;
         this.COST = COST;
     }
-    public boolean isMovePossible(int x, int y) {
-        //TODO
-        return false;
+
+    public void setTile(Tile tile) {
+        this.tile = tile;
     }
-    public boolean move() {
-        //TODO
-        return false;
-    }
+
     public int getCombatStrength() {
         return combatStrength;
     }
