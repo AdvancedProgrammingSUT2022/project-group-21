@@ -4,7 +4,58 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum Technology{
-	Agriculture(20, null, new ArrayList<Technology>(Arrays.asList())),
+	AGRICULTURE(20, null, new ArrayList<Technology>(Arrays.asList())),
+	ANIMAL_HUSBANDRY(35, null, new ArrayList<Technology>(Arrays.asList())),
+	ARCHERY(35, null, new ArrayList<Technology>(Arrays.asList())),
+	BRONZE_WORKING(55, null, new ArrayList<Technology>(Arrays.asList())),
+	CALENDAR(70, null, new ArrayList<Technology>(Arrays.asList())),
+	MASONRY(55, null, new ArrayList<Technology>(Arrays.asList())),
+	MINING(35, null, new ArrayList<Technology>(Arrays.asList())),
+	POTTERY(35, null, new ArrayList<Technology>(Arrays.asList())),
+	THE_WHEEL(55, null, new ArrayList<Technology>(Arrays.asList())),
+	TRAPPING(55, null, new ArrayList<Technology>(Arrays.asList())),
+	WRITING(55, null, new ArrayList<Technology>(Arrays.asList())),
+
+	CONSTRUCTION(    100, null, new ArrayList<Technology>(Arrays.asList())),
+	HORSEBACK_RIDING(100, null, new ArrayList<Technology>(Arrays.asList())),
+	IRON_WORKING(    150, null, new ArrayList<Technology>(Arrays.asList())),
+	MATHEMATICS(     100, null, new ArrayList<Technology>(Arrays.asList())),
+	PHILOSOPHY(      100, null, new ArrayList<Technology>(Arrays.asList())),
+
+	CHIVALRY(        440, null, new ArrayList<Technology>(Arrays.asList())),
+	CIVIL_SERVICE(   400, null, new ArrayList<Technology>(Arrays.asList())),
+	CURRENCY(        250, null, new ArrayList<Technology>(Arrays.asList())),
+	EDUCATION(       440, null, new ArrayList<Technology>(Arrays.asList())),
+	ENGINEERING(     250, null, new ArrayList<Technology>(Arrays.asList())),
+	MACHINERY(       440, null, new ArrayList<Technology>(Arrays.asList())),
+	METAL_CASTING(   240, null, new ArrayList<Technology>(Arrays.asList())),
+	PHYSICS(         440, null, new ArrayList<Technology>(Arrays.asList())),
+	STEEL(           440, null, new ArrayList<Technology>(Arrays.asList())),
+	THEOLOGY(        250, null, new ArrayList<Technology>(Arrays.asList())),
+
+	ACOUSTICS(         650, null, new ArrayList<Technology>(Arrays.asList())),
+	ARCHAEOLOGY(      1300, null, new ArrayList<Technology>(Arrays.asList())),
+	BANKING(           650, null, new ArrayList<Technology>(Arrays.asList())),
+	CHEMISTRY(         900, null, new ArrayList<Technology>(Arrays.asList())),
+	ECONOMICS(         900, null, new ArrayList<Technology>(Arrays.asList())),
+	FERTILIZER(       1300, null, new ArrayList<Technology>(Arrays.asList())),
+	GUNPOWDER(         680, null, new ArrayList<Technology>(Arrays.asList())),
+	METALLURGY(        900, null, new ArrayList<Technology>(Arrays.asList())),
+	MILITARY_SCIENCE( 1300, null, new ArrayList<Technology>(Arrays.asList())),
+	PRINTING_PRESS(    650, null, new ArrayList<Technology>(Arrays.asList())),
+	RIFLING(          1425, null, new ArrayList<Technology>(Arrays.asList())),
+	SCIENTIFIC_THEORY(1300, null, new ArrayList<Technology>(Arrays.asList())),
+
+
+	BIOLOGY(          1680, null, new ArrayList<Technology>(Arrays.asList())),
+	COMBUSTION(       2200, null, new ArrayList<Technology>(Arrays.asList())),
+	DYNAMITE(         1900, null, new ArrayList<Technology>(Arrays.asList())),
+	ELECTRICITY(      1900, null, new ArrayList<Technology>(Arrays.asList())),
+	RADIO(            2200, null, new ArrayList<Technology>(Arrays.asList())),
+	RAILROAD(         1900, null, new ArrayList<Technology>(Arrays.asList())),
+	REPLACEABLE_PARTS(1900, null, new ArrayList<Technology>(Arrays.asList())),
+	STEAM_POWER(      1680, null, new ArrayList<Technology>(Arrays.asList())),
+	TELEGRAPH(        2200, null, new ArrayList<Technology>(Arrays.asList())),
 	;
 
 	public final int cost;
