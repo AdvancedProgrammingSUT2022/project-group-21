@@ -32,14 +32,18 @@ public class UserController {
         return Message.SIGNUP_SUCCESS;
     }
     public Message loginUser(String username, String password) {
-        //TODO
-        return null;
+        if (!doesUserNameExist(username))
+            return Message.LOGIN_FAIL;
+        if (!User.doesUsernameAndPasswordMatch(password, username))
+            return Message.LOGIN_FAIL;
+        loggedInUser = User.getUserByUsername(username);
+        return Message.LOGIN_SUCCESS;
     }
     public Message logout() {
-        //TODO
-        return null;
+        loggedInUser = null;
+        return Message.LOGOUT_SUCCESS;
     }
-    private Message handleChangeUsername(String username) {
+    private Message changeNickname(String username) {
         //TODO
         return null;
     }
