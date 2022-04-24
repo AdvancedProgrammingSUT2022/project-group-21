@@ -17,8 +17,8 @@ public class ProfileMenu extends Menu{
 
 
     @Override
-    public void run() {
-
+    public Menu run() {
+        return null;
     }
 
     @Override

@@ -14,8 +14,8 @@ public class MainMenu extends Menu{
     }
 
     @Override
-    public void run() {
-
+    public Menu run() {
+        return null;
     }
 
     @Override

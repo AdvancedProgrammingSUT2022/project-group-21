@@ -14,6 +14,7 @@ public class User {
         this.username = username;
         this.nickname = nickname;
         this.password = password;
+        allUsers.add(this);
     }
     public static User getUserByUsername(String username) {
         for (User user : allUsers)

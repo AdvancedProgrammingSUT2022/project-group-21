@@ -20,9 +20,16 @@ public class UserController {
     private boolean doesUserNameExist (String username) {
         return User.getUserByUsername(username) != null;
     }
+    private boolean doesNickNameExist (String nickname) {
+        return User.doesNicknameExist(nickname);
+    }
     public Message createUser(String username, String password, String nickname) {
-        //TODO
-        return null;
+        if (doesUserNameExist(username))
+            return Message.USERNAME_EXISTS;
+        if (doesNickNameExist(nickname))
+            return Message.NICKNAME_EXISTS;
+        User newUser = new User(username, password, nickname);
+        return Message.SIGNUP_SUCCESS;
     }
     public Message loginUser(String username, String password) {
         //TODO

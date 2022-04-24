@@ -2,7 +2,7 @@ package View;
 
 import java.util.Scanner;
 
-abstract class Menu {
+public abstract class Menu {
     private static final Scanner scanner = new Scanner(System.in);
 
 
@@ -12,7 +12,7 @@ abstract class Menu {
     protected String getInput() {
         return scanner.nextLine();
     }
-    public abstract void run();
+    public abstract Menu run();
     protected abstract void showCurrentMenu();
     protected abstract void enterMenu();
 }

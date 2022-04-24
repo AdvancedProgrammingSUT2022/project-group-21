@@ -9,8 +9,8 @@ public class GameMenu extends Menu{
     private GameMenu() {}
 
     @Override
-    public void run() {
-
+    public Menu run() {
+        return null;
     }
 
     @Override
