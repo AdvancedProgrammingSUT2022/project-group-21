@@ -25,7 +25,16 @@ public class City {
         //TODO
         return false;
     }
-    public void checkingGarrison(){
-        //TODO
+
+    public double getCombatStrength(int thisTurn) {
+        double number = this.combatStrength;
+        if (this.tile.getMilitaryUnit().isOnGarrison()){
+            for (int i = this.tile.getMilitaryUnit().getLastActionTurn();i<thisTurn;i++){
+                number = 1.25 * number;
+            }
+        }
+        return number;
     }
+
+
 }
