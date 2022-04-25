@@ -1,12 +1,9 @@
 package View;
 
 import Enums.InputCommand;
-import Enums.Message;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CommandExtractor {
 	InputCommand command;
