@@ -43,6 +43,9 @@ public class Tile {
 			if (tileBorder.isRIVER()) res++;
 		return res;
 	}
+	public TileBorder getBorder(int i){ return borders[i]; }
+	public Tile getAdjTile(int i){ return borders[i].getOtherSide(this); }
+	
 
 	public boolean isTerrainFeatureCompatible(TerrainFeature terrainFeature) {
 		if (terrain==null) return false; // why?
@@ -83,16 +86,16 @@ public class Tile {
 		if (terrainFeature!=null) res+=terrainFeature.movementCost;
 		return res;
 	}
-	public boolean getPassable(){
-		if (!terrain.passable){
-			return false;
-		}
-		else {
-			if (terrainFeature!=null && !terrainFeature.passable){
-				return false;
-			}
-		}
-		return true;
+	public boolean isPassable(){
+		if (!terrain.passable) return false;
+		return terrainFeature==null || terrainFeature.passable;
 	}
+	public boolean canSeeOver(){
+		if (!terrain.visible) return false;
+		return terrainFeature==null || terrainFeature.visible;
+	}
+
+	public void setOwner(Civilization owner){ this.owner=owner; }
+	public Civilization getOwner(){ return this.owner; }
 
 }
