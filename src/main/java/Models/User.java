@@ -1,38 +1,47 @@
 package Models;
 
-import java.util.ArrayList;
+import Contoller.UserController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
-    private static ArrayList<User> allUsers;
-    private String username;
+    private static final HashMap<String, User> ALL_USERS = new HashMap<>();
     private String nickname;
     private String password;
     private Civilization civilization;
 
     public User(String username, String nickname, String password) {
-        this.username = username;
         this.nickname = nickname;
         this.password = password;
-        allUsers.add(this);
+        ALL_USERS.put(username, this);
     }
+
     public static boolean doesUsernameAndPasswordMatch(String password, String username) {
-        return getUserByUsername(username).password.equals(password);
+        return ALL_USERS.get(username).password.equals(password);
     }
+
     public static User getUserByUsername(String username) {
-        for (User user : allUsers)
-            if (user.getUsername().equals(username))    return user;
-        return null;
+        return ALL_USERS.get(username);
     }
+
     public static boolean doesNicknameExist(String nickname) {
-        for (User user : allUsers)
-            if (user.getNickname().equals(nickname))     return true;
+        for (Map.Entry<String, User> e : ALL_USERS.entrySet())
+            if (e.getValue().getNickname().equals(nickname))    return true;
         return false;
     }
 
-    public String getUsername() {
-        return username;
-    }
     public String getNickname() {
         return nickname;
+    }
+
+    public void changePassword(String newPassword, String currentPassword) {
+        if (password.equals(currentPassword))
+            password = newPassword;
+
+    }
+
+    public void changeNickname(String newNickname) {
+        this.nickname = newNickname;
     }
 }
