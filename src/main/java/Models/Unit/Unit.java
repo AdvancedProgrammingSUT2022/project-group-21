@@ -25,6 +25,10 @@ public class Unit {
         this.tile = tile;
     }
 
+    public int getMP() {
+        return MP;
+    }
+
     public int getCombatStrength() {
         return combatStrength;
     }
@@ -32,5 +36,9 @@ public class Unit {
     public boolean isTileVisible(int x, int y) {
         //TODO
         return false;
+    }
+
+    public void setMP(int MP) {
+        this.MP = MP;
     }
 }
