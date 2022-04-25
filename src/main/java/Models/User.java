@@ -1,39 +1,49 @@
 package Models;
 
-import javax.swing.table.TableRowSorter;
-import java.util.ArrayList;
+
+import DataBases.UserDataBase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
-    private static ArrayList<User> allUsers;
-    private String username;
+    private static final HashMap<String, User> ALL_USERS = new HashMap<>();
     private String nickname;
     private String password;
     private Civilization civilization;
 
     public User(String username, String nickname, String password) {
-        this.username = username;
         this.nickname = nickname;
         this.password = password;
-        allUsers.add(this);
-    }
-    public static User getUserByUsername(String username) {
-        for (User user : allUsers)
-            if (user.getUsername().equals(username))    return user;
-        return null;
-    }
-    public static boolean doesNicknameExist(String nickname) {
-        for (User user : allUsers)
-            if (user.getNickname().equals(nickname))     return true;
-        return false;
-    }
-    public boolean isPasswordEqualTo(String password) {
-        return this.password.equals(password);
+        ALL_USERS.put(username, this);
+        UserDataBase.addToDataBase(ALL_USERS);
     }
 
-    public String getUsername() {
-        return username;
+    public static boolean doesUsernameAndPasswordMatch(String password, String username) {
+        return ALL_USERS.get(username).password.equals(password);
     }
+
+    public static User getUserByUsername(String username) {
+        return ALL_USERS.get(username);
+    }
+
+    public static boolean doesNicknameExist(String nickname) {
+        for (Map.Entry<String, User> e : ALL_USERS.entrySet())
+            if (e.getValue().getNickname().equals(nickname))    return true;
+        return false;
+    }
+
     public String getNickname() {
         return nickname;
+    }
+
+    public void changePassword(String newPassword, String currentPassword) {
+        if (password.equals(currentPassword))
+            password = newPassword;
+
+    }
+
+    public void changeNickname(String newNickname) {
+        this.nickname = newNickname;
     }
 }

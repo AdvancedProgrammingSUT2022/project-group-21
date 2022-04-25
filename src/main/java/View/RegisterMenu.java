@@ -2,7 +2,6 @@ package View;
 
 import Contoller.UserController;
 import Enums.Message;
-import Models.User;
 
 public class RegisterMenu extends Menu{
     private static RegisterMenu instance = null;
@@ -23,8 +22,10 @@ public class RegisterMenu extends Menu{
     void createUser(String username, String nickname, String password) {
         System.out.println(controller.createUser(username, password, nickname));
     }
-    void login(String username, String password) {}
-    private void logout() {}
+    void login(String username, String password) {
+        System.out.println(controller.loginUser(username, password));
+    }
+
 
     @Override
     public Menu run() {

@@ -14,9 +14,15 @@ public class UserController {
         if (UserController.instance == null)    UserController.setInstance(new UserController());
         return UserController.instance;
     }
+
+
     public static User getLoggedInUser() {
         return UserController.loggedInUser;
     }
+    public static void setLoggedInUser(User loggedInUser) {
+        UserController.loggedInUser = loggedInUser;
+    }
+
     private boolean doesUserNameExist (String username) {
         return User.getUserByUsername(username) != null;
     }
@@ -32,14 +38,15 @@ public class UserController {
         return Message.SIGNUP_SUCCESS;
     }
     public Message loginUser(String username, String password) {
-        //TODO
-        return null;
+        if (!doesUserNameExist(username))
+            return Message.LOGIN_FAIL;
+        if (!User.doesUsernameAndPasswordMatch(password, username))
+            return Message.LOGIN_FAIL;
+        loggedInUser = User.getUserByUsername(username);
+        return Message.LOGIN_SUCCESS;
     }
-    public Message logout() {
-        //TODO
-        return null;
-    }
-    private Message handleChangeUsername(String username) {
+
+    private Message changeNickname(String username) {
         //TODO
         return null;
     }
