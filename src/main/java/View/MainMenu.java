@@ -5,7 +5,7 @@ import Enums.Message;
 
 public class MainMenu extends Menu{
     private static MainMenu instance;
-    private MainController controller;
+    private final MainController controller;
 
     private MainMenu() {
         controller = MainController.getInstance();
@@ -25,15 +25,19 @@ public class MainMenu extends Menu{
     public Menu run() {
         while (true){
             String command = getInput();
-            if (command.equals("user logout") || command.equals("menu exit")) {
-                logout();
-                return RegisterMenu.getInstance();
-            } else if (command.equals("menu show-current")) {
-                showCurrentMenu();
-            } else if (command.equals("menu enter Profile Menu"))
-                return ProfileMenu.getInstance();
-            else if (command.equals("menu enter Game Menu"))
-                return GameMenu.getInstance();
+            switch (command) {
+                case "user logout":
+                case "menu exit":
+                    logout();
+                    return RegisterMenu.getInstance();
+                case "menu show-current":
+                    showCurrentMenu();
+                    continue;
+                case "menu enter Profile Menu":
+                    return ProfileMenu.getInstance();
+                case "menu enter Game Menu":
+                    return GameMenu.getInstance();
+            }
             System.out.println(Message.INVALID_COMMAND);
         }
     }

@@ -1,6 +1,8 @@
 package Enums;
 
 public enum Message {
+    SUCCESS(""),
+    FAIL(""),
     LOGIN_FIRST("please login first"),
     NAVIGATION_NOT_POSSIBLE("menu navigation is not possible"),
     SIGNUP_SUCCESS("user created successfully!"),
@@ -14,7 +16,7 @@ public enum Message {
     SIGNUP_MATCHED("");
 
 
-    private String message;
+    private final String message;
 
     Message(String message) {
         this.message = message;

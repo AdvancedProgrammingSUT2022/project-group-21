@@ -7,7 +7,17 @@ public enum InputCommand{
 		{"password", "[a-zA-Z0-9_]{8, 32}"},
 		{"nickname", "[a-zA-Z0-9_ ]+"},
 	}),
-
+	USER_LOGIN("user login", new String[][]{
+			{"username", "\\S+"},
+			{"password", "\\S+"},
+	}),
+	CHANGE_NICKNAME("profile change", new String[][]{
+			{"nickname", "[a-zA-Z0-9_ ]+"}
+	}),
+	CHANGE_PASSWORD("profile change --password", new String[][]{
+			{"current password", "\\S+"},
+			{"new password", "[a-zA-Z0-9_]{8, 32}"}
+	})
 	;
 
 
