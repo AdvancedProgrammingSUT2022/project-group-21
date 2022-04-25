@@ -6,7 +6,17 @@ public class GameMenu extends Menu{
     private static GameMenu instance;
     private GameController controller;
 
-    private GameMenu() {}
+    private GameMenu() {
+        this.controller = GameController.getInstance();
+    }
+    static private void setInstance(GameMenu instance) {
+        GameMenu.instance = instance;
+    }
+    static GameMenu getInstance() {
+        if (instance == null)   GameMenu.setInstance(new GameMenu());
+        return GameMenu.instance;
+    }
+
 
     @Override
     public Menu run() {

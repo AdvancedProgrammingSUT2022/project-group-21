@@ -25,9 +25,7 @@ public class RegisterMenu extends Menu{
     void login(String username, String password) {
         System.out.println(controller.loginUser(username, password));
     }
-    private void logout() {
-        System.out.println(controller.logout());
-    }
+
 
     @Override
     public Menu run() {
