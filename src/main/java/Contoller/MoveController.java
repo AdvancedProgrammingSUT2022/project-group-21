@@ -29,15 +29,27 @@ public class MoveController {
                 if (unit instanceof MilitaryUnit){
                     MilitaryUnit militaryUnit = (MilitaryUnit) unit;
                     if (tile.getMilitaryUnit() == null){
-                        militaryUnit.move(tile);
-                        militaryUnit.setMP(militaryUnit.getMP() - tile.getMovementCost());
+                        if (riverPass()){
+                            militaryUnit.move(tile);
+                            militaryUnit.setMP(0);
+                        }
+                        else {
+                            militaryUnit.move(tile);
+                            militaryUnit.setMP(militaryUnit.getMP() - tile.getMovementCost());
+                        }
                     }
                 }
                 else if (unit instanceof CivilianUnit){
                     CivilianUnit civilianUnit = (CivilianUnit) unit;
                     if (tile.getCivilianUnit() == null){
-                        civilianUnit.move(tile);
-                        civilianUnit.setMP(civilianUnit.getMP() - tile.getMovementCost());
+                        if (riverPass()){
+                            civilianUnit.move(tile);
+                            civilianUnit.setMP(0);
+                        }
+                        else {
+                            civilianUnit.move(tile);
+                            civilianUnit.setMP(civilianUnit.getMP() - tile.getMovementCost());
+                        }
                     }
 
                 }
@@ -45,6 +57,11 @@ public class MoveController {
         }
     }
     public Tile nextTile(Tile tile){
+        //TODO
         return null;
+    }
+    public boolean riverPass(){
+        //TODO
+        return false;
     }
 }

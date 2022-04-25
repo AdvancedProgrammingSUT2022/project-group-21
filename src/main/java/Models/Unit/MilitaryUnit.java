@@ -58,7 +58,7 @@ public class MilitaryUnit extends Unit{
                 number = 1.25 * number;
             }
         }
-
+        number = number + number * getTile().getCombatModifier();
         return number;
     }
     public void move(Tile tile) {
