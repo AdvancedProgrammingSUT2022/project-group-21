@@ -1,6 +1,5 @@
 package Models;
 
-import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
 
 public class User {
@@ -16,6 +15,9 @@ public class User {
         this.password = password;
         allUsers.add(this);
     }
+    public static boolean doesUsernameAndPasswordMatch(String password, String username) {
+        return getUserByUsername(username).password.equals(password);
+    }
     public static User getUserByUsername(String username) {
         for (User user : allUsers)
             if (user.getUsername().equals(username))    return user;
@@ -25,9 +27,6 @@ public class User {
         for (User user : allUsers)
             if (user.getNickname().equals(nickname))     return true;
         return false;
-    }
-    public boolean isPasswordEqualTo(String password) {
-        return this.password.equals(password);
     }
 
     public String getUsername() {

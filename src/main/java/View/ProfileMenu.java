@@ -5,8 +5,17 @@ public class ProfileMenu extends Menu{
     private static ProfileMenu instance;
     private UserController controller;
 
-    private ProfileMenu() {}
-    private static void setInstance(ProfileMenu instance) {}
+    public ProfileMenu() {
+        this.controller = UserController.getInstance();
+    }
+
+    private static void setInstance(ProfileMenu instance) {
+        ProfileMenu.instance = instance;
+    }
+    static ProfileMenu getInstance() {
+        if (instance == null)   ProfileMenu.setInstance(new ProfileMenu());
+        return instance;
+    }
 
     private void changeNickname(String command) {
         //TODO
@@ -18,7 +27,9 @@ public class ProfileMenu extends Menu{
 
     @Override
     public Menu run() {
-        return null;
+        while (true) {
+
+        }
     }
 
     @Override
