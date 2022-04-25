@@ -11,15 +11,4 @@ public class Settler extends CivilianUnit{
         City city = new City(tile.getFood(),tile.getFood(),"",tile);
         // TODO
     }
-    public boolean isMovePossible(Tile tile) {
-        if (tile.getWorker() == null){
-            return true;
-        }
-        return false;
-    }
-    public void move(Tile tile) {
-        if (isMovePossible(tile)){
-            this.setTile(tile);
-        }
-    }
 }

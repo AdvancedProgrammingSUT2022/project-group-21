@@ -13,23 +13,32 @@ public class Unit {
         return tile;
     }
 
-    Unit(int HP, int MP, Tile tile, int combatStrength, int COST) {
+    Unit(int HP, int MP, Tile tile, int COST, int combatStrength) {
         this.HP = HP;
         this.MP = MP;
         this.tile = tile;
-        this.combatStrength = combatStrength;
         this.COST = COST;
+        this.combatStrength = combatStrength;
     }
 
     public void setTile(Tile tile) {
         this.tile = tile;
     }
 
+    public int getMP() {
+        return MP;
+    }
+
     public int getCombatStrength() {
         return combatStrength;
     }
+
     public boolean isTileVisible(int x, int y) {
         //TODO
         return false;
+    }
+
+    public void setMP(int MP) {
+        this.MP = MP;
     }
 }
