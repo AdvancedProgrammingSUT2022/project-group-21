@@ -83,5 +83,16 @@ public class Tile {
 		if (terrainFeature!=null) res+=terrainFeature.movementCost;
 		return res;
 	}
+	public boolean getPassable(){
+		if (!terrain.passable){
+			return false;
+		}
+		else {
+			if (terrainFeature!=null && !terrainFeature.passable){
+				return false;
+			}
+		}
+		return true;
+	}
 
 }
