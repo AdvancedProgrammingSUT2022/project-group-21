@@ -20,9 +20,9 @@ public class MoveController {
     public void move(){
         //Felan mojaver ...
         Tile tile = firstTile;
-        while (!tile.equals(lastTile)){
+        while (!tile.equals(lastTile) && tile.getPassable()){
             tile = nextTile(tile);
-            if (unit.getMP() < tile.getMovementCost()){
+            if (unit.getMP() == 0){
                 break;
             }
             else {
@@ -35,7 +35,13 @@ public class MoveController {
                         }
                         else {
                             militaryUnit.move(tile);
-                            militaryUnit.setMP(militaryUnit.getMP() - tile.getMovementCost());
+                            if (militaryUnit.getMP() - tile.getMovementCost() < 0){
+                                militaryUnit.setMP(0);
+                            }
+                            else {
+                                militaryUnit.setMP(militaryUnit.getMP() - tile.getMovementCost());
+
+                            }
                         }
                     }
                 }
@@ -48,7 +54,12 @@ public class MoveController {
                         }
                         else {
                             civilianUnit.move(tile);
-                            civilianUnit.setMP(civilianUnit.getMP() - tile.getMovementCost());
+                            if (civilianUnit.getMP() - tile.getMovementCost() < 0){
+                                civilianUnit.setMP(0);
+                            }
+                            else {
+                                civilianUnit.setMP(civilianUnit.getMP() - tile.getMovementCost());
+                            }
                         }
                     }
 
