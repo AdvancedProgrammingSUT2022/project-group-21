@@ -14,7 +14,7 @@ public class CommandExtractor {
 	ArrayList<String> flags;
 
 
-	public static CommandExtractor extractCommand(String command) {
+	public static CommandExtractor extractCommand(String input){
 		return null;
 	}
 }
