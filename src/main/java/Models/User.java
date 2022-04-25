@@ -1,6 +1,7 @@
 package Models;
 
-import Contoller.UserController;
+
+import DataBases.UserDataBase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class User {
         this.nickname = nickname;
         this.password = password;
         ALL_USERS.put(username, this);
+        UserDataBase.addToDataBase(ALL_USERS);
     }
 
     public static boolean doesUsernameAndPasswordMatch(String password, String username) {
