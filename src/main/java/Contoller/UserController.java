@@ -46,12 +46,18 @@ public class UserController {
         return Message.LOGIN_SUCCESS;
     }
 
-    private Message changeNickname(String username) {
-        //TODO
-        return null;
+    public Message changeNickname(String nickname) {
+        if (!doesNickNameExist(nickname))
+            return Message.FAIL;
+        loggedInUser.changeNickname(nickname);
+        return Message.SUCCESS;
     }
-    private Message handleChangeNickname(String nickname) {
-        //TODO
-        return null;
+    public Message changePassword(String current, String newP) {
+        if (!User.doesUsernameAndPasswordMatch(current, loggedInUser.getUsername()))
+            return Message.FAIL;
+        else if (current.equals(newP))
+            return null;
+        loggedInUser.changePassword(newP, current);
+        return Message.SUCCESS;
     }
 }

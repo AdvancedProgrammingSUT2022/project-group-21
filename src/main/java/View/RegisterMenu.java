@@ -1,6 +1,7 @@
 package View;
 
 import Contoller.UserController;
+import Enums.InputCommand;
 import Enums.Message;
 
 public class RegisterMenu extends Menu{
@@ -31,7 +32,7 @@ public class RegisterMenu extends Menu{
     public Menu run() {
         while (true) {
             String command = getInput();
-            if (command.contains("menu enter")) {
+            if (command.matches("menu enter (Main Menu)|(Play Game Menu)|(Profile Menu)")) {
                 enterMenu();
                 continue;
             }
@@ -40,13 +41,22 @@ public class RegisterMenu extends Menu{
                 continue;
             }
             else if (command.equals("menu exit"))    return null;
-            Message message = CommandExtractor.registerAnalyse(command);
-            if (message == Message.LOGIN_MATCHED &&
-                    UserController.getLoggedInUser() != null)
-                break;
-            System.out.println(Message.INVALID_COMMAND);
+            CommandExtractor extractor = CommandExtractor.extractCommand(command);
+            if (extractor == null) {
+                System.out.println(Message.INVALID_COMMAND);
+                continue;
+            }
+            InputCommand inputCommand = extractor.command;
+            if (inputCommand == InputCommand.USER_CREATE) {
+                createUser(extractor.args.get("username"), extractor.args.get("nickname"), extractor.args.get("password"));
+                continue;
+            }
+            if (inputCommand == InputCommand.USER_LOGIN) {
+                login(extractor.args.get("username"), extractor.args.get("password"));
+                if (UserController.getLoggedInUser() != null)
+                    return MainMenu.getInstance();
+            }
         }
-        return MainMenu.getInstance();
     }
 
     @Override
