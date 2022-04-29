@@ -21,61 +21,77 @@ public class MoveController {
 	private Unit unit;
 
 	
-	public void move(Tile firstTile, Tile lastTile, Unit unit){
+	public boolean move(Tile firstTile, Tile lastTile, Unit unit){
 		this.firstTile=firstTile;
 		this.lastTile=lastTile;
 		this.unit=unit;
 
-		//Felan mojaver ...
 		Tile tile = firstTile;
 		while (!tile.equals(lastTile) && tile.isPassable()){
 			tile = nextTile(tile);
-			if (unit.getMP() == 0) break;
+			if (unit.getMP() == 0){
+				return false;
+			}
 			if (unit instanceof MilitaryUnit){
-				MilitaryUnit militaryUnit = (MilitaryUnit) unit;
 				if (tile.getMilitaryUnit() == null){
-					if (riverPass()){
-						militaryUnit.move(tile);
-						militaryUnit.setMP(0);
+					if (riverPass(unit.getTile(),tile)){
+						((MilitaryUnit) unit).move(tile);
+						unit.setMP(0);
 					}
 					else {
-						militaryUnit.move(tile);
-						if (militaryUnit.getMP() - tile.getMovementCost() < 0){
-							militaryUnit.setMP(0);
+						((MilitaryUnit) unit).move(tile);
+						if (unit.getMP() - tile.getMovementCost() < 0){
+							unit.setMP(0);
 						}
 						else {
-							militaryUnit.setMP(militaryUnit.getMP() - tile.getMovementCost());
+							unit.setMP(unit.getMP() - tile.getMovementCost());
 
 						}
 					}
 				}
+				else {
+					if (!tile.equals(lastTile) && unit.getMP() >= nextTile(tile).getMovementCost() && !riverPass(unit.getTile(),tile) && nextTile(tile).isPassable()){
+                        ((MilitaryUnit) unit).move(tile);
+                        unit.setMP(unit.getMP() - tile.getMovementCost());
+                    }
+				}
 			}
 			else if (unit instanceof CivilianUnit){
-				CivilianUnit civilianUnit = (CivilianUnit) unit;
 				if (tile.getCivilianUnit() == null){
-					if (riverPass()){
-						civilianUnit.move(tile);
-						civilianUnit.setMP(0);
+					if (riverPass(unit.getTile(),tile)){
+						((CivilianUnit) unit).move(tile);
+						unit.setMP(0);
 					}
 					else {
-						civilianUnit.move(tile);
-						if (civilianUnit.getMP() - tile.getMovementCost() < 0){
-							civilianUnit.setMP(0);
+						((CivilianUnit) unit).move(tile);
+						if (unit.getMP() - tile.getMovementCost() < 0){
+							unit.setMP(0);
 						}
 						else {
-							civilianUnit.setMP(civilianUnit.getMP() - tile.getMovementCost());
+							unit.setMP(unit.getMP() - tile.getMovementCost());
 						}
 					}
 				}
+                else {
+                    if (!tile.equals(lastTile) && unit.getMP() >= nextTile(tile).getMovementCost() && !riverPass(unit.getTile(),tile) && nextTile(tile).isPassable()){
+                        ((CivilianUnit) unit).move(tile);
+                        unit.setMP(unit.getMP() - tile.getMovementCost());
+                    }
+                }
 			}
 		}
+		return true;
 	}
 	public Tile nextTile(Tile tile){
 		//TODO
 		return null;
 	}
-	public boolean riverPass(){
-		//TODO
+	public boolean riverPass(Tile firstTile, Tile secondTile){
+		for (int i = 0;i<6;i++){
+			if (firstTile.getBorder(i).getOtherSide(firstTile).equals(secondTile) && firstTile.getBorder(i).isRIVER()){
+				return true;
+			}
+		}
 		return false;
 	}
 }
