@@ -5,6 +5,8 @@ import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Unit;
 
+import java.util.ArrayList;
+
 public class MoveController {
 	private static MoveController instance;
 	private static void setInstance(MoveController instance) {
@@ -14,75 +16,89 @@ public class MoveController {
 		if (instance == null) MoveController.setInstance(new MoveController());
 		return instance;
 	}
-	
-	//Felan mojaver ...
-	private Tile firstTile;
-	private Tile lastTile;
-	private Unit unit;
-
-	
-	public boolean move(Tile firstTile, Tile lastTile, Unit unit){
-		this.firstTile=firstTile;
-		this.lastTile=lastTile;
-		this.unit=unit;
-
-		Tile tile = firstTile;
-		while (!tile.equals(lastTile) && tile.isPassable()){
-			tile = nextTile(tile);
-			if (unit.getMP() == 0){
-				return false;
-			}
-			if (unit instanceof MilitaryUnit){
-				if (tile.getMilitaryUnit() == null){
-					if (riverPass(unit.getTile(),tile)){
-						((MilitaryUnit) unit).move(tile);
-						unit.setMP(0);
+	public boolean move(Unit unit,Tile firstTile,Tile lastTile){
+		ArrayList<Tile> path = getPath(firstTile,lastTile);
+		int i;
+		int j;
+		int MP = unit.getMP();
+		if (path == null){
+			return true;
+		}
+		if (unit instanceof MilitaryUnit){
+			while (unit.getMP() != 0 && !path.get(0).equals(lastTile)){
+				for (i = 1;i<path.size();i++) {
+					if (path.get(i).getMilitaryUnit() == null) {
+						break;
+						//We have no path to go
+					}
+				}
+				for (j = 0;j<=i-1;j++){
+					if (MP == 0){
+						break;
+					}
+					if (riverPass(path.get(j),path.get(j+1))){
+						MP = 0;
 					}
 					else {
-						((MilitaryUnit) unit).move(tile);
-						if (unit.getMP() - tile.getMovementCost() < 0){
-							unit.setMP(0);
+						MP = MP - path.get(j+1).getMovementCost();
+						if (MP < 0){
+							MP = 0;
 						}
-						else {
-							unit.setMP(unit.getMP() - tile.getMovementCost());
-
-						}
+					}
+				}
+				if (j == i){
+					((MilitaryUnit) unit).move(path.get(i));
+					unit.setMP(MP);
+					for (int k = 0;k<i;k++){
+						path.remove(0);
 					}
 				}
 				else {
-					if (!tile.equals(lastTile) && unit.getMP() >= nextTile(tile).getMovementCost() && !riverPass(unit.getTile(),tile) && nextTile(tile).isPassable()){
-                        ((MilitaryUnit) unit).move(tile);
-                        unit.setMP(unit.getMP() - tile.getMovementCost());
-                    }
+					return true;
+					//Aborting
 				}
 			}
-			else if (unit instanceof CivilianUnit){
-				if (tile.getCivilianUnit() == null){
-					if (riverPass(unit.getTile(),tile)){
-						((CivilianUnit) unit).move(tile);
-						unit.setMP(0);
+
+		}
+		if (unit instanceof CivilianUnit){
+			while (unit.getMP() != 0 && !path.get(0).equals(lastTile)){
+				for (i = 1;i<path.size();i++) {
+					if (path.get(i).getCivilianUnit() == null) {
+						break;
+					}
+				}
+				for (j = 0;j<=i-1;j++){
+					if (MP == 0){
+						break;
+					}
+					if (riverPass(path.get(j),path.get(j+1))){
+						MP = 0;
 					}
 					else {
-						((CivilianUnit) unit).move(tile);
-						if (unit.getMP() - tile.getMovementCost() < 0){
-							unit.setMP(0);
-						}
-						else {
-							unit.setMP(unit.getMP() - tile.getMovementCost());
+						MP = MP - path.get(j+1).getMovementCost();
+						if (MP < 0){
+							MP = 0;
 						}
 					}
 				}
-                else {
-                    if (!tile.equals(lastTile) && unit.getMP() >= nextTile(tile).getMovementCost() && !riverPass(unit.getTile(),tile) && nextTile(tile).isPassable()){
-                        ((CivilianUnit) unit).move(tile);
-                        unit.setMP(unit.getMP() - tile.getMovementCost());
-                    }
-                }
+				if (j == i){
+					((CivilianUnit) unit).move(path.get(i));
+					unit.setMP(MP);
+					for (int k = 0;k<i;k++){
+						path.remove(0);
+					}
+				}
+				else {
+					return true;
+					//Aborting
+				}
 			}
 		}
-		return true;
+		return path.get(0).equals(lastTile);
+		//We return true if we end the path or cant go to tile in the path
+		//returning false for multi-turn movement that needs TODO...
 	}
-	public Tile nextTile(Tile tile){
+	public ArrayList<Tile> getPath(Tile firstTile, Tile lastTile){
 		//TODO
 		return null;
 	}
