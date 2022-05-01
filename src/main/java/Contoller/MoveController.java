@@ -47,7 +47,7 @@ public class MoveController {
 					}
 				}
 				if (j == i){
-					((MilitaryUnit) unit).move(path.get(i));
+					unit.move(path.get(i));
 					unit.setMP(MP);
 					for (int k = 0;k<i;k++){
 						path.remove(0);
@@ -82,7 +82,7 @@ public class MoveController {
 					}
 				}
 				if (j == i){
-					((CivilianUnit) unit).move(path.get(i));
+					unit.move(path.get(i));
 					unit.setMP(MP);
 					for (int k = 0;k<i;k++){
 						path.remove(0);

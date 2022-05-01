@@ -37,7 +37,9 @@ public class Unit {
         //TODO
         return false;
     }
-
+    public void move(Tile tile){
+        this.tile = tile;
+    }
     public void setMP(int MP) {
         this.MP = MP;
     }

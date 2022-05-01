@@ -47,24 +47,24 @@ public class MilitaryUnit extends Unit{
 	}
 
 	public double getCombatStrength(int thisTurn) {
-		double number = this.getCombatStrength();
+		double number = getCombatStrength();
 		if (this.isOnFortify){
 			for (int i = lastActionTurn;i<thisTurn;i++){
-				number = 1.25 * number;
+				number = 1.25 * getCombatStrength();
 			}
 		}
 		else if (this.isOnGarrison){
 			for (int i = lastActionTurn;i<thisTurn;i++){
-				number = 1.25 * number;
-				// TODO: exponential?! 
+				number = 1.25 * getCombatStrength();
 			}
 		}
 		number = number + number * getTile().getCombatModifier();
 		return number;
 	}
-	public void move(Tile tile) {
-		this.setTile(tile);
-		// TODO: change isGarrison ...
-	}
 
+	@Override
+	public void move(Tile tile) {
+		super.move(tile);
+		//TODO garrison and fortify...
+	}
 }
