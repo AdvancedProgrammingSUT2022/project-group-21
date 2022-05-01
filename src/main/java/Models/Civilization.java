@@ -21,7 +21,7 @@ public class Civilization {
 
 
 	public Civilization(Tile tile, int W, int H){
-		this.capitalCity = new City(0, 0 , "", tile);
+		this.capitalCity = new City(0, 0 , tile);
 		this.fogOfWar = new boolean[W][H];
 		this.Visible = new boolean[W][H];
 		this.W=W;

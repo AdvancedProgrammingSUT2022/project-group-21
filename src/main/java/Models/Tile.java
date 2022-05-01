@@ -95,6 +95,10 @@ public class Tile {
 		return terrainFeature==null || terrainFeature.visible;
 	}
 
+	public void setCitizen(Citizen workingCitizen) {
+		this.workingCitizen = workingCitizen;
+	}
+
 	public void setOwner(Civilization owner){ this.owner=owner; }
 	public Civilization getOwner(){ return this.owner; }
 
