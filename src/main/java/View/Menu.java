@@ -3,10 +3,10 @@ package View;
 import java.util.Scanner;
 
 public abstract class Menu {
-    private final Scanner scanner = new Scanner(System.in);
+	private final Scanner scanner = new Scanner(System.in);
 
 
-    protected String getInput(){
+	protected String getInput(){
 		String input=scanner.nextLine();
 		String S[]=input.split("\\s");
 		String T="";
@@ -16,7 +16,7 @@ public abstract class Menu {
 		}
 		return T;
 	}
-    public abstract Menu run();
-    protected abstract void showCurrentMenu();
-    protected abstract void enterMenu();
+	public abstract Menu run();
+	protected abstract void showCurrentMenu();
+	protected abstract void enterMenu();
 }
