@@ -1,27 +1,19 @@
 package Models.Unit;
 
+import Models.Civilization;
 import Models.Tile;
 
-public class MilitaryUnit extends Unit{
+public abstract class MilitaryUnit extends Unit{
 	private int XP;
 	private boolean isSleep;
 	private boolean isOnFortify;
 	private boolean isOnAlert;
 	private boolean isOnGarrison;
-	private final int RANGE;
-	private int lastActionTurn; // TODO: update this
 
-	public MilitaryUnit(int XP, boolean isSleep, boolean isOnFortify, boolean isOnAlert, boolean isOnGarrison,
-						int range, int lastActionTurn, int HP, int MP, Tile tile, int combatStrength, int COST){
-		super(HP, MP, tile, COST, combatStrength);
-		this.XP = XP;
-		this.isSleep = isSleep;
-		this.isOnFortify = isOnFortify;
-		this.isOnAlert = isOnAlert;
-		this.isOnGarrison = isOnGarrison;
-		this.RANGE = range;
-		this.lastActionTurn = lastActionTurn;
+	public MilitaryUnit(UnitType unitType, Civilization owner, Tile tile){
+		super(unitType, owner, tile);
 	}
+	
 	public void sleep() {
 		this.isSleep = true;
 	}

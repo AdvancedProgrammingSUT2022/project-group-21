@@ -1,9 +1,10 @@
 package Models.Unit;
 
+import Models.Civilization;
 import Models.Tile;
 
-public class CivilianUnit extends Unit{
-    CivilianUnit(int HP, int MP, Tile tile, int combatStrength, int COST) {
-        super(HP, MP, tile, combatStrength, COST);
+public abstract class CivilianUnit extends Unit{
+    CivilianUnit(UnitType unitType, Civilization owner, Tile tile){
+        super(unitType, owner, tile);
     }
 }
