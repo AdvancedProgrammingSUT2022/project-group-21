@@ -1,6 +1,8 @@
 package Models;
 
 import Models.Unit.MilitaryUnit;
+import Models.Unit.UnitType;
+
 import java.util.ArrayList;
 
 public class City {
@@ -10,21 +12,21 @@ public class City {
 	private int food;
 	private boolean isCapital;
 	private ArrayList<Citizen> citizens;
-	private Tile tile;
+	private Tile center;
 	private MilitaryUnit garrisonUnit;
 	private int combatStrength;
 
 	public City(int gold, int food, Tile tile) {
 		this.gold = gold;
 		this.food = food;
-		this.tile = tile;
+		this.center = tile;
 	}
 	
 	public double getCombatStrength(int thisTurn) {
 		// TODO: exponential
 		double number = this.combatStrength;
-		if (this.tile.getMilitaryUnit().isOnGarrison()){
-			for (int i = this.tile.getMilitaryUnit().getLastActionTurn();i<thisTurn;i++){
+		if (this.center.getMilitaryUnit().isOnGarrison()){
+			for (int i = this.center.getMilitaryUnit().getLastActionTurn(); i<thisTurn; i++){
 				number = 1.25 * number;
 			}
 		}
@@ -60,5 +62,11 @@ public class City {
 	public void addCitizen() {
 		citizens.add(new Citizen(this));
 	}
+
+	public void addUnit(UnitType unitType) {
+		unitType.createUnit(civilization, center);
+	}
+
+
 
 }
