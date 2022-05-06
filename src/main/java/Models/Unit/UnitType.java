@@ -6,8 +6,13 @@ import Models.Tile;
 import Models.Resource.Resource;
 
 public enum UnitType{
+	SETTLER(CombatType.CIVILIAN, 89, -1, -1, -1, 2, null, false, new Technology[]{}),
+	WORKER(CombatType.CIVILIAN, 70, -1, -1, -1, 2, null, false, new Technology[]{}),
+
+
 	ARCHER(CombatType.RANGED, 70, 4, 6, 2, 2, null, false,
-		new Technology[]{Technology.ARCHERY}),
+		new Technology[]{Technology.ARCHERY}
+	),
 	
 	;
 

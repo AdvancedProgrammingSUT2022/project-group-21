@@ -6,8 +6,8 @@ import Models.Tile;
 public abstract class Unit {
 	final public UnitType unitType;
 	final public Civilization owner;
-	protected Tile tile;
-	protected int HP;
+	private Tile tile;
+	private int HP, MP;
 	protected int lastActionTurn; // TODO: update this
 	
 	Unit(UnitType unitType, Civilization owner, Tile tile){
@@ -15,28 +15,21 @@ public abstract class Unit {
 		this.owner=owner;
 		this.tile=tile;
 		this.HP=10;
+		this.MP=unitType.MP;
 	}
-	// TODO: fix the rest
 	
 	public Tile getTile(){ return tile;}
 	public void setTile(Tile tile){ this.tile=tile;}
 
-	public int getMP() {
-		return MP;
-	}
+	public int getCombatStrength(){ return unitType.combatStrength;}
+	public int getMP(){ return this.MP;}
+	public void resetMP(){ this.MP=unitType.MP;}
+	public void setMP(int MP){ this.MP=MP;}
 
-	public int getCombatStrength() {
-		return combatStrength;
-	}
+	public int getHP(){ return this.HP;}
+	public void setHP(Tile tile){ this.tile=tile;}
 
-	public boolean isTileVisible(int x, int y) {
-		//TODO
-		return false;
-	}
-	public void move(Tile tile){
-		this.tile = tile;
-	}
-	public void setMP(int MP) {
-		this.MP = MP;
-	}
+	public int getLastActionTurn(){ return lastActionTurn;}
+	public void setLastActionTurn(int turn){ this.lastActionTurn=turn;}
+
 }

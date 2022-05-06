@@ -17,14 +17,13 @@ public class MoveController {
 		if (instance == null) MoveController.setInstance(new MoveController());
 		return instance;
 	}
+	
 	public boolean move(Unit unit,Tile firstTile,Tile lastTile){
 		ArrayList<Tile> path = getPath(firstTile,lastTile);
 		int i;
 		int j;
 		int MP = unit.getMP();
-		if (path == null){
-			return true;
-		}
+		if (path == null) return true;
 		if (unit instanceof MilitaryUnit){
 			while (unit.getMP() != 0 && !path.get(0).equals(lastTile)){
 				for (i = 1;i<path.size();i++) {
@@ -48,7 +47,7 @@ public class MoveController {
 					}
 				}
 				if (j == i){
-					unit.move(path.get(i));
+					unit.setTile(path.get(i));
 					unit.setMP(MP);
 					for (int k = 0;k<i;k++){
 						path.remove(0);
@@ -83,7 +82,7 @@ public class MoveController {
 					}
 				}
 				if (j == i){
-					unit.move(path.get(i));
+					unit.setTile(path.get(i));
 					unit.setMP(MP);
 					for (int k = 0;k<i;k++){
 						path.remove(0);
@@ -107,6 +106,7 @@ public class MoveController {
 		int dist[][] = new int[W][H];
 		boolean inq[][] = new boolean[W][H];
 		int maxQ=W*H, head=0, tail=0;
+		// NOTE: maybe allocate stupid memory
 		Tile[] Q = new Tile[maxQ];
 		Tile[][] par = new Tile[W][H];
 		Q[tail++]=firstTile;
@@ -115,7 +115,7 @@ public class MoveController {
 			if (head==maxQ) head=0;
 			inq[v.X][v.Y]=false;
 			for (int i=0; i<6; i++){
-				boolean river=v.getBorder(i).isRIVER();
+				boolean river=v.isRiver(i);
 				Tile u=v.getAdjTile(i);
 				if (u==null) continue ;
 				int w=u.getMovementCost()+(river?1:0); // NOTE: maybe change cost function
@@ -144,7 +144,7 @@ public class MoveController {
 
 	public boolean riverPass(Tile firstTile, Tile secondTile){
 		for (int i = 0;i<6;i++){
-			if (firstTile.getBorder(i).getOtherSide(firstTile).equals(secondTile) && firstTile.getBorder(i).isRIVER()){
+			if (firstTile.getAdjTile(i).equals(secondTile) && firstTile.isRiver(i)){
 				return true;
 			}
 		}

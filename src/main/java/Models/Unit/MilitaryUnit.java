@@ -14,25 +14,12 @@ public abstract class MilitaryUnit extends Unit{
 		super(unitType, owner, tile);
 	}
 	
-	public void sleep() {
-		this.isSleep = true;
-	}
-	public void fortify() {
-		this.isOnFortify = true;
-	}
-	public void alert() {
-		this.isOnAlert = true;
-	}
-	public void garrison() {
-		this.isOnGarrison = true;
-	}
-	public void wakeUp(){
-		this.isSleep = false;
-	}
+	public void sleep(){ this.isSleep=true;}
+	public void fortify(){ this.isOnFortify=true;}
+	public void alert(){ this.isOnAlert = true;}
+	public void garrison(){ this.isOnGarrison = true;}
+	public void wakeUp(){ this.isSleep = false;}
 
-	public int getLastActionTurn() {
-		return lastActionTurn;
-	}
 
 	public boolean isOnGarrison() {
 		return isOnGarrison;
@@ -55,8 +42,8 @@ public abstract class MilitaryUnit extends Unit{
 	}
 
 	@Override
-	public void move(Tile tile) {
-		super.move(tile);
+	public void setTile(Tile tile) {
+		super.setTile(tile);
 		//TODO garrison and fortify...
 	}
 }

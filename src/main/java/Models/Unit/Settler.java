@@ -1,14 +1,17 @@
 package Models.Unit;
 
 import Models.City;
+import Models.Civilization;
 import Models.Tile;
 
 public class Settler extends CivilianUnit{
-    Settler(int HP, int MP, Tile tile, int combatStrength, int COST) {
-        super(HP, MP, tile, combatStrength, COST);
-    }
-    public void findCity(Tile tile) {
-        City city = new City(tile.getFood(),tile.getFood(),tile);
-        // TODO
-    }
+	
+	public Settler(Civilization owner, Tile tile){
+		super(UnitType.SETTLER, owner, tile);
+	}
+
+	public void findCity(Tile tile){
+		City city = new City(tile.getFood(),tile.getFood(),tile);
+		// TODO
+	}
 }

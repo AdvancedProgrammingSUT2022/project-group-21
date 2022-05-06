@@ -7,7 +7,8 @@ import Models.Unit.Worker;
 public class Tile {
 	public final int X;
 	public final int Y;
-	private TileBorder borders[];
+	private Tile adjTiles[];
+	private boolean rivers[];
 
 	private Terrain terrain;
 	private TerrainFeature terrainFeature;
@@ -34,17 +35,20 @@ public class Tile {
 		this.X = X;
 		this.Y = Y;
 		this.terrain = terrain;
-		this.borders = new TileBorder[6];
+		this.adjTiles = new Tile[6];
 	}
 
 	private int countRivers(){
 		int res=0;
-		for (TileBorder tileBorder : borders)
-			if (tileBorder.isRIVER()) res++;
+		for (int i=0; i<6; i++)
+			res+=(rivers[i]?1:0);
 		return res;
 	}
-	public TileBorder getBorder(int i){ return borders[i]; }
-	public Tile getAdjTile(int i){ return borders[i].getOtherSide(this); }
+	public void setRiver(int i, boolean val){ rivers[i]=val; }
+	public void setAdjTile(int i, Tile val){ adjTiles[i]=val; }
+
+	public boolean isRiver(int i){ return rivers[i]; }
+	public Tile getAdjTile(int i){ return adjTiles[i]; }
 	
 
 	public boolean isTerrainFeatureCompatible(TerrainFeature terrainFeature) {
@@ -54,7 +58,7 @@ public class Tile {
 		return countRivers()>0;
 	}
 	public void setTerrainFeature(TerrainFeature terrainFeature){
-		assert(isTerrainFeatureCompatible(terrainFeature)); // TODO: dont know where this may be used
+		assert(isTerrainFeatureCompatible(terrainFeature)); // NOTE: dont know where this may be used
 		this.terrainFeature=terrainFeature;
 	}
 
@@ -77,8 +81,9 @@ public class Tile {
 		return res;
 	}
 	public double getCombatModifier(){
-		double res=terrain.combatModifier;
-		if (terrainFeature!=null) res+=terrainFeature.combatModifier; // NOTE: add or multiply?
+		// NOTE: add or multiply?
+		double res=terrain.combatModifier+1;
+		if (terrainFeature!=null) res*=terrainFeature.combatModifier+1;
 		return res;
 	}
 	public int getMovementCost(){

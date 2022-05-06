@@ -6,7 +6,9 @@ import Models.Tile;
 public enum CombatType{
 	CIVILIAN{
 		public Unit createUnit(UnitType unitType, Civilization owner, Tile tile){
-			// TODO: maybe raise error?
+			if (unitType==UnitType.SETTLER) return new Settler(owner, tile);
+			if (unitType==UnitType.WORKER) return new Worker(owner, tile);
+			assert(false);
 			return null;
 		}
 	},
