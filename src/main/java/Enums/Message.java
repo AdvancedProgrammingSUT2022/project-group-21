@@ -14,9 +14,16 @@ public enum Message {
 	USERNAME_EXISTS(""),
 	LOGIN_MATCHED(""),
 	SIGNUP_MATCHED(""),
+	
+	UNIT_NOT_WORKER(""),
+	UNIT_NOT_SETTLER(""),
+	UNIT_NOT_MILITARY(""),
+	NO_CITY_ON_TILE(""),
 	NOT_ENOUGH_GOLD("insufficient gold"),
 	ALREADY_ASSIGNED("already assigned"),
-	UNSUITABLE_TERRAIN("");
+	UNSUITABLE_TERRAIN(""),
+	TILE_NOT_OWNED(""),
+	;
 
 
 	private final String message;

@@ -4,18 +4,14 @@ import java.util.ArrayList;
 
 public class Citizen {
 	private City city;
-	private boolean isWorking;
 	private Tile workingTile;
 
 	public Citizen(City city) {
 		this.city = city;
-		isWorking = false;
 	}
 
 	public void assignToTile(Tile tile) {
-		if (isWorking)
-			workingTile.setCitizen(null);
-		isWorking = true;
+		if (workingTile!=null) workingTile.setCitizen(null);
 		tile.setCitizen(this);
 		workingTile = tile;
 	}
@@ -25,30 +21,14 @@ public class Citizen {
 		city.removeCitizen(this);
 	}
 
+	public City getCity(){ return city;}
+	public void setCity(City city){ this.city = city;}
 
-	public City getCity() {
-		return city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
-	public boolean isWorking() {
-		return isWorking;
-	}
-
-	public void setWorking(boolean working) {
-		isWorking = working;
-	}
-
-	public Tile getWorkingTile() {
-		return workingTile;
-	}
-
-	public void setWorkingTile(Tile workingTile) {
-		this.workingTile = workingTile;
-	}
+	
+	
+	public boolean isWorking(){ return workingTile!=null; }
+	public Tile getWorkingTile(){ return workingTile;}
+	public void setWorkingTile(Tile workingTile){ this.workingTile = workingTile;}
 
 
 }

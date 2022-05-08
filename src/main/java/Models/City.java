@@ -16,9 +16,7 @@ public class City {
 	private MilitaryUnit garrisonUnit;
 	private int combatStrength;
 
-	public City(int gold, int food, Tile tile,Civilization civilization) {
-		this.goldOut = gold;
-		this.foodOut = food;
+	public City(Tile tile, Civilization civilization) {
 		this.center = tile;
 		this.civilization = civilization;
 	}
@@ -33,12 +31,11 @@ public class City {
 		}
 		return number;
 	}
-
-	public void lockCitizen(Tile tile) {
-		Citizen citizen = getCitizenToAssign();
-		citizen.assignToTile(tile);
-	}
-	private Citizen getCitizenToAssign(){
+	
+	public void addCitizen(Citizen citizen){ citizens.add(citizen);}
+	public void removeCitizen(Citizen citizen){ citizens.remove(citizen);}
+	public int countCitizens(){ return citizens.size();}
+	public Citizen getCitizenToAssign(){
 		for (Citizen citizen : citizens){
 			if (!citizen.isWorking())
 				return citizen;
@@ -47,34 +44,11 @@ public class City {
 		return citizens.get(index);
 	}
 
-	public void removeCitizen(Citizen citizen) {
-		citizens.remove(citizen);
-	}
+	
+	
+	public void addTile(Tile tile){ tiles.add(tile);}
+	public boolean hasTile(Tile tile){ return tiles.contains(tile);}
+	
 
-	public void removeCitizenFromWork(Citizen citizen){
-		citizen.getWorkingTile().setCitizen(null);
-		citizen.setWorkingTile(null);
-	}
-
-	public void addTile(Tile tile) {
-		tiles.add(tile);
-	}
-
-	public void addCitizen() {
-		citizens.add(new Citizen(this));
-	}
-
-	public void addUnit(UnitType unitType) {
-		unitType.createUnit(civilization, center);
-	}
-
-	public boolean hasTile(Tile tile) {
-		for (Tile arg : tiles)
-			if (arg.equals(tile)) 		return true;
-		return false;
-	}
-
-	public Civilization getCivilization() {
-		return civilization;
-	}
+	public Civilization getCivilization(){ return civilization;}
 }
