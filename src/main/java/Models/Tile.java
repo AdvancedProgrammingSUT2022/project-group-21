@@ -107,4 +107,11 @@ public class Tile {
 	public void setOwner(Civilization owner){ this.owner=owner; }
 	public Civilization getOwner(){ return this.owner; }
 
+	public Terrain getTerrain() {
+		return terrain;
+	}
+
+	public TerrainFeature getTerrainFeature() {
+		return terrainFeature;
+	}
 }

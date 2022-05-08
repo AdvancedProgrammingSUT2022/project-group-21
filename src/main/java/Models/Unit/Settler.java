@@ -11,7 +11,7 @@ public class Settler extends CivilianUnit{
 	}
 
 	public void findCity(Tile tile){
-		City city = new City(tile.getFood(),tile.getFood(),tile);
+		City city = new City(tile.getFood(),tile.getFood(),tile, owner);
 		// TODO
 	}
 }

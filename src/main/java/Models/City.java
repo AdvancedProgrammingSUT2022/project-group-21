@@ -16,10 +16,11 @@ public class City {
 	private MilitaryUnit garrisonUnit;
 	private int combatStrength;
 
-	public City(int gold, int food, Tile tile) {
+	public City(int gold, int food, Tile tile,Civilization civilization) {
 		this.goldOut = gold;
 		this.foodOut = food;
 		this.center = tile;
+		this.civilization = civilization;
 	}
 	
 	public double getCombatStrength(int thisTurn) {
@@ -67,6 +68,13 @@ public class City {
 		unitType.createUnit(civilization, center);
 	}
 
+	public boolean hasTile(Tile tile) {
+		for (Tile arg : tiles)
+			if (arg.equals(tile)) 		return true;
+		return false;
+	}
 
-
+	public Civilization getCivilization() {
+		return civilization;
+	}
 }

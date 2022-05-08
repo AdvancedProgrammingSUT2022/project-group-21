@@ -24,7 +24,7 @@ public class Civilization {
     private int production;
 
 	public Civilization(Tile tile, int W, int H){
-		this.capitalCity = new City(0, 0 , tile);
+		this.capitalCity = new City(0, 0 , tile, this);
 		this.fogOfWar = new boolean[W][H];
 		this.Visible = new boolean[W][H];
 		this.W=W;
@@ -75,7 +75,11 @@ public class Civilization {
 		return Visible[x][y];
 	}
 
-    private int getGold() {
+	public void addCity(City city) {
+		cities.add(city);
+	}
+
+    public int getGold() {
         return gold;
     }
 

@@ -1,8 +1,8 @@
 package Enums;
 
 public enum Message {
-	SUCCESS(""),
-	FAIL(""),
+	SUCCESS("OK"),
+	FAIL("Fail"),
 	LOGIN_FIRST("please login first"),
 	NAVIGATION_NOT_POSSIBLE("menu navigation is not possible"),
 	SIGNUP_SUCCESS("user created successfully!"),
@@ -14,7 +14,9 @@ public enum Message {
 	USERNAME_EXISTS(""),
 	LOGIN_MATCHED(""),
 	SIGNUP_MATCHED(""),
-	NOT_ENOUGH_GOLD("insufficient gold");
+	NOT_ENOUGH_GOLD("insufficient gold"),
+	ALREADY_ASSIGNED("already assigned"),
+	UNSUITABLE_TERRAIN("");
 
 
 	private final String message;
