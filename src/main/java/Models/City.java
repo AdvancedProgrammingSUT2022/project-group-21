@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class City {
 	private final ArrayList<Tile> tiles = new ArrayList<>();
 	private Civilization civilization;
-	private int gold;
-	private int food;
+	private int goldOut;
+	private int foodOut;
 	private boolean isCapital;
 	private ArrayList<Citizen> citizens;
 	private Tile center;
@@ -17,8 +17,8 @@ public class City {
 	private int combatStrength;
 
 	public City(int gold, int food, Tile tile) {
-		this.gold = gold;
-		this.food = food;
+		this.goldOut = gold;
+		this.foodOut = food;
 		this.center = tile;
 	}
 	
