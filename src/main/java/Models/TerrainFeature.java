@@ -8,11 +8,11 @@ import java.util.Arrays;
 public enum TerrainFeature{
 	// use the names from main english charts.
 	
-	FLOOD_PLAINS(2, 0, 0, -0.33, 1, new ArrayList<Resource>(Arrays.asList()), true, true, true),
-	FOREST(1, 1, 0, +0.25, 2, new ArrayList<Resource>(Arrays.asList()), true, false, false),
+	FLOOD_PLAINS(2, 0, 0, -0.33, 1, new ArrayList<Resource>(Arrays.asList(Resource.WHEAT,Resource.SUGAR)), true, true, true),
+	FOREST(1, 1, 0, +0.25, 2, new ArrayList<Resource>(Arrays.asList(Resource.COLOR,Resource.SILK)), true, false, false),
 	ICE(0, 0, 0, 0, 0, new ArrayList<Resource>(), false, false, true),
-	JUNGLE(1, -1, 0, +0.25, 2, new ArrayList<Resource>(Arrays.asList()), true, false, false),
-	MARSH(-1, 0, 0, -0.33, 2, new ArrayList<Resource>(Arrays.asList()), true, false, true),
+	JUNGLE(1, -1, 0, +0.25, 2, new ArrayList<Resource>(Arrays.asList(Resource.BANANA,Resource.GEMSTONE,Resource.COLOR)), true, false, false),
+	MARSH(-1, 0, 0, -0.33, 2, new ArrayList<Resource>(Arrays.asList(Resource.SUGAR)), true, false, true),
 	OASIS(3, 0, 1, -0.33, 1, new ArrayList<Resource>(Arrays.asList()), true, false, true);
 	// TODO: complete possibleResources
 

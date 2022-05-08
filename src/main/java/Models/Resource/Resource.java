@@ -5,11 +5,44 @@ import Models.Improvement;
 import Models.Technology;
 
 public enum Resource {
-	MOZ1(ResourceType.BONUS, -1, -1, -1, Improvement.MANUFACTORY, Technology.CHEMISTRY),
 
-	MOZ2(ResourceType.STRATEGIC, -1, -1, -1, Improvement.MANUFACTORY, Technology.CHEMISTRY),
-	
-	MOZ3(ResourceType.LUXURY, -1, -1, -1, Improvement.MANUFACTORY, Technology.CHEMISTRY),
+	BANANA(ResourceType.BONUS,1,0,0,Improvement.PLANTATION,null),
+
+	COW(ResourceType.BONUS,1,0,0,Improvement.PASTURE,null),
+
+	SHEEP(ResourceType.BONUS,2,0,0,Improvement.PASTURE,null),
+
+	WHEAT(ResourceType.BONUS,1,0,0,Improvement.FARM,null),
+
+	COAL(ResourceType.STRATEGIC,0,1,0,Improvement.MINE,Technology.SCIENTIFIC_THEORY),
+
+	HORSE(ResourceType.STRATEGIC,0,1,0,Improvement.PASTURE,Technology.ANIMAL_HUSBANDRY),
+
+	IRON(ResourceType.STRATEGIC,0,1,0,Improvement.MINE,Technology.IRON_WORKING),
+
+	COTTON(ResourceType.LUXURY,0,0,2,Improvement.PLANTATION,null),
+
+	COLOR(ResourceType.LUXURY,0,0,2,Improvement.PLANTATION,null),
+
+	FUR(ResourceType.LUXURY,0,0,2,Improvement.CAMP,null),
+
+	GEMSTONE(ResourceType.LUXURY,0,0,3,Improvement.MINE,null),
+
+	GOLD(ResourceType.LUXURY,0,0,2,Improvement.MINE,null),
+
+	FUMIGATION(ResourceType.LUXURY,0,0,2,Improvement.PLANTATION,null),
+
+	IVORY(ResourceType.LUXURY,0,0,2,Improvement.CAMP,null),
+
+	MARBLE(ResourceType.LUXURY,0,0,2,Improvement.QUARRY,null),
+
+	SILK(ResourceType.LUXURY,0,0,2,Improvement.PLANTATION,null),
+
+	SILVER(ResourceType.LUXURY,0,0,2,Improvement.MINE,null),
+
+	SUGAR(ResourceType.LUXURY,0,0,2,Improvement.PLANTATION,null),
+
+
 	; 
 	
 	
