@@ -13,7 +13,8 @@ public enum Message {
 	NICKNAME_EXISTS(""),
 	USERNAME_EXISTS(""),
 	LOGIN_MATCHED(""),
-	SIGNUP_MATCHED("");
+	SIGNUP_MATCHED(""),
+	NOT_ENOUGH_GOLD("insufficient gold");
 
 
 	private final String message;

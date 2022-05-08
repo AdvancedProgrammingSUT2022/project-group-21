@@ -19,6 +19,9 @@ public class Civilization {
 	private boolean[][] Visible;
 	private boolean visibleTileFindFlag;
 
+    private int gold;
+    private int food;
+    private int production;
 
 	public Civilization(Tile tile, int W, int H){
 		this.capitalCity = new City(0, 0 , tile);
@@ -72,5 +75,24 @@ public class Civilization {
 		return Visible[x][y];
 	}
 
+    private int getGold() {
+        return gold;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public int getProduction() {
+        return production;
+    }
+
+    private void addGold(int amount) {
+        gold += amount;
+    }
+
+    private void addFood(int amount) {
+        food += amount;
+    }
 
 }
