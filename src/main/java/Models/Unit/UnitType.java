@@ -10,7 +10,7 @@ public enum UnitType{
 	WORKER(CombatType.CIVILIAN, 70, -1, -1, -1, 2, null, false, new Technology[]{}),
 
 
-	ARCHER(CombatType.RANGED, 70, 4, 6, 2, 2, null, false,
+	ARCHER(CombatType.ARCHERY, 70, 4, 6, 2, 2, null, false,
 		new Technology[]{Technology.ARCHERY}
 	),
 	
