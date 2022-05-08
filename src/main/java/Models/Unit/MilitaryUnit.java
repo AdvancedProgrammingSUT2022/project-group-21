@@ -1,14 +1,16 @@
 package Models.Unit;
 
+import Models.City;
 import Models.Civilization;
 import Models.Tile;
 
-public abstract class MilitaryUnit extends Unit{
+public class MilitaryUnit extends Unit{
 	private int XP;
 	private boolean isSleep;
 	private boolean isOnFortify;
 	private boolean isOnAlert;
 	private boolean isOnGarrison;
+	private Tile targetTile;
 
 	public MilitaryUnit(UnitType unitType, Civilization owner, Tile tile){
 		super(unitType, owner, tile);
@@ -26,6 +28,7 @@ public abstract class MilitaryUnit extends Unit{
 	}
 
 	public double getCombatStrength(int thisTurn) {
+		// TODO: not exponential
 		double number = getCombatStrength();
 		if (this.isOnFortify){
 			for (int i = lastActionTurn;i<thisTurn;i++){
@@ -46,4 +49,25 @@ public abstract class MilitaryUnit extends Unit{
 		super.setTile(tile);
 		//TODO garrison and fortify...
 	}
+
+
+
+	public void siegePreAttack(Tile tile){
+		//TODO
+	}
+	public boolean isInRange(Tile tile) {
+		//TODO
+		return false;
+	}
+	public void rangeAttack(Tile tile) {
+		// TODO
+	}
+	public void attackToUnit(Tile tile) {
+		//TODO
+	}
+	public void attackToCity(City city) {
+		// TODO
+	}
+
+
 }
