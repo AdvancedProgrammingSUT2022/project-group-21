@@ -9,15 +9,15 @@ public enum Terrain {
 	// use the names from main english charts.
 	DESERT(0, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.OASIS, TerrainFeature.FLOOD_PLAINS)),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.GOLD,Resource.SILVER,Resource.MARBLE,Resource.COTTON,Resource.FUMIGATION,Resource.SHEEP,Resource.GEMSTONE))
 	),
 	GRASSLAND(2, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.FOREST, TerrainFeature.MARSH)),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.COAL,Resource.HORSE,Resource.COW,Resource.GOLD,Resource.GEMSTONE,Resource.MARBLE,Resource.COTTON,Resource.SHEEP))
 	),
 	HILL(0, 2, 0, 0.25, 2, true, false,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.FOREST, TerrainFeature.JUNGLE)),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.COAL,Resource.SILVER,Resource.GOLD,Resource.GEMSTONE,Resource.MARBLE,Resource.SHEEP))
 	),
 	MOUNTAIN(0, 0, 0, 0.25, 0, false, false,
 		new ArrayList<TerrainFeature>(),
@@ -29,15 +29,15 @@ public enum Terrain {
 	),
 	PLAINS(1, 1, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.FOREST, TerrainFeature.JUNGLE)),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.COAL,Resource.HORSE,Resource.WHEAT,Resource.GOLD,Resource.GEMSTONE,Resource.MARBLE,Resource.COTTON,Resource.FUMIGATION,Resource.SHEEP,Resource.IVORY))
 	),
 	SNOW(0, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList()),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON))
 	),
 	TUNDRA(1, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.FOREST)),
-		new ArrayList<Resource>(Arrays.asList())
+		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.HORSE,Resource.SILVER,Resource.GEMSTONE,Resource.MARBLE))
 	);
 	// TODO: complete possibleResources
 
