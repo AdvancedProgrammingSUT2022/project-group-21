@@ -5,7 +5,6 @@ import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
 import Models.User;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.util.ArrayList;
 
@@ -256,46 +255,55 @@ public class GameMenu extends Menu{
 			case SELECT_CITY_BY_POSITION:
 				//TODO:
 				break;
+
+	//UNITS
 			case UNIT_MOVE:
-				//TODO:
-				break;
+				System.out.println(
+						unitController.moveUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+				);
+				return;
 			case UNIT_SLEEP:
-				//TODO:
-				break;
+				System.out.println(unitController.sleep());
+				return;
 			case UNIT_ALERT:
-				//TODO:
-				break;
-			case UNIT_ATTACK:
-				//TODO:
-				break;
-			case UNIT_BUILD_IMPROVEMENT:
-				//TODO:
-				break;
-			case UNIT_WAKE:
-				//TODO:
-				break;
-			case UNIT_BUILD_RAILROAD:
-				//TODO:
-				break;
-			case UNIT_BUILD_ROAD:
-				//TODO:
-				break;
-			case UNIT_DELETE:
-				//TODO:
-				break;
-			case UNIT_CANCEL_MISSION:
-				//TODO:
+				System.out.println(unitController.alert());
 				break;
 			case UNIT_FORTIFY:
-				//TODO:
-				break;
+				System.out.println(unitController.fortify(false));
+				return;
 			case UNIT_FORTIFY_AND_HEAL:
-				//TODO:
-				break;
-			case UNIT_FOUND_CITY:
-				//TODO:
-				break;
+				System.out.println(unitController.fortify(true));
+				return;
 			case UNIT_GARRISON:
+				System.out.println(unitController.garrison());
+				return;
+			case UNIT_SETUP_FOR_RANGED:
+				System.out.println(unitController.setupForRangedAttack());
+				return;
+			case UNIT_ATTACK:
+				System.out.println(
+						unitController.attack(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+				);
+				return;
+			case UNIT_FOUND_CITY:
+				System.out.println(unitController.foundCity());
+				return;
+			case UNIT_CANCEL_MISSION:
+				System.out.println(unitController.cancelMissions());
+				return;
+			case UNIT_WAKE:
+				System.out.println(unitController.wake());
+				return;
+			case UNIT_DELETE:
+				System.out.println(unitController.delete());
+				return;
+			case UNIT_BUILD_ROAD:
+				System.out.println(unitController.buildRoad(true));
+				return;
+			case UNIT_BUILD_RAILROAD:
+				System.out.println(unitController.buildRoad(false));
+				return;
+			case UNIT_BUILD_IMPROVEMENT:
 				//TODO:
 				break;
 			case UNIT_REMOVE:
@@ -307,9 +315,7 @@ public class GameMenu extends Menu{
 			case UNIT_REPAIR:
 				//TODO
 				break;
-			case UNIT_SETUP_FOR_RANGED:
-				//TODO:
-				break;
+	//MAP
 			case MAP_MOVE:
 				//TODO:
 				break;

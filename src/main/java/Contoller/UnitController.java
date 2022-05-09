@@ -13,7 +13,7 @@ public class UnitController {
 		return instance;
 	}
 
-	public Message moveUnit(Unit unit, int x, int y) {
+	public Message moveUnit(int x, int y) {
 		//TODO:
 		return null;
 	}
@@ -48,7 +48,7 @@ public class UnitController {
 		return null;
 	}
 
-	public Message findCity() {
+	public Message foundCity() {
 		//TODO:
 		return null;
 	}
