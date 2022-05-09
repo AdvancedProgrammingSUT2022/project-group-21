@@ -6,6 +6,7 @@ import Models.User;
 import com.sun.org.apache.bcel.internal.generic.Select;
 import javafx.scene.layout.BackgroundRepeat;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 
 public class GameMenu extends Menu{
@@ -195,6 +196,10 @@ public class GameMenu extends Menu{
 					System.out.println(Message.INVALID_COMMAND);
 					break;
 			}
+			return;
+		}
+		if (tokens[0].equals("EXIT GAME")) {
+			//TODO:
 			return;
 		}
 		System.out.println(Message.INVALID_COMMAND);
