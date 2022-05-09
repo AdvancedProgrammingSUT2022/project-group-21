@@ -1,0 +1,191 @@
+package View;
+
+
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
+import javax.print.DocFlavor;
+import java.util.HashMap;
+
+public class GameMenuExtractor {
+
+    private HashMap<String ,String> args1 = new HashMap<>();
+    private HashMap<String ,Integer> args2 = new HashMap<>();
+    CommandTypes type;
+
+    static GameMenuExtractor extractor(String command) {
+        String[] tokens = command.split(" ");
+        switch (tokens[0]) {
+            case "INFO":
+                return handleInfo(tokens);
+            case "SELECT":
+                return handleSelect(tokens);
+            case "UNIT":
+                return handleUnit(tokens);
+            case "MAP":
+                return handleMAP(tokens);
+            default:
+                return null;
+        }
+    }
+
+    private static GameMenuExtractor handleInfo(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        instance.type = CommandTypes.INFO;
+        instance.args1.put("info type", tokens[1]);
+        return instance;
+    }
+
+    private static GameMenuExtractor handleSelect(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        switch (tokens[1]) {
+            case "UNIT":
+                if (tokens[2].equals("COMBAT")) {
+                    instance.type = CommandTypes.SELECT_COMBAT_UNIT;
+                    return instance;
+                }
+                if (tokens[2].equals("NONCOMBAT")) {
+                    instance.type = CommandTypes.SELECT_NONCOMBAT_UNIT;
+                    return instance;
+                }
+                return null;
+            case "CITY":
+                if (tokens[2].matches("[a-zA-Z]{2,}")) {
+                    instance.type = CommandTypes.SELECT_CITY_BY_NAME;
+                    instance.args1.put("name", tokens[2]);
+                    return instance;
+                }
+                if (tokens[2].matches("\\d+,\\d+")) {
+                    int x = extractPosition(tokens[2], "x");
+                    int y = extractPosition(tokens[2], "y");
+                    instance.type = CommandTypes.SELECT_CITY_BY_POSITION;
+                    instance.args2.put("x", x);
+                    instance.args2.put("y", y);
+                    return instance;
+                }
+                return null;
+        }
+        return null;
+    }
+
+    private static GameMenuExtractor handleUnit(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        int x,y;
+        switch (tokens[1]) {
+            case "MOVETO":
+                if (tokens[2].matches("\\d+,\\d+")) {
+                    x = extractPosition(tokens[2], "x");
+                    y = extractPosition(tokens[2], "y");
+                    instance.type = CommandTypes.UNIT_MOVE;
+                    instance.args2.put("x", x);
+                    instance.args2.put("y", y);
+                    return instance;
+                }
+                return null;
+            case "SLEEP":
+                instance.type = CommandTypes.UNIT_SLEEP;
+                return instance;
+            case "ALERT":
+                instance.type = CommandTypes.UNIT_ALERT;
+                return instance;
+            case "FORTIFY":
+                if (tokens[2].equals("HEAL"))
+                    instance.type = CommandTypes.UNIT_FORTIFY_AND_HEAL;
+                else instance.type = CommandTypes.UNIT_FORTIFY;
+                return instance;
+            case "GARRISON":
+                instance.type = CommandTypes.UNIT_GARRISON;
+                return instance;
+            case "SETUP":
+                instance.type = CommandTypes.UNIT_SETUP_FOR_RANGED;
+                return instance;
+            case "ATTACK":
+                x = extractPosition(tokens[2], "x");
+                y = extractPosition(tokens[2], "y");
+                instance.type = CommandTypes.UNIT_ATTACK;
+                instance.args2.put("x",x);      instance.args2.put("y", y);
+                return instance;
+            case "FOUND":
+                instance.type = CommandTypes.UNIT_FOUND_CITY;
+                return instance;
+            case "CANCEL":
+                instance.type = CommandTypes.UNIT_CANCEL_MISSION;
+                return instance;
+            case "WAKE":
+                instance.type = CommandTypes.UNIT_WAKE;
+                return instance;
+            case "DELETE":
+                instance.type = CommandTypes.UNIT_DELETE;
+                return instance;
+            case "BUILD":
+                if (tokens[2].equals("ROAD")) {
+                    instance.type = CommandTypes.UNIT_BUILD_ROAD;
+                    return instance;
+                }
+                if (tokens[2].equals("RAILROAD")) {
+                    instance.type = CommandTypes.UNIT_BUILD_RAILROAD;
+                    return instance;
+                }
+                instance.type = CommandTypes.UNIT_BUILD_IMPROVEMENT;
+                instance.args1.put("improvement", tokens[2]);
+                return instance;
+            case "REMOVE":
+                instance.type = CommandTypes.UNIT_REMOVE;
+                instance.args1.put("removeType", tokens[2]);
+                return instance;
+            case "REPAIR":
+                instance.type = CommandTypes.UNIT_REPAIR;
+                return instance;
+        }
+        return null;
+    }
+
+    private static GameMenuExtractor handleMAP(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        int x,y,c;
+        switch (tokens[1]) {
+            case "SHOW":
+                if (tokens[2].matches("\\d+,\\d+")) {
+                    instance.type = CommandTypes.MAP_SHOW_BY_POSITION;
+                    x = extractPosition(tokens[2], "x");
+                    y = extractPosition(tokens[2], "y");
+                    instance.args2.put("x", x);
+                    instance.args2.put("y", y);
+                    return instance;
+                }
+                if (tokens[2].matches("[a-zA-Z]{2,}")) {
+                    instance.type = CommandTypes.MAP_SHOW_BY_CITY_NAME;
+                    instance.args1.put("name", tokens[2]);
+                    return instance;
+                }
+                break;
+            case "MOVE":
+                c = Integer.parseInt(tokens[3]);
+                instance.type = CommandTypes.MAP_MOVE;
+                instance.args1.put("direction", tokens[2]);
+                instance.args2.put("amount", c);
+                return instance;
+        }
+        return null;
+    }
+
+
+    private static int extractPosition(String position, String flag) {
+        String[] tokens = position.split(",");
+        if (flag.equals("x"))
+            return Integer.parseInt(tokens[0]);
+        return Integer.parseInt(tokens[1]);
+    }
+
+
+    public HashMap<String, String> getArgs1() {
+        return args1;
+    }
+
+    public HashMap<String, Integer> getArgs2() {
+        return args2;
+    }
+
+    public CommandTypes getType() {
+        return type;
+    }
+}

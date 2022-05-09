@@ -73,7 +73,7 @@ public class UnitController {
 		return null;
 	}
 
-	public Message build(Improvement improvement) {
+	public Message buildImprovement(Improvement improvement) {
 		//TODO:
 		return null;
 	}

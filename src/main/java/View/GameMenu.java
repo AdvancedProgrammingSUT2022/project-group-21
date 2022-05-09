@@ -1,20 +1,24 @@
 package View;
 
 import Contoller.GameController;
+import Contoller.SelectController;
+import Contoller.UnitController;
 import Enums.Message;
 import Models.User;
-import com.sun.org.apache.bcel.internal.generic.Select;
-import javafx.scene.layout.BackgroundRepeat;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 
 public class GameMenu extends Menu{
 	private static GameMenu instance;
-	private GameController controller;
+	private GameController gameController;
+	private UnitController unitController;
+	private SelectController selectController;
 
 	private GameMenu() {
-		this.controller = GameController.getInstance();
+		this.gameController = GameController.getInstance();
+		this.unitController = UnitController.getInstance();
+		this.selectController = SelectController.getInstance();
 	}
 	static private void setInstance(GameMenu instance) {
 		GameMenu.instance = instance;
@@ -47,7 +51,7 @@ public class GameMenu extends Menu{
 				continue;
 			}
 			ArrayList<User> users = usernameToUser(extractor.flags);
-			controller.startNewGame(users);
+			gameController.startNewGame(users);
             startGame();
 
 		}
@@ -61,12 +65,13 @@ public class GameMenu extends Menu{
         }
     }
 
-	private void taskHandler(String task) {
+	/*private void taskHandler(String task) {
 		String[] tokens = task.split(" ");
+		int x,y;
 		if (tokens[0].equals("Unit")) {
 			switch (tokens[1]) {
 				case "MOVETO":
-					//TODO: move unit to the position
+
 					break;
 				case "SLEEP":
 					//TODO: make the unit sleep
@@ -173,10 +178,38 @@ public class GameMenu extends Menu{
 		if (tokens[0].equals("SELECT")) {
 			switch (tokens[1]) {
 				case "UNIT":
-					//TODO:
+					if (!isPositionValid(tokens[3])) {
+						System.out.println(Message.INVALID_COMMAND);
+						return;
+					}
+					x = extractPosition(tokens[3],"x");
+					y = extractPosition(tokens[3], "y");
+					if (tokens[2].equals("COMBAT")) {
+						System.out.println(selectController.selectUnit(x, y, true));
+						return;
+					}
+					if (tokens[2].equals("NONCOMBAT")) {
+						System.out.println(selectController.selectUnit(x, y, false));
+						return;
+					}
+					System.out.println(Message.INVALID_COMMAND);
 					break;
 				case "CITY":
-					//TODO:
+					//select by name
+					if (tokens[2].matches("[a-z]{2,}")) {
+						System.out.println(selectController.selectCityByName(tokens[2]));
+						return;
+					}
+					//select by coordination
+					if (tokens[2].matches("\\d+,\\d+")) {
+						x = extractPosition(tokens[2], "x");
+						y = extractPosition(tokens[2], "y");
+						System.out.println(
+								selectController.selectCityByCoordination(x, y)
+						);
+						return;
+					}
+					System.out.println(Message.INVALID_COMMAND);
 					break;
 				default:
 					System.out.println(Message.INVALID_COMMAND);
@@ -203,6 +236,104 @@ public class GameMenu extends Menu{
 			return;
 		}
 		System.out.println(Message.INVALID_COMMAND);
+	}*/
+
+	private void taskHandler(String command) {
+		GameMenuExtractor extractor = GameMenuExtractor.extractor(command);
+		switch (extractor.getType()) {
+			case INFO:
+				//TODO:
+				break;
+			case SELECT_COMBAT_UNIT:
+				//TODO:
+				break;
+			case SELECT_NONCOMBAT_UNIT:
+				//TODO:
+				break;
+			case SELECT_CITY_BY_NAME:
+				//TODO:
+				break;
+			case SELECT_CITY_BY_POSITION:
+				//TODO:
+				break;
+			case UNIT_MOVE:
+				//TODO:
+				break;
+			case UNIT_SLEEP:
+				//TODO:
+				break;
+			case UNIT_ALERT:
+				//TODO:
+				break;
+			case UNIT_ATTACK:
+				//TODO:
+				break;
+			case UNIT_BUILD_IMPROVEMENT:
+				//TODO:
+				break;
+			case UNIT_WAKE:
+				//TODO:
+				break;
+			case UNIT_BUILD_RAILROAD:
+				//TODO:
+				break;
+			case UNIT_BUILD_ROAD:
+				//TODO:
+				break;
+			case UNIT_DELETE:
+				//TODO:
+				break;
+			case UNIT_CANCEL_MISSION:
+				//TODO:
+				break;
+			case UNIT_FORTIFY:
+				//TODO:
+				break;
+			case UNIT_FORTIFY_AND_HEAL:
+				//TODO:
+				break;
+			case UNIT_FOUND_CITY:
+				//TODO:
+				break;
+			case UNIT_GARRISON:
+				//TODO:
+				break;
+			case UNIT_REMOVE:
+				//TODO:
+				break;
+			case UNIT_REMOVE_JUNGLE:
+				//TODO;
+				break;
+			case UNIT_REPAIR:
+				//TODO
+				break;
+			case UNIT_SETUP_FOR_RANGED:
+				//TODO:
+				break;
+			case MAP_MOVE:
+				//TODO:
+				break;
+			case MAP_SHOW_BY_CITY_NAME:
+				//TODO:
+				break;
+			case MAP_SHOW_BY_POSITION:
+				//TODO:
+				break;
+			default:
+				System.out.println(Message.INVALID_COMMAND);
+
+		}
+	}
+
+	private boolean isPositionValid(String position) {
+		return position.matches("\\d+,\\d+");
+	}
+
+	private int extractPosition(String position, String flag) {
+		String[] tokens = position.split(",");
+		if (flag.equals("x"))
+			return Integer.parseInt(tokens[0]);
+		return Integer.parseInt(tokens[1]);
 	}
 
 	private ArrayList<User> usernameToUser(ArrayList<String> usernames) {
