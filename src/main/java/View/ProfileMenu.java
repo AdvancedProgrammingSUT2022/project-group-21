@@ -69,9 +69,4 @@ public class ProfileMenu extends Menu{
 	protected void showCurrentMenu() {
 		System.out.println("Profile Menu");
 	}
-
-	@Override
-	protected void enterMenu() {
-
-	}
 }

@@ -46,9 +46,4 @@ public class MainMenu extends Menu{
 	protected void showCurrentMenu() {
 		System.out.println("Main Menu");
 	}
-
-	@Override
-	protected void enterMenu() {
-
-	}
 }

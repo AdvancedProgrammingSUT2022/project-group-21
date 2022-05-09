@@ -18,5 +18,4 @@ public abstract class Menu {
 	}
 	public abstract Menu run();
 	protected abstract void showCurrentMenu();
-	protected abstract void enterMenu();
 }

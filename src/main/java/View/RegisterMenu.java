@@ -33,7 +33,7 @@ public class RegisterMenu extends Menu{
 		while (true) {
 			String command = getInput();
 			if (command.matches("menu enter (Main Menu)|(Play Game Menu)|(Profile Menu)")) {
-				enterMenu();
+				System.out.println("please login first");
 				continue;
 			}
 			else if (command.equals("menu show-current")) {
@@ -62,10 +62,5 @@ public class RegisterMenu extends Menu{
 	@Override
 	protected void showCurrentMenu() {
 		System.out.println("Login Menu");
-	}
-
-	@Override
-	protected void enterMenu() {
-		System.out.println("please login first");
 	}
 }
