@@ -36,6 +36,7 @@ public class Tile {
 		this.Y = Y;
 		this.terrain = terrain;
 		this.adjTiles = new Tile[6];
+		this.rivers = new boolean[6];
 	}
 
 	private int countRivers(){

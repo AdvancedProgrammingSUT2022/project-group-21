@@ -44,11 +44,11 @@ public class User {
 			password = newPassword;
 	}
 
-	public void changeNickname(String newNickname) {
-		this.nickname = newNickname;
-	}
+	public void changeNickname(String newNickname) { this.nickname = newNickname;}
+	
+	public String getUsername(){ return username;}
 
-	public String getUsername() {
-		return username;
-	}
+	public void setCivilization(Civilization civilization){ this.civilization=civilization;}
+	public Civilization getCivilization(){ return this.civilization;}
+	
 }
