@@ -4,6 +4,7 @@ import Contoller.GameController;
 import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
+import Models.Improvement;
 import Models.User;
 
 import java.util.ArrayList;
@@ -304,17 +305,19 @@ public class GameMenu extends Menu{
 				System.out.println(unitController.buildRoad(false));
 				return;
 			case UNIT_BUILD_IMPROVEMENT:
-				//TODO:
-				break;
+                Improvement improvement = Improvement.valueOf(extractor.ARGS1.get("improvement"));
+                System.out.println(unitController.buildImprovement(improvement));
+				return;
 			case UNIT_REMOVE:
-				//TODO:
-				break;
-			case UNIT_REMOVE_JUNGLE:
-				//TODO;
-				break;
+                if (extractor.ARGS1.get("removeType").equals("JUNGLE"))
+                    System.out.println(unitController.removeJungle());
+                else if (extractor.ARGS1.get("removeType").equals("ROUTE"))
+                    System.out.println(unitController.removeRoad());
+                else System.out.println(Message.INVALID_COMMAND);
+                return;
 			case UNIT_REPAIR:
-				//TODO
-				break;
+                System.out.println(unitController.repair());
+				return;
 	//MAP
 			case MAP_MOVE:
 				//TODO:
