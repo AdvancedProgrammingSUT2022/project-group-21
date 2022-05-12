@@ -1,6 +1,7 @@
 package View;
 
 import Contoller.GameController;
+import Contoller.InfoMenuController;
 import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
@@ -75,8 +76,10 @@ public class GameMenu extends Menu{
 		}
 		switch (extractor.getType()) {
 			case INFO:
-				//TODO:
-				break;
+				System.out.println(
+						InfoMenuController.getInstance().showInfoMenu(extractor.ARGS1.get("info type"))
+				);
+				return;
 			case SELECT_COMBAT_UNIT:
 				System.out.println(
 						selectController.selectUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), true)
