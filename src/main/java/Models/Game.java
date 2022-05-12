@@ -112,5 +112,13 @@ public class Game {
 
 	public Tile getTile(int x, int y){ return tiles[x][y];}
 	
-	public void nextTurn() {}
+	public void nextTurn(){
+		SelectController.getInstance().reset();
+		currentTurn++;
+		if (currentTurn==players.size()){
+			currentTurn=0;
+			countTurns++;
+		}
+		currentPlayer=players.get(currentTurn);
+	}
 }
