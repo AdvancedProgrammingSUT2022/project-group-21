@@ -12,6 +12,8 @@ public class SelectController {
             instance = new SelectController();
         return instance;
     }
+
+
     public Message selectUnit(int x, int y, boolean isCombatUnit) {
         //TODO:
         return null;
