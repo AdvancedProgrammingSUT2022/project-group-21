@@ -1,5 +1,7 @@
 package Enums;
 
+import java.util.regex.Pattern;
+
 public enum InputCommand{
 	// TODO
 	USER_CREATE("user create", new String[][]{
@@ -24,6 +26,7 @@ public enum InputCommand{
 	public final String command;
 	public final String[][] args;
 	public final String regex;
+	public final Pattern pattern;
 	
 	private InputCommand(String command, String[][] args){
 		this.command=command;
@@ -46,6 +49,7 @@ public enum InputCommand{
 			res.append(tmp);
 		}
 		this.regex=res.toString();
+		this.pattern=Pattern.compile(this.regex);
 	}
 
 }
