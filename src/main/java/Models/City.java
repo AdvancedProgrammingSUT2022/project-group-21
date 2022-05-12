@@ -4,8 +4,10 @@ import Models.Unit.MilitaryUnit;
 import Models.Unit.UnitType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class City {
+	private static HashMap<Tile, City> allCities=new HashMap<>();
 	private final ArrayList<Tile> tiles = new ArrayList<>();
 	private Civilization civilization;
 	private int goldOut;
@@ -19,7 +21,10 @@ public class City {
 	public City(Tile tile, Civilization civilization) {
 		this.center = tile;
 		this.civilization = civilization;
+		allCities.put(tile, this);
 	}
+
+	public static City getCityOnTile(Tile tile){ return allCities.get(tile);}
 	
 	public double getCombatStrength(int thisTurn) {
 		// TODO: exponential
