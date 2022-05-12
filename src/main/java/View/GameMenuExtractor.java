@@ -49,11 +49,6 @@ public class GameMenuExtractor {
                 }
                 return null;
             case "CITY":
-                if (tokens[2].matches("[a-zA-Z]{2,}")) {
-                    instance.type = CommandTypes.SELECT_CITY_BY_NAME;
-                    instance.ARGS1.put("name", tokens[2]);
-                    return instance;
-                }
                 if (tokens[2].matches("\\d+,\\d+")) {
                     int x = extractPosition(tokens[2], "x");
                     int y = extractPosition(tokens[2], "y");
@@ -62,7 +57,7 @@ public class GameMenuExtractor {
                     instance.ARGS2.put("y", y);
                     return instance;
                 }
-                return null;
+                break;
         }
         return null;
     }
@@ -150,11 +145,6 @@ public class GameMenuExtractor {
                     y = extractPosition(tokens[2], "y");
                     instance.ARGS2.put("x", x);
                     instance.ARGS2.put("y", y);
-                    return instance;
-                }
-                if (tokens[2].matches("[a-zA-Z]{2,}")) {
-                    instance.type = CommandTypes.MAP_SHOW_BY_CITY_NAME;
-                    instance.ARGS1.put("name", tokens[2]);
                     return instance;
                 }
                 break;

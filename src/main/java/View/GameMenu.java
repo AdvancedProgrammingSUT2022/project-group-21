@@ -65,197 +65,31 @@ public class GameMenu extends Menu{
         }
     }
 
-	/*private void taskHandler(String task) {
-		String[] tokens = task.split(" ");
-		int x,y;
-		if (tokens[0].equals("Unit")) {
-			switch (tokens[1]) {
-				case "MOVETO":
-
-					break;
-				case "SLEEP":
-					//TODO: make the unit sleep
-					break;
-				case "ALERT":
-					//TODO:
-					break;
-				case "FORTIFY":
-					//TODO:
-					break;
-				case "GARRISON":
-					break;
-				case "SETUP":
-					// TODO:
-					break;
-				case "ATTACK":
-					// TODO:
-					break;
-				case "FOUND":
-					//TODO:
-					break;
-				case "CANCLE":
-					//TODO:
-					break;
-				case "WAKE":
-					//TODO:
-					break;
-				case "DELETE":
-					//TODO:
-					break;
-				case "BUILD":
-					//TODO:
-					switch (tokens[2]) {
-						case "ROAD":
-							//TODO:
-							break;
-						case "RAILROAD":
-							//TODO:
-							break;
-						case "FARM":
-							//TODO:
-							break;
-						case "MINE":
-							//TODO:
-							break;
-						case "TRAIDINGPOST":
-							//TODO:
-							break;
-					}
-					break;
-				case "REMOVE":
-					//TODO:
-					break;
-				case "REPAIR":
-					//TODO:
-					break;
-				default:
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-			}
-			return;
-		}
-		if (tokens[0].equals("INFO")) {
-			switch (tokens[1]) {
-				case "RESEARCH":
-					//TODO:
-					break;
-				case "UNITS":
-					//TODO:
-					break;
-				case "CITIES":
-					//TODO:
-					break;
-				case "DIPLOMACY":
-					//TODO:
-					break;
-				case "VICTORY":
-					//TODO:
-					break;
-				case "DEMOGRAPHICS":
-					//TODO:
-					break;
-				case "NOTIFICATIONS":
-					//TODO:
-					break;
-				case "MILITARY":
-					//TODO:
-					break;
-				case "ECONOMIC":
-					//TODO:
-					break;
-				case "DIPLOMATIC":
-					//TODO:
-					break;
-				case "DEALS":
-					//TODO:
-					break;
-				default:
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-			}
-			return;
-		}
-		if (tokens[0].equals("SELECT")) {
-			switch (tokens[1]) {
-				case "UNIT":
-					if (!isPositionValid(tokens[3])) {
-						System.out.println(Message.INVALID_COMMAND);
-						return;
-					}
-					x = extractPosition(tokens[3],"x");
-					y = extractPosition(tokens[3], "y");
-					if (tokens[2].equals("COMBAT")) {
-						System.out.println(selectController.selectUnit(x, y, true));
-						return;
-					}
-					if (tokens[2].equals("NONCOMBAT")) {
-						System.out.println(selectController.selectUnit(x, y, false));
-						return;
-					}
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-				case "CITY":
-					//select by name
-					if (tokens[2].matches("[a-z]{2,}")) {
-						System.out.println(selectController.selectCityByName(tokens[2]));
-						return;
-					}
-					//select by coordination
-					if (tokens[2].matches("\\d+,\\d+")) {
-						x = extractPosition(tokens[2], "x");
-						y = extractPosition(tokens[2], "y");
-						System.out.println(
-								selectController.selectCityByCoordination(x, y)
-						);
-						return;
-					}
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-				default:
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-			}
-			return;
-		}
-		if (tokens[0].equals("MAP")) {
-			switch (tokens[1]) {
-				case "SHOW":
-					//TODO:
-					break;
-				case "MOVE":
-					//TODO:
-					break;
-				default:
-					System.out.println(Message.INVALID_COMMAND);
-					break;
-			}
-			return;
-		}
-		if (tokens[0].equals("EXIT GAME")) {
-			//TODO:
-			return;
-		}
-		System.out.println(Message.INVALID_COMMAND);
-	}*/
-
 	private void taskHandler(String command) {
 		GameMenuExtractor extractor = GameMenuExtractor.extractor(command);
+		if (extractor == null) {
+			System.out.println(Message.INVALID_COMMAND);
+			return;
+		}
 		switch (extractor.getType()) {
 			case INFO:
 				//TODO:
 				break;
 			case SELECT_COMBAT_UNIT:
-				//TODO:
-				break;
+				System.out.println(
+						selectController.selectUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), true)
+				);
+				return;
 			case SELECT_NONCOMBAT_UNIT:
-				//TODO:
-				break;
-			case SELECT_CITY_BY_NAME:
-				//TODO:
-				break;
+				System.out.println(
+						selectController.selectUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), false)
+						);
+				return;
 			case SELECT_CITY_BY_POSITION:
-				//TODO:
-				break;
+				System.out.println(
+						selectController.selectCityByCoordination(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+				);
+				return;
 
 	//UNITS
 			case UNIT_MOVE:
@@ -320,9 +154,6 @@ public class GameMenu extends Menu{
 				return;
 	//MAP
 			case MAP_MOVE:
-				//TODO:
-				break;
-			case MAP_SHOW_BY_CITY_NAME:
 				//TODO:
 				break;
 			case MAP_SHOW_BY_POSITION:
