@@ -8,7 +8,7 @@ public class InfoMenuController {
         if (instance == null) instance = new InfoMenuController();
         return instance;
     }
-    public String ShowInfoMenu(String infoType) {
+    public String showInfoMenu(String infoType) {
         switch (infoType) {
             case "RESEARCH":
                 return researchInfo();
