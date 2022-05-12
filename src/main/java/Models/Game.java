@@ -3,6 +3,8 @@ package Models;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Contoller.SelectController;
+
 public class Game {
 	public final int WIDTH;
 	public final int HEIGHT;
@@ -20,6 +22,7 @@ public class Game {
 		Random random = new Random(System.nanoTime());
 		generateRandomMap(random);
 		putPlayersOnMap(random);
+		SelectController.getInstance().reset();
 	}
 	
 	private void generateRandomMap(Random random){
@@ -106,6 +109,16 @@ public class Game {
 			}
 		}
 	}
+
+	public Tile getTile(int x, int y){ return tiles[x][y];}
 	
-	public void nextTurn() {}
+	public void nextTurn(){
+		SelectController.getInstance().reset();
+		currentTurn++;
+		if (currentTurn==players.size()){
+			currentTurn=0;
+			countTurns++;
+		}
+		currentPlayer=players.get(currentTurn);
+	}
 }

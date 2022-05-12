@@ -23,6 +23,8 @@ public enum Message {
 	ALREADY_ASSIGNED("already assigned"),
 	UNSUITABLE_TERRAIN(""),
 	TILE_NOT_OWNED(""),
+	
+	OUT_OF_BOUND(""),
 	;
 
 
