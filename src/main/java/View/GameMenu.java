@@ -8,6 +8,8 @@ import Models.Improvement;
 import Models.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameMenu extends Menu{
 	private static GameMenu instance;
@@ -50,7 +52,7 @@ public class GameMenu extends Menu{
 				System.out.println(Message.INVALID_COMMAND);
 				continue;
 			}
-			ArrayList<User> users = usernameToUser(extractor.flags);
+			ArrayList<User> users = usernameToUser(extractor.args);
 			gameController.startNewGame(users);
             startGame();
 
@@ -176,10 +178,11 @@ public class GameMenu extends Menu{
 		return Integer.parseInt(tokens[1]);
 	}
 
-	private ArrayList<User> usernameToUser(ArrayList<String> usernames) {
+	private ArrayList<User> usernameToUser(HashMap<String, String> args) {
 		ArrayList<User> users = new ArrayList<>();
-		for (String username : usernames)
-			users.add(User.getUserByUsername(username));
+		for (Map.Entry<String, String> stringStringEntry : args.entrySet()) {
+			users.add(User.getUserByUsername(stringStringEntry.getValue()));
+		}
 		return users;
 	}
 
