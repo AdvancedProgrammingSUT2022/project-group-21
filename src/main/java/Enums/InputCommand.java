@@ -20,7 +20,66 @@ public enum InputCommand{
 			{"current_password", "c", "\\S+"},
 			{"new_password", "n", "[a-zA-Z0-9_]{8, 32}"}
 	}),
-	;
+	PLAY_WITH_2_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_3_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_4_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_5_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"},
+			{"player5", "p5", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_6_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"},
+			{"player5", "p5", "[a-zA-Z0-9_]+"},
+			{"player6", "p6", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_7_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"},
+			{"player5", "p5", "[a-zA-Z0-9_]+"},
+			{"player6", "p6", "[a-zA-Z0-9_]+"},
+			{"player7", "p7", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_8_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"},
+			{"player5", "p5", "[a-zA-Z0-9_]+"},
+			{"player6", "p6", "[a-zA-Z0-9_]+"},
+			{"player7", "p7", "[a-zA-Z0-9_]+"},
+			{"player8", "p8", "[a-zA-Z0-9_]+"}
+	}),
+	PLAY_WITH_9_PLAYER("play game", new String[][]{
+			{"player1", "p1", "[a-zA-Z0-9_]+"},
+			{"player2", "p2", "[a-zA-Z0-9_]+"},
+			{"player3", "p3", "[a-zA-Z0-9_]+"},
+			{"player4", "p4", "[a-zA-Z0-9_]+"},
+			{"player5", "p5", "[a-zA-Z0-9_]+"},
+			{"player6", "p6", "[a-zA-Z0-9_]+"},
+			{"player7", "p7", "[a-zA-Z0-9_]+"},
+			{"player8", "p8", "[a-zA-Z0-9_]+"},
+			{"player9", "p9", "[a-zA-Z0-9_]+"}
+	});
 
 
 	public final String command;
