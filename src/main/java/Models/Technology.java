@@ -67,4 +67,8 @@ public enum Technology{
 		this.era=era;
 		this.prequisiteTechs=prequisiteTechs;
 	}
+
+	public Technology[] getPrequisiteTechs() {
+		return prequisiteTechs;
+	}
 }

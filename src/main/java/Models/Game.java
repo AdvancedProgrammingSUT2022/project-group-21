@@ -111,7 +111,11 @@ public class Game {
 	}
 
 	public Tile getTile(int x, int y){ return tiles[x][y];}
-	
+
+	public User getCurrentPlayer() {
+		return currentPlayer;
+	}
+
 	public void nextTurn(){
 		SelectController.getInstance().reset();
 		currentTurn++;
