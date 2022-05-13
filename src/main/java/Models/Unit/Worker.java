@@ -5,9 +5,16 @@ import Models.Tile;
 
 public class Worker extends CivilianUnit{
 	
+	private int projectTurnsLeft;
+	
+
 	public Worker(Civilization owner, Tile tile){
 		super(UnitType.WORKER, owner, tile);
 	}
+
+	public int getProjectTurnsLeft(){ return projectTurnsLeft;}
+
+
 
 	public void creatRoad(Tile tile) {}
 	public void creatFarm(Tile tile) {}

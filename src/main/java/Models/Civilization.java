@@ -13,15 +13,14 @@ public class Civilization {
 	private City capitalCity;
 	private ArrayList<Technology> technologies;
 	private HashMap<Resource, Integer> resources;
-	private int happiness;
 	private ArrayList<Unit> units;
 	private boolean[][] fogOfWar;
 	private boolean[][] Visible;
 	private boolean visibleTileFindFlag;
 
-    private int gold;
-    private int food;
-    private int production;
+	private int gold;
+	private int food;
+	private int production;
 
 	public Civilization(Tile tile, int W, int H){
 		this.capitalCity = new City(tile, this);
@@ -32,9 +31,8 @@ public class Civilization {
 	}
 
 
-	public int hasTechnology(Technology technology) {
-		//TODO
-		return 0;
+	public boolean hasTechnology(Technology technology){
+		return technologies.contains(technology);
 	}
 
 	public int countResource(Resource resource) {
@@ -79,24 +77,14 @@ public class Civilization {
 		cities.add(city);
 	}
 
-    public int getGold() {
-        return gold;
-    }
+	public int getGold(){ return gold;}
+	public int getFood(){ return food;}
+	public int getProduction(){ return production;}
 
-    public int getFood() {
-        return food;
-    }
+	public void addGold(int amount){ gold+=amount;}
+	public void addFood(int amount){ food+=amount;}
+	public void addUnit(Unit unit){ units.add(unit);}
+	public void removeUnit(Unit unit){ units.remove(unit);}
 
-    public int getProduction() {
-        return production;
-    }
-
-    private void addGold(int amount) {
-        gold += amount;
-    }
-
-    private void addFood(int amount) {
-        food += amount;
-    }
-
+	public City getCapitalCity(){ return capitalCity;}
 }

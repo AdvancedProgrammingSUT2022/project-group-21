@@ -1,5 +1,6 @@
 package Contoller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Enums.Message;
@@ -10,6 +11,7 @@ import Models.Terrain;
 import Models.Tile;
 import Models.Unit.Unit;
 import Models.Unit.UnitType;
+import Models.Unit.Worker;
 
 public class CityController {
 	private static CityController instance;
@@ -20,6 +22,15 @@ public class CityController {
 
 	
 	private HashMap<Tile, City> cities = new HashMap<>();
+	private ArrayList<Worker> improvementProjects = new ArrayList<>();
+
+
+	public void handleImprovementProjects(){
+		for (Worker worker : improvementProjects) {
+			//TODO
+		}
+	}
+
 
 	public Message findCity(Civilization civilization, Tile tile, Unit unit){
 		if (unit.unitType!=UnitType.SETTLER) return Message.UNIT_NOT_SETTLER;
@@ -50,7 +61,6 @@ public class CityController {
 	}
 
 
-
 	public int getFoodOut(){
 		// TODO
 		return -1;
@@ -70,15 +80,18 @@ public class CityController {
 
 	
 	public Message buyTile(Tile tile, City city){
-		// TODO
+		if (tile.getOwner()!=null) return Message.FAIL;
+		Civilization civilization=city.getCivilization();
+		int cost=5;
+		if (civilization.getGold()<cost) return Message.NOT_ENOUGH_GOLD;
+		civilization.addGold(-cost);
+		civilization.addTile(tile);
+		city.addTile(tile);
+		tile.setOwner(civilization);
 		return Message.SUCCESS;
 	}
 	
 	
-	public Message createUnit(City city, UnitType unitType){
-		// TODO
-		return Message.SUCCESS;
-	}
 	
 
 

@@ -28,8 +28,10 @@ public class Tile {
 	public MilitaryUnit getMilitaryUnit(){ return militaryUnit;}
 	public CivilianUnit getCivilianUnit(){ return civilianUnit;}
 	public Citizen getWorkingCitizen(){ return workingCitizen;}
-	
 
+	public void setMilitaryUnit(MilitaryUnit militaryUnit){ this.militaryUnit=militaryUnit ;}
+	public void setCivilianUnit(CivilianUnit civilianUnit){ this.civilianUnit=civilianUnit ;}
+	public void setWorkingCitizen(Citizen workingCitizen){ this.workingCitizen=workingCitizen ;}
 
 	public Tile(int X, int Y, Terrain terrain) {
 		this.X = X;
@@ -59,7 +61,6 @@ public class Tile {
 		return countRivers()>0;
 	}
 	public void setTerrainFeature(TerrainFeature terrainFeature){
-		assert(isTerrainFeatureCompatible(terrainFeature)); // NOTE: dont know where this may be used
 		this.terrainFeature=terrainFeature;
 	}
 
