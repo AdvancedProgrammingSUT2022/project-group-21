@@ -11,14 +11,52 @@ public class Map {
     public void printMap(){
         for (int i = 0;i<HEIGHT;i++){
             for (int j = 0;j<WIDTH;j++){
-                if (map[i][j].equals("r_")){
-                    System.out.print(Colors.RED_BACKGROUND + "_" + Colors.RESET);
+                if (map[i][j].equals("DESERT")){
+                    System.out.print(Colors.YELLOW_BACKGROUND + " " + Colors.RESET);
                 }
-                else if (map[i][j].equals("r")){
+                else if (map[i][j].equals("GRASSLAND")){
+                    System.out.print(Colors.GREEN_BACKGROUND_BRIGHT + " " + Colors.RESET);
+                }
+                else if (map[i][j].equals("HILL")){
+                    System.out.print(Colors.YELLOW_BACKGROUND_BRIGHT + " " + Colors.RESET);
+                }
+                else if(map[i][j].equals("MOUNTAIN")){
                     System.out.print(Colors.RED_BACKGROUND + " " + Colors.RESET);
                 }
+                else if (map[i][j].equals("OCEAN")){
+                    System.out.print(Colors.BLUE_BACKGROUND + " " + Colors.RESET);
+                }
+                else if (map[i][j].equals("PLAIN")){
+                    System.out.print(Colors.GREEN_BACKGROUND + " " + Colors.RESET);
+                }
+                else if (map[i][j].equals("SNOW")){
+                    System.out.print(Colors.WHITE_BACKGROUND + " " + Colors.RESET);
+                }
+                else if (map[i][j].equals("TUNDRA")){
+                    System.out.print(Colors.PURPLE_BACKGROUND + " " + Colors.RESET);
+                }
+                else if (map[i][j].charAt(0) == 'R'){
+                    if (map[i][j].equals("R\\")){
+                        System.out.print(Colors.CYAN_BACKGROUND + "\\" + Colors.RESET);
+                    }
+                    else if (map[i][j].equals("R/")){
+                        System.out.print(Colors.CYAN_BACKGROUND + "/" + Colors.RESET);
+                    }
+                    else if (map[i][j].equals("R_")){
+                        System.out.print(Colors.CYAN_BACKGROUND + "_" + Colors.RESET);
+                    }
+                }
+                else if (map[i][j].equals("\\")){
+                    System.out.print(Colors.BLACK_BACKGROUND + "\\" + Colors.RESET);
+                }
+                else if (map[i][j].equals("/")){
+                    System.out.print(Colors.BLACK_BACKGROUND + "/" + Colors.RESET);
+                }
+                else if (map[i][j].equals("_")){
+                    System.out.print(Colors.BLACK_BACKGROUND + "_" + Colors.RESET);
+                }
                 else {
-                    System.out.print(map[i][j]);
+                    System.out.print(Colors.BLACK_BACKGROUND + map[i][j] + Colors.RESET);
                 }
             }
             System.out.println();
@@ -69,13 +107,46 @@ public class Map {
                 }
                 copy_y = copy_y + 1;
             }
-            map[copy_x][copy_y] = "/";
+            if (tile.isRiver(5)){
+                map[copy_x][copy_y] = "R/";
+            }
+            else {
+                map[copy_x][copy_y] = "/";
+            }
             copy_y = copy_y + 1;
             for (int j = 0;j<row;j++){
-                map[copy_x][copy_y] = "r";
+                if (tile.getTerrain().equals(Terrain.DESERT)){
+                    map[copy_x][copy_y] = "DESERT";
+                }
+                else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
+                    map[copy_x][copy_y] = "GRASSLAND";
+                }
+                else if (tile.getTerrain().equals(Terrain.HILL)){
+                    map[copy_x][copy_y] = "HILL";
+                }
+                else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
+                    map[copy_x][copy_y] = "MOUNTAIN";
+                }
+                else if (tile.getTerrain().equals(Terrain.OCEAN)){
+                    map[copy_x][copy_y] = "OCEAN";
+                }
+                else if (tile.getTerrain().equals(Terrain.PLAINS)){
+                    map[copy_x][copy_y] = "PLAIN";
+                }
+                else if (tile.getTerrain().equals(Terrain.SNOW)){
+                    map[copy_x][copy_y] = "SNOW";
+                }
+                else if (tile.getTerrain().equals(Terrain.TUNDRA)){
+                    map[copy_x][copy_y] = "TUNDRA";
+                }
                 copy_y = copy_y + 1;
             }
-            map[copy_x][copy_y] = "\\";
+            if (tile.isRiver(1)){
+                map[copy_x][copy_y] = "R\\";
+            }
+            else {
+                map[copy_x][copy_y] = "\\";
+            }
             copy_y = copy_y + 1;
             for (int j = 0;j<(9-row)/2;j++){
                 if (map[copy_x][copy_y].equals(" ")){
@@ -95,13 +166,46 @@ public class Map {
                 }
                 copy_y = copy_y + 1;
             }
-            map[copy_x][copy_y] = "\\";
+            if (tile.isRiver(4)){
+                map[copy_x][copy_y] = "R\\";
+            }
+            else {
+                map[copy_x][copy_y] = "\\";
+            }
             copy_y = copy_y + 1;
             for (int j = 0;j<row;j++){
-                map[copy_x][copy_y] = "r";
+                if (tile.getTerrain().equals(Terrain.DESERT)){
+                    map[copy_x][copy_y] = "DESERT";
+                }
+                else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
+                    map[copy_x][copy_y] = "GRASSLAND";
+                }
+                else if (tile.getTerrain().equals(Terrain.HILL)){
+                    map[copy_x][copy_y] = "HILL";
+                }
+                else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
+                    map[copy_x][copy_y] = "MOUNTAIN";
+                }
+                else if (tile.getTerrain().equals(Terrain.OCEAN)){
+                    map[copy_x][copy_y] = "OCEAN";
+                }
+                else if (tile.getTerrain().equals(Terrain.PLAINS)){
+                    map[copy_x][copy_y] = "PLAIN";
+                }
+                else if (tile.getTerrain().equals(Terrain.SNOW)){
+                    map[copy_x][copy_y] = "SNOW";
+                }
+                else if (tile.getTerrain().equals(Terrain.TUNDRA)){
+                    map[copy_x][copy_y] = "TUNDRA";
+                }
                 copy_y = copy_y + 1;
             }
-            map[copy_x][copy_y] = "/";
+            if (tile.isRiver(2)){
+                map[copy_x][copy_y] = "R/";
+            }
+            else {
+                map[copy_x][copy_y] = "//";
+            }
             copy_y = copy_y + 1;
             for (int j = 0;j<(9 - row)/2;j++){
                 if (map[copy_x][copy_y].equals(" ")){
@@ -116,7 +220,12 @@ public class Map {
         copy_x = copy_x - 1;
         copy_y = y + 3;
         for (int i = 0;i<5;i++){
-            map[copy_x][copy_y] += "_";
+            if (tile.isRiver(3)){
+                map[copy_x][copy_y] = "R_";
+            }
+            else {
+                map[copy_x][copy_y] = "_";
+            }
             copy_y = copy_y + 1;
         }
 
