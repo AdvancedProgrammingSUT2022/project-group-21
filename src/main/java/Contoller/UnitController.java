@@ -11,6 +11,7 @@ import Models.Unit.UnitType;
 
 public class UnitController {
 	private static UnitController instance;
+
 	public static UnitController getInstance(){
 		if (instance==null) instance=new UnitController();
 		return instance;
@@ -25,7 +26,18 @@ public class UnitController {
 		return Message.SUCCESS;
 	}
 
+	public Message sleep() {
+		//TODO
+		return null;
+	}
 
+	public String setupForRangedAttack() {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		//TODO
+		if (selectedUnit.unitType != UnitType.Trebuchet)
+			return "Selected Unit does not pre attack";
+		return "Success";
+	}
 
 	public Message createUnit(Civilization civilization, UnitType unitType, Tile tile){
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;

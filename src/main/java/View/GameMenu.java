@@ -106,22 +106,26 @@ public class GameMenu extends Menu{
 				);
 				return;
 			case UNIT_SLEEP:
-				//System.out.println(unitController.sleep());
+				System.out.println(unitController.sleep());
 				return;
 			case UNIT_ALERT:
+				//TODO
 				//System.out.println(unitController.alert());
 				break;
 			case UNIT_FORTIFY:
+				//TODO
 				//System.out.println(unitController.fortify(false));
 				return;
 			case UNIT_FORTIFY_AND_HEAL:
+				//TODO
 				//System.out.println(unitController.fortify(true));
 				return;
 			case UNIT_GARRISON:
+				//TODO
 				//System.out.println(unitController.garrison());
 				return;
 			case UNIT_SETUP_FOR_RANGED:
-				//System.out.println(unitController.setupForRangedAttack());
+				System.out.println(unitController.setupForRangedAttack());
 				return;
 			case UNIT_ATTACK:
 				//System.out.println(
