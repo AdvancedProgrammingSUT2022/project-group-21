@@ -1,5 +1,8 @@
-package Models;
+package Models.Tile;
 
+import Models.Citizen;
+import Models.Civilization;
+import Models.Tile.Improvement;
 import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Worker;
@@ -13,7 +16,7 @@ public class Tile {
 	private Terrain terrain;
 	private TerrainFeature terrainFeature;
 	private Improvement improvement;
-	private Ruin ruin;
+	// private Ruin ruin;
 	private int roadType;
 	
 	private Civilization owner;

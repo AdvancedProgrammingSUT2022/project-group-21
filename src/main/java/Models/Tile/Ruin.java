@@ -1,4 +1,4 @@
-package Models;
+package Models.Tile;
 
 public class Ruin {
 }

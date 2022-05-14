@@ -1,6 +1,7 @@
 package Models;
 
 import Models.Resource.Resource;
+import Models.Tile.Tile;
 import Models.Unit.Unit;
 
 import java.util.ArrayList;

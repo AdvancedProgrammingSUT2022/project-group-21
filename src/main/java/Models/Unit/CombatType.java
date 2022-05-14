@@ -1,7 +1,7 @@
 package Models.Unit;
 
 import Models.Civilization;
-import Models.Tile;
+import Models.Tile.Tile;
 
 public enum CombatType{
 	CIVILIAN{

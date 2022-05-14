@@ -1,7 +1,9 @@
-package Models;
+package Models.Tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import Models.Technology;
 
 public enum Improvement{
 	// TODO: handle terrain

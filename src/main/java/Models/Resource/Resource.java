@@ -1,8 +1,8 @@
 package Models.Resource;
 
 import Models.Civilization;
-import Models.Improvement;
 import Models.Technology;
+import Models.Tile.Improvement;
 
 public enum Resource {
 

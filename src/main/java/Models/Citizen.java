@@ -2,6 +2,8 @@ package Models;
 
 import java.util.ArrayList;
 
+import Models.Tile.Tile;
+
 public class Citizen {
 	private City city;
 	private Tile workingTile;

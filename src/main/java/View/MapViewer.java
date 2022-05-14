@@ -1,6 +1,6 @@
 package View;
 
-import Models.Tile;
+import Models.Tile.Tile;
 
 public class MapViewer{
 

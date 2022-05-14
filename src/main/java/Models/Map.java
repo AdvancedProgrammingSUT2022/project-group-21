@@ -2,6 +2,8 @@ package Models;
 
 import Contoller.GameController;
 import Enums.Colors;
+import Models.Tile.Terrain;
+import Models.Tile.Tile;
 
 
 public class Map {

@@ -2,9 +2,9 @@ package Contoller;
 
 import Enums.Message;
 import Models.Civilization;
-import Models.Improvement;
 import Models.Technology;
-import Models.Tile;
+import Models.Tile.Tile;
+import Models.Tile.Improvement;
 import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Unit;

@@ -1,7 +1,7 @@
 package Contoller;
 
 import Models.Game;
-import Models.Tile;
+import Models.Tile.Tile;
 import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Unit;

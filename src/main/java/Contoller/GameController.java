@@ -3,6 +3,7 @@ package Contoller;
 import java.util.ArrayList;
 
 import Models.*;
+import Models.Tile.Tile;
 
 public class GameController {
 	private static GameController instance;

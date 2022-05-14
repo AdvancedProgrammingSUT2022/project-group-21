@@ -1,4 +1,4 @@
-package Models;
+package Models.Tile;
 
 import Models.Resource.Resource;
 

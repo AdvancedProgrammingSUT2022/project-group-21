@@ -1,8 +1,5 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public enum Technology{
 	AGRICULTURE(		20, Era.ANCIENT, new Technology[]{}),
 	ANIMAL_HUSBANDRY(	35, Era.ANCIENT, new Technology[]{Technology.AGRICULTURE}),

@@ -2,7 +2,7 @@ package Models.Unit;
 
 import Models.City;
 import Models.Civilization;
-import Models.Tile;
+import Models.Tile.Tile;
 
 public class MilitaryUnit extends Unit{
 	private int XP;

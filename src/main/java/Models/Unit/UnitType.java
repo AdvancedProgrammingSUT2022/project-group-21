@@ -2,8 +2,8 @@ package Models.Unit;
 
 import Models.Civilization;
 import Models.Technology;
-import Models.Tile;
 import Models.Resource.Resource;
+import Models.Tile.Tile;
 
 public enum UnitType{
 	SETTLER(CombatType.CIVILIAN, 89, -1, -1, -1, 2, null, false, new Technology[]{}),

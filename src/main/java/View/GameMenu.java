@@ -5,8 +5,8 @@ import Contoller.InfoMenuController;
 import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
-import Models.Improvement;
 import Models.User;
+import Models.Tile.Improvement;
 
 import java.util.ArrayList;
 import java.util.HashMap;

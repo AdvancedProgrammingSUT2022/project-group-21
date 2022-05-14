@@ -3,7 +3,7 @@ package Contoller;
 import Enums.Message;
 import Models.City;
 import Models.Game;
-import Models.Tile;
+import Models.Tile.Tile;
 import Models.Unit.Unit;
 
 public class SelectController {

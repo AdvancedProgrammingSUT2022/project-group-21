@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Contoller.SelectController;
+import Models.Tile.Terrain;
+import Models.Tile.TerrainFeature;
+import Models.Tile.Tile;
 
 public class Game {
 	public final int WIDTH;
