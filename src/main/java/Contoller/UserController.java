@@ -34,7 +34,7 @@ public class UserController {
 			return Message.USERNAME_EXISTS;
 		if (doesNickNameExist(nickname))
 			return Message.NICKNAME_EXISTS;
-		User newUser = new User(username, password, nickname);
+		new User(username, password, nickname);
 		return Message.SIGNUP_SUCCESS;
 	}
 	public Message loginUser(String username, String password) {
