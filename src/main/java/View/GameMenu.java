@@ -101,9 +101,9 @@ public class GameMenu extends Menu{
 
 	//UNITS
 			case UNIT_MOVE:
-				//System.out.println(
-				//		unitController.moveUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
-				//);
+				System.out.println(
+					unitController.moveUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+				);
 				return;
 			case UNIT_SLEEP:
 				//System.out.println(unitController.sleep());

@@ -25,6 +25,7 @@ public enum Message {
 	TILE_NOT_OWNED(""),
 	
 	OUT_OF_BOUND(""),
+	OUT_OF_MP("not enough movement point"),
 	TECHNOLOGY_FAIL("technology requirement(s) not satisfied"),
 	;
 

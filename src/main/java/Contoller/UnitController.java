@@ -16,7 +16,14 @@ public class UnitController {
 		return instance;
 	}
 
-
+	public Message moveUnit(int x, int y) {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		int mp = selectedUnit.getMP();
+		if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
+			return Message.OUT_OF_MP;
+		selectedUnit.setTile(GameController.getInstance().getGame().getTile(x, y));
+		return Message.SUCCESS;
+	}
 
 
 
