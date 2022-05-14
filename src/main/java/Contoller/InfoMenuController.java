@@ -37,6 +37,11 @@ public class InfoMenuController {
         }
     }
 
+    public String research(String technology) {
+        //TODO
+        return null;
+    }
+
     private String researchInfo(){
         //TODO
         return null;

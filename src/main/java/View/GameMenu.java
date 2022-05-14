@@ -6,7 +6,6 @@ import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
 import Models.User;
-import Models.Tile.Improvement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,9 +75,13 @@ public class GameMenu extends Menu{
 		}
 		switch (extractor.getType()) {
 			case INFO:
-				System.out.println(
-						InfoMenuController.getInstance().showInfoMenu(extractor.ARGS1.get("info type"))
-				);
+				String infoType = extractor.ARGS1.get("info type");
+				String technology;
+				System.out.println(InfoMenuController.getInstance().showInfoMenu(infoType));
+				if (infoType.equals("RESEARCH")) {
+					technology = getInput();
+					System.out.println(InfoMenuController.getInstance().research(technology));
+				}
 				return;
 			case SELECT_COMBAT_UNIT:
 				System.out.println(
