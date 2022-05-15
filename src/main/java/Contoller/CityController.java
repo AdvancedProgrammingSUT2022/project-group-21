@@ -24,10 +24,11 @@ public class CityController {
 	private HashMap<Tile, City> cities = new HashMap<>();
 	private ArrayList<Worker> improvementProjects = new ArrayList<>();
 
-
+	public void addImprovementProject(Worker worker){ improvementProjects.add(worker);}
+	public void removeImprovementProject(Worker worker){ improvementProjects.remove(worker);}
 	public void handleImprovementProjects(){
 		for (Worker worker : improvementProjects) {
-			//TODO: shahali
+			worker.decreaseProjectTurnsLeft();
 		}
 	}
 
@@ -95,12 +96,9 @@ public class CityController {
 		return Message.SUCCESS;
 	}
 	
-	
-	public Message buy
-	
-
-
-
-
+	public String getCityInfo(City city){
+		// TODO
+		return null;
+	}
 
 }

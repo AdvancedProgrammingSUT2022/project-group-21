@@ -3,6 +3,7 @@ package Models;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Contoller.CityController;
 import Contoller.SelectController;
 import Models.Tile.Terrain;
 import Models.Tile.TerrainFeature;
@@ -119,6 +120,8 @@ public class Game {
 		return currentPlayer;
 	}
 
+	public int getTotalTurnsCount(){ return countTurns;}
+
 	public void nextTurn(){
 		SelectController.getInstance().reset();
 		currentTurn++;
@@ -127,5 +130,9 @@ public class Game {
 			countTurns++;
 		}
 		currentPlayer=players.get(currentTurn);
+
+		Civilization civilization=currentPlayer.getCivilization();
+		CityController.getInstance().handleImprovementProjects();
+		// TODO
 	}
 }
