@@ -27,12 +27,13 @@ public class CityController {
 
 	public void handleImprovementProjects(){
 		for (Worker worker : improvementProjects) {
-			//TODO
+			//TODO: shahali
 		}
 	}
 
 
-	public Message findCity(Civilization civilization, Tile tile, Unit unit){
+	public Message findCity(Unit unit){
+		// TODO: fix error
 		if (unit.unitType!=UnitType.SETTLER) return Message.UNIT_NOT_SETTLER;
 		if (tile.getOwner()!=civilization) return Message.TILE_NOT_OWNED;
 		if (tile.getTerrain().equals(Terrain.OCEAN) || tile.getTerrain().equals(Terrain.MOUNTAIN)) return Message.UNSUITABLE_TERRAIN;
@@ -55,31 +56,32 @@ public class CityController {
 		return Message.SUCCESS;
 	}
 
-	public Message removeCitizenFromWork(Tile tile){
+	public Message removeCitizenFromWork(int x, int y){
 		// TODO
 		return Message.SUCCESS;
 	}
 
 
-	public int getFoodOut(){
+	public int getFoodOut(Civilization civilization){
 		// TODO
 		return -1;
 	}
-	public int getProductionOut(){
+	public int getProductionOut(Civilization civilization){
 		// TODO
 		return -1;
 	}
-	public int getGoldOut(){
+	public int getGoldOut(Civilization civilization){
 		// TODO
 		return -1;
 	}
-	public int getScienceOut(){
+	public int getScienceOut(Civilization civilization){
 		// TODO
 		return -1;
 	}
 
 	
-	public Message buyTile(Tile tile, City city){
+	public Message buyTile(int x, int y, City city){
+		// TODO: fix error
 		if (tile.getOwner()!=null) return Message.FAIL;
 		Civilization civilization=city.getCivilization();
 		int cost=5;
@@ -92,6 +94,7 @@ public class CityController {
 	}
 	
 	
+	public Message buy
 	
 
 

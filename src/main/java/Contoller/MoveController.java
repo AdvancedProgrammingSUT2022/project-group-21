@@ -8,6 +8,8 @@ import Models.Unit.Unit;
 
 import java.util.ArrayList;
 
+import Enums.Message;
+
 public class MoveController {
 	private static MoveController instance;
 	private static void setInstance(MoveController instance) {
@@ -18,7 +20,34 @@ public class MoveController {
 		return instance;
 	}
 	
-	public boolean move(Unit unit,Tile firstTile,Tile lastTile){
+	// public String  moveUnit(int x, int y) {
+	// 	Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	// 	Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
+	// 	if (selectedUnit == null)
+	// 		return "You have not selected any unit";
+	// 	if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+	// 		return "this unit is not yours";
+	// 	int mp = selectedUnit.getMP();
+	// 	//TODO
+	// 	if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
+	// 		return Message.OUT_OF_MP.toString();
+	// 	selectedUnit.setTile(selectedTile);
+	// 	return Message.SUCCESS.toString();
+	// }
+
+	public Message moveUnit(int x, int y){
+		// TODO
+		// move selected unit to tile (x, y)
+		// if tile was not visible: FAIL
+		// if move was possible in one turn: move
+		// else go as far as possible
+		return null;
+	}
+
+
+
+	
+	public boolean shitMove(Unit unit,Tile firstTile,Tile lastTile){
 		ArrayList<Tile> path = getPath(firstTile,lastTile);
 		int i;
 		int j;

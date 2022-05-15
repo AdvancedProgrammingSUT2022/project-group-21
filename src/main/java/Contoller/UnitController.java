@@ -16,34 +16,30 @@ public class UnitController {
 		return instance;
 	}
 
-	public String  moveUnit(int x, int y) {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
-		Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
-		if (selectedUnit == null)
-			return "You have not selected any unit";
-		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
-			return "this unit is not yours";
-		int mp = selectedUnit.getMP();
-		//TODO
-		if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
-			return Message.OUT_OF_MP.toString();
-		selectedUnit.setTile(selectedTile);
-		return Message.SUCCESS.toString();
-	}
-
-	public Message sleep() {
+	public Message sleep(Unit unit){
 		//TODO
 		return null;
 	}
+	public Message wake(Unit unit){
+		//TODO
+		return null;
+	}
+	public Message alert(Unit unit){
+		//TODO
+		return null;
+	}
+	
+	public Message fortify(Unit unit){
+		// TODO
+		return null;
+	}
 
-	//TODO: Alert, Fortify(,heal),
 
-	public String setupForRangedAttack(int x, int y) {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String setupForRangedAttack(Unit unit, int x, int y) {
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
-		if (selectedUnit.unitType != UnitType.Trebuchet || selectedUnit.unitType != UnitType.Artillery ||
-				selectedUnit.unitType != UnitType.Canon || selectedUnit.unitType != UnitType.CATAPULT)
+		if (selectedUnit.unitType.combatType!=CombatType.SIEGE)
 			return "Selected Unit does not pre attack";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
 			return "this unit is not yours";
@@ -52,8 +48,8 @@ public class UnitController {
 		return "Success";
 	}
 
-	public String garrison() {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String garrison(Unit unit) {
+		// TODO: fix error
 		Tile unitsTile = SelectController.getInstance().getSelectedUnit().getTile();
 		City capital = unitsTile.getCapitalCity();
 		if (selectedUnit == null)
@@ -69,8 +65,8 @@ public class UnitController {
 		return Message.SUCCESS.toString();
 	}
 
-	public String attack(int x, int y) {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String attack(Unit unit, int x, int y) {
+		// TODO: fix error
 		Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
 		if (selectedUnit == null)
 			return "You have not selected any unit";
@@ -89,8 +85,8 @@ public class UnitController {
 		return Message.SUCCESS.toString();
 	}
 
-	public String foundCity() {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String foundCity(Unit unit){
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
@@ -105,8 +101,8 @@ public class UnitController {
 	//TODO: Cancel mission method
 	//TODO: wake Unit from sleep
 
-	public String delete() {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String delete(Unit unit){
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
@@ -115,8 +111,8 @@ public class UnitController {
 		return Message.SUCCESS.toString();
 	}
 
-	public String buildRoad() {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String buildRoad(Unit unit){
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
@@ -126,12 +122,12 @@ public class UnitController {
 		if (selectedUnit.getTile().hasRoad())
 			return "already constructed";
 		Worker selectedWorker = (Worker)selectedUnit;
-		selectedWorker.creatRoad();
+		selectedWorker.buildRoad();
 		return Message.SUCCESS.toString();
 	}
 
-	public String buildImprovement(Improvement improvement) {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String buildImprovement(Unit unit, Improvement improvement){
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
@@ -145,8 +141,8 @@ public class UnitController {
 		return Message.SUCCESS.toString();
 	}
 
-	public  String removeRoad() {
-		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	public String removeRoad(Unit unit){
+		// TODO: fix error
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
@@ -159,13 +155,21 @@ public class UnitController {
 		return null;
 	}
 
-	public String removeJungle() {
+	public String removeJungle(Unit unit){
 		//TODO
 		return null;
 	}
 
 
-	public Message createUnit(Civilization civilization, UnitType unitType, Tile tile){
+	public Message createUnit(Civilization civilization, Tile tile, UnitType unitType){
+		// TODO
+		
+		return Message.SUCCESS;
+	}
+	
+	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
+		// TODO: check tile is empty
+		// TODO: check tile owner is civilization
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
 		if (unitType==UnitType.WORKER || unitType==UnitType.SETTLER){
 			if (tile.getCivilianUnit()!=null) return Message.FAIL;

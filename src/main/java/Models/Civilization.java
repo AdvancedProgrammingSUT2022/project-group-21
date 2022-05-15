@@ -31,6 +31,10 @@ public class Civilization {
 		this.H=H;
 	}
 
+	public int calculateHappiness(){
+		// TODO
+		return -1;
+	}
 
 	public boolean hasTechnology(Technology technology){
 		return technologies.contains(technology);
