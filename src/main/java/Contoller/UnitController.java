@@ -1,6 +1,7 @@
 package Contoller;
 
 import Enums.Message;
+import Models.City;
 import Models.Civilization;
 import Models.Technology;
 import Models.Tile.Tile;
@@ -17,13 +18,18 @@ public class UnitController {
 		return instance;
 	}
 
-	public Message moveUnit(int x, int y) {
+	public String  moveUnit(int x, int y) {
 		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
 		int mp = selectedUnit.getMP();
 		if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
-			return Message.OUT_OF_MP;
-		selectedUnit.setTile(GameController.getInstance().getGame().getTile(x, y));
-		return Message.SUCCESS;
+			return Message.OUT_OF_MP.toString();
+		selectedUnit.setTile(selectedTile);
+		return Message.SUCCESS.toString();
 	}
 
 	public Message sleep() {
@@ -31,12 +37,57 @@ public class UnitController {
 		return null;
 	}
 
-	public String setupForRangedAttack() {
+	//TODO: Alert, Fortify(,heal),
+
+	public String setupForRangedAttack(int x, int y) {
 		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
-		//TODO
-		if (selectedUnit.unitType != UnitType.Trebuchet)
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.unitType != UnitType.Trebuchet || selectedUnit.unitType != UnitType.Artillery ||
+				selectedUnit.unitType != UnitType.Canon || selectedUnit.unitType != UnitType.CATAPULT)
 			return "Selected Unit does not pre attack";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
+		MilitaryUnit siegeUnit = (MilitaryUnit) selectedUnit;
+		siegeUnit.siegePreAttack(GameController.getInstance().getGame().getTile(x, y));
 		return "Success";
+	}
+
+	public String garrison() {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		Tile unitsTile = SelectController.getInstance().getSelectedUnit().getTile();
+		City capital = unitsTile.getCapitalCity();
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
+		if (capital == null)
+			return "This Unit is not on any City";
+		if (!(selectedUnit instanceof MilitaryUnit))
+			return "Selected Unit is not Military";
+		//TODO: check if city is this turn's Civilization
+		//TODO: define a function for MilitaryUnit :garrison
+		return Message.SUCCESS.toString();
+	}
+
+	public String attack(int x, int y) {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
+		if (!(selectedUnit instanceof MilitaryUnit))
+			return "Selected Unit is not Military";
+		MilitaryUnit miliUnit = (MilitaryUnit) selectedUnit;
+		if (!miliUnit.isInRange(selectedTile))
+			return "Out of Range!";
+		//TODO: check other conditions
+		if (selectedTile.getCapitalCity() == null)
+			miliUnit.attackToUnit(selectedTile);
+		else
+			miliUnit.attackToCity(selectedTile.getCapitalCity());
+		return Message.SUCCESS.toString();
 	}
 
 	public Message createUnit(Civilization civilization, UnitType unitType, Tile tile){

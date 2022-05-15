@@ -121,16 +121,17 @@ public class GameMenu extends Menu{
 				//System.out.println(unitController.fortify(true));
 				return;
 			case UNIT_GARRISON:
-				//TODO
-				//System.out.println(unitController.garrison());
+				System.out.println(unitController.garrison());
 				return;
 			case UNIT_SETUP_FOR_RANGED:
-				System.out.println(unitController.setupForRangedAttack());
+				System.out.println(
+                        unitController.setupForRangedAttack(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+                );
 				return;
 			case UNIT_ATTACK:
-				//System.out.println(
-				//		unitController.attack(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
-				//);
+				System.out.println(
+						unitController.attack(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+				);
 				return;
 			case UNIT_FOUND_CITY:
 				//System.out.println(unitController.foundCity());

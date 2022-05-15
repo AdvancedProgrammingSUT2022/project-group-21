@@ -1,6 +1,7 @@
 package Models.Tile;
 
 import Models.Citizen;
+import Models.City;
 import Models.Civilization;
 import Models.Tile.Improvement;
 import Models.Unit.CivilianUnit;
@@ -16,6 +17,7 @@ public class Tile {
 	private Terrain terrain;
 	private TerrainFeature terrainFeature;
 	private Improvement improvement;
+	private City capitalCity;
 	// private Ruin ruin;
 	private int roadType;
 	
@@ -118,5 +120,13 @@ public class Tile {
 
 	public TerrainFeature getTerrainFeature() {
 		return terrainFeature;
+	}
+
+	public City getCapitalCity() {
+		return capitalCity;
+	}
+
+	public void setCapitalCity(City capitalCity) {
+		this.capitalCity = capitalCity;
 	}
 }
