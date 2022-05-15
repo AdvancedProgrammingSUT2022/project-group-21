@@ -6,8 +6,8 @@ import Models.Tile.Tile;
 public abstract class Unit {
 	final public UnitType unitType;
 	final public Civilization owner;
-	private Tile tile;
-	private int HP, MP;
+	protected Tile tile;
+	protected int HP, MP;
 	protected int lastActionTurn; // TODO: update this
 	
 	Unit(UnitType unitType, Civilization owner, Tile tile){

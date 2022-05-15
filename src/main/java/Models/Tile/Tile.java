@@ -37,6 +37,9 @@ public class Tile {
 	public void setCivilianUnit(CivilianUnit civilianUnit){ this.civilianUnit=civilianUnit ;}
 	public void setWorkingCitizen(Citizen workingCitizen){ this.workingCitizen=workingCitizen ;}
 
+	public void setImprovement(Improvement improvement){ this.improvement=improvement;}
+	public void setRoad(boolean road){ this.hasRoad=road;}
+
 	public Tile(int X, int Y, Terrain terrain) {
 		this.X = X;
 		this.Y = Y;
@@ -139,9 +142,5 @@ public class Tile {
 
 	public Improvement getImprovement() {
 		return improvement;
-	}
-
-	public void setImprovement(Improvement improvement) {
-		this.improvement = improvement;
 	}
 }
