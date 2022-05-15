@@ -93,12 +93,10 @@ public class CityController {
 		return Message.SUCCESS;
 	}
 	
-	
-	public Message buy
-	
-
-
-
+	public String getCityInfo(City city){
+		// TODO
+		return null;
+	}
 
 
 }
