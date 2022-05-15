@@ -11,7 +11,6 @@ public enum Colors {
     CYAN("\033[0;36m"),
     WHITE("\033[0;37m"),
     BLACK_BACKGROUND("\033[40m"),
-    
     RED_BACKGROUND("\033[41m"),
     GREEN_BACKGROUND("\033[42m"),
     YELLOW_BACKGROUND("\033[43m"),

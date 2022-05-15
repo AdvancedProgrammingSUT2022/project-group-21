@@ -55,9 +55,6 @@ public class Worker extends CivilianUnit{
 		projectTurnsLeft=-1;
 		CityController.getInstance().removeImprovementProject(this);
 	}
-	public void removeRoad(){
-
-	}
 }
 
 enum ProjectType{
