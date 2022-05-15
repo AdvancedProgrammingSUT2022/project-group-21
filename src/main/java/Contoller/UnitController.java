@@ -170,6 +170,7 @@ public class UnitController {
 	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
 		// TODO: check tile is empty
 		// TODO: check tile owner is civilization
+
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
 		if (unitType==UnitType.WORKER || unitType==UnitType.SETTLER){
 			if (tile.getCivilianUnit()!=null) return Message.FAIL;

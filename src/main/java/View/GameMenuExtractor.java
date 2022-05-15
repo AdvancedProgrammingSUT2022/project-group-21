@@ -177,29 +177,39 @@ public class GameMenuExtractor {
                 }
                 return null;
             case "GET":
-                if (tokens[2].equals("OUTPUT") && tokens.length == 3)
-                    //TODO:
-                    return null;
+                if (tokens[2].equals("OUTPUT") && tokens.length == 4) {
+                    instance.type = CommandTypes.CITY_GET_OUTPUT;
+                    instance.ARGS1.put("outputType", tokens[3]);
+                    return instance;
+                }
                 return null;
             case "LOCK":
-                if (tokens[2].equals("CITIZEN") && tokens.length == 3)
-                    //TODO
-                    return null;
+                if (tokens[2].equals("CITIZEN") && tokens.length == 4) {
+                    instance.type = CommandTypes.CITY_LOCK_CITIZEN;
+                    instance.ARGS2.put("x", extractPosition(tokens[3], "x"));
+                    instance.ARGS2.put("y", extractPosition(tokens[3], "y"));
+                    return instance;
+                }
                 return null;
             case "REMOVE":
-                if (tokens[2].equals("FROM") && tokens[3].equals("WORK") && tokens.length == 4)
-                    //TODO
-                    return null;
+                if (tokens[2].equals("FROM") && tokens[3].equals("WORK") && tokens.length == 5) {
+                    instance.type = CommandTypes.CITY_REMOVE_FROM_WORK;
+                    instance.ARGS2.put("x", extractPosition(tokens[4], "x"));
+                    instance.ARGS2.put("y", extractPosition(tokens[4], "y"));
+                    return instance;
+                }
                 return null;
             case "BANNER":
-                if (tokens.length == 2)
-                    //TODO
-                    return null;
+                if (tokens.length == 2) {
+                    instance.type = CommandTypes.CITY_BANNER;
+                    return instance;
+                }
                 return null;
             case "DESTROY":
-                if (tokens.length == 2)
-                    //TODO
-                    return null;
+                if (tokens.length == 2) {
+                    instance.type = CommandTypes.CITY_DESTROY;
+                    return instance;
+                }
                 return null;
             default:
                 return null;
