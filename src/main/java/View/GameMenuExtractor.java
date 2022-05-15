@@ -1,6 +1,8 @@
 package View;
 
 
+import Models.Game;
+
 import java.util.HashMap;
 
 public class GameMenuExtractor {
@@ -21,8 +23,7 @@ public class GameMenuExtractor {
             case "MAP":
                 return handleMAP(tokens);
             case "CITY":
-                //TODO:
-                return null;
+                return handleCity(tokens);
             default:
                 return null;
         }
@@ -154,6 +155,15 @@ public class GameMenuExtractor {
                 instance.ARGS1.put("direction", tokens[2]);
                 instance.ARGS2.put("amount", c);
                 return instance;
+        }
+        return null;
+    }
+
+    private static GameMenuExtractor handleCity(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        switch (tokens[1]) {
+            case "":
+
         }
         return null;
     }
