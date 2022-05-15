@@ -5,6 +5,7 @@ import Models.City;
 import Models.Civilization;
 import Models.Technology;
 import Models.Tile.Improvement;
+import Models.Tile.TerrainFeature;
 import Models.Tile.Tile;
 import Models.Unit.*;
 
@@ -115,51 +116,68 @@ public class UnitController {
 
 	public String buildRoad(Unit unit){
 		// TODO: fix error
-		if (selectedUnit == null)
+		if (unit == null)
 			return "You have not selected any unit";
-		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+		if (unit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
 			return "this unit is not yours";
-		if (selectedUnit.unitType != UnitType.WORKER)
+		if (unit.unitType != UnitType.WORKER)
 			return "Selected unit is not a worker!";
-		if (selectedUnit.getTile().hasRoad())
+		if (unit.getTile().hasRoad())
 			return "already constructed";
-		Worker selectedWorker = (Worker)selectedUnit;
+		Worker selectedWorker = (Worker)unit;
 		selectedWorker.buildRoad();
 		return Message.SUCCESS.toString();
 	}
 
 	public String buildImprovement(Unit unit, Improvement improvement){
-		// TODO: fix error
-		if (selectedUnit == null)
+		if (unit == null)
 			return "You have not selected any unit";
-		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+		if (unit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
 			return "this unit is not yours";
-		if (selectedUnit.unitType != UnitType.WORKER)
+		if (unit.unitType != UnitType.WORKER)
 			return "Selected unit is not a worker!";
-		if (selectedUnit.getTile().getImprovement() != null)
+		if (unit.getTile().getImprovement() != null)
 			return "Improvement already constructed here!";
-		Improvement[] improvements = Improvement.values();
-		//TODO: check required technologies and terrain and Terrain features
-		return Message.SUCCESS.toString();
+		Technology technology = improvement.prequisiteTech;
+		if (unit.owner.hasTechnology(technology) && improvement.canBeBuiltOn(unit.getTile()))
+			return Message.SUCCESS.toString();
+		return "";
 	}
 
 	public String removeRoad(Unit unit){
 		// TODO: fix error
-		if (selectedUnit == null)
+		if (unit == null)
 			return "You have not selected any unit";
-		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+		else if (unit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
 			return "this unit is not yours";
-		if (selectedUnit.unitType != UnitType.WORKER)
+		else if (unit.unitType != UnitType.WORKER)
 			return "Selected unit is not a worker!";
-		if (!selectedUnit.getTile().hasRoad())
+		else if (!unit.getTile().hasRoad())
 			return "No route in this tile!";
 		//TODO
-		return null;
+		else {
+			((Worker) unit).removeRoad();
+			return "Road removed succesfully";
+		}
 	}
 
 	public String removeJungle(Unit unit){
-		//TODO
-		return null;
+		if (unit == null){
+			return "You have not selected any unit";
+		}
+		else if (unit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization()){
+			return "this unit is not yours";
+		}
+		else if (unit.unitType != UnitType.WORKER){
+			return "Selected unit is not worker!";
+		}
+		else if (unit.getTile().getTerrainFeature().equals(TerrainFeature.FOREST)){
+			return "There is no Jungle on this tile!";
+		}
+		else {
+			((Worker) unit).removeJungle();
+			return "Jungle removed succesfully!";
+		}
 	}
 
 
