@@ -2,18 +2,15 @@ package Contoller;
 
 import Enums.Message;
 import Models.City;
+import Models.Civilization;
 import Models.Game;
 import Models.Tile.Tile;
 import Models.Unit.Unit;
 
 public class SelectController {
 	private static SelectController instance;
-	private SelectController() {
-
-	}
-	public static SelectController getInstance() {
-		if (instance == null)
-			instance = new SelectController();
+	public static SelectController getInstance(){
+		if (instance == null) instance = new SelectController();
 		return instance;
 	}
 
@@ -34,7 +31,10 @@ public class SelectController {
 		return 0<=x && x<game.WIDTH && 0<=y && y<game.HEIGHT;
 	}
 
-	public Message selectUnit(int x, int y, boolean isCombatUnit){
+	// TODO: check if selected unit/city belong to civilization
+
+
+	public Message selectUnit(Civilization civilization, int x, int y, boolean isCombatUnit){
 		if (!validateCordinates(x, y)) return Message.OUT_OF_BOUND;
 		Tile tile=game.getTile(x, y);
 		Unit unit=(isCombatUnit?tile.getMilitaryUnit():tile.getCivilianUnit());
@@ -43,7 +43,7 @@ public class SelectController {
 		return Message.SUCCESS;
 	}
 
-	public Message selectCityByCoordination(int x, int y) {
+	public Message selectCityByCoordination(Civilization civilization, int x, int y) {
 		if (!validateCordinates(x, y)) return Message.OUT_OF_BOUND;
 		Tile tile=game.getTile(x, y);
 		City city=City.getCityOnTile(tile);
