@@ -1,6 +1,9 @@
 package View;
 
 
+import Enums.Message;
+import Models.Game;
+
 import java.util.HashMap;
 
 public class GameMenuExtractor {
@@ -21,8 +24,7 @@ public class GameMenuExtractor {
             case "MAP":
                 return handleMAP(tokens);
             case "CITY":
-                //TODO:
-                return null;
+                return handleCity(tokens);
             default:
                 return null;
         }
@@ -156,6 +158,52 @@ public class GameMenuExtractor {
                 return instance;
         }
         return null;
+    }
+
+    private static GameMenuExtractor handleCity(String[] tokens) {
+        GameMenuExtractor instance = new GameMenuExtractor();
+        switch (tokens[1]) {
+            case "PURCHASE":
+                if (tokens[2].equals("UNIT") && tokens.length == 4) {
+                    instance.type = CommandTypes.CITY_PURCHASE_UNIT;
+                    instance.ARGS1.put("unitType", tokens[3]);
+                    return instance;
+                }
+                if (tokens[2].equals("TILE") && tokens.length == 4) {
+                    instance.type = CommandTypes.CITY_PURCHASE_TILE;
+                    instance.ARGS2.put("x", extractPosition(tokens[3], "x"));
+                    instance.ARGS2.put("y", extractPosition(tokens[3], "y"));
+                    return instance;
+                }
+                return null;
+            case "GET":
+                if (tokens[2].equals("OUTPUT") && tokens.length == 3)
+                    //TODO:
+                    return null;
+                return null;
+            case "LOCK":
+                if (tokens[2].equals("CITIZEN") && tokens.length == 3)
+                    //TODO
+                    return null;
+                return null;
+            case "REMOVE":
+                if (tokens[2].equals("FROM") && tokens[3].equals("WORK") && tokens.length == 4)
+                    //TODO
+                    return null;
+                return null;
+            case "BANNER":
+                if (tokens.length == 2)
+                    //TODO
+                    return null;
+                return null;
+            case "DESTROY":
+                if (tokens.length == 2)
+                    //TODO
+                    return null;
+                return null;
+            default:
+                return null;
+        }
     }
 
 

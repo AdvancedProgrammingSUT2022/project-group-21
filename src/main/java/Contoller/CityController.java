@@ -33,8 +33,10 @@ public class CityController {
 	}
 
 
-	public Message findCity(Unit unit){
-		// TODO: fix error
+	public Message findCity(){
+		Unit unit = SelectController.getInstance().getSelectedUnit();
+		Tile tile = unit.getTile();
+		Civilization civilization = GameController.getInstance().getGame().getCurrentPlayer().getCivilization();
 		if (unit.unitType!=UnitType.SETTLER) return Message.UNIT_NOT_SETTLER;
 		if (tile.getOwner()!=civilization) return Message.TILE_NOT_OWNED;
 		if (tile.getTerrain().equals(Terrain.OCEAN) || tile.getTerrain().equals(Terrain.MOUNTAIN)) return Message.UNSUITABLE_TERRAIN;
