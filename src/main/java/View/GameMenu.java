@@ -5,6 +5,7 @@ import Contoller.InfoMenuController;
 import Contoller.SelectController;
 import Contoller.UnitController;
 import Enums.Message;
+import Models.Tile.Improvement;
 import Models.User;
 
 import java.util.ArrayList;
@@ -134,7 +135,7 @@ public class GameMenu extends Menu{
 				);
 				return;
 			case UNIT_FOUND_CITY:
-				//System.out.println(unitController.foundCity());
+				System.out.println(unitController.foundCity());
 				return;
 			case UNIT_CANCEL_MISSION:
 				//System.out.println(unitController.cancelMissions());
@@ -143,24 +144,24 @@ public class GameMenu extends Menu{
 				//System.out.println(unitController.wake());
 				return;
 			case UNIT_DELETE:
-				//System.out.println(unitController.delete());
+				System.out.println(unitController.delete());
 				return;
 			case UNIT_BUILD_ROAD:
-				//System.out.println(unitController.buildRoad(true));
+				System.out.println(unitController.buildRoad());
 				return;
 			case UNIT_BUILD_RAILROAD:
 				//System.out.println(unitController.buildRoad(false));
 				return;
 			case UNIT_BUILD_IMPROVEMENT:
-                //Improvement improvement = Improvement.valueOf(extractor.ARGS1.get("improvement"));
-                //System.out.println(unitController.buildImprovement(improvement));
+                Improvement improvement = Improvement.valueOf(extractor.ARGS1.get("improvement"));
+                System.out.println(unitController.buildImprovement(improvement));
 				return;
 			case UNIT_REMOVE:
-                //if (extractor.ARGS1.get("removeType").equals("JUNGLE"))
-                //    System.out.println(unitController.removeJungle());
-                //else if (extractor.ARGS1.get("removeType").equals("ROUTE"))
-                //    System.out.println(unitController.removeRoad());
-                //else System.out.println(Message.INVALID_COMMAND);
+                if (extractor.ARGS1.get("removeType").equals("JUNGLE"))
+                    System.out.println(unitController.removeJungle());
+                else if (extractor.ARGS1.get("removeType").equals("ROUTE"))
+                    System.out.println(unitController.removeRoad());
+                else System.out.println(Message.INVALID_COMMAND);
                 return;
 			case UNIT_REPAIR:
                 /*System.out.println(unitController.repair());*/
