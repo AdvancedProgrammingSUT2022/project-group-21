@@ -3,7 +3,6 @@ package Models.Tile;
 import Models.Citizen;
 import Models.City;
 import Models.Civilization;
-import Models.Tile.Improvement;
 import Models.Unit.CivilianUnit;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Worker;
@@ -19,7 +18,7 @@ public class Tile {
 	private Improvement improvement;
 	private City capitalCity;
 	// private Ruin ruin;
-	private int roadType;
+	private boolean hasRoad;
 	
 	private Civilization owner;
 	private MilitaryUnit militaryUnit;
@@ -128,5 +127,21 @@ public class Tile {
 
 	public void setCapitalCity(City capitalCity) {
 		this.capitalCity = capitalCity;
+	}
+
+	public boolean hasRoad() {
+		return hasRoad;
+	}
+
+	public void setHasRoad(boolean hasRoad) {
+		this.hasRoad = hasRoad;
+	}
+
+	public Improvement getImprovement() {
+		return improvement;
+	}
+
+	public void setImprovement(Improvement improvement) {
+		this.improvement = improvement;
 	}
 }
