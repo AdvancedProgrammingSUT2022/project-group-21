@@ -57,4 +57,8 @@ public class City {
 	
 
 	public Civilization getCivilization(){ return civilization;}
+
+	public ArrayList<Tile> getTiles() {
+		return tiles;
+	}
 }

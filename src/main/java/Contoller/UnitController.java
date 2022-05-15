@@ -5,8 +5,11 @@ import Models.City;
 import Models.Civilization;
 import Models.Technology;
 import Models.Tile.Improvement;
+import Models.Tile.TerrainFeature;
 import Models.Tile.Tile;
 import Models.Unit.*;
+
+import java.util.ArrayList;
 
 public class UnitController {
 	private static UnitController instance;
@@ -15,7 +18,6 @@ public class UnitController {
 		if (instance==null) instance=new UnitController();
 		return instance;
 	}
-
 	public Message sleep(Unit unit){
 		//TODO
 		return null;
@@ -137,8 +139,12 @@ public class UnitController {
 		if (selectedUnit.getTile().getImprovement() != null)
 			return "Improvement already constructed here!";
 		Improvement[] improvements = Improvement.values();
+		if (!selectedUnit.owner.hasTechnology(improvement.prequisiteTech))
+			return Message.TECHNOLOGY_FAIL.toString();
+		if (improvement.canBeBuiltOn(selectedUnit.getTile()))
 		//TODO: check required technologies and terrain and Terrain features
 		return Message.SUCCESS.toString();
+		return "";
 	}
 
 	public String removeRoad(){
@@ -151,11 +157,21 @@ public class UnitController {
 			return "Selected unit is not a worker!";
 		if (!selectedUnit.getTile().hasRoad())
 			return "No route in this tile!";
-		//TODO
+		((Worker) selectedUnit).removeRoad();;
 		return null;
 	}
 
-	public String removeJungle(Unit unit){
+	public String removeJungle(){
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
+		if (selectedUnit.unitType != UnitType.WORKER)
+			return "Selected unit is not a worker!";
+		if (selectedUnit.getTile().getTerrainFeature().equals(TerrainFeature.FOREST))
+			return "There is no Jungle on this tile!";
+		((Worker) selectedUnit).removeJungle();
 		//TODO
 		return null;
 	}
@@ -166,26 +182,36 @@ public class UnitController {
 		
 		return Message.SUCCESS;
 	}
-	
-	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
-		// TODO: check tile is empty
-		// TODO: check tile owner is civilization
 
+	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
-		if (unitType==UnitType.WORKER || unitType==UnitType.SETTLER){
-			if (tile.getCivilianUnit()!=null) return Message.FAIL;
-		}
-		else if (tile.getMilitaryUnit()!=null) return Message.FAIL;
 		for (Technology technology : unitType.technologyRequired) {
 			if (!civilization.hasTechnology(technology))
 				return Message.TECHNOLOGY_FAIL;
 		}
-		civilization.addGold(-unitType.cost);
-		Unit unit=unitType.createUnit(civilization, tile);
-		civilization.addUnit(unit);
-		unit.setTile(tile);
-		if (unit instanceof MilitaryUnit) tile.setMilitaryUnit((MilitaryUnit) unit);
-		else tile.setCivilianUnit((CivilianUnit) unit);
+		ArrayList<Tile> CityTiles = city.getTiles();
+		for (Tile cityTile : CityTiles) {
+			if (unitType == UnitType.WORKER || unitType == UnitType.SETTLER){
+				if (cityTile.getCivilianUnit() != null){
+					return Message.FAIL;
+				}
+			}
+			else if (cityTile.getMilitaryUnit() != null){
+				return Message.FAIL;
+			}
+			else if (!cityTile.getOwner().equals(civilization)){
+				return Message.TILE_NOT_OWNED;
+			}
+			else {
+				civilization.addGold(-unitType.cost);
+				Unit unit=unitType.createUnit(civilization, cityTile);
+				civilization.addUnit(unit);
+				unit.setTile(cityTile);
+				if (unit instanceof MilitaryUnit) cityTile.setMilitaryUnit((MilitaryUnit) unit);
+				else cityTile.setCivilianUnit((CivilianUnit) unit);
+				return Message.SUCCESS;
+			}
+		}
 		return Message.SUCCESS;
 	}
 }

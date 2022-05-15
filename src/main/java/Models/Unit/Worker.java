@@ -50,6 +50,9 @@ public class Worker extends CivilianUnit{
 		projectTurnsLeft=2;
 		CityController.getInstance().addImprovementProject(this);
 	}
+	public void removeRoad(){
+
+	}
 	public void cancelProject(){
 		projectType=null;
 		projectTurnsLeft=-1;
