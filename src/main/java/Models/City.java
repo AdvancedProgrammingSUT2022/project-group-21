@@ -19,6 +19,10 @@ public class City {
 	private MilitaryUnit garrisonUnit;
 	private int combatStrength;
 
+	public ArrayList<Tile> getTiles() {
+		return tiles;
+	}
+
 	public City(Tile tile, Civilization civilization) {
 		this.center = tile;
 		this.civilization = civilization;

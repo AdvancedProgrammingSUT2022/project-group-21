@@ -8,6 +8,8 @@ import Models.Tile.Improvement;
 import Models.Tile.Tile;
 import Models.Unit.*;
 
+import java.util.ArrayList;
+
 public class UnitController {
 	private static UnitController instance;
 
@@ -168,23 +170,34 @@ public class UnitController {
 	}
 	
 	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
-		// TODO: check tile is empty
-		// TODO: check tile owner is civilization
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
-		if (unitType==UnitType.WORKER || unitType==UnitType.SETTLER){
-			if (tile.getCivilianUnit()!=null) return Message.FAIL;
-		}
-		else if (tile.getMilitaryUnit()!=null) return Message.FAIL;
 		for (Technology technology : unitType.technologyRequired) {
 			if (!civilization.hasTechnology(technology))
 				return Message.TECHNOLOGY_FAIL;
 		}
-		civilization.addGold(-unitType.cost);
-		Unit unit=unitType.createUnit(civilization, tile);
-		civilization.addUnit(unit);
-		unit.setTile(tile);
-		if (unit instanceof MilitaryUnit) tile.setMilitaryUnit((MilitaryUnit) unit);
-		else tile.setCivilianUnit((CivilianUnit) unit);
+		ArrayList<Tile> CityTiles = city.getTiles();
+		for (Tile cityTile : CityTiles) {
+			if (unitType == UnitType.WORKER || unitType == UnitType.SETTLER){
+				if (cityTile.getCivilianUnit() != null){
+					return Message.FAIL;
+				}
+			}
+			else if (cityTile.getMilitaryUnit() != null){
+				return Message.FAIL;
+			}
+			else if (!cityTile.getOwner().equals(civilization)){
+				return Message.TILE_NOT_OWNED;
+			}
+			else {
+				civilization.addGold(-unitType.cost);
+				Unit unit=unitType.createUnit(civilization, cityTile);
+				civilization.addUnit(unit);
+				unit.setTile(cityTile);
+				if (unit instanceof MilitaryUnit) cityTile.setMilitaryUnit((MilitaryUnit) unit);
+				else cityTile.setCivilianUnit((CivilianUnit) unit);
+				return Message.SUCCESS;
+			}
+		}
 		return Message.SUCCESS;
 	}
 }
