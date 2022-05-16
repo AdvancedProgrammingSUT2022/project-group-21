@@ -32,4 +32,7 @@ public abstract class Unit {
 	public int getLastActionTurn(){ return lastActionTurn;}
 	public void setLastActionTurn(int turn){ this.lastActionTurn=turn;}
 
+	public Civilization getOwner() {
+		return owner;
+	}
 }

@@ -31,7 +31,13 @@ public class SelectController {
 		return 0<=x && x<game.WIDTH && 0<=y && y<game.HEIGHT;
 	}
 
-	// TODO: check if selected unit/city belong to civilization
+	private boolean doesBelong(Civilization civilization, City selectedCity) {
+		return selectedCity.getCivilization() == civilization;
+	}
+
+	private boolean doesBelong(Civilization civilization, Unit selectedUnit) {
+		return selectedUnit.getOwner() == civilization;
+	}
 
 
 	public Message selectUnit(Civilization civilization, int x, int y, boolean isCombatUnit){
