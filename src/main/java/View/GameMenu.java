@@ -1,11 +1,10 @@
 package View;
 
-import Contoller.GameController;
-import Contoller.InfoMenuController;
-import Contoller.SelectController;
-import Contoller.UnitController;
+import Contoller.*;
 import Enums.Message;
 import Models.Tile.Improvement;
+import Models.Unit.Unit;
+import Models.Unit.UnitType;
 import Models.User;
 
 import java.util.ArrayList;
@@ -164,7 +163,7 @@ public class GameMenu extends Menu{
                 else System.out.println(Message.INVALID_COMMAND);
                 return;
 			case UNIT_REPAIR:
-                /*System.out.println(unitController.repair());*/
+                System.out.println(unitController.repair());
 				return;
 	//MAP
 			case MAP_MOVE:
@@ -173,9 +172,63 @@ public class GameMenu extends Menu{
 			case MAP_SHOW_BY_POSITION:
 				//TODO:
 				break;
-			default:
-				System.out.println(Message.INVALID_COMMAND);
+     //CITY
+            case CITY_BANNER:
+                //TODO:
+                break;
+            case CITY_PURCHASE_TILE:
+                //TODO
+                break;
+            case CITY_PURCHASE_UNIT:
+                System.out.println(
+                        UnitController.getInstance().buyUnit(
+                                GameController.getInstance().getGame().getCurrentPlayer().getCivilization(),
+                                UnitType.valueOf(extractor.ARGS1.get("unitType"))
+                        )
+                );
+                break;
+            case CITY_GET_OUTPUT:
+                switch (extractor.ARGS1.get("outputType")) {
+                    case "FOOD":
+                        System.out.println(
+                                CityController.getInstance().getFoodOut(
+                                        GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
+                        return;
+                    case "PRODUCT":
+                        System.out.println(
+                                CityController.getInstance().getProductionOut(
+                                        GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
+                        return;
+                    case "GOLD":
+                        System.out.println(
+                                CityController.getInstance().getGoldOut(
+                                        GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
+                    case "SCIENCE":
+                        System.out.println(
+                                CityController.getInstance().getScienceOut(
+                                        GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
+                        return;
+                }
 
+                break;
+            case CITY_LOCK_CITIZEN:
+                System.out.println(
+                        CityController.getInstance().assignCitizenToTile(extractor.ARGS2.get("x"),
+                                extractor.ARGS2.get("y"))
+                );
+                break;
+            case CITY_REMOVE_FROM_WORK:
+                System.out.println(
+                        CityController.getInstance().removeCitizenFromWork(extractor.ARGS2.get("x"),
+                                extractor.ARGS2.get("y"))
+                );
+                break;
+            case CITY_DESTROY:
+                //TODO
+                break;
+            default:
+                System.out.println(Message.INVALID_COMMAND);
+                break;
 		}
 	}
 

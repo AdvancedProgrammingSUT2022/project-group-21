@@ -155,11 +155,15 @@ public class UnitController {
 		return null;
 	}
 
-	public String removeJungle(Unit unit){
+	public String removeJungle(){
 		//TODO
 		return null;
 	}
 
+	public String repair() {
+		//TODO
+		return null;
+	}
 
 	public Message createUnit(Civilization civilization, Tile tile, UnitType unitType){
 		// TODO
@@ -167,7 +171,8 @@ public class UnitController {
 		return Message.SUCCESS;
 	}
 	
-	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
+	public Message buyUnit(Civilization civilization, UnitType unitType){
+		City city = SelectController.getInstance().getSelectedCity();
 		// TODO: check tile is empty
 		// TODO: check tile owner is civilization
 

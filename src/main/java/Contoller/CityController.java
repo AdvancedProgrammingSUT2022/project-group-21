@@ -7,6 +7,7 @@ import Enums.Message;
 import Models.Citizen;
 import Models.City;
 import Models.Civilization;
+import Models.Game;
 import Models.Tile.Terrain;
 import Models.Tile.Tile;
 import Models.Unit.Unit;
@@ -48,12 +49,14 @@ public class CityController {
 
 	public City getCityOnTile(Tile tile){ return cities.get(tile);}
 
-	public Message assignCitizenToTile(Tile tile, City city){
-		if (city==null) return Message.NO_CITY_ON_TILE;
-		if (!city.hasTile(tile)) return Message.FAIL;
-		if (city.countCitizens()==0) return Message.FAIL;
+	public Message assignCitizenToTile(int x, int y){
+		City selectedCity = SelectController.getInstance().getSelectedCity();
+		Tile tile = GameController.getInstance().getGame().getTile(x, y);
+		if (selectedCity==null) return Message.NO_CITY_ON_TILE;
+		if (!selectedCity.hasTile(tile)) return Message.FAIL;
+		if (selectedCity.countCitizens()==0) return Message.FAIL;
 		if (tile.getWorkingCitizen()!=null) return Message.ALREADY_ASSIGNED;
-		Citizen citizen=city.getCitizenToAssign();
+		Citizen citizen=selectedCity.getCitizenToAssign();
 		tile.setCitizen(citizen);
 		citizen.setWorkingTile(tile);
 		return Message.SUCCESS;
@@ -84,7 +87,7 @@ public class CityController {
 
 	
 	public Message buyTile(int x, int y, City city){
-		// TODO: fix error
+		Tile tile = GameController.getInstance().getGame().getTile(x, y);
 		if (tile.getOwner()!=null) return Message.FAIL;
 		Civilization civilization=city.getCivilization();
 		int cost=5;
