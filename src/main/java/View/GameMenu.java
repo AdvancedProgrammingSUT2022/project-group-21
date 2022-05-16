@@ -2,6 +2,7 @@ package View;
 
 import Contoller.*;
 import Enums.Message;
+import Models.Game;
 import Models.Tile.Improvement;
 import Models.Unit.Unit;
 import Models.Unit.UnitType;
@@ -60,9 +61,12 @@ public class GameMenu extends Menu{
 	}
 
     private void startGame() {
+		GameController.getInstance().startNewGame(User.getUserList());
         while (true) {
-            //TODO: show map
+			GameController.getInstance().getGame().getGameMap().printMap();
             String command = getInput();
+			if (command.equals("EXIT"))
+				break;
 			taskHandler(command);
         }
     }

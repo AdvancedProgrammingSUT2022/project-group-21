@@ -3,6 +3,8 @@ package Models;
 
 import DataBases.UserDataBase;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +44,14 @@ public class User {
 	public void changePassword(String newPassword, String currentPassword) {
 		if (password.equals(currentPassword))
 			password = newPassword;
+	}
+	public static ArrayList<User> getUserList() {
+		ArrayList<User> users = new ArrayList<>();
+
+		for (Map.Entry<String, User> stringUserEntry : ALL_USERS.entrySet())
+			users.add(stringUserEntry.getValue());
+
+		return users;
 	}
 
 	public void changeNickname(String newNickname) { this.nickname = newNickname;}

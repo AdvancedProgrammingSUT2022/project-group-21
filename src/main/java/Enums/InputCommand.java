@@ -6,7 +6,7 @@ public enum InputCommand{
 	// TODO
 	USER_CREATE("user create", new String[][]{
 		{"username", "u", "[a-zA-Z0-9_]+"},
-		{"password", "p", "[a-zA-Z0-9_]{8, 32}"},
+		{"password", "p", "[a-zA-Z0-9_]{8,32}"},
 		{"nickname", "n", "[a-zA-Z0-9_ ]+"},
 	}),
 	USER_LOGIN("user login", new String[][]{
@@ -92,7 +92,7 @@ public enum InputCommand{
 		this.args=args;
 		
 		StringBuilder res=new StringBuilder();
-		res.append("\\A"+command);
+		res.append("^"+command);
 		for (String[] arg : args) {
 			StringBuilder tmp=new StringBuilder();
 			tmp.append("(?=.*");

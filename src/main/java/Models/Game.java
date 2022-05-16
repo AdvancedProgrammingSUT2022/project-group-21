@@ -18,6 +18,7 @@ public class Game {
 	private User currentPlayer;
 	private int currentTurn;
 	private int countTurns;
+	private Map gameMap;
 
 	public Game(int WIDTH, int HEIGHT, ArrayList<User> players) {
 		this.WIDTH = WIDTH;
@@ -134,5 +135,9 @@ public class Game {
 		Civilization civilization=currentPlayer.getCivilization();
 		CityController.getInstance().handleImprovementProjects();
 		// TODO
+	}
+
+	public Map getGameMap() {
+		return gameMap;
 	}
 }
