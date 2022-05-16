@@ -19,21 +19,20 @@ public class MoveController {
 		if (instance == null) MoveController.setInstance(new MoveController());
 		return instance;
 	}
-	
-	// public String  moveUnit(int x, int y) {
-	// 	Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
-	// 	Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
-	// 	if (selectedUnit == null)
-	// 		return "You have not selected any unit";
-	// 	if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
-	// 		return "this unit is not yours";
-	// 	int mp = selectedUnit.getMP();
-	// 	//TODO
-	// 	if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
-	// 		return Message.OUT_OF_MP.toString();
-	// 	selectedUnit.setTile(selectedTile);
-	// 	return Message.SUCCESS.toString();
-	// }
+	/*public String  moveUnit(int x, int y) {
+	 	Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+	 	Tile selectedTile = GameController.getInstance().getGame().getTile(x, y);
+	 	if (selectedUnit == null)
+	 		return "You have not selected any unit";
+	 	if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+	 		return "this unit is not yours";
+	 	int mp = selectedUnit.getMP();
+	 	//TODO
+	 	if (Math.abs(selectedUnit.getTile().X - x) + Math.abs(selectedUnit.getTile().Y - y) > mp)
+	 		return Message.OUT_OF_MP.toString();
+	 	selectedUnit.setTile(selectedTile);
+		return Message.SUCCESS.toString();
+	}*/
 
 	public Message moveUnit(int x, int y){
 		// TODO

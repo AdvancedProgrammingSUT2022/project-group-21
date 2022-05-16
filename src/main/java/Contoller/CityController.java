@@ -86,7 +86,8 @@ public class CityController {
 	}
 
 	
-	public Message buyTile(int x, int y, City city){
+	public Message buyTile(int x, int y){
+		City city = SelectController.getInstance().getSelectedCity();
 		Tile tile = GameController.getInstance().getGame().getTile(x, y);
 		if (tile.getOwner()!=null) return Message.FAIL;
 		Civilization civilization=city.getCivilization();

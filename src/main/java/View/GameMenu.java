@@ -85,40 +85,40 @@ public class GameMenu extends Menu{
 				return;
 			case SELECT_COMBAT_UNIT:
 				System.out.println(
-						selectController.selectUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), true)
+						selectController.selectUnit(
+                                GameController.getInstance().getGame().getCurrentPlayer().getCivilization(),
+                                extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), true)
 				);
 				return;
 			case SELECT_NONCOMBAT_UNIT:
 				System.out.println(
-						selectController.selectUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), false)
+						selectController.selectUnit(
+                                GameController.getInstance().getGame().getCurrentPlayer().getCivilization(),
+                                extractor.ARGS2.get("x"), extractor.ARGS2.get("y"), false)
 						);
 				return;
 			case SELECT_CITY_BY_POSITION:
 				System.out.println(
-						selectController.selectCityByCoordination(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+						selectController.selectCityByCoordination(
+                                GameController.getInstance().getGame().getCurrentPlayer().getCivilization() ,
+                                extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
 				);
 				return;
 
 	//UNITS
 			case UNIT_MOVE:
 				System.out.println(
-					unitController.moveUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+					MoveController.getInstance().moveUnit(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
 				);
 				return;
 			case UNIT_SLEEP:
 				System.out.println(unitController.sleep());
 				return;
 			case UNIT_ALERT:
-				//TODO
-				//System.out.println(unitController.alert());
+				System.out.println(unitController.alert());
 				break;
 			case UNIT_FORTIFY:
-				//TODO
-				//System.out.println(unitController.fortify(false));
-				return;
-			case UNIT_FORTIFY_AND_HEAL:
-				//TODO
-				//System.out.println(unitController.fortify(true));
+				System.out.println(unitController.fortify());
 				return;
 			case UNIT_GARRISON:
 				System.out.println(unitController.garrison());
@@ -140,16 +140,13 @@ public class GameMenu extends Menu{
 				//System.out.println(unitController.cancelMissions());
 				return;
 			case UNIT_WAKE:
-				//System.out.println(unitController.wake());
+				System.out.println(unitController.wake());
 				return;
 			case UNIT_DELETE:
 				System.out.println(unitController.delete());
 				return;
 			case UNIT_BUILD_ROAD:
 				System.out.println(unitController.buildRoad());
-				return;
-			case UNIT_BUILD_RAILROAD:
-				//System.out.println(unitController.buildRoad(false));
 				return;
 			case UNIT_BUILD_IMPROVEMENT:
                 Improvement improvement = Improvement.valueOf(extractor.ARGS1.get("improvement"));
@@ -177,15 +174,15 @@ public class GameMenu extends Menu{
                 //TODO:
                 break;
             case CITY_PURCHASE_TILE:
-                //TODO
+                System.out.println(
+                        CityController.getInstance().buyTile(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+                );
                 break;
             case CITY_PURCHASE_UNIT:
                 System.out.println(
                         UnitController.getInstance().buyUnit(
                                 GameController.getInstance().getGame().getCurrentPlayer().getCivilization(),
-                                UnitType.valueOf(extractor.ARGS1.get("unitType"))
-                        )
-                );
+                                UnitType.valueOf(extractor.ARGS1.get("unitType"))));
                 break;
             case CITY_GET_OUTPUT:
                 switch (extractor.ARGS1.get("outputType")) {
@@ -222,9 +219,6 @@ public class GameMenu extends Menu{
                         CityController.getInstance().removeCitizenFromWork(extractor.ARGS2.get("x"),
                                 extractor.ARGS2.get("y"))
                 );
-                break;
-            case CITY_DESTROY:
-                //TODO
                 break;
             default:
                 System.out.println(Message.INVALID_COMMAND);

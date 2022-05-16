@@ -18,27 +18,27 @@ public class UnitController {
 		if (instance==null) instance=new UnitController();
 		return instance;
 	}
-	public Message sleep(Unit unit){
+	public Message sleep(){
 		//TODO
 		return null;
 	}
-	public Message wake(Unit unit){
+	public Message wake(){
 		//TODO
 		return null;
 	}
-	public Message alert(Unit unit){
+	public Message alert(){
 		//TODO
 		return null;
 	}
 	
-	public Message fortify(Unit unit){
+	public Message fortify(){
 		// TODO
 		return null;
 	}
 
 
-	public String setupForRangedAttack(Unit unit, int x, int y) {
-		// TODO: fix error
+	public String setupForRangedAttack(int x, int y) {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
 		if (selectedUnit == null)
 			return "You have not selected any unit";
 		if (selectedUnit.unitType.combatType!=CombatType.SIEGE)
@@ -62,8 +62,6 @@ public class UnitController {
 			return "This Unit is not on any City";
 		if (!(selectedUnit instanceof MilitaryUnit))
 			return "Selected Unit is not Military";
-		//TODO: check if city is this turn's Civilization
-		//TODO: define a function for MilitaryUnit :garrison
 		return Message.SUCCESS.toString();
 	}
 
@@ -100,7 +98,15 @@ public class UnitController {
 		return Message.SUCCESS.toString();
 	}
 
-	//TODO: Cancel mission method
+	public String  cancelMission() {
+		Unit selectedUnit = SelectController.getInstance().getSelectedUnit();
+		if (selectedUnit == null)
+			return "You have not selected any unit";
+		if (selectedUnit.owner != GameController.getInstance().getGame().getCurrentPlayer().getCivilization())
+			return "this unit is not yours";
+		//TODO: selectedUnit.cancelMission
+		return Message.SUCCESS.toString();
+	}
 	//TODO: wake Unit from sleep
 
 	public String delete(){
@@ -180,13 +186,8 @@ public class UnitController {
 		return null;
 	}
 
-	public Message createUnit(Civilization civilization, Tile tile, UnitType unitType){
-		// TODO
-		
-		return Message.SUCCESS;
-	}
-
-	public Message buyUnit(Civilization civilization, City city, UnitType unitType){
+	public Message buyUnit(Civilization civilization, UnitType unitType){
+		City city = SelectController.getInstance().getSelectedCity();
 		if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
 		for (Technology technology : unitType.technologyRequired) {
 			if (!civilization.hasTechnology(technology))
