@@ -7,8 +7,8 @@ import Models.Tile.Tile;
 
 
 public class Map {
-    private int HEIGHT = GameController.getInstance().getGame().HEIGHT;
-    private int WIDTH = GameController.getInstance().getGame().WIDTH;
+    private int HEIGHT = GameController.getInstance().getGame().HEIGHT * 5;
+    private int WIDTH = GameController.getInstance().getGame().WIDTH * 9;
     private String[][] map = new String[this.HEIGHT][this.WIDTH];
     public void printMap(){
         for (int i = 0;i<HEIGHT;i++){
@@ -71,21 +71,20 @@ public class Map {
             }
         }
     }
+    /*public void visible(){
+        for (int i = 0;i<2;i++){
+            for (int j = 0;j<2;j++){
+                GameController.getInstance().getGame().getCurrentPlayer().getCivilization().
+            }
+        }
+    }*/
     public void mapsetter(){
         setspace();
         int first_x = 0;
         int first_y = 0;
         for (int i = 0;i<HEIGHT;i++){
-            hexsetter(map,first_x,first_y);
-            first_y = first_y + 16;
-        }
-        for (int i = 0;i<WIDTH;i++){
-            first_x = first_x + 3;
-
-        }
-        for (int i = 0;i<HEIGHT;i++){
             for (int j = 0;j<WIDTH;j++){
-                hexsetter(map,first_x,first_y);
+                hexsetter(map,first_x,first_y,i,j);
                 first_y = first_y + 16;
             }
             if (i % 2 == 0){
@@ -97,8 +96,8 @@ public class Map {
             first_x = first_x + 3;
         }
     }
-    public static void hexsetter(String map[][],int x,int y){
-        Tile tile = GameController.getInstance().getGame().getTile(x,y);
+    public static void hexsetter(String map[][],int x,int y,int Tile_x,int Tile_y){
+        Tile tile = GameController.getInstance().getGame().getTile(Tile_x,Tile_y);
         int copy_x = x;
         int copy_y = y;
         int row = 5;
@@ -117,30 +116,33 @@ public class Map {
             }
             copy_y = copy_y + 1;
             for (int j = 0;j<row;j++){
-                if (tile.getTerrain().equals(Terrain.DESERT)){
-                    map[copy_x][copy_y] = "DESERT";
-                }
-                else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
-                    map[copy_x][copy_y] = "GRASSLAND";
-                }
-                else if (tile.getTerrain().equals(Terrain.HILL)){
-                    map[copy_x][copy_y] = "HILL";
-                }
-                else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
-                    map[copy_x][copy_y] = "MOUNTAIN";
-                }
-                else if (tile.getTerrain().equals(Terrain.OCEAN)){
-                    map[copy_x][copy_y] = "OCEAN";
-                }
-                else if (tile.getTerrain().equals(Terrain.PLAINS)){
-                    map[copy_x][copy_y] = "PLAIN";
-                }
-                else if (tile.getTerrain().equals(Terrain.SNOW)){
-                    map[copy_x][copy_y] = "SNOW";
-                }
-                else if (tile.getTerrain().equals(Terrain.TUNDRA)){
-                    map[copy_x][copy_y] = "TUNDRA";
-                }
+                //if (GameController.getInstance().getGame().getCurrentPlayer().getCivilization().isTileVisible(Tile_x,Tile_y)){
+                    if (tile.getTerrain().equals(Terrain.DESERT)){
+                        map[copy_x][copy_y] = "DESERT";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
+                        map[copy_x][copy_y] = "GRASSLAND";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.HILL)){
+                        map[copy_x][copy_y] = "HILL";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
+                        map[copy_x][copy_y] = "MOUNTAIN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.OCEAN)){
+                        map[copy_x][copy_y] = "OCEAN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.PLAINS)){
+                        map[copy_x][copy_y] = "PLAIN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.SNOW)){
+                        map[copy_x][copy_y] = "SNOW";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.TUNDRA)){
+                        map[copy_x][copy_y] = "TUNDRA";
+                    }
+                //}
+
                 copy_y = copy_y + 1;
             }
             if (tile.isRiver(1)){
@@ -176,30 +178,33 @@ public class Map {
             }
             copy_y = copy_y + 1;
             for (int j = 0;j<row;j++){
-                if (tile.getTerrain().equals(Terrain.DESERT)){
-                    map[copy_x][copy_y] = "DESERT";
-                }
-                else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
-                    map[copy_x][copy_y] = "GRASSLAND";
-                }
-                else if (tile.getTerrain().equals(Terrain.HILL)){
-                    map[copy_x][copy_y] = "HILL";
-                }
-                else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
-                    map[copy_x][copy_y] = "MOUNTAIN";
-                }
-                else if (tile.getTerrain().equals(Terrain.OCEAN)){
-                    map[copy_x][copy_y] = "OCEAN";
-                }
-                else if (tile.getTerrain().equals(Terrain.PLAINS)){
-                    map[copy_x][copy_y] = "PLAIN";
-                }
-                else if (tile.getTerrain().equals(Terrain.SNOW)){
-                    map[copy_x][copy_y] = "SNOW";
-                }
-                else if (tile.getTerrain().equals(Terrain.TUNDRA)){
-                    map[copy_x][copy_y] = "TUNDRA";
-                }
+                //if (GameController.getInstance().getGame().getCurrentPlayer().getCivilization().isTileVisible(Tile_x,Tile_y)){
+                    if (tile.getTerrain().equals(Terrain.DESERT)){
+                        map[copy_x][copy_y] = "DESERT";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.GRASSLAND)){
+                        map[copy_x][copy_y] = "GRASSLAND";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.HILL)){
+                        map[copy_x][copy_y] = "HILL";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.MOUNTAIN)){
+                        map[copy_x][copy_y] = "MOUNTAIN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.OCEAN)){
+                        map[copy_x][copy_y] = "OCEAN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.PLAINS)){
+                        map[copy_x][copy_y] = "PLAIN";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.SNOW)){
+                        map[copy_x][copy_y] = "SNOW";
+                    }
+                    else if (tile.getTerrain().equals(Terrain.TUNDRA)){
+                        map[copy_x][copy_y] = "TUNDRA";
+                    }
+                //}
+
                 copy_y = copy_y + 1;
             }
             if (tile.isRiver(2)){
