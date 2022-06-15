@@ -2,9 +2,9 @@ package Contoller;
 
 import java.util.ArrayList;
 
-import Enums.Message;
-import Models.*;
-import Models.Tile.Tile;
+import Models.Civilization;
+import Models.Game;
+import Models.User;
 
 public class GameController {
 	private static GameController instance;
@@ -18,7 +18,13 @@ public class GameController {
 
 	private Game game;
 
-	public Message startNewGame(ArrayList<User> players){
+	public String startNewGame(ArrayList<String> usernames){
+		ArrayList<User> players = new ArrayList<>();
+		for (String username : usernames) {
+			User user = User.getUserByUsername(username);
+			if (user == null) return "user does not exist";
+			players.add(user);
+		}
 		game=new Game(50, 50, players);
 		// TODO: create map, set up game, ...
 		return null;
@@ -26,12 +32,15 @@ public class GameController {
 
 	public Game getGame(){ return game; }
 
-	public void changeTileOwner(Tile tile, Civilization civilization){
-		if (tile.getOwner()!=null) tile.getOwner().removeTile(tile);
-		tile.setOwner(civilization);
-		civilization.addTile(tile);
-	}
 
+	public void beginTurn(Civilization civilization){
+		// call this when a players turn starts
+		// TODO
+	}
+	public void endTurn(Civilization civilization){
+		// call this when a players turn ends
+		// TODO
+	}
 
 
 }

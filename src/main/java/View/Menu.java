@@ -3,8 +3,7 @@ package View;
 import java.util.Scanner;
 
 public abstract class Menu {
-	private final Scanner scanner = new Scanner(System.in);
-
+	private final static Scanner scanner = new Scanner(System.in);
 
 	protected String getInput(){
 		String input=scanner.nextLine();

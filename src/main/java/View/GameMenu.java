@@ -15,19 +15,16 @@ import java.util.Map;
 public class GameMenu extends Menu{
 	private static GameMenu instance;
 	private GameController gameController;
-	private UnitController unitController;
+	private UnitActionController unitController;
 	private SelectController selectController;
 
 	private GameMenu() {
 		this.gameController = GameController.getInstance();
-		this.unitController = UnitController.getInstance();
+		this.unitController = UnitActionController.getInstance();
 		this.selectController = SelectController.getInstance();
 	}
-	static private void setInstance(GameMenu instance) {
-		GameMenu.instance = instance;
-	}
 	static GameMenu getInstance() {
-		if (instance == null)   GameMenu.setInstance(new GameMenu());
+		GameMenu.instance = new GameMenu();
 		return GameMenu.instance;
 	}
 
@@ -49,10 +46,11 @@ public class GameMenu extends Menu{
 				continue;
 			}
 			CommandExtractor extractor = CommandExtractor.extractCommand(command);
-			if (extractor == null) {
+			if (extractor == null || !command.startsWith("play game")) {
 				System.out.println(Message.INVALID_COMMAND);
 				continue;
 			}
+			System.out.println("debug: start game?");
 			ArrayList<User> users = usernameToUser(extractor.args);
 			gameController.startNewGame(users);
             startGame();
@@ -62,7 +60,10 @@ public class GameMenu extends Menu{
 
     private void startGame() {
 		GameController.getInstance().startNewGame(User.getUserList());
+		System.out.println("debug: game started");
+		
         while (true) {
+			// TODO: shit
 			GameController.getInstance().getGame().getGameMap().printMap();
             String command = getInput();
 			if (command.equals("EXIT"))
@@ -179,12 +180,12 @@ public class GameMenu extends Menu{
                 break;
             case CITY_PURCHASE_TILE:
                 System.out.println(
-                        CityController.getInstance().buyTile(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
+                        CityLogicController.getInstance().buyTile(extractor.ARGS2.get("x"), extractor.ARGS2.get("y"))
                 );
                 break;
             case CITY_PURCHASE_UNIT:
                 System.out.println(
-                        UnitController.getInstance().buyUnit(
+                        UnitActionController.getInstance().buyUnit(
                                 GameController.getInstance().getGame().getCurrentPlayer().getCivilization(),
                                 UnitType.valueOf(extractor.ARGS1.get("unitType"))));
                 break;
@@ -192,21 +193,21 @@ public class GameMenu extends Menu{
                 switch (extractor.ARGS1.get("outputType")) {
                     case "FOOD":
                         System.out.println(
-                                CityController.getInstance().getFoodOut(
+                                CityLogicController.getInstance().getFoodOut(
                                         GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
                         return;
                     case "PRODUCT":
                         System.out.println(
-                                CityController.getInstance().getProductionOut(
+                                CityLogicController.getInstance().getProductionOut(
                                         GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
                         return;
                     case "GOLD":
                         System.out.println(
-                                CityController.getInstance().getGoldOut(
+                                CityLogicController.getInstance().getGoldOut(
                                         GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
                     case "SCIENCE":
                         System.out.println(
-                                CityController.getInstance().getScienceOut(
+                                CityLogicController.getInstance().getScienceOut(
                                         GameController.getInstance().getGame().getCurrentPlayer().getCivilization()));
                         return;
                 }
@@ -214,13 +215,13 @@ public class GameMenu extends Menu{
                 break;
             case CITY_LOCK_CITIZEN:
                 System.out.println(
-                        CityController.getInstance().assignCitizenToTile(extractor.ARGS2.get("x"),
+                        CityLogicController.getInstance().assignCitizenToTile(extractor.ARGS2.get("x"),
                                 extractor.ARGS2.get("y"))
                 );
                 break;
             case CITY_REMOVE_FROM_WORK:
                 System.out.println(
-                        CityController.getInstance().removeCitizenFromWork(extractor.ARGS2.get("x"),
+                        CityLogicController.getInstance().removeCitizenFromWork(extractor.ARGS2.get("x"),
                                 extractor.ARGS2.get("y"))
                 );
                 break;
@@ -230,27 +231,4 @@ public class GameMenu extends Menu{
 		}
 	}
 
-	private boolean isPositionValid(String position) {
-		return position.matches("\\d+,\\d+");
-	}
-
-	private int extractPosition(String position, String flag) {
-		String[] tokens = position.split(",");
-		if (flag.equals("x"))
-			return Integer.parseInt(tokens[0]);
-		return Integer.parseInt(tokens[1]);
-	}
-
-	private ArrayList<User> usernameToUser(HashMap<String, String> args) {
-		ArrayList<User> users = new ArrayList<>();
-		for (Map.Entry<String, String> stringStringEntry : args.entrySet()) {
-			users.add(User.getUserByUsername(stringStringEntry.getValue()));
-		}
-		return users;
-	}
-
-	@Override
-	protected void showCurrentMenu() {
-		System.out.println("Game Menu");
-	}
 }

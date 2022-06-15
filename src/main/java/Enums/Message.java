@@ -7,7 +7,7 @@ public enum Message {
 	NAVIGATION_NOT_POSSIBLE("menu navigation is not possible"),
 	SIGNUP_SUCCESS("user created successfully!"),
 	LOGIN_SUCCESS("user logged in successfully!"),
-	LOGIN_FAIL("Username and password didn’t match!"),
+	LOGIN_FAIL("Username and password didnt match!"),
 	LOGOUT_SUCCESS("user logged out successfully!"),
 	INVALID_COMMAND("invalid command"),
 	NICKNAME_EXISTS(""),

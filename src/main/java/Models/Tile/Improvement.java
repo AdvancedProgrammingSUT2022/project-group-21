@@ -89,5 +89,11 @@ public enum Improvement{
 	}
 
 	public abstract boolean canBeBuiltOn(Tile tile);
+	
+	// TODO: should add many shit ifs based on doc
+	public int countNeededTurns(Tile tile){
+		if (tile.getImprovement()!=null) return 4;
+		return 3;
+	}
 
 }

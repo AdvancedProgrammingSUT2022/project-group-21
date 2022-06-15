@@ -1,10 +1,13 @@
 package Models.Tile;
 
-import Models.Citizen;
 import Models.City;
 import Models.Civilization;
+import Models.WorkerProject;
 import Models.Unit.CivilianUnit;
+import Models.Unit.CombatType;
 import Models.Unit.MilitaryUnit;
+import Models.Unit.Unit;
+import Models.Unit.UnitType;
 import Models.Unit.Worker;
 
 public class Tile {
@@ -15,30 +18,66 @@ public class Tile {
 
 	private Terrain terrain;
 	private TerrainFeature terrainFeature;
+	private City cityOnTile;
 	private Improvement improvement;
-	private City capitalCity;
-	// private Ruin ruin;
-	private boolean hasRoad;
+	private boolean pillage; // is tile improvement damaged?
+	private WorkerProject workerProject;
+	// private Ruin ruin; // TODO: bool is enough
 	
+
 	private Civilization owner;
 	private MilitaryUnit militaryUnit;
 	private CivilianUnit civilianUnit;
-	private Citizen workingCitizen;
 
 	public Worker getWorker(){
-		if (civilianUnit instanceof Worker) return (Worker) civilianUnit;
+		if (civilianUnit instanceof Worker)
+			return (Worker) civilianUnit;
 		return null;
 	}
-	public MilitaryUnit getMilitaryUnit(){ return militaryUnit;}
-	public CivilianUnit getCivilianUnit(){ return civilianUnit;}
-	public Citizen getWorkingCitizen(){ return workingCitizen;}
 
-	public void setMilitaryUnit(MilitaryUnit militaryUnit){ this.militaryUnit=militaryUnit ;}
-	public void setCivilianUnit(CivilianUnit civilianUnit){ this.civilianUnit=civilianUnit ;}
-	public void setWorkingCitizen(Citizen workingCitizen){ this.workingCitizen=workingCitizen ;}
+	
+	public void setMilitaryUnit(MilitaryUnit militaryUnit){ this.militaryUnit=militaryUnit; }
+	public void setCivilianUnit(CivilianUnit civilianUnit){ this.civilianUnit=civilianUnit; }
+	public MilitaryUnit getMilitaryUnit(){ return militaryUnit; }
+	public CivilianUnit getCivilianUnit(){ return civilianUnit; }
+	public boolean canPutUnit(Unit unit){
+		return canPutUnit(unit.unitType);
+	}
+	public boolean canPutUnit(UnitType unitType){
+		if (getTerrain()==Terrain.MOUNTAIN || getTerrain()==Terrain.OCEAN) return false;
+		if (getCityOnTile()!=null && getCityOnTile().getOwner()!=getOwner()) return false;
+		if (unitType.combatType==CombatType.CIVILIAN) return getCivilianUnit()==null;
+		return getMilitaryUnit()==null;
+	}
+	
+	
+	public Terrain getTerrain(){ return terrain;}
+	public TerrainFeature getTerrainFeature(){ return terrainFeature;}
+	public void setTerrainFeature(TerrainFeature terrainFeature){ this.terrainFeature = terrainFeature;}
+	// public void removeTerrainFeature(){ this.terrainFeature=null;} // used for remove Jungle
+	
 
-	public void setImprovement(Improvement improvement){ this.improvement=improvement;}
-	public void setRoad(boolean road){ this.hasRoad=road;}
+	public void setImprovement(Improvement improvement){ this.improvement = improvement;} // TODO: and maybe "setPillaged(false)"
+	public Improvement getImprovement(){ return improvement;}
+	
+	public void setPillaged(boolean pillage){ this.pillage=pillage;}
+	public boolean isPillaged(){ return pillage;}
+
+
+	public void setWorkerProject(WorkerProject workerProject){ this.workerProject=workerProject;}
+	public WorkerProject getWorkerProject(){ return workerProject;}
+
+
+	public City getCityOnTile(){ return cityOnTile;}
+	public void setCityOnTile(City city){ this.cityOnTile=city;}
+
+
+	public int getMovementCostForUnit(Unit unit, int direction){
+		if (unit.unitType==UnitType.SCOUT) return 1; // scout ignores terrain cost
+		return getAdjTile(direction).getMovementCost()+(isRiver(direction)?1:0);
+	}
+
+	
 
 	public Tile(int X, int Y, Terrain terrain) {
 		this.X = X;
@@ -48,99 +87,91 @@ public class Tile {
 		this.rivers = new boolean[6];
 	}
 
-	private int countRivers(){
-		int res=0;
-		for (int i=0; i<6; i++)
-			res+=(rivers[i]?1:0);
+	private int countRivers() {
+		int res = 0;
+		for (int i = 0; i < 6; i++)
+			res += (rivers[i] ? 1 : 0);
 		return res;
 	}
-	public void setRiver(int i, boolean val){ rivers[i]=val; }
-	public void setAdjTile(int i, Tile val){ adjTiles[i]=val; }
 
-	public boolean isRiver(int i){ return rivers[i]; }
-	public Tile getAdjTile(int i){ return adjTiles[i]; }
+	public void setRiver(int i, boolean val){ rivers[i] = val;}
+	public void setAdjTile(int i, Tile val){ adjTiles[i] = val;}
+	public boolean isRiver(int i){ return rivers[i];}
+	public Tile getAdjTile(int i){ return adjTiles[i];}
+	public boolean isNeighbourWith(Tile tile){
+		for (Tile tile2 : adjTiles) {
+			if (tile2==tile)
+				return true;
+		}
+		return false;
+	}
+
 	
-
 	public boolean isTerrainFeatureCompatible(TerrainFeature terrainFeature) {
-		if (terrain==null) return false; // why?
-		if (!terrain.possibleFeatures.contains(terrainFeature)) return false;
-		if (!terrainFeature.needRiver) return true;
-		return countRivers()>0;
-	}
-	public void setTerrainFeature(TerrainFeature terrainFeature){
-		this.terrainFeature=terrainFeature;
+		if (terrain == null)
+			return false; // why?
+		if (!terrain.possibleFeatures.contains(terrainFeature))
+			return false;
+		if (!terrainFeature.needRiver)
+			return true;
+		return countRivers() > 0;
 	}
 
-	public int getFood(){
-		if (terrainFeature==TerrainFeature.FOREST) return 1;
-		int res=terrain.food;
-		if (terrainFeature!=null) res+=terrainFeature.food;
+
+	public int getFood() {
+		int res = terrain.food;
+		if (terrainFeature != null) res += terrainFeature.food;
+		if (terrainFeature == TerrainFeature.FOREST) res=1;
+		if (improvement != null && !isPillaged()) res+=improvement.food;
 		return res;
 	}
-	public int getProduction(){
-		if (terrainFeature==TerrainFeature.FOREST) return 1;
-		int res=terrain.production;
-		if (terrainFeature!=null) res+=terrainFeature.production;
+
+	public int getProduction() {
+		int res = terrain.production;
+		if (terrainFeature != null) res += terrainFeature.production;
+		if (terrainFeature == TerrainFeature.FOREST) return 1;
+		if (improvement != null && !isPillaged()) res+=improvement.production;
 		return res;
 	}
-	public int getGold(){
-		int res=terrain.gold;
-		if (terrainFeature!=null) res+=terrainFeature.gold;
-		res+=countRivers();
+
+	public int getGold() {
+		int res = terrain.gold;
+		if (terrainFeature != null) res += terrainFeature.gold;
+		if (improvement != null && !isPillaged()) res+=improvement.gold;
+		res += countRivers();
 		return res;
 	}
+
 	public double getCombatModifier(){
-		// NOTE: add or multiply?
-		double res=terrain.combatModifier+1;
-		if (terrainFeature!=null) res*=terrainFeature.combatModifier+1;
+		double res = terrain.combatModifier + 1;
+		if (terrainFeature != null)
+			res *= terrainFeature.combatModifier + 1;
 		return res;
 	}
-	public int getMovementCost(){
-		int res=terrain.movementCost;
-		if (terrainFeature!=null) res+=terrainFeature.movementCost;
+
+	public int getMovementCost() {
+		int res = terrain.movementCost;
+		if (terrainFeature != null)
+			res += terrainFeature.movementCost;
 		return res;
 	}
-	public boolean isPassable(){
-		if (!terrain.passable) return false;
-		return terrainFeature==null || terrainFeature.passable;
-	}
-	public boolean canSeeOver(){
-		if (!terrain.visible) return false;
-		return terrainFeature==null || terrainFeature.visible;
+
+	public boolean isPassable() {
+		if (!terrain.passable)
+			return false;
+		return terrainFeature == null || terrainFeature.passable;
 	}
 
-	public void setCitizen(Citizen workingCitizen) {
-		this.workingCitizen = workingCitizen;
+	public boolean canSeeOver() {
+		if (!terrain.visible)
+			return false;
+		return terrainFeature == null || terrainFeature.visible;
 	}
 
-	public void setOwner(Civilization owner){ this.owner=owner; }
+
+	public void setOwner(Civilization owner){ this.owner = owner; }
 	public Civilization getOwner(){ return this.owner; }
 
-	public Terrain getTerrain() {
-		return terrain;
-	}
 
-	public TerrainFeature getTerrainFeature() {
-		return terrainFeature;
-	}
 
-	public City getCapitalCity() {
-		return capitalCity;
-	}
-
-	public void setCapitalCity(City capitalCity) {
-		this.capitalCity = capitalCity;
-	}
-
-	public boolean hasRoad() {
-		return hasRoad;
-	}
-
-	public void setHasRoad(boolean hasRoad) {
-		this.hasRoad = hasRoad;
-	}
-
-	public Improvement getImprovement() {
-		return improvement;
-	}
 }

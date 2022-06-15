@@ -1,72 +1,56 @@
 package Models.Unit;
 
-import Models.City;
 import Models.Civilization;
 import Models.Tile.Tile;
 
 public class MilitaryUnit extends Unit{
 	private int XP;
-	private boolean isSleep;
-	private boolean isOnFortify;
-	private boolean isOnAlert;
-	private boolean isOnGarrison;
-	private Tile targetTile;
 
 	public MilitaryUnit(UnitType unitType, Civilization owner, Tile tile){
 		super(unitType, owner, tile);
 	}
 	
-	public void sleep(){ this.isSleep=true;}
-	public void fortify(){ this.isOnFortify=true;}
-	public void alert(){ this.isOnAlert = true;}
-	public void garrison(){ this.isOnGarrison = true;}
-	public void wakeUp(){ this.isSleep = false;}
-
-
-	public boolean isOnGarrison() {
-		return isOnGarrison;
+	public double getCombatStrength(int thisTurn) {
+		double res = tile.getCombatModifier() + unitType.combatStrength;
+		// TODO
+		return res;
 	}
 
-	public double getCombatStrength(int thisTurn) {
-		// TODO: not exponential
-		double number = getCombatStrength();
-		if (this.isOnFortify){
-			for (int i = lastActionTurn;i<thisTurn;i++){
-				number = 1.25 * getCombatStrength();
-			}
+	public void pillage(){
+		getTile().setPillaged(true);
+		
+	}
+
+
+	public void heal(){
+		if (HP<=0){
+			HP=0;
+			return ;
 		}
-		else if (this.isOnGarrison){
-			for (int i = lastActionTurn;i<thisTurn;i++){
-				number = 1.25 * getCombatStrength();
-			}
+		if (getUnitState()==UnitState.FORTIFY){
+			if (tile.getOwner()!=owner) HP+=1;
+			else if (tile.getCityOnTile()!=null) HP+=3;
+			else HP+=2;
 		}
-		number = number + number * getTile().getCombatModifier();
-		return number;
+		if (HP>maxHP) HP=maxHP;
+	}
+
+
+	@Override
+	public void moveToTile(Tile tile){
+		// this.tile.setMilitaryUnit(null);
+		super.moveToTile(tile);
+		// this.tile.setMilitaryUnit(this);
 	}
 
 	@Override
-	public void setTile(Tile tile) {
-		super.setTile(tile);
-		//TODO garrison and fortify...
+	protected void removeFromTile() {
+		getTile().setMilitaryUnit(null);
 	}
 
-
-
-	public void siegePreAttack(Tile tile){
-		//TODO
-	}
-	public boolean isInRange(Tile tile) {
-		//TODO
-		return false;
-	}
-	public void rangeAttack(Tile tile) {
-		// TODO
-	}
-	public void attackToUnit(Tile tile) {
-		//TODO
-	}
-	public void attackToCity(City city) {
-		// TODO
+	@Override
+	protected void addToTile() {
+		getTile().setMilitaryUnit(this);
 	}
 
 

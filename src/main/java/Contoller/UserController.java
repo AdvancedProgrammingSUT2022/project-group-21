@@ -38,10 +38,13 @@ public class UserController {
 		return Message.SIGNUP_SUCCESS;
 	}
 	public Message loginUser(String username, String password) {
-		if (!doesUserNameExist(username))
+		if (!doesUserNameExist(username)){
 			return Message.LOGIN_FAIL;
-		if (!User.doesUsernameAndPasswordMatch(password, username))
+		}
+		if (!User.doesUsernameAndPasswordMatch(password, username)){
+			System.out.println("shit");
 			return Message.LOGIN_FAIL;
+		}
 		loggedInUser = User.getUserByUsername(username);
 		return Message.LOGIN_SUCCESS;
 	}

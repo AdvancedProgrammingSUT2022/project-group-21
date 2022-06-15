@@ -17,8 +17,8 @@ public enum InputCommand{
 			{"nickname", "n", "[a-zA-Z0-9_ ]+"}
 	}),
 	CHANGE_PASSWORD("profile change --password", new String[][]{
-			{"current_password", "c", "\\S+"},
-			{"new_password", "n", "[a-zA-Z0-9_]{8, 32}"}
+			{"currentPassword", "cp", "[a-zA-Z0-9_]{8,32}"},
+			{"newPassword", "np", "[a-zA-Z0-9_]{8,32}"}
 	}),
 	PLAY_WITH_2_PLAYER("play game", new String[][]{
 			{"player1", "p1", "[a-zA-Z0-9_]+"},
@@ -90,8 +90,9 @@ public enum InputCommand{
 	private InputCommand(String command, String[][] args){
 		this.command=command;
 		this.args=args;
-		
 		StringBuilder res=new StringBuilder();
+		// TODO: uncomment
+		/*
 		res.append("^"+command);
 		for (String[] arg : args) {
 			StringBuilder tmp=new StringBuilder();
@@ -107,6 +108,23 @@ public enum InputCommand{
 			tmp.append(")");
 			res.append(tmp);
 		}
+		*/
+		res.append(command);
+		for (String[] arg : args) {
+			StringBuilder tmp=new StringBuilder();
+			tmp.append("( ");
+			{
+				String S="(--"+arg[0]+")";
+				if (arg[1]!=null) S="("+S+"|(-"+arg[1]+"))";
+				tmp.append(S);
+
+				if (arg[2]==null) continue ;
+				tmp.append(" (?<"+arg[0]+">"+arg[2]+")");
+			}
+			tmp.append(")");
+			res.append(tmp);
+		}
+		
 		this.regex=res.toString();
 		this.pattern=Pattern.compile(this.regex);
 	}
@@ -118,5 +136,9 @@ public enum InputCommand{
 (?=.*?((-u)|(--username)) (?<username><username>))
 (?=.*((--nickname)|(-n)) (?<nickname><nickname>))
 (?=.*((--password)|(-p)) (?<password><password>))
+
+
+profile change --password( ((--current_password)|(-c))(?<current_password>\S+))( ((--new_password)|(-n))(?<new_password>[a-zA-Z0-9_]{8, 32}))   
+
 */
 

@@ -1,13 +1,14 @@
 package Models.UserAction;
 
 import Models.Building;
+import Models.Civilization;
 import Models.Unit.UnitType;
 
-public class CityUserAction {
-	private static UserAction createAction(String username, CityUserAction cityUserAction){
-		return new UserAction(username, cityUserAction, null, null, null);
+public class CityUserAction extends UserAction{
+	private static UserActionQuery createAction(String username, CityUserAction cityUserAction){
+		return new UserActionQuery(username, cityUserAction, null, null, null);
 	}
-	public static UserAction shootTile(String username, int x1, int y1, int x2, int y2){
+	public static UserActionQuery shootTile(String username, int x1, int y1, int x2, int y2){
 		CityUserAction cityUserAction = new CityUserAction();
 		cityUserAction.x1=x1;
 		cityUserAction.y1=y1;
@@ -16,7 +17,7 @@ public class CityUserAction {
 		cityUserAction.actionType=CityActionType.SHOOT;
 		return createAction(username, cityUserAction);
 	}
-	public static UserAction produceBuilding(String username, int x1, int y1, Building building){
+	public static UserActionQuery produceBuilding(String username, int x1, int y1, Building building){
 		CityUserAction cityUserAction = new CityUserAction();
 		cityUserAction.x1=x1;
 		cityUserAction.y1=y1;
@@ -24,7 +25,7 @@ public class CityUserAction {
 		cityUserAction.actionType=CityActionType.BUILDING_PRODUCTION;
 		return createAction(username, cityUserAction);
 	}
-	public static UserAction produceUnit(String username, int x1, int y1, UnitType unitType){
+	public static UserActionQuery produceUnit(String username, int x1, int y1, UnitType unitType){
 		CityUserAction cityUserAction = new CityUserAction();
 		cityUserAction.x1=x1;
 		cityUserAction.y1=y1;
@@ -46,4 +47,6 @@ public class CityUserAction {
 		UNIT_PRODUCTION,
 		BUILDING_PRODUCTION;
 	}
+
+
 }
