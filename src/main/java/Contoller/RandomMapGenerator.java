@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Models.Game;
+import Models.Resource.Resource;
 import Models.Tile.Terrain;
 import Models.Tile.TerrainFeature;
 import Models.Tile.Tile;
@@ -15,7 +16,8 @@ public class RandomMapGenerator {
 		return instance;
 	}
 
-	public void generateRandomMap(Game game, Tile[][] tiles, Random random){
+	public void generateRandomMap(Game game, Tile[][] tiles, long seed){
+		Random random = new Random(seed);
 		Terrain[] terrains=Terrain.values();
 		tiles = new Tile[game.WIDTH][game.HEIGHT];
 		for (int i=0; i<game.WIDTH; i++){
@@ -26,6 +28,7 @@ public class RandomMapGenerator {
 		setAdjTiles(game, tiles);
 		setRivers(game, tiles, random, 20); // 1/20 of all borders
 		setTerrainFeatures(game, tiles, random, 3); // 1/3 of tiles have feature
+		setResources(game, tiles, random);
 	}
 	private void setAdjTiles(Game game, Tile[][] tiles){
 		for (int i=0; i<game.WIDTH; i++){
@@ -85,7 +88,19 @@ public class RandomMapGenerator {
 			}
 		}
 	}
-	
-
-
+	private void setResources(Game game, Tile[][] tiles, Random random){
+		for (int i=0; i<game.WIDTH; i++){
+			for (int j=0; j<game.HEIGHT; j++){
+				ArrayList<Resource> possibleResources = new ArrayList<>();
+				possibleResources.add(null);
+				for (Resource resource : tiles[i][j].getTerrain().possibleResources) {
+					possibleResources.add(resource);
+				}
+				for (Resource resource : tiles[i][j].getTerrainFeature().possibleResources) {
+					possibleResources.add(resource);
+				}
+				tiles[i][j].setResource(possibleResources.get(random.nextInt(possibleResources.size())));
+			}
+		}
+	}
 }
