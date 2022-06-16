@@ -5,8 +5,8 @@ import Models.Unit.UnitType;
 public class CityProjectUnit extends CityProject{
 	protected UnitType unitType;
 	
-	protected CityProjectUnit(City city, int productionRequired, UnitType unitType) {
-		super(city, productionRequired);
+	public CityProjectUnit(City city, UnitType unitType) {
+		super(city, unitType.cost);
 		this.unitType=unitType;
 	}
 	
@@ -22,6 +22,14 @@ public class CityProjectUnit extends CityProject{
 		// TODO Auto-generated method stub
 		// TODO: create Unit and find a valid place to put
 		return false;
+	}
+
+
+	@Override
+	public boolean isValid() {
+		if (!city.getOwner().hasTechnologies(unitType.technologyRequired)) return false;
+		if (unitType==UnitType.SETTLER && city.countCitizens()<2) return false; // SETTLER can be made at city with at least 2 citizens
+		return true;
 	}
 	
 }

@@ -4,8 +4,8 @@ public class CityProjectBuilding extends CityProject{
 	private Building building;
 	
 
-	public CityProjectBuilding(City city, int productionRequired, Building building) {
-		super(city, productionRequired);
+	public CityProjectBuilding(City city, Building building) {
+		super(city, building.cost);
 		this.building=building;
 	}
 
@@ -19,6 +19,15 @@ public class CityProjectBuilding extends CityProject{
 
 	@Override
 	public boolean doFinnishAction() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean isValid() {
+		if (city.hasBuilding(building)) return false;
+		// TODO: add many shit ifs
 		// TODO Auto-generated method stub
 		return false;
 	}

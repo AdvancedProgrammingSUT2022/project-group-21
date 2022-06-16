@@ -90,7 +90,9 @@ public class UnitUserAction extends UserAction{
 			throw new Exception("invalid query: actionType is null");
 
 		Game game = Game.getInstance();
-		Tile tile1 = game.getTile(x1, y2);
+		if (!game.checkTileCoordinates(x1, y1))
+			throw new Exception("unit coordinates out of bounds");
+		Tile tile1 = game.getTile(x1, y1);
 		Unit unit;
 		MilitaryUnit militaryUnit=null;
 		CivilianUnit civilianUnit=null;

@@ -28,6 +28,7 @@ public abstract class Unit {
 		this.HP=maxHP;
 		this.MP=unitType.MP;
 		owner.addUnit(this);
+		addToTile();
 	}
 	
 	public Tile getTile(){ return tile;}

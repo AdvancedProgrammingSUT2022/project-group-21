@@ -113,38 +113,4 @@ public class UnitActionController {
 			unit.moveOnPath();
 		}
 	}
-
-
-	// public Message buyUnit(Civilization civilization, UnitType unitType){
-	// 	City city = SelectController.getInstance().getSelectedCity();
-	// 	if (civilization.getGold()<unitType.cost) return Message.NOT_ENOUGH_GOLD;
-	// 	for (Technology technology : unitType.technologyRequired) {
-	// 		if (!civilization.hasTechnology(technology))
-	// 			return Message.TECHNOLOGY_FAIL;
-	// 	}
-	// 	ArrayList<Tile> CityTiles = city.getTiles();
-	// 	for (Tile cityTile : CityTiles) {
-	// 		if (unitType == UnitType.WORKER || unitType == UnitType.SETTLER){
-	// 			if (cityTile.getCivilianUnit() != null){
-	// 				return Message.FAIL;
-	// 			}
-	// 		}
-	// 		else if (cityTile.getMilitaryUnit() != null){
-	// 			return Message.FAIL;
-	// 		}
-	// 		else if (!cityTile.getOwner().equals(civilization)){
-	// 			return Message.TILE_NOT_OWNED;
-	// 		}
-	// 		else {
-	// 			civilization.addGold(-unitType.cost);
-	// 			Unit unit=unitType.createUnit(civilization, cityTile);
-	// 			civilization.addUnit(unit);
-	// 			unit.setTile(cityTile);
-	// 			if (unit instanceof MilitaryUnit) cityTile.setMilitaryUnit((MilitaryUnit) unit);
-	// 			else cityTile.setCivilianUnit((CivilianUnit) unit);
-	// 			return Message.SUCCESS;
-	// 		}
-	// 	}
-	// 	return Message.SUCCESS;
-	// }
 }

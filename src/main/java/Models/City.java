@@ -23,7 +23,7 @@ public class City {
 	private double HP;
 	private int food;
 	private int production;
-	private ArrayList<CityProject> allProjects = new ArrayList<>();
+	private ArrayList<CityProject> notActiveProjects = new ArrayList<>();
 	private CityProject activeProject;
 
 	// TODO: add CityProject, Combat shit, buy Tile(maybe elsewhere), 
@@ -44,6 +44,31 @@ public class City {
 		}
 	}
 
+	public void setProduction(CityProject newProject){
+		if (activeProject==null){
+			activeProject=newProject;
+			return ;
+		}
+		if (newProject.similarProject(activeProject)) return ;
+		for (CityProject project : notActiveProjects){
+			if (newProject.similarProject(project)){
+				notActiveProjects.add(activeProject);
+				activeProject=project;
+				notActiveProjects.remove(project);
+				return ;
+			}
+		}
+		notActiveProjects.add(activeProject);
+		activeProject=newProject;
+	}
+
+
+	public void addBuilding(Building building){
+		buildings.add(building);
+	}
+	public boolean hasBuilding(Building building){
+		return buildings.contains(building);
+	}
 
 	// TODO: not sure about the calculation, just made smth that depends on all that it should :(
 	public double getCombatStrength(){

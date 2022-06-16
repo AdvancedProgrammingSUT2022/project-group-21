@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Contoller.RandomMapGenerator;
-import Contoller.SelectController;
 import Models.Tile.Tile;
 
 public class Game {
@@ -25,9 +24,9 @@ public class Game {
 		this.HEIGHT = HEIGHT;
 		this.players = players;
 		Random random = new Random(System.nanoTime());
-		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, random);
+		long seed=random.nextInt();
+		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
-		SelectController.getInstance().reset(); // TODO: remove line?
 	}
 	
 	private void putPlayersOnMap(Random random){
@@ -64,7 +63,6 @@ public class Game {
 	
 	// TODO: maybe move to controller
 	public void nextTurn(){
-		SelectController.getInstance().reset();
 		currentTurn++;
 		if (currentTurn==players.size()){
 			currentTurn=0;

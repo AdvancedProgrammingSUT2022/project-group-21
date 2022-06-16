@@ -3,10 +3,12 @@ package Models.Tile;
 import Models.City;
 import Models.Civilization;
 import Models.WorkerProject;
+import Models.Resource.Resource;
 import Models.Unit.CivilianUnit;
 import Models.Unit.CombatType;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.Unit;
+import Models.Unit.UnitAbility;
 import Models.Unit.UnitType;
 import Models.Unit.Worker;
 
@@ -18,6 +20,7 @@ public class Tile {
 
 	private Terrain terrain;
 	private TerrainFeature terrainFeature;
+	private Resource resource;
 	private City cityOnTile;
 	private Improvement improvement;
 	private boolean pillage; // is tile improvement damaged?
@@ -63,6 +66,8 @@ public class Tile {
 	public void setPillaged(boolean pillage){ this.pillage=pillage;}
 	public boolean isPillaged(){ return pillage;}
 
+	public void setResource(Resource resource){ this.resource=resource;}
+	public Resource getResource(){ return this.resource;}
 
 	public void setWorkerProject(WorkerProject workerProject){ this.workerProject=workerProject;}
 	public WorkerProject getWorkerProject(){ return workerProject;}
@@ -73,7 +78,7 @@ public class Tile {
 
 
 	public int getMovementCostForUnit(Unit unit, int direction){
-		if (unit.unitType==UnitType.SCOUT) return 1; // scout ignores terrain cost
+		if (unit.unitType.hasAbility(UnitAbility.IGNORE_TERRAIN_COST)) return 1;
 		return getAdjTile(direction).getMovementCost()+(isRiver(direction)?1:0);
 	}
 
@@ -117,12 +122,13 @@ public class Tile {
 		return countRivers() > 0;
 	}
 
-
+	// TODO: affect of Resource on food, production, gold
 	public int getFood() {
 		int res = terrain.food;
 		if (terrainFeature != null) res += terrainFeature.food;
 		if (terrainFeature == TerrainFeature.FOREST) res=1;
 		if (improvement != null && !isPillaged()) res+=improvement.food;
+		
 		return res;
 	}
 

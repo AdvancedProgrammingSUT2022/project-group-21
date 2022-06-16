@@ -23,6 +23,8 @@ public abstract class CityProject{
 	
 	public abstract boolean similarProject(CityProject project);
 
+	public abstract boolean isValid();
+
 	public void makeProduction(int production){
 		productionMade+=production;
 	}

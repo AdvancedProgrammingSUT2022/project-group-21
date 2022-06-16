@@ -216,4 +216,12 @@ public enum UnitType {
 		}
 		return false;
 	}
+	public boolean hasAbility(UnitAbility ability){
+		for (UnitAbility unitAbility : unitAbilities) {
+			if (unitAbility==ability){
+				return true;
+			}
+		}
+		return false;
+	}
 }
