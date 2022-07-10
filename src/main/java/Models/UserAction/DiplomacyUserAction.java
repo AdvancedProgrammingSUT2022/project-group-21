@@ -13,5 +13,11 @@ public class DiplomacyUserAction extends UserAction{
 
 	public String username2; // second players username
 
+	@Override
+	public void validateDoAction(Civilization civilization, boolean doAction) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

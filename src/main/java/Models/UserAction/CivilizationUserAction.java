@@ -17,6 +17,12 @@ public class CivilizationUserAction extends UserAction{
 
 	public Technology technology;
 
+	@Override
+	public void validateDoAction(Civilization civilization, boolean doAction) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 	

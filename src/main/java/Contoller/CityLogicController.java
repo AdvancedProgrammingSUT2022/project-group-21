@@ -41,22 +41,22 @@ public class CityLogicController {
 
 	
 	// TODO
-	public Message assignCitizenToTile(int x, int y) {
-		City selectedCity = SelectController.getInstance().getSelectedCity();
-		Tile tile = GameController.getInstance().getGame().getTile(x, y);
-		if (selectedCity == null)
-			return Message.NO_CITY_ON_TILE;
-		if (!selectedCity.hasTile(tile))
-			return Message.FAIL;
-		if (selectedCity.countCitizens() == 0)
-			return Message.FAIL;
-		if (tile.getWorkingCitizen() != null)
-			return Message.ALREADY_ASSIGNED;
-		Citizen citizen = selectedCity.getCitizenToAssign();
-		tile.setCitizen(citizen);
-		citizen.setWorkingTile(tile);
-		return Message.SUCCESS;
-	}
+	// public Message assignCitizenToTile(int x, int y) {
+	// 	City selectedCity = SelectController.getInstance().getSelectedCity();
+	// 	Tile tile = GameController.getInstance().getGame().getTile(x, y);
+	// 	if (selectedCity == null)
+	// 		return Message.NO_CITY_ON_TILE;
+	// 	if (!selectedCity.hasTile(tile))
+	// 		return Message.FAIL;
+	// 	if (selectedCity.countCitizens() == 0)
+	// 		return Message.FAIL;
+	// 	if (tile.getWorkingCitizen() != null)
+	// 		return Message.ALREADY_ASSIGNED;
+	// 	Citizen citizen = selectedCity.getCitizenToAssign();
+	// 	tile.setCitizen(citizen);
+	// 	citizen.setWorkingTile(tile);
+	// 	return Message.SUCCESS;
+	// }
 
 	// TODO
 	public Message removeCitizenFromWork(int x, int y) {
@@ -65,22 +65,22 @@ public class CityLogicController {
 	}
 
 	
-
-	public Message buyTile(int x, int y) {
-		City city = SelectController.getInstance().getSelectedCity();
-		Tile tile = GameController.getInstance().getGame().getTile(x, y);
-		if (tile.getOwner() != null)
-			return Message.FAIL;
-		Civilization civilization = city.getOwner();
-		int cost = 5;
-		if (civilization.getGold() < cost)
-			return Message.NOT_ENOUGH_GOLD;
-		civilization.addGold(-cost);
-		civilization.addTile(tile);
-		city.addTile(tile);
-		tile.setOwner(civilization);
-		return Message.SUCCESS;
-	}
+	// TODO
+	// public Message buyTile(int x, int y) {
+	// 	City city = SelectController.getInstance().getSelectedCity();
+	// 	Tile tile = GameController.getInstance().getGame().getTile(x, y);
+	// 	if (tile.getOwner() != null)
+	// 		return Message.FAIL;
+	// 	Civilization civilization = city.getOwner();
+	// 	int cost = 5;
+	// 	if (civilization.getGold() < cost)
+	// 		return Message.NOT_ENOUGH_GOLD;
+	// 	civilization.addGold(-cost);
+	// 	civilization.addTile(tile);
+	// 	city.addTile(tile);
+	// 	tile.setOwner(civilization);
+	// 	return Message.SUCCESS;
+	// }
 
 	public String getCityInfo(City city) {
 		// TODO
