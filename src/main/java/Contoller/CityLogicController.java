@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import Enums.Message;
 import Models.City;
 import Models.CityProject;
-import Models.Civilization;
-import Models.Tile.Terrain;
-import Models.Tile.Tile;
-import Models.Unit.Unit;
-import Models.Unit.UnitType;
 
 public class CityLogicController {
 	private City city;

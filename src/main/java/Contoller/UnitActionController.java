@@ -55,6 +55,7 @@ public class UnitActionController {
 		if (enemy!=null && !civilization.isEnemy(enemy))
 			throw new Exception("cant do Action because target tile is not enemy");
 	}
+	
 	public void meleeAttack(MilitaryUnit militaryUnit, int x2, int y2, boolean doAction) throws Exception{
 		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
 		if (!militaryUnit.getOwner().isTileRevealed(x2, y2)) throw new Exception("target tile is not revealed");
@@ -68,6 +69,7 @@ public class UnitActionController {
 			// TODO: attack!
 		}
 	}
+
 	public void rangeAttack(MilitaryUnit militaryUnit, int x2, int y2, boolean doAction) throws Exception{
 		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
 		if (!militaryUnit.getOwner().isTileRevealed(x2, y2)) throw new Exception("target tile is not revealed");
@@ -105,7 +107,7 @@ public class UnitActionController {
 			throw new Exception("destination tile is not revealed");
 		if (!tile2.canPutUnit(unit))
 			throw new Exception("destination contains another unit/city");
-		ArrayList<Tile> path = new ShortestPath(Game.getInstance(), unit).getPath(tile2);
+		ArrayList<Tile> path = new ShortestPath(Game.getInstance(), unit, -1).getPath(tile2);
 		if (path==null) throw new Exception("no path found");
 		if (doAction){
 			unit.setUnitState(UnitState.WAKE);
@@ -113,4 +115,5 @@ public class UnitActionController {
 			unit.moveOnPath();
 		}
 	}
+
 }

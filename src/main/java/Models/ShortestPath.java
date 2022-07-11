@@ -12,16 +12,17 @@ public class ShortestPath {
 	private int[][] dist;
 	private Tile[][] par;
 
-	public ShortestPath(Game game, Unit unit){
+	public ShortestPath(Game game, Unit unit, int maxDistance){
 		W=game.WIDTH;
 		H=game.HEIGHT;
 		this.sourceTile=unit.getTile();
 		this.unit=unit;
-		spfa();
+		if (maxDistance==-1) maxDistance=1000000000;
+		spfa(maxDistance);
 	}
 	
 	// run spfa instead of dijkstra for shortest path
-	public void spfa(){
+	public void spfa(int maxDistance){
 		dist = new int[W][H];
 		boolean inq[][] = new boolean[W][H];
 		int maxQ=W*H, head=0, tail=0;
@@ -31,11 +32,12 @@ public class ShortestPath {
 		while (head!=tail){
 			Tile v=Q[head++];
 			if (head==maxQ) head=0;
+			if (dist[v.X][v.Y]>=maxDistance) continue ;
 			inq[v.X][v.Y]=false;
 			for (int i=0; i<6; i++){
 				Tile u=v.getAdjTile(i);
 				if (u==null) continue ;
-				int w=v.getMovementCostForUnit(unit, i);
+				int w=(unit==null?1:v.getMovementCostForUnit(unit, i));
 				if (dist[u.X][u.Y]>dist[v.X][v.Y]+w){
 					dist[u.X][u.Y]=dist[v.X][v.Y]+w;
 					par[u.X][u.Y]=v;

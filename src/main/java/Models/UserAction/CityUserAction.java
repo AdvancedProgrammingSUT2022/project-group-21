@@ -62,6 +62,16 @@ public class CityUserAction extends UserAction{
 		cityUserAction.actionType=CityActionType.BUY_TILE;
 		return createAction(username, cityUserAction);
 	}
+	public static UserActionQuery lockUnlockCitizenToTile(String username, int x1, int y1, int x2, int y2){
+		CityUserAction cityUserAction = new CityUserAction();
+		cityUserAction.x1=x1;
+		cityUserAction.y1=y1;
+		cityUserAction.x2=x2;
+		cityUserAction.y2=y2;
+		cityUserAction.actionType=CityActionType.LOCK_UNLOCK_CITIZEN;
+		return createAction(username, cityUserAction);
+	}
+	
 	
 
 	public int x1, y1; // city coordinates
@@ -71,7 +81,7 @@ public class CityUserAction extends UserAction{
 	public UnitType unitType;
 
 	public enum CityActionType{
-		LOCK_CITIZEN,
+		LOCK_UNLOCK_CITIZEN,
 		SHOOT,
 		UNIT_PRODUCTION,
 		BUILDING_PRODUCTION,
@@ -101,11 +111,11 @@ public class CityUserAction extends UserAction{
 			throw new Exception("building is null");
 
 		switch (actionType) {
-			case LOCK_CITIZEN:
-				// TODO
+			case LOCK_UNLOCK_CITIZEN:
+				CityActionController.getInstance().lockUnlockCitizenToTile(city, x2, y2, doAction);
 				break;
 			case SHOOT:
-				// TODO
+				CityActionController.getInstance().shootTile(city, x2, y2, doAction);
 				break;
 			case UNIT_PRODUCTION:
 				CityActionController.getInstance().produceUnit(city, unitType, doAction);
@@ -114,7 +124,7 @@ public class CityUserAction extends UserAction{
 				CityActionController.getInstance().produceBuilding(city, building, doAction);
 				break;
 			case BUY_TILE:
-				// TODO
+				CityActionController.getInstance().buyTile(city, x2, y2, doAction);
 				break;
 			case BUY_BUILDING:
 				CityActionController.getInstance().buyBuilding(city, building, doAction);
@@ -122,7 +132,6 @@ public class CityUserAction extends UserAction{
 			case BUY_UNIT:
 				CityActionController.getInstance().buyUnit(city, unitType, doAction);
 				break;
-
 			default:
 				break;
 		}

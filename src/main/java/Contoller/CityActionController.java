@@ -1,11 +1,15 @@
 package Contoller;
 
+import java.util.ArrayList;
+
 import Models.Building;
 import Models.City;
 import Models.CityProject;
 import Models.CityProjectBuilding;
 import Models.CityProjectUnit;
 import Models.Civilization;
+import Models.Game;
+import Models.Tile.Tile;
 import Models.Unit.UnitType;
 
 public class CityActionController {
@@ -26,6 +30,7 @@ public class CityActionController {
 			city.spawnUnit(unitType);	
 		}
 	}
+	
 	public void produceUnit(City city, UnitType unitType, boolean doAction) throws Exception{
 		CityProject project = new CityProjectUnit(city, unitType);
 		if (!project.isValid()) throw new Exception("you cant produce this unit");
@@ -34,6 +39,7 @@ public class CityActionController {
 			city.setProduction(project);
 		}
 	}
+	
 	public void buyBuilding(City city, Building building, boolean doAction) throws Exception{
 		Civilization owner = city.getOwner();
 		if (owner.getGold()<building.cost) throw new Exception("not enough gold");
@@ -44,6 +50,7 @@ public class CityActionController {
 			city.addBuilding(building);	
 		}
 	}
+	
 	public void produceBuilding(City city, Building building, boolean doAction) throws Exception{
 		CityProject project = new CityProjectBuilding(city, building);
 		if (!project.isValid()) throw new Exception("you cant produce this building");
@@ -52,6 +59,36 @@ public class CityActionController {
 		}
 	}
 	
-	
+	public void buyTile(City city, int x2, int y2, boolean doAction) throws Exception{
+		Civilization owner = city.getOwner();
+		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
+		Tile tile = Game.getInstance().getTile(x2, y2);
+		ArrayList<Tile> buyableTiles = city.getPossibleTilesToBuy();
+		if (!buyableTiles.contains(tile)) throw new Exception("you can not buy this tile");
+		if (owner.getGold()<50) throw new Exception("not enough gold");
+		if (doAction){
+			owner.addGold(-50);
+			city.addTile(tile);	
+		}
+	}
+
+	public void lockUnlockCitizenToTile(City city, int x2, int y2, boolean doAction) throws Exception{
+		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
+		Tile tile = Game.getInstance().getTile(x2, y2);
+		if (!city.hasTile(tile)) throw new Exception("this tile doesnt belong to your city");
+		if (doAction){
+			city.lockUnlockCitizen(tile);
+		}
+	}
+
+	public void shootTile(City city, int x2, int y2, boolean doAction) throws Exception{
+		if (city.hasAttackedInThisTurn()) throw new Exception("this city has already shot a tile in this turn");
+		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
+		Tile tile = Game.getInstance().getTile(x2, y2);
+		if (!city.isTileInRange(tile)) throw new Exception("tile is not in range of 2");
+		if (doAction){
+			CombatController.getInstance().cityAttackTile(city, tile);
+		}
+	}
 
 }

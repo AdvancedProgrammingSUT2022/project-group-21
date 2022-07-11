@@ -7,6 +7,7 @@ import Models.Tile.Tile;
 import Models.Unit.MilitaryUnit;
 import Models.Unit.UnitType;
 
+// NOTE: I set the price of buying any tile to 50 coins
 public class City {
 	private static HashMap<Tile, City> allCities=new HashMap<>();
 	
@@ -25,6 +26,8 @@ public class City {
 	private int production;
 	private ArrayList<CityProject> notActiveProjects = new ArrayList<>();
 	private CityProject activeProject;
+	private ShortestPath shortestPath;
+	private boolean attackedInThisTurn; // TODO: remember to reset it
 
 	// TODO: add CityProject, Combat shit, buy Tile(maybe elsewhere), 
 
@@ -33,6 +36,7 @@ public class City {
 		this.owner = owner;
 		allCities.put(tile, this);
 		initializeCity();
+		this.shortestPath=new ShortestPath(Game.getInstance(), null, 2); // every city can buy tiles of radius 2
 	}
 	public void initializeCity(){
 		center.setCityOnTile(this);
@@ -93,13 +97,23 @@ public class City {
 	public ArrayList<Tile> getTiles(){
 		return tiles;
 	}
-	
 
+	// range=2: used for visibility and attack
+	public boolean isTileInRange(Tile tile){
+		return shortestPath.getDistance(tile)<=2;
+	}
+	public boolean hasAttackedInThisTurn(){
+		return attackedInThisTurn;
+	}
+	public void setAttackedInThisTurn(boolean val){
+		attackedInThisTurn=val;
+	}
+	
 	
 	public boolean hasLockedCitizen(Tile tile){
 		return lockedTiles.contains(tile) || tile==center;
 	}
-	public void lockunlockCitizen(Tile tile){
+	public void lockUnlockCitizen(Tile tile){
 		if (hasLockedCitizen(tile)){
 			lockedTiles.remove(tile);
 		}
@@ -140,8 +154,19 @@ public class City {
 		return true;
 	}
 
+	public ArrayList<Tile> getPossibleTilesToBuy(){
+		ArrayList<Tile> res = new ArrayList<>();
+		for (Tile tile : tiles) {
+			for (int i=0; i<6; i++){
+				Tile tile2 = tile.getAdjTile(i);
+				if (tile2==null || tile2.getOwner()!=null || shortestPath.getDistance(tile2)>2) continue ;
+				// so, we can buy this tile
+				if (!res.contains(tile2)) res.add(tile2);
+			}
+		}
+		return res;
+	}
 
-	
 
 	public Civilization getOwner(){ return owner;}
 	public boolean isCapital(){ return capital;}
@@ -158,7 +183,7 @@ public class City {
 			// TODO
 		}
 		res-=2*population;
-		if (res>0 && owner.getHappiness()<0) res/=3; // NOTE: affect of unhappiness on food
+		if (res>0 && owner.getHappiness()<0) res/=3; // affect of unhappiness on food
 		if (res>0 && activeProject!=null && activeProject.isSettlerProject()) res=0; // affect of settler on food
 		return res;
 	}
