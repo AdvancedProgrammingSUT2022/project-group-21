@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example.Model.unit;
 
 import com.example.Model.tile.Improvement;
 import com.example.Model.tile.TerrainFeature;

@@ -106,7 +106,7 @@ public enum Technology{
 	public final String name;
 	public final int cost;
 	public final Era era;
-	public final Technology prequisiteTechs[];
+	private final Technology prequisiteTechs[];
 
 	private Technology(String name, int cost, Era era, Technology[] prequisiteTechs){
 		this.name=name;
@@ -117,6 +117,10 @@ public enum Technology{
 
 	public Technology[] getPrequisiteTechs() {
 		return prequisiteTechs;
+	}
+
+	public boolean canBeResearchedBy(Civilization civilization){
+		return civilization.hasTechnologies(prequisiteTechs);
 	}
 
 	@Override

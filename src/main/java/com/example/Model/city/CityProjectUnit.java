@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example.Model.city;
 
 import com.example.Model.unit.UnitType;
 
@@ -19,9 +19,9 @@ public class CityProjectUnit extends CityProject{
 
 	@Override
 	public boolean doFinnishAction() {
-		// TODO Auto-generated method stub
-		// TODO: create Unit and find a valid place to put
-		return false;
+		if (!city.CanSpawnUnit(unitType)) return false;
+		city.spawnUnit(unitType);
+		return true;
 	}
 
 

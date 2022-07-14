@@ -4,13 +4,12 @@ import com.example.Contoller.NonCombatUnitActionController;
 import com.example.Contoller.UnitActionController;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
-import com.example.Model.WorkerProject.WorkerProjectType;
 import com.example.Model.tile.Improvement;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.CivilianUnit;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.Unit;
-import com.example.Model.unit.UnitActionType;
+import com.example.Model.unit.WorkerProject.WorkerProjectType;
 
 public class UnitUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, UnitUserAction unitUserAction){

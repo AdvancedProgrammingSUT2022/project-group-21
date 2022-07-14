@@ -1,7 +1,7 @@
 package com.example.Contoller;
 
-import com.example.Model.City;
 import com.example.Model.Civilization;
+import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.Settler;
 

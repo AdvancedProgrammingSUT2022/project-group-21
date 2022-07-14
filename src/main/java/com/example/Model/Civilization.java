@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.Contoller.CivilizationLogicController;
+import com.example.Model.city.City;
 import com.example.Model.resource.Resource;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.Unit;
@@ -20,12 +21,15 @@ public class Civilization {
 	private ArrayList<Unit> units;
 	private boolean[][] revealed;
 	private boolean[][] visible;
-
+	
 	private int gold;
+	private int science;
 	private int happiness;
 
-	private ArrayList<Civilization> enemies = new ArrayList<>();
-
+	private Technology currentResearchTech;
+	
+	// private ArrayList<Civilization> enemies = new ArrayList<>();
+	
 
 
 	public Civilization(Tile tile, int W, int H){
@@ -40,13 +44,14 @@ public class Civilization {
 
 	public CivilizationLogicController getLogicController(){ return logicController;}
 
-	public int getHappiness(){
-		return happiness;
-	}
 
+	public void addTechnology(Technology technology){
+		technologies.add(technology);
+	}
 	public boolean hasTechnology(Technology technology){
 		return technologies.contains(technology);
 	}
+	
 	public boolean hasTechnologies(Technology[] technologies){
 		for (Technology technology : technologies) {
 			if (!hasTechnology(technology))
@@ -55,18 +60,46 @@ public class Civilization {
 		return true;
 	}
 
-	public void addEnemy(Civilization enemy){ enemies.add(enemy);}
-	public void removeEnemy(Civilization enemy){ enemies.remove(enemy);}
-	public boolean isEnemy(Civilization civilization){ return enemies.contains(civilization);}
-	
+	public void setCurrentResearchTech(Technology technology){
+		this.currentResearchTech = technology;
+	}
+	public Technology getCurrentResearchTech(){
+		return currentResearchTech;
+	}
+	public void endCurrentResearchTech(){
+		if (currentResearchTech==null) return ;
+		technologies.add(currentResearchTech);
+		currentResearchTech=null;
+	}
+
+
+	// TODO: change if you add diplomacy
+	// public void addEnemy(Civilization enemy){ enemies.add(enemy);}
+	// public void removeEnemy(Civilization enemy){ enemies.remove(enemy);}
+	public boolean isEnemy(Civilization civilization) {
+		// return enemies.contains(civilization);
+		return true;
+	}
+
+
 
 	public int countResource(Resource resource) {
 		return resources.get(resource);
 	}
 	
+
+	
+	public void addTile(Tile tile){
+		tiles.add(tile);
+		setVisible(tile, 1, true, revealed);
+	}
+	public void removeTile(Tile tile){ tiles.remove(tile); }
+	
+
+
 	private void setVisible(Tile tile, int radius, boolean onHill, boolean[][] revealed){
 		assert(radius<=2); // NOTE: replace with bfs
-		revealed[tile.X][tile.Y]=true;
+		setRevealed(tile.X, tile.Y);
 		if (!tile.canSeeOver() && !onHill) return ;
 		if (radius<=0) return ;
 		for (int i=0; i<6; i++){
@@ -76,12 +109,6 @@ public class Civilization {
 		}
 	}
 
-	public void addTile(Tile tile){
-		tiles.add(tile);
-		setVisible(tile, 1, true, revealed);
-	}
-	public void removeTile(Tile tile){ tiles.remove(tile); }
-
 	public void calculateVisibleTiles(){
 		for (int i=0; i<W; i++) for (int j=0; j<H; j++) visible[i][j]=false;
 		for (Tile tile : tiles) setVisible(tile, 1, true, visible);
@@ -89,7 +116,22 @@ public class Civilization {
 		for (City city : cities) setVisible(city.getCenter(), 3, true, visible);
 	}
 
+
+
 	public boolean isTileRevealed(int x, int y){ return revealed[x][y];}
+	private void setRevealed(int x, int y){
+		revealed[x][y]=true;
+	}
+	public void revealAllTiles(){
+		for (int x = 0; x < W; x++) {
+			for (int y = 0; y < H; y++) {
+				setRevealed(x, y);
+			}
+		}
+	}
+
+
+
 	public boolean[][] getVisibleTiles(){
 		calculateVisibleTiles();
 		boolean[][] out = new boolean[W][H];
@@ -97,6 +139,8 @@ public class Civilization {
 			out[i][j]=visible[i][j];
 		return out;
 	}
+
+
 
 	public void addCity(City city) {
 		cities.add(city);
@@ -107,12 +151,23 @@ public class Civilization {
 		// NOTE: used for destroyed cities
 		cities.remove(city);
 	}
+	public ArrayList<City> getCities(){
+		return cities;
+	}
+
+
+	public int getScience(){ return science; }
+	public void addScience(int science){ this.science+=science;}
+
+	public int getHappiness(){ return happiness; }
+	public void addHappiness(int happiness){ this.happiness+=happiness;}
 
 	public int getGold(){ return gold;}
 	public void addGold(int gold){ this.gold+=gold;}
 
 	public void addUnit(Unit unit){ units.add(unit);}
 	public void removeUnit(Unit unit){ units.remove(unit);}
+	public ArrayList<Unit> getUnits(){ return this.units;}
 
 	public City getCapitalCity(){ return capitalCity;}
 }

@@ -2,6 +2,7 @@ package com.example.Model.unit;
 
 import com.example.Model.Civilization;
 import com.example.Model.Technology;
+import com.example.Model.UserAction.UnitActionType;
 import com.example.Model.resource.Resource;
 import com.example.Model.tile.Tile;
 

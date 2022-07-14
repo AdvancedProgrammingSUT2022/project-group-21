@@ -1,8 +1,11 @@
-package com.example.Model;
+package com.example.Model.city;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.Model.Civilization;
+import com.example.Model.Game;
+import com.example.Model.ShortestPath;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.UnitType;
@@ -65,6 +68,12 @@ public class City {
 		notActiveProjects.add(activeProject);
 		activeProject=newProject;
 	}
+	public void endActiveProject(){
+		if (activeProject==null) return ;
+		if (activeProject.doFinnishAction()){
+			activeProject = null;
+		}
+	}
 
 
 	public void addBuilding(Building building){
@@ -92,11 +101,13 @@ public class City {
 	}
 	public void addTile(Tile tile){
 		tiles.add(tile);
+		owner.addTile(tile);
 		tile.setOwner(owner);
 	}
 	public ArrayList<Tile> getTiles(){
 		return tiles;
 	}
+
 
 	// range=2: used for visibility and attack
 	public boolean isTileInRange(Tile tile){
@@ -110,6 +121,7 @@ public class City {
 	}
 	
 	
+
 	public boolean hasLockedCitizen(Tile tile){
 		return lockedTiles.contains(tile) || tile==center;
 	}
@@ -123,7 +135,7 @@ public class City {
 			}
 			lockedTiles.add(tile);
 		}
-		// TODO: update graphics
+		// TODO: update graphics?
 	}
 	public int countUnemployedCitizens(){
 		return population-lockedTiles.size();
@@ -135,6 +147,8 @@ public class City {
 		population++;
 	}
 
+
+
 	private Tile getTileToSpawnUnit(UnitType unitType){
 		if (center.canPutUnit(unitType)) return center;
 		for (Tile tile : tiles){
@@ -145,7 +159,7 @@ public class City {
 		return null;
 	}
 	public boolean CanSpawnUnit(UnitType unitType){
-		return  getTileToSpawnUnit(unitType)!=null;
+		return getTileToSpawnUnit(unitType)!=null;
 	}
 	public boolean spawnUnit(UnitType unitType){
 		Tile tile = getTileToSpawnUnit(unitType);
@@ -153,6 +167,8 @@ public class City {
 		unitType.createUnit(owner, tile);
 		return true;
 	}
+
+
 
 	public ArrayList<Tile> getPossibleTilesToBuy(){
 		ArrayList<Tile> res = new ArrayList<>();

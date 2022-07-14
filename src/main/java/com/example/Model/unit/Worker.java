@@ -1,7 +1,6 @@
 package com.example.Model.unit;
 
 import com.example.Model.Civilization;
-import com.example.Model.WorkerProject;
 import com.example.Model.tile.Tile;
 
 public class Worker extends CivilianUnit{

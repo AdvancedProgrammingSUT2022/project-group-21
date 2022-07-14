@@ -1,6 +1,5 @@
 package com.example.Contoller;
 
-import com.example.Model.WorkerProject;
 import com.example.Model.tile.Improvement;
 import com.example.Model.tile.Terrain;
 import com.example.Model.tile.TerrainFeature;
@@ -8,6 +7,7 @@ import com.example.Model.tile.Tile;
 import com.example.Model.unit.Settler;
 import com.example.Model.unit.Unit;
 import com.example.Model.unit.Worker;
+import com.example.Model.unit.WorkerProject;
 
 public class NonCombatUnitActionController {
 	private static NonCombatUnitActionController instance;

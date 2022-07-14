@@ -45,9 +45,12 @@ public abstract class Unit {
 	public void decreaseMP(int movementCost){ this.MP-=movementCost;}
 	public void resetMP(){ this.MP=unitType.MP;}
 
+
 	public int getHP(){ return this.HP;}
 	public void setHP(int HP){ this.HP=HP;}
+	public void resetHP(){ this.HP = maxHP;}
 
+	
 	public void kill(){
 		owner.removeUnit(this);
 		// TODO: show some graphic shit? make a notification?
@@ -94,13 +97,5 @@ public abstract class Unit {
 
 	public Civilization getOwner(){
 		return owner;
-	}
-
-	public enum UnitState{
-		WAKE,
-		SLEEP,
-		FORTIFY,
-		ALERT,
-		PRE_ATTACK;
 	}
 }

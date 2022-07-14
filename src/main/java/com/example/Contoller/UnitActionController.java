@@ -2,15 +2,15 @@ package com.example.Contoller;
 
 import java.util.ArrayList;
 
-import com.example.Model.City;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.ShortestPath;
+import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.CombatType;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.Unit;
-import com.example.Model.unit.Unit.UnitState;
+import com.example.Model.unit.UnitState;
 
 public class UnitActionController {
 	private static UnitActionController instance;

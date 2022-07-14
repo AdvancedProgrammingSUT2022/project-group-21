@@ -1,8 +1,7 @@
 package com.example.Model.tile;
 
-import com.example.Model.City;
 import com.example.Model.Civilization;
-import com.example.Model.WorkerProject;
+import com.example.Model.city.City;
 import com.example.Model.resource.Resource;
 import com.example.Model.unit.CivilianUnit;
 import com.example.Model.unit.CombatType;
@@ -11,6 +10,7 @@ import com.example.Model.unit.Unit;
 import com.example.Model.unit.UnitAbility;
 import com.example.Model.unit.UnitType;
 import com.example.Model.unit.Worker;
+import com.example.Model.unit.WorkerProject;
 
 public class Tile {
 	public final int X;

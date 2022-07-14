@@ -1,10 +1,10 @@
 package com.example.Model.UserAction;
 
 import com.example.Contoller.CityActionController;
-import com.example.Model.Building;
-import com.example.Model.City;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
+import com.example.Model.city.Building;
+import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.UnitType;
 
@@ -80,15 +80,6 @@ public class CityUserAction extends UserAction{
 	public Building building;
 	public UnitType unitType;
 
-	public enum CityActionType{
-		LOCK_UNLOCK_CITIZEN,
-		SHOOT,
-		UNIT_PRODUCTION,
-		BUILDING_PRODUCTION,
-		BUY_TILE,
-		BUY_BUILDING,
-		BUY_UNIT;
-	}
 
 	@Override
 	public void validateDoAction(Civilization civilization, boolean doAction) throws Exception {
@@ -135,9 +126,7 @@ public class CityUserAction extends UserAction{
 			default:
 				break;
 		}
-		
 
-		
 	}
 
 

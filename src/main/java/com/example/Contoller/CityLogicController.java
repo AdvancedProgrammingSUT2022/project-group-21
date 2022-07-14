@@ -2,8 +2,8 @@ package com.example.Contoller;
 
 import java.util.ArrayList;
 
-import com.example.Model.City;
-import com.example.Model.CityProject;
+import com.example.Model.city.City;
+import com.example.Model.city.CityProject;
 
 public class CityLogicController {
 	private City city;

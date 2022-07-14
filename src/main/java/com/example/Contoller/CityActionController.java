@@ -2,13 +2,13 @@ package com.example.Contoller;
 
 import java.util.ArrayList;
 
-import com.example.Model.Building;
-import com.example.Model.City;
-import com.example.Model.CityProject;
-import com.example.Model.CityProjectBuilding;
-import com.example.Model.CityProjectUnit;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
+import com.example.Model.city.Building;
+import com.example.Model.city.City;
+import com.example.Model.city.CityProject;
+import com.example.Model.city.CityProjectBuilding;
+import com.example.Model.city.CityProjectUnit;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.UnitType;
 

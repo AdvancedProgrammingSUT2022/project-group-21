@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example.Model.city;
 
 public class CityProjectBuilding extends CityProject{
 	private Building building;
@@ -19,8 +19,8 @@ public class CityProjectBuilding extends CityProject{
 
 	@Override
 	public boolean doFinnishAction() {
-		// TODO Auto-generated method stub
-		return false;
+		city.addBuilding(building);
+		return true;
 	}
 
 

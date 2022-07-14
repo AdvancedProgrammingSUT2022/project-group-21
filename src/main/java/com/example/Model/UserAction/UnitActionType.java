@@ -1,4 +1,4 @@
-package com.example.Model.unit;
+package com.example.Model.UserAction;
 
 public enum UnitActionType{
 	DELETE,

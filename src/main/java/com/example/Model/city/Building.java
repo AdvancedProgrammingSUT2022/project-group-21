@@ -1,4 +1,6 @@
-package com.example.Model;
+package com.example.Model.city;
+
+import com.example.Model.Technology;
 
 public enum Building{
 	// TODO
