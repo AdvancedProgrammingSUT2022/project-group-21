@@ -1,7 +1,8 @@
 package com.example.Model.UserAction;
 
 import com.example.Model.Game;
-import com.example.Model.User;
+import com.example.Model.user.User;
+import com.example.Model.user.UserDatabase;
 
 public class UserActionQuery {
 	public String username;
@@ -19,7 +20,7 @@ public class UserActionQuery {
 	}
 
 	private User getUser(){
-		return User.getUserByUsername(username);
+		return UserDatabase.getInstance().getUserByUsername(username);
 	}
 
 	public void validate() throws Exception{

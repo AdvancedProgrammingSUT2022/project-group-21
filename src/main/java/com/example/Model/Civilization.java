@@ -3,7 +3,6 @@ package com.example.Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.Contoller.CivilizationLogicController;
 import com.example.Model.city.City;
 import com.example.Model.resource.Resource;
 import com.example.Model.tile.Tile;
@@ -11,7 +10,6 @@ import com.example.Model.unit.Unit;
 
 public class Civilization {
 	private final int W, H;
-	private CivilizationLogicController logicController;
 	
 	private ArrayList<Tile> tiles = new ArrayList<>();
 	private ArrayList<City> cities = new ArrayList<>();
@@ -29,7 +27,6 @@ public class Civilization {
 	private Technology currentResearchTech;
 	
 	// private ArrayList<Civilization> enemies = new ArrayList<>();
-	
 
 
 	public Civilization(Tile tile, int W, int H){
@@ -39,10 +36,18 @@ public class Civilization {
 		this.visible = new boolean[W][H];
 		this.W=W;
 		this.H=H;
-		this.logicController = new CivilizationLogicController(this);
 	}
 
-	public CivilizationLogicController getLogicController(){ return logicController;}
+
+	public void endTurn(){
+		for (City city : cities) {
+			city.endTurn();
+		}
+		for (Unit unit : units) {
+			unit.endTurn();
+		}
+		// TODO: tech and ?...
+	}
 
 
 	public void addTechnology(Technology technology){
@@ -51,13 +56,21 @@ public class Civilization {
 	public boolean hasTechnology(Technology technology){
 		return technologies.contains(technology);
 	}
-	
 	public boolean hasTechnologies(Technology[] technologies){
 		for (Technology technology : technologies) {
 			if (!hasTechnology(technology))
 				return false;
 		}
 		return true;
+	}
+	public ArrayList<Technology> getResearchableTechnologies(){
+		ArrayList<Technology> researchableTechnologies = new ArrayList<Technology>();
+		for (Technology technology : Technology.values()) {
+			if (hasTechnology(technology)) continue ;
+			if (!technology.canBeResearchedBy(this)) continue ;
+			researchableTechnologies.add(technology);
+		}
+		return researchableTechnologies;
 	}
 
 	public void setCurrentResearchTech(Technology technology){
@@ -73,6 +86,8 @@ public class Civilization {
 	}
 
 
+
+
 	// TODO: change if you add diplomacy
 	// public void addEnemy(Civilization enemy){ enemies.add(enemy);}
 	// public void removeEnemy(Civilization enemy){ enemies.remove(enemy);}
@@ -82,7 +97,7 @@ public class Civilization {
 	}
 
 
-
+	// public void addResource()
 	public int countResource(Resource resource) {
 		return resources.get(resource);
 	}

@@ -11,12 +11,8 @@ import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.UnitType;
 
 // NOTE: I set the price of buying any tile to 50 coins
+// NOTE: the food required for growth is multiplied by 1.5 on each growth
 public class City {
-	private static HashMap<Tile, City> allCities=new HashMap<>();
-	
-	public static City getCityOnTile(Tile tile){ return allCities.get(tile);}
-	
-
 	private Civilization owner;
 	private ArrayList<Tile> tiles = new ArrayList<>();
 	private ArrayList<Tile> lockedTiles = new ArrayList<>(); // places where citizens work
@@ -25,7 +21,7 @@ public class City {
 	private int population=1;
 	private Tile center;
 	private double HP;
-	private int food;
+	private int food, foodToGrow=5;
 	private int production;
 	private ArrayList<CityProject> notActiveProjects = new ArrayList<>();
 	private CityProject activeProject;
@@ -37,7 +33,6 @@ public class City {
 	public City(Tile tile, Civilization owner){
 		this.center = tile;
 		this.owner = owner;
-		allCities.put(tile, this);
 		initializeCity();
 		this.shortestPath=new ShortestPath(Game.getInstance(), null, 2); // every city can buy tiles of radius 2
 	}
@@ -51,7 +46,13 @@ public class City {
 		}
 	}
 
-	public void setProduction(CityProject newProject){
+	public void endTurn(){
+		// TODO
+	}
+
+
+
+	public void setProductionProject(CityProject newProject){
 		if (activeProject==null){
 			activeProject=newProject;
 			return ;
@@ -68,12 +69,16 @@ public class City {
 		notActiveProjects.add(activeProject);
 		activeProject=newProject;
 	}
+	public CityProject getProductionProject(){
+		return activeProject;
+	}
 	public void endActiveProject(){
 		if (activeProject==null) return ;
 		if (activeProject.doFinnishAction()){
 			activeProject = null;
 		}
 	}
+
 
 
 	public void addBuilding(Building building){
@@ -83,6 +88,7 @@ public class City {
 		return buildings.contains(building);
 	}
 
+
 	// TODO: not sure about the calculation, just made smth that depends on all that it should :(
 	public double getCombatStrength(){
 		double res=60;
@@ -91,6 +97,7 @@ public class City {
 		res*=center.getCombatModifier();
 		return res;
 	}
+
 
 	
 	public Tile getCenter(){
@@ -108,6 +115,21 @@ public class City {
 		return tiles;
 	}
 
+	public ArrayList<Tile> getPossibleTilesToBuy(){
+		ArrayList<Tile> res = new ArrayList<>();
+		for (Tile tile : tiles) {
+			for (int i=0; i<6; i++){
+				Tile tile2 = tile.getAdjTile(i);
+				if (tile2==null || tile2.getOwner()!=null || shortestPath.getDistance(tile2)>2) continue ;
+				// so, we can buy this tile
+				if (!res.contains(tile2)) res.add(tile2);
+			}
+		}
+		return res;
+	}
+
+
+
 
 	// range=2: used for visibility and attack
 	public boolean isTileInRange(Tile tile){
@@ -121,6 +143,7 @@ public class City {
 	}
 	
 	
+
 
 	public boolean hasLockedCitizen(Tile tile){
 		return lockedTiles.contains(tile) || tile==center;
@@ -145,7 +168,9 @@ public class City {
 	}
 	public void growCity(){
 		population++;
+		foodToGrow*=1.5;
 	}
+
 
 
 
@@ -170,18 +195,8 @@ public class City {
 
 
 
-	public ArrayList<Tile> getPossibleTilesToBuy(){
-		ArrayList<Tile> res = new ArrayList<>();
-		for (Tile tile : tiles) {
-			for (int i=0; i<6; i++){
-				Tile tile2 = tile.getAdjTile(i);
-				if (tile2==null || tile2.getOwner()!=null || shortestPath.getDistance(tile2)>2) continue ;
-				// so, we can buy this tile
-				if (!res.contains(tile2)) res.add(tile2);
-			}
-		}
-		return res;
-	}
+
+	
 
 
 	public Civilization getOwner(){ return owner;}

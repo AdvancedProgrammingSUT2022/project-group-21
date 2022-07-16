@@ -1,66 +1,37 @@
 package com.example.Contoller;
 
-import com.example.Model.User;
+import com.example.Model.user.User;
+import com.example.Model.user.UserDatabase;
 
 // TODO
 public class UserController {
-	private static User loggedInUser;
-	private static UserController instance = null;
-
-	private static void setInstance(UserController instance) {
-		UserController.instance = instance;
-	}
+	private static UserController instance;
 	public static UserController getInstance() {
-		if (UserController.instance == null)    UserController.setInstance(new UserController());
-		return UserController.instance;
+		if (instance==null) instance = new UserController();
+		return instance;
+	}
+	
+	private User loggedInUser;
+
+	public User getLoggedInUser(){ return loggedInUser; }
+	public void setLoggedInUser(User user){ loggedInUser = user; }
+
+	public void registerUser(String username, String password, String nickname) throws Exception {
+		if (username.isEmpty() || password.isEmpty() || nickname.isEmpty()) throw new Exception("username, password, nickname cant be empty");
+		if (!username.matches("[a-z0-9]+")) throw new Exception("username should consist of small letters or digits");
+		if (UserDatabase.getInstance().getUserByUsername(username)!=null) throw new Exception("username already exist");
+		UserDatabase.getInstance().addUser(new User(username, password, nickname));
+	}
+	public void loginUser(String username, String password) throws Exception {
+		User user = UserDatabase.getInstance().getUserByUsername(username);
+		if (user == null) throw new Exception("username does not exist");
+		if (!user.isPasswordEqualTo(password)) throw new Exception("wrong password");
+		loggedInUser = user;
 	}
 
-
-	public static User getLoggedInUser() {
-		return UserController.loggedInUser;
+	public void changePassword(User user, String currentPassword, String newPassword) throws Exception {
+		if (currentPassword.equals(newPassword)) throw new Exception("new password is same as old one");
+		if (!user.isPasswordEqualTo(currentPassword)) throw new Exception("wrong password");
+		user.setPassword(newPassword, currentPassword);
 	}
-	public static void setLoggedInUser(User loggedInUser) {
-		UserController.loggedInUser = loggedInUser;
-	}
-
-	private boolean doesUserNameExist (String username) {
-		return User.getUserByUsername(username) != null;
-	}
-	private boolean doesNickNameExist (String nickname) {
-		return User.doesNicknameExist(nickname);
-	}
-	// public Message createUser(String username, String password, String nickname) {
-	// 	if (doesUserNameExist(username))
-	// 		return Message.USERNAME_EXISTS;
-	// 	if (doesNickNameExist(nickname))
-	// 		return Message.NICKNAME_EXISTS;
-	// 	new User(username, password, nickname);
-	// 	return Message.SIGNUP_SUCCESS;
-	// }
-	// public Message loginUser(String username, String password) {
-	// 	if (!doesUserNameExist(username)){
-	// 		return Message.LOGIN_FAIL;
-	// 	}
-	// 	if (!User.doesUsernameAndPasswordMatch(password, username)){
-	// 		System.out.println("shit");
-	// 		return Message.LOGIN_FAIL;
-	// 	}
-	// 	loggedInUser = User.getUserByUsername(username);
-	// 	return Message.LOGIN_SUCCESS;
-	// }
-
-	// public Message changeNickname(String nickname) {
-	// 	if (!doesNickNameExist(nickname))
-	// 		return Message.FAIL;
-	// 	loggedInUser.changeNickname(nickname);
-	// 	return Message.SUCCESS;
-	// }
-	// public Message changePassword(String current, String newP) {
-	// 	if (!User.doesUsernameAndPasswordMatch(current, loggedInUser.getUsername()))
-	// 		return Message.FAIL;
-	// 	else if (current.equals(newP))
-	// 		return null;
-	// 	loggedInUser.changePassword(newP, current);
-	// 	return Message.SUCCESS;
-	// }
 }

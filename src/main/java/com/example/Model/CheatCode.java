@@ -71,13 +71,9 @@ public enum CheatCode {
 	RESEARCH_ALL_AVAILABLE_TECHS {
 		@Override
 		public void apply(Civilization civilization) {
-			ArrayList<Technology> technologies = new ArrayList<>();
-			for (Technology technology : Technology.values()){
-				if (civilization.hasTechnology(technology)) continue ;
-				if (technology.canBeResearchedBy(civilization)) technologies.add(technology);
-			}
+			ArrayList<Technology> technologies =  civilization.getResearchableTechnologies();
 			for (Technology technology : technologies){
-				technologies.add(technology);
+				civilization.addTechnology(technology);
 			}
 		}
 	},

@@ -36,7 +36,7 @@ public class CityActionController {
 		if (!project.isValid()) throw new Exception("you cant produce this unit");
 		if (!city.CanSpawnUnit(unitType)) throw new Exception("you dont have empty tile to put a unit");
 		if (doAction){
-			city.setProduction(project);
+			city.setProductionProject(project);
 		}
 	}
 	
@@ -55,7 +55,7 @@ public class CityActionController {
 		CityProject project = new CityProjectBuilding(city, building);
 		if (!project.isValid()) throw new Exception("you cant produce this building");
 		if (doAction){
-			city.setProduction(project);
+			city.setProductionProject(project);
 		}
 	}
 	

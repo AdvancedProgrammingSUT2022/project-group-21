@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import com.example.Model.Civilization;
 import com.example.Model.Game;
-import com.example.Model.User;
+import com.example.Model.user.User;
+import com.example.Model.user.UserDatabase;
 
 public class GameController {
 	private static GameController instance;
@@ -21,7 +22,7 @@ public class GameController {
 	public String startNewGame(ArrayList<String> usernames){
 		ArrayList<User> players = new ArrayList<>();
 		for (String username : usernames) {
-			User user = User.getUserByUsername(username);
+			User user = UserDatabase.getInstance().getUserByUsername(username);
 			if (user == null) return "user does not exist";
 			players.add(user);
 		}

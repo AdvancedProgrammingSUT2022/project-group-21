@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.Model.city.City;
 import com.example.Model.city.CityProject;
 
+// TODO: check if this class can be removed
 public class CityLogicController {
 	private City city;
 	private ArrayList<CityProject> cityProjects = new ArrayList<>();
@@ -14,6 +15,7 @@ public class CityLogicController {
 		this.city=city;
 	}
 
+	// TODO: check if its done in City.java
 	public void addCityProject(CityProject project){
 		// TODO: check is project is valid(prequisit techs ...)
 		for (CityProject project2 : cityProjects) {

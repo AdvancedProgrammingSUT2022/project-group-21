@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.example.Contoller.RandomMapGenerator;
 import com.example.Model.tile.Tile;
+import com.example.Model.user.User;
 
 public class Game {
 	private static Game instance;

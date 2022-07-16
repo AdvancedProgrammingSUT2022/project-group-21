@@ -3,6 +3,8 @@ package com.example.Contoller;
 import com.example.Model.CheatCode;
 import com.example.Model.Civilization;
 import com.example.Model.Technology;
+import com.example.Model.city.City;
+import com.example.Model.tile.Tile;
 
 public class CivilizationActionController {
 	private static CivilizationActionController instance;
@@ -12,9 +14,16 @@ public class CivilizationActionController {
 	}
 
 	public void endTurn(Civilization civilization, boolean doAction) throws Exception{
-		// TODO: check everything is done
+		if (civilization.getCurrentResearchTech()==null) throw new Exception("you should select a technology to research");
+		for (City city : civilization.getCities()){
+			if (city.getProductionProject()==null){
+				Tile tile = city.getCenter();
+				throw new Exception("you should select a production project for city at ("+tile.X+", "+tile.Y+")");
+			}
+		}
+		// TODO: make sure everything is checked
 		if (doAction){
-			// TODO
+			civilization.endTurn();
 		}
 	}
 	
