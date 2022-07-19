@@ -36,7 +36,6 @@ public abstract class CityProject{
 		return ((CityProjectUnit) this).unitType==UnitType.SETTLER;
 	}
 
-	// TODO: check if production is made; for Unit also check if there is a valid near tile to spawn
 	public abstract boolean doFinnishAction(); 
 
 }

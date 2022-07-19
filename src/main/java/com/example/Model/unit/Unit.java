@@ -11,7 +11,8 @@ public abstract class Unit {
 	public final UnitType unitType;
 	protected Civilization owner;
 	protected Tile tile;
-	protected int HP, MP;
+	protected double HP;
+	protected int MP;
 	protected UnitState unitState;
 	private ArrayList<Tile> path; // multiple-turn movement
 	
@@ -32,10 +33,16 @@ public abstract class Unit {
 	}
 	
 	public Tile getTile(){ return tile;}
-	public void moveToTile(Tile tile){ // NOTE: tile is adjacent to this.tile
+	protected void setTile(Tile tile){ // NOTE: tile is adjacent to this.tile
 		this.tile=tile;
 		// TODO: maybe some graphis shit
 	}
+	public void moveSingleTile(Tile tile){
+		removeFromTile();
+		setTile(tile);
+		addToTile();
+	}
+
 
 	public int getMP(){ return this.MP;}
 	public void setMP(int MP){
@@ -46,13 +53,15 @@ public abstract class Unit {
 	public void resetMP(){ this.MP=unitType.MP;}
 
 
-	public int getHP(){ return this.HP;}
-	public void setHP(int HP){ this.HP=HP;}
+	public double getHP(){ return this.HP;}
+	public void setHP(double HP){ this.HP=HP;}
 	public void resetHP(){ this.HP = maxHP;}
 
 	
 	public void kill(){
 		owner.removeUnit(this);
+		removeFromTile();
+		setHP(0);
 		// TODO: show some graphic shit? make a notification?
 	}
 
@@ -71,17 +80,14 @@ public abstract class Unit {
 		}
 		removeFromTile();
 		while (l<r){
-			moveToTile(path.get(++l));
+			setTile(path.get(++l));
 		}
 		addToTile();
 		setMP(getMP()-cost);
 		if (r==path.size()-1) path=null; // task done
 	}
 	
-	public void beginTurn(){
-		// TODO
-		// NOTE: I think there is absolutely nothing to do here
-	}
+	
 	public void endTurn(){
 		if (getUnitState()==UnitState.SLEEP) setMP(0);
 		if (getMP()==0) return ; // without MP, unit wont heal

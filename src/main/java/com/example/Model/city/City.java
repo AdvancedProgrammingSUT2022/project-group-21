@@ -1,11 +1,11 @@
 package com.example.Model.city;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.example.Model.Civilization;
 import com.example.Model.Game;
-import com.example.Model.ShortestPath;
+import com.example.Model.spfa.ShortestPath;
+import com.example.Model.tile.Terrain;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.UnitType;
@@ -13,22 +13,24 @@ import com.example.Model.unit.UnitType;
 // NOTE: I set the price of buying any tile to 50 coins
 // NOTE: the food required for growth is multiplied by 1.5 on each growth
 public class City {
+	private static final int maxHP = 20;
+	
 	private Civilization owner;
 	private ArrayList<Tile> tiles = new ArrayList<>();
 	private ArrayList<Tile> lockedTiles = new ArrayList<>(); // places where citizens work
 	private ArrayList<Building> buildings = new ArrayList<>();
 	private boolean capital;
-	private int population=1;
 	private Tile center;
-	private double HP;
+	private int population=1;
 	private int food, foodToGrow=5;
 	private int production;
 	private ArrayList<CityProject> notActiveProjects = new ArrayList<>();
 	private CityProject activeProject;
 	private ShortestPath shortestPath;
+
+	private double HP;
 	private boolean attackedInThisTurn; // TODO: remember to reset it
 
-	// TODO: add CityProject, Combat shit, buy Tile(maybe elsewhere), 
 
 	public City(Tile tile, Civilization owner){
 		this.center = tile;
@@ -46,8 +48,23 @@ public class City {
 		}
 	}
 
+	
 	public void endTurn(){
-		// TODO
+		food+=getFoodOut();
+		production+=getProductionOut();
+		if (food>=foodToGrow){
+			food-=foodToGrow;
+			growCity();
+		}
+		activeProject.makeProduction(production);
+		production=0;
+		if (activeProject.isFinnished()){
+			production=activeProject.getProductionMade()-activeProject.getProductionRequired();
+			endActiveProject();
+		}
+		setHP(getHP()+1);
+		if (getHP()>maxHP) setHP(maxHP);
+		setAttackedInThisTurn(false);
 	}
 
 
@@ -77,6 +94,7 @@ public class City {
 		if (activeProject.doFinnishAction()){
 			activeProject = null;
 		}
+		// TODO: should I do smth in else?
 	}
 
 
@@ -91,10 +109,11 @@ public class City {
 
 	// TODO: not sure about the calculation, just made smth that depends on all that it should :(
 	public double getCombatStrength(){
-		double res=60;
+		double res=15;
 		MilitaryUnit unit = center.getMilitaryUnit();
-		if (unit!=null) res+=unit.getCombatStrength(5);
+		if (unit!=null) res+=unit.getCombatStrength();
 		res*=center.getCombatModifier();
+		if (center.getTerrain()==Terrain.HILL) res*=1.1;
 		return res;
 	}
 
@@ -195,13 +214,26 @@ public class City {
 
 
 
-
+	public double getHP(){ return HP;}
+	public void setHP(double HP){ this.HP=HP;}
 	
 
 
 	public Civilization getOwner(){ return owner;}
+	public void setOwner(Civilization owner){
+		getOwner().removeCity(this);
+		this.owner = owner;
+		getOwner().addCity(this);
+		getOwner().addHappiness(-10); // -10 happiness for capturing other city
+		for (Tile tile : tiles) {
+			tile.setOwner(owner);
+		}
+	}
+
+
 	public boolean isCapital(){ return capital;}
 	public void setCapital(boolean capital){ this.capital=capital;}
+
 
 
 	public int getFoodOut() {
@@ -219,7 +251,7 @@ public class City {
 		return res;
 	}
 
-	public int getProductionOut(Civilization civilization) {
+	public int getProductionOut() {
 		int res=0;
 		for (Tile tile : lockedTiles) {
 			res+=tile.getProduction();
@@ -231,7 +263,7 @@ public class City {
 		return res;
 	}
 
-	public int getGoldOut(Civilization civilization) {
+	public int getGoldOut() {
 		int res=0;
 		for (Tile tile : lockedTiles) {
 			res+=tile.getProduction();
@@ -243,11 +275,12 @@ public class City {
 		return res;
 	}
 
-	public int getScienceOut(Civilization civilization) {
+	public int getScienceOut() {
 		int res=countCitizens() + (isCapital()?3:0);
 		for (Building building : buildings) {
 			// TODO
 		}
 		return res;
 	}
+
 }

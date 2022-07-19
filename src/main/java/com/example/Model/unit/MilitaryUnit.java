@@ -4,15 +4,14 @@ import com.example.Model.Civilization;
 import com.example.Model.tile.Tile;
 
 public class MilitaryUnit extends Unit{
-	private int XP;
-
 	public MilitaryUnit(UnitType unitType, Civilization owner, Tile tile){
 		super(unitType, owner, tile);
 	}
 	
-	public double getCombatStrength(int thisTurn) {
-		double res = tile.getCombatModifier() + unitType.combatStrength;
-		// TODO
+	public double getCombatStrength() {
+		double res = tile.getCombatModifier() + Integer.max(unitType.combatStrength, unitType.combatStrength);
+		if (getUnitState()==UnitState.FORTIFY && !unitType.hasAbility(UnitAbility.NO_DEFENSIVE_BONUS)) res*=1.5;
+		if (unitType.hasAbility(UnitAbility.NO_DEFENSIVE_BONUS) && getTile().getTerrain().isRoughTerrain()) res*=0.5;
 		return res;
 	}
 
@@ -36,15 +35,10 @@ public class MilitaryUnit extends Unit{
 	}
 
 
-	@Override
-	public void moveToTile(Tile tile){
-		// this.tile.setMilitaryUnit(null);
-		super.moveToTile(tile);
-		// this.tile.setMilitaryUnit(this);
-	}
+	
 
 	@Override
-	protected void removeFromTile() {
+	public void removeFromTile() {
 		getTile().setMilitaryUnit(null);
 	}
 
@@ -52,6 +46,4 @@ public class MilitaryUnit extends Unit{
 	protected void addToTile() {
 		getTile().setMilitaryUnit(this);
 	}
-
-
 }

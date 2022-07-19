@@ -8,12 +8,6 @@ public abstract class CivilianUnit extends Unit{
 		super(unitType, owner, tile);
 	}
 	
-	@Override
-	public void moveToTile(Tile tile){
-		// this.tile.setCivilianUnit(null);
-		super.moveToTile(tile);
-		// this.tile.setCivilianUnit(this);
-	}
 
 	@Override
 	protected void removeFromTile() {
@@ -24,4 +18,11 @@ public abstract class CivilianUnit extends Unit{
 	protected void addToTile() {
 		getTile().setCivilianUnit(this);
 	}
+
+	public void changeOwner(Civilization owner){
+		getOwner().removeUnit(this);
+		this.owner = owner;
+		getOwner().addUnit(this);
+	}
+	
 }

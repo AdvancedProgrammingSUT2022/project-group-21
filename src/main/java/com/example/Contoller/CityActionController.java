@@ -87,7 +87,7 @@ public class CityActionController {
 		Tile tile = Game.getInstance().getTile(x2, y2);
 		if (!city.isTileInRange(tile)) throw new Exception("tile is not in range of 2");
 		if (doAction){
-			CombatController.getInstance().cityAttackTile(city, tile);
+			CombatController.cityAttackTile(city, tile);
 		}
 	}
 

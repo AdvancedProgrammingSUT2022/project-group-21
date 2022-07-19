@@ -6,7 +6,6 @@ import java.util.Arrays;
 import com.example.Model.resource.Resource;
 
 public enum Terrain {
-	// use the names from main english charts.
 	DESERT(0, 0, 0, -0.33, 1, true, true,
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.OASIS, TerrainFeature.FLOOD_PLAINS)),
 		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.GOLD,Resource.SILVER,Resource.MARBLE,Resource.COTTON,Resource.FUMIGATION,Resource.SHEEP,Resource.GEMSTONE))
@@ -62,5 +61,9 @@ public enum Terrain {
 		this.visible = visible;
 		this.possibleFeatures = possibleFeatures;
 		this.possibleResources = possibleResources;
+	}
+
+	public boolean isRoughTerrain(){
+		return this==HILL || this==SNOW;
 	}
 }

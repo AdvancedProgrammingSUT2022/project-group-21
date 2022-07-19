@@ -25,7 +25,6 @@ public class Tile {
 	private Improvement improvement;
 	private boolean pillage; // is tile improvement damaged?
 	private WorkerProject workerProject;
-	// private Ruin ruin; // TODO: bool is enough
 	
 
 	private Civilization owner;

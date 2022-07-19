@@ -1,11 +1,13 @@
-package com.example.Model;
+package com.example.Model.spfa;
 
 import java.util.ArrayList;
 
+import com.example.Model.Game;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.Unit;
 
 public class ShortestPath {
+	private static final int inf=1000000000;
 	private final int W, H;
 	private Tile sourceTile;
 	private Unit unit;
@@ -17,26 +19,32 @@ public class ShortestPath {
 		H=game.HEIGHT;
 		this.sourceTile=unit.getTile();
 		this.unit=unit;
-		if (maxDistance==-1) maxDistance=1000000000;
+		if (maxDistance==-1) maxDistance=inf;
 		spfa(maxDistance);
 	}
 	
 	// run spfa instead of dijkstra for shortest path
-	public void spfa(int maxDistance){
+	private void spfa(int maxDistance){
 		dist = new int[W][H];
+		for (int i = 0; i < W; i++) {
+			for (int j = 0; j < H; j++) {
+				dist[i][j]=inf;
+			}
+		}
 		boolean inq[][] = new boolean[W][H];
 		int maxQ=W*H, head=0, tail=0;
 		Tile[] Q = new Tile[maxQ];
 		par = new Tile[W][H];
 		Q[tail++]=sourceTile;
+		dist[sourceTile.X][sourceTile.Y]=0;
 		while (head!=tail){
 			Tile v=Q[head++];
 			if (head==maxQ) head=0;
-			if (dist[v.X][v.Y]>=maxDistance) continue ;
 			inq[v.X][v.Y]=false;
+			if (dist[v.X][v.Y]>=maxDistance) continue ;
 			for (int i=0; i<6; i++){
 				Tile u=v.getAdjTile(i);
-				if (u==null) continue ;
+				if (u==null || !u.isPassable()) continue ;
 				int w=(unit==null?1:v.getMovementCostForUnit(unit, i));
 				if (dist[u.X][u.Y]>dist[v.X][v.Y]+w){
 					dist[u.X][u.Y]=dist[v.X][v.Y]+w;

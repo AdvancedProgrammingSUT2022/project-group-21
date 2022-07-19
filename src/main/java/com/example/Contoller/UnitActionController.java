@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 import com.example.Model.Civilization;
 import com.example.Model.Game;
-import com.example.Model.ShortestPath;
 import com.example.Model.city.City;
+import com.example.Model.spfa.ShortestPath;
+import com.example.Model.spfa.ShortestPathSmall;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.CombatType;
 import com.example.Model.unit.MilitaryUnit;
@@ -20,7 +21,10 @@ public class UnitActionController {
 	}
 
 	public void delete(Unit unit, boolean doAction){
-		if (doAction) unit.kill();
+		if (doAction){
+			unit.kill();
+			unit.getOwner().addGold(unit.unitType.cost/10);
+		}
 	}
 	public void sleepWake(Unit unit, boolean doAction){
 		if (doAction){
@@ -59,32 +63,48 @@ public class UnitActionController {
 	public void meleeAttack(MilitaryUnit militaryUnit, int x2, int y2, boolean doAction) throws Exception{
 		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
 		if (!militaryUnit.getOwner().isTileRevealed(x2, y2)) throw new Exception("target tile is not revealed");
+		if (militaryUnit.getMP()<=0) throw new Exception("no MovementPoint");		
 		
 		Tile tile = militaryUnit.getTile();
 		Tile tile2 = Game.getInstance().getTile(x2, y2);
-		checkDiplomacyShit(militaryUnit.getOwner(), tile2);
 		if (!tile.isNeighbourWith(tile2)) throw new Exception("target tile should be adjacent for Melee Attack");
-		if (militaryUnit.getMP()<=0) throw new Exception("no MovementPoint");		
-		if (doAction){
-			// TODO: attack!
+		checkDiplomacyShit(militaryUnit.getOwner(), tile2);
+		
+		if (tile2.getCityOnTile()!=null){
+			City city = tile2.getCityOnTile();
+			if (city.getOwner()==militaryUnit.getOwner()) throw new Exception("no enemy on this tile");
+			if (doAction) CombatController.meleeAttackCity(militaryUnit, city);
+			return ;
 		}
+		Unit enemyUnit = tile2.getMilitaryUnit();
+		if (enemyUnit==null || enemyUnit.getOwner()==militaryUnit.getOwner()) throw new Exception("no enemy on this tile");
+		if (doAction) CombatController.meleeAttackUnit(militaryUnit, tile);
 	}
 
 	public void rangeAttack(MilitaryUnit militaryUnit, int x2, int y2, boolean doAction) throws Exception{
 		if (!Game.getInstance().checkTileCoordinates(x2, y2)) throw new Exception("target tile does not exist");
 		if (!militaryUnit.getOwner().isTileRevealed(x2, y2)) throw new Exception("target tile is not revealed");
+		if (militaryUnit.getMP()<=0) throw new Exception("no Movement Point");
+		if (militaryUnit.unitType.combatType==CombatType.SIEGE && militaryUnit.getUnitState()!=UnitState.PRE_ATTACK)
+			throw new Exception("siege unit should set-up before attack");
 		
 		Tile tile = militaryUnit.getTile();
 		Tile tile2 = Game.getInstance().getTile(x2, y2);
 		checkDiplomacyShit(militaryUnit.getOwner(), tile2);
-		// TODO: check distance
-		// if (!tile.isNeighbourWith(tile2)) throw new Exception("target tile should be adjacent for Melee Attack");
-		if (militaryUnit.getMP()<=0) throw new Exception("no Movement Point");
-		if (militaryUnit.unitType.combatType==CombatType.SIEGE && militaryUnit.getUnitState()!=UnitState.PRE_ATTACK)
-			throw new Exception("siege unit should set-up before attack");
-		if (doAction) {
-			// TODO: fire!
+		ShortestPathSmall shortestPathSmall = new ShortestPathSmall(Game.getInstance(), tile, militaryUnit.unitType.range);
+		if (shortestPathSmall.getDistance(tile2)>militaryUnit.unitType.range)
+			throw new Exception("target tile is not in range");
+		
+		if (tile2.getCityOnTile()!=null){
+			City city = tile2.getCityOnTile();
+			if (city.getOwner()==militaryUnit.getOwner()) throw new Exception("no enemy on this tile");
+			if (doAction) CombatController.rangeAttackCity(militaryUnit, city);
+			return ;
 		}
+		Unit enemyUnit = tile2.getMilitaryUnit();
+		if (enemyUnit==null) enemyUnit = tile2.getCivilianUnit();
+		if (enemyUnit==null || enemyUnit.getOwner()==militaryUnit.getOwner()) throw new Exception("no enemy on this tile");
+		if (doAction) CombatController.rangeAttackUnit(militaryUnit, tile);
 	}
 
 	public void siegePreAttack(MilitaryUnit militaryUnit, boolean doAction) throws Exception {

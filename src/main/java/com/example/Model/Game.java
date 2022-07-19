@@ -71,8 +71,6 @@ public class Game {
 		}
 		currentPlayer=players.get(currentTurn);
 
-		// Civilization civilization=currentPlayer.getCivilization();
-		// CityController.getInstance().handleImprovementProjects();
 		// TODO
 	}
 

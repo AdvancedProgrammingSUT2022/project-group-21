@@ -42,11 +42,18 @@ public class Civilization {
 	public void endTurn(){
 		for (City city : cities) {
 			city.endTurn();
+			addGold(city.getGoldOut());
+		}
+		for (City city : cities) {
+			addScience(city.getScienceOut());
 		}
 		for (Unit unit : units) {
 			unit.endTurn();
 		}
-		// TODO: tech and ?...
+		if (getCurrentResearchTech().cost<=science){
+			science-=getCurrentResearchTech().cost;
+			endCurrentResearchTech();
+		}
 	}
 
 
@@ -172,7 +179,10 @@ public class Civilization {
 
 
 	public int getScience(){ return science; }
-	public void addScience(int science){ this.science+=science;}
+	public void addScience(int science){
+		this.science+=science;
+		// TODO: handle the gold<0 case
+	}
 
 	public int getHappiness(){ return happiness; }
 	public void addHappiness(int happiness){ this.happiness+=happiness;}
