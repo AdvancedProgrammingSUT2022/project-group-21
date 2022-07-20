@@ -2,7 +2,7 @@ package com.example.View;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,10 +19,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Line;
 
 public class TechnologyTree {
 	private static final int buttonW=120, buttonH=40;
+	private static final int gapW=60, gapH=25;
 
 	private static Document document;
 
@@ -41,14 +42,14 @@ public class TechnologyTree {
 		}
 		return true;
 	}
-
+	
 	public static void putTechnologiesOnAnchorPane(AnchorPane anchorPane){
 		if (!initialize()) return ;
 		Element root = document.getDocumentElement();
 		System.out.println("root: "+root);
 		
 		
-		ArrayList<Element> techElements = new ArrayList<>();
+		HashMap<Technology, Button> buttons = new HashMap<>();
 		
 		Element technologies = (Element) root.getElementsByTagName("Technologies").item(0);
 		NodeList nodeList = technologies.getElementsByTagName("Row");
@@ -58,26 +59,23 @@ public class TechnologyTree {
 			
 			Element element = (Element) node;
 			String techName = getValueOfElement(element, "Type").substring(5);
+			Technology tech;
 			try {
-				Technology.valueOf(techName);
+				tech=Technology.valueOf(techName);
 			} catch (Exception e) {
 				continue ;
 			}
-			techElements.add(element);
+			buttons.put(tech, getTechButton(element));
 		}
-		
-		GridPane gridPane = new GridPane();
-		for (Element element : techElements) {
-			int x = Integer.parseInt(getValueOfElement(element, "GridX"));
-			int y = Integer.parseInt(getValueOfElement(element, "GridY"));
-			gridPane.add(getTechButton(element), x, y);
-		}
-		gridPane.setPrefWidth(2000);
-		gridPane.setPrefHeight(anchorPane.getHeight());
-		gridPane.setMinHeight(anchorPane.getHeight());
-		gridPane.setMaxHeight(anchorPane.getHeight());
-		anchorPane.getChildren().add(gridPane);
 
+		for (Technology tech1 : Technology.values()) {
+			for (Technology tech2 : tech1.prequisiteTechs) {
+				anchorPane.getChildren().add(createLineBetweenTechButtons(buttons.get(tech2), buttons.get(tech1)));
+			}
+		}
+		for (Button button : buttons.values()) {
+			anchorPane.getChildren().add(button);
+		}
 	}
 
 	private static String getValueOfElement(Element element, String tagName){
@@ -90,9 +88,17 @@ public class TechnologyTree {
 
 	private static Button getTechButton(Element element){
 		Technology technology = getTechFromElement(element);
+		int x = Integer.parseInt(getValueOfElement(element, "GridX"));
+		int y = Integer.parseInt(getValueOfElement(element, "GridY"));
+		
 		Button button = new Button(technology.name);
 		button.setPrefWidth(buttonW);
 		button.setPrefHeight(buttonH);
+		
+		button.setLayoutX((buttonW+gapW)*x + 20);
+		button.setLayoutY((buttonH+gapH)*y);
+
+		
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -101,6 +107,16 @@ public class TechnologyTree {
 			}
 		});
 		return button;
+	}
+
+	private static Line createLineBetweenTechButtons(Button button1, Button button2){
+		Line line = new Line();
+		line.setStartX(button1.getLayoutX()+buttonW);
+		line.setStartY(button1.getLayoutY()+buttonH/2);
+		line.setEndX(button2.getLayoutX());
+		line.setEndY(button2.getLayoutY()+buttonH/2);
+		line.setStrokeWidth(2);
+		return line;
 	}
 
 }
