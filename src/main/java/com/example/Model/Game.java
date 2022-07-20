@@ -16,8 +16,7 @@ public class Game {
 	private Tile[][] tiles;
 	private ArrayList<User> players;
 	private User currentPlayer;
-	private int currentTurn;
-	private int totalTurnsCount;
+	private int totalTurnsCount, year;
 
 	public Game(int WIDTH, int HEIGHT, ArrayList<User> players) {
 		instance=this;
@@ -64,10 +63,11 @@ public class Game {
 	
 	// TODO: maybe move to controller
 	public void nextTurn(){
-		currentTurn++;
+		int currentTurn = players.indexOf(currentPlayer)+1;
 		if (currentTurn==players.size()){
 			currentTurn=0;
 			totalTurnsCount++;
+			year+=10;
 		}
 		currentPlayer=players.get(currentTurn);
 
