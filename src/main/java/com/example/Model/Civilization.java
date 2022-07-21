@@ -16,7 +16,7 @@ public class Civilization {
 	private City capitalCity;
 	private ArrayList<Technology> technologies = new ArrayList<>();
 	private HashMap<Resource, Integer> resources = new HashMap<>();
-	private ArrayList<Unit> units;
+	private ArrayList<Unit> units = new ArrayList<>();
 	private boolean[][] revealed;
 	private boolean[][] visible;
 	
@@ -30,12 +30,13 @@ public class Civilization {
 
 
 	public Civilization(Tile tile, int W, int H){
-		this.capitalCity = new City(tile, this);
-		addCity(this.capitalCity);
-		this.revealed = new boolean[W][H];
-		this.visible = new boolean[W][H];
 		this.W=W;
 		this.H=H;
+		revealed = new boolean[W][H];
+		visible = new boolean[W][H];
+		capitalCity = new City(tile, this);
+		
+		addCity(this.capitalCity);
 	}
 
 

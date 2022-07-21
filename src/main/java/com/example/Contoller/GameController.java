@@ -18,8 +18,8 @@ public class GameController {
 			if (user == null) throw new Exception("no user with this username found: " + username);
 			players.add(user);
 		}
-		new Game(50, 50, players, 123456789);
-		// TODO?
+		new Game(20, 20, players, 123456789);
+		// TODO: create map, set up game, ...
 	}
 
 	public void handleQueryFromView(UserActionQuery query){
