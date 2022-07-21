@@ -44,8 +44,6 @@ public class App extends Application {
 		users.add("test");
 		users.add("test2");
 		GameController.getInstance().startNewGame(users);
-
-
 		launch();
 	}
 
