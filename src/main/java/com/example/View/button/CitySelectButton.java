@@ -1,10 +1,11 @@
 package com.example.View.button;
 
 import com.example.Model.city.City;
-import javafx.scene.control.Button;
+
+import javafx.scene.shape.Rectangle;
 
 
-public class CitySelectButton extends Button {
+public class CitySelectButton extends Rectangle {
 	private City city;
 
 	public CitySelectButton(City city) {

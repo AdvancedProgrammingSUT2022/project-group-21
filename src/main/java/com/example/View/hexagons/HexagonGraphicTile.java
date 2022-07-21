@@ -2,7 +2,6 @@ package com.example.View.hexagons;
 
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
-import com.example.View.button.CitySelectButton;
 import com.example.View.button.TileSelectButton;
 import com.example.View.button.UnitSelectButton;
 
@@ -12,6 +11,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 public class HexagonGraphicTile extends Polygon {
 	public final static double r = 80; // the inner radius from hexagon center to outer corner
@@ -21,10 +21,10 @@ public class HexagonGraphicTile extends Polygon {
 	private final static double TILE_WIDTH = 2 * n;
 	
 	public Label coordinates;
-	public Button mainButton;
-	public Button rightButton;
-	public Button lowerLeftButton;
-	public Button higherLeftButton;
+	public Rectangle mainButton;
+	public Rectangle rightButton;
+	public Rectangle lowerLeftButton;
+	public Rectangle higherLeftButton;
 
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile) {
 		setCoordinates(x, y, j, i);
@@ -42,35 +42,35 @@ public class HexagonGraphicTile extends Polygon {
 
 	public void setRightButton(double x, double y, int j, int i, City city) {
 		// rightButton = new CitySelectButton(city);
-		rightButton = new Button();
+		rightButton = new Rectangle();
 		rightButton.setLayoutX(x + 95);
 		rightButton.setLayoutY(y - 5);
-		rightButton.setPrefWidth(20);
-		rightButton.setPrefHeight(90);
+		rightButton.setWidth(20);
+		rightButton.setHeight(90);
 	}
 
 	private void setMainButton(double x, double y, int j, int i, Tile tile) {
 		mainButton = new TileSelectButton(tile);
 		mainButton.setLayoutX(x + 48);
 		mainButton.setLayoutY(y + 20);
-		mainButton.setPrefWidth(40);
-		mainButton.setPrefHeight(40);
+		mainButton.setWidth(40);
+		mainButton.setHeight(40);
 	}
 
 	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) {
 		higherLeftButton = new UnitSelectButton(tile.getMilitaryUnit());
 		higherLeftButton.setLayoutX(x + 10);
 		higherLeftButton.setLayoutY(y + 5);
-		higherLeftButton.setPrefWidth(30);
-		higherLeftButton.setPrefHeight(30);
+		higherLeftButton.setWidth(30);
+		higherLeftButton.setHeight(30);
 	}
 
 	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) {
 		lowerLeftButton = new UnitSelectButton(tile.getCivilianUnit());
 		lowerLeftButton.setLayoutX(x + 10);
 		lowerLeftButton.setLayoutY(y + 45);
-		lowerLeftButton.setPrefWidth(30);
-		lowerLeftButton.setPrefHeight(30);
+		lowerLeftButton.setWidth(30);
+		lowerLeftButton.setHeight(30);
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {

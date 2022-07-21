@@ -3,10 +3,8 @@ package com.example.View.hexagons;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 public class MapPaneMaker {
 
@@ -46,9 +44,10 @@ public class MapPaneMaker {
 				addButton(pane, hex.rightButton);
 				addButton(pane, hex.higherLeftButton);
 				addButton(pane, hex.lowerLeftButton);
+				
 			}
 	}
-	private static void addButton(Pane pane, Button button){
+	private static void addButton(Pane pane, Rectangle button){
 		if (button==null) return ;
 		pane.getChildren().add(button);
 	}
