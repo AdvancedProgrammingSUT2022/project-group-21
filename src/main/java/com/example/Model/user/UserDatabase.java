@@ -6,28 +6,35 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
 public class UserDatabase {
 	private static UserDatabase instance;
 	public static UserDatabase getInstance(){
 		if (instance==null){
 			synchronized(UserDatabase.class){
-				if (instance==null) instance = new UserDatabase();
+				if (instance==null){
+					instance = new UserDatabase();
+					instance.initialize();
+				}
 			}
 		}
 		return instance;
 	}
 
+	private UserDatabase(){
+	}
+	
 	private static final String fileName = "users.json";
 	private Gson gson;
-	private HashMap<String, User> allUsers;
-
-	private UserDatabase(){
+	
+	@Expose private ArrayList<User> allUsers = new ArrayList<>();
+	
+	
+	private void initialize(){
 		gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		loadUsersFromFile();
 	}
@@ -49,15 +56,17 @@ public class UserDatabase {
 	private void loadUsersFromFile(){
 		try {
 			String json = readFromFile();
-			allUsers = (HashMap<String, User>) gson.fromJson(json, HashMap.class);
+			allUsers = gson.fromJson(json, UserDatabase.class).allUsers;
 		} catch (IOException e) {
 			System.out.println("error: file users.json not found");
-			allUsers = new HashMap<>();
 		}
+		if (allUsers==null) allUsers = new ArrayList<>();
+
 	}
 	private void saveUsersToFile(){
 		try {
-			writeToFile(gson.toJson(allUsers));
+			System.out.println(this.allUsers.size());
+			writeToFile(gson.toJson(this, UserDatabase.class));
 		} catch (FileNotFoundException e) {
 			System.out.println("error: cant write to file users.json");
 			e.printStackTrace();
@@ -65,21 +74,20 @@ public class UserDatabase {
 	}
 
 	public synchronized void addUser(User user){
-		allUsers.put(user.getUsername(), user);
+		allUsers.add(user);
 		saveUsersToFile();
 	}
 	
 	public User getUserByUsername(String username) {
-		return allUsers.get(username);
+		for (User user : allUsers) {
+			if (user.getUsername().equals(username))
+				return user;
+		}
+		return null;
 	}
 
 	public ArrayList<User> getUserList() {
-		ArrayList<User> users = new ArrayList<>();
-	
-		for (Map.Entry<String, User> stringUserEntry : allUsers.entrySet())
-			users.add(stringUserEntry.getValue());
-	
-		return users;
+		return allUsers;
 	}
 	
 

@@ -20,13 +20,17 @@ public class Game {
 
 	public Game(int WIDTH, int HEIGHT, ArrayList<User> players) {
 		instance=this;
+		
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.players = players;
+		this.tiles = new Tile[WIDTH][HEIGHT];
 		Random random = new Random(System.nanoTime());
 		long seed=random.nextInt();
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
+
+		currentPlayer = players.get(0);
 	}
 	
 	private void putPlayersOnMap(Random random){

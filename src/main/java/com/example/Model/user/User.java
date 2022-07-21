@@ -1,10 +1,6 @@
 package com.example.Model.user;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.example.Model.Civilization;
 import com.google.gson.annotations.Expose;
 

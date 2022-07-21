@@ -19,7 +19,6 @@ public class RandomMapGenerator {
 	public void generateRandomMap(Game game, Tile[][] tiles, long seed){
 		Random random = new Random(seed);
 		Terrain[] terrains=Terrain.values();
-		tiles = new Tile[game.WIDTH][game.HEIGHT];
 		for (int i=0; i<game.WIDTH; i++){
 			for (int j=0; j<game.HEIGHT; j++){
 				tiles[i][j]=new Tile(i, j, terrains[random.nextInt(terrains.length)]);
@@ -93,13 +92,16 @@ public class RandomMapGenerator {
 			for (int j=0; j<game.HEIGHT; j++){
 				ArrayList<Resource> possibleResources = new ArrayList<>();
 				possibleResources.add(null);
-				for (Resource resource : tiles[i][j].getTerrain().possibleResources) {
+				Tile tile = tiles[i][j];
+				for (Resource resource : tile.getTerrain().possibleResources) {
 					possibleResources.add(resource);
 				}
-				for (Resource resource : tiles[i][j].getTerrainFeature().possibleResources) {
-					possibleResources.add(resource);
+				if (tile.getTerrainFeature()!=null){
+					for (Resource resource : tile.getTerrainFeature().possibleResources) {
+						possibleResources.add(resource);
+					}
 				}
-				tiles[i][j].setResource(possibleResources.get(random.nextInt(possibleResources.size())));
+				tile.setResource(possibleResources.get(random.nextInt(possibleResources.size())));
 			}
 		}
 	}

@@ -3,7 +3,6 @@ package com.example.Contoller;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
 
-// TODO
 public class UserController {
 	private static UserController instance;
 	public static UserController getInstance() {
