@@ -7,11 +7,15 @@ import com.example.View.button.UnitSelectButton;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+
+import java.util.Locale;
 
 public class HexagonGraphicTile extends Polygon {
 	public final static double r = 80; // the inner radius from hexagon center to outer corner
@@ -35,7 +39,8 @@ public class HexagonGraphicTile extends Polygon {
 		// creates the polygon using the corner coordinates
 		getPoints().addAll(x, y, x, y + r, x + n, y + r * 1.5, x + TILE_WIDTH, y + r, x + TILE_WIDTH, y, x + n,
 				y - r * 0.5);
-		setFill(Color.ANTIQUEWHITE);
+		setFill(new ImagePattern(new Image(getClass().getResource("/Terrain/"+
+				tile.getTerrain().name().toLowerCase()+".png").toExternalForm())));
 		setStrokeWidth(1);
 		setStroke(Color.BLACK);
 	}
@@ -63,6 +68,12 @@ public class HexagonGraphicTile extends Polygon {
 		higherLeftButton.setLayoutY(y + 5);
 		higherLeftButton.setWidth(30);
 		higherLeftButton.setHeight(30);
+		try {
+			higherLeftButton.setFill(new ImagePattern(new Image(getClass().getResource("/Unit/"+
+					tile.getMilitaryUnit().unitType.name().toLowerCase()+".png").toExternalForm())));
+		}
+		catch (Exception e)
+		{}
 	}
 
 	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) {

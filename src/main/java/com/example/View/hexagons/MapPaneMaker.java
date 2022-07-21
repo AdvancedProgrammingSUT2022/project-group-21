@@ -23,8 +23,8 @@ public class MapPaneMaker {
 	}
 
 	private static void addHexagons(Pane pane, Game game, Civilization civilization) {
-		for (int j = 0; j < game.HEIGHT; j++)
-			for (int i = 0; i < game.WIDTH; i++) {
+		for (int j = 0; j < game.WIDTH; j++)
+			for (int i = 0; i < game.HEIGHT; i++) {
 				HexagonGraphicTile hex;
 				if (j % 2 == 0){
 					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(j, i));
