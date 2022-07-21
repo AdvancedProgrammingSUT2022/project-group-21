@@ -15,7 +15,8 @@ public class MapPaneMaker {
 		// scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		// scrollPane.setPannable(true);
 		Pane content = new Pane();
-		content.setPrefSize(1500, 1000);
+		content.setPrefSize(HexagonGraphicTile.TILE_WIDTH*game.WIDTH+400, HexagonGraphicTile
+				.TILE_HEIGHT*3*game.HEIGHT/4+400);
 		// scrollPane.setContent(content);
 		addHexagons(content, game, civilization);
 		// return scrollPane;
@@ -23,11 +24,11 @@ public class MapPaneMaker {
 	}
 
 	private static void addHexagons(Pane pane, Game game, Civilization civilization) {
-		for (int j = 0; j < game.WIDTH; j++)
-			for (int i = 0; i < game.HEIGHT; i++) {
+		for (int j = 0; j < game.HEIGHT; j++)
+			for (int i = 0; i < game.WIDTH; i++) {
 				HexagonGraphicTile hex;
 				if (j % 2 == 0){
-					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(j, i));
+					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(i, j));
 				}
 				else{
 					hex = new HexagonGraphicTile(200 +
@@ -35,7 +36,7 @@ public class MapPaneMaker {
 									HexagonGraphicTile.n,
 							200 +
 									HexagonGraphicTile.r * 1.5 * j,
-							j, i, game.getTile(j, i));
+							j, i, game.getTile(i, j));
 				}
 				pane.getChildren().add(hex);
 				pane.getChildren().add(hex.coordinates);

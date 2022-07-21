@@ -21,8 +21,8 @@ public class HexagonGraphicTile extends Polygon {
 	public final static double r = 80; // the inner radius from hexagon center to outer corner
 	public final static double n = Math.sqrt(r * r * 0.75); // the inner radius from hexagon center to middle of the
 																// axis
-	private final static double TILE_HEIGHT = 2 * r;
-	private final static double TILE_WIDTH = 2 * n;
+	public final static double TILE_HEIGHT = 2 * r;
+	public final static double TILE_WIDTH = 2 * n;
 	
 	public Label coordinates;
 	public Rectangle mainButton;
@@ -52,6 +52,7 @@ public class HexagonGraphicTile extends Polygon {
 		rightButton.setLayoutY(y - 5);
 		rightButton.setWidth(20);
 		rightButton.setHeight(90);
+		rightButton.setFill(Color.PALETURQUOISE);
 	}
 
 	private void setMainButton(double x, double y, int j, int i, Tile tile) {
@@ -60,6 +61,7 @@ public class HexagonGraphicTile extends Polygon {
 		mainButton.setLayoutY(y + 20);
 		mainButton.setWidth(40);
 		mainButton.setHeight(40);
+		mainButton.setFill(new ImagePattern(new Image(getClass().getResource("/status.png").toExternalForm())));
 	}
 
 	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) {
@@ -73,7 +75,9 @@ public class HexagonGraphicTile extends Polygon {
 					tile.getMilitaryUnit().unitType.name().toLowerCase()+".png").toExternalForm())));
 		}
 		catch (Exception e)
-		{}
+		{
+			higherLeftButton.setFill(Color.TRANSPARENT);
+		}
 	}
 
 	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) {
@@ -82,6 +86,12 @@ public class HexagonGraphicTile extends Polygon {
 		lowerLeftButton.setLayoutY(y + 45);
 		lowerLeftButton.setWidth(30);
 		lowerLeftButton.setHeight(30);
+		try {
+			lowerLeftButton.setFill(new ImagePattern(new Image(getClass().getResource("/Unit/" +
+					tile.getCivilianUnit().unitType.name().toLowerCase() + ".png").toExternalForm())));
+		} catch (Exception e) {
+			lowerLeftButton.setFill(Color.TRANSPARENT);
+		}
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {
