@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
+import com.example.Model.Civilization;
+import com.example.Model.Game;
+import com.example.Model.unit.UnitType;
 import com.example.View.TechnologyTree;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -44,7 +47,10 @@ public class App extends Application {
 		users.add("test");
 		users.add("test2");
 		GameController.getInstance().startNewGame(users);
+		Civilization civ = Game.getInstance().getCurrentPlayer().getCivilization();
 
+		UnitType.WORKER.createUnit(civ, Game.getInstance().getTile(2, 2));
+		UnitType.TANK.createUnit(civ, Game.getInstance().getTile(2, 3));
 
 		launch();
 	}
