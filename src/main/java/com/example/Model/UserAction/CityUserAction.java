@@ -7,6 +7,7 @@ import com.example.Model.city.Building;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.UnitType;
+import com.google.gson.annotations.Expose;
 
 public class CityUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, CityUserAction cityUserAction){
@@ -74,11 +75,11 @@ public class CityUserAction extends UserAction{
 	
 	
 
-	public int x1, y1; // city coordinates
-	public int x2, y2; // target coordinates(shoot, lock citizen)
-	public CityActionType actionType;
-	public Building building;
-	public UnitType unitType;
+	@Expose public int x1, y1; // city coordinates
+	@Expose public int x2, y2; // target coordinates(shoot, lock citizen)
+	@Expose public CityActionType actionType;
+	@Expose public Building building;
+	@Expose public UnitType unitType;
 
 
 	@Override

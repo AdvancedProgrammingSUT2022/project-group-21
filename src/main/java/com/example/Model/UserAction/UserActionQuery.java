@@ -3,13 +3,18 @@ package com.example.Model.UserAction;
 import com.example.Model.Game;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
 public class UserActionQuery {
-	public String username;
-	public CityUserAction cityUserAction;
-	public DiplomacyUserAction diplomacyUserAction;
-	public CivilizationUserAction civUserAction;
-	public UnitUserAction unitUserAction;
+	private static Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+
+	@Expose public String username;
+	@Expose public CityUserAction cityUserAction;
+	@Expose public DiplomacyUserAction diplomacyUserAction;
+	@Expose public CivilizationUserAction civUserAction;
+	@Expose public UnitUserAction unitUserAction;
 
 	public UserActionQuery(String username, CityUserAction cityUserAction, DiplomacyUserAction diplomacyUserAction, CivilizationUserAction civUserAction, UnitUserAction unitUserAction){
 		this.username=username;
@@ -53,4 +58,13 @@ public class UserActionQuery {
 			e.printStackTrace();
 		}
 	}
+
+	
+	public String toJson(){
+		return gson.toJson(this);
+	}
+	public static UserActionQuery fromJson(String json){
+		return gson.fromJson(json, UserActionQuery.class);
+	}
+
 }

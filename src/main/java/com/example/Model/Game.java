@@ -11,6 +11,7 @@ public class Game {
 	private static Game instance;
 	public static Game getInstance(){ return instance;} // TODO: maybe I should remove singleton?
 
+	public final GameHistory gameHistory;
 	public final int WIDTH;
 	public final int HEIGHT;
 	private Tile[][] tiles;
@@ -18,13 +19,13 @@ public class Game {
 	private User currentPlayer;
 	private int totalTurnsCount, year;
 
-	public Game(int WIDTH, int HEIGHT, ArrayList<User> players) {
+	public Game(int WIDTH, int HEIGHT, ArrayList<User> players, long seed) {
 		instance=this;
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.players = players;
+		this.gameHistory = new GameHistory(WIDTH, HEIGHT, players, seed);
 		Random random = new Random(System.nanoTime());
-		long seed=random.nextInt();
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
 	}
@@ -47,11 +48,7 @@ public class Game {
 	public Tile getTile(int x, int y){
 		return tiles[x][y];
 	}
-	public void changeTileOwner(Tile tile, Civilization civilization){
-		if (tile.getOwner()!=null) tile.getOwner().removeTile(tile);
-		tile.setOwner(civilization);
-		civilization.addTile(tile);
-	}
+	
 
 
 	public User getCurrentPlayer() {
@@ -61,7 +58,6 @@ public class Game {
 		return totalTurnsCount;
 	}
 	
-	// TODO: maybe move to controller
 	public void nextTurn(){
 		int currentTurn = players.indexOf(currentPlayer)+1;
 		if (currentTurn==players.size()){
@@ -70,8 +66,7 @@ public class Game {
 			year+=10;
 		}
 		currentPlayer=players.get(currentTurn);
-
-		// TODO
+		// TODO?
 	}
 
 	public boolean isUserPlayingGame(User user){
