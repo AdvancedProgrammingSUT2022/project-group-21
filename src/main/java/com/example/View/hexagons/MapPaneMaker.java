@@ -29,23 +29,23 @@ public class MapPaneMaker {
 			for (int i = 0; i < game.WIDTH; i++) {
 				HexagonGraphicTile hex;
 				if (j % 2 == 0){
-					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.getN(), 200 + HexagonGraphicTile.getR() * 1.5 * j, j, i, game.getTile(j, i));
+					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(j, i));
 				}
 				else{
 					hex = new HexagonGraphicTile(200 +
-							HexagonGraphicTile.getN() + i * 2 *
-									HexagonGraphicTile.getN(),
+							HexagonGraphicTile.n + i * 2 *
+									HexagonGraphicTile.n,
 							200 +
-									HexagonGraphicTile.getR() * 1.5 * j,
+									HexagonGraphicTile.r * 1.5 * j,
 							j, i, game.getTile(j, i));
 				}
 				pane.getChildren().add(hex);
-				pane.getChildren().add(hex.getCoordinates());
+				pane.getChildren().add(hex.coordinates);
 
-				addButton(pane, hex.getMainButton());
-				addButton(pane, hex.getRightButton());
-				addButton(pane, hex.getHigherLeftButton());
-				addButton(pane, hex.getLowerLeftButton());
+				addButton(pane, hex.mainButton);
+				addButton(pane, hex.rightButton);
+				addButton(pane, hex.higherLeftButton);
+				addButton(pane, hex.lowerLeftButton);
 			}
 	}
 	private static void addButton(Pane pane, Button button){

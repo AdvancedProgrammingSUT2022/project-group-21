@@ -6,6 +6,7 @@ import com.example.View.button.CitySelectButton;
 import com.example.View.button.TileSelectButton;
 import com.example.View.button.UnitSelectButton;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -13,51 +14,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class HexagonGraphicTile extends Polygon {
-	private final static double r = 80; // the inner radius from hexagon center to outer corner
-	private final static double n = Math.sqrt(r * r * 0.75); // the inner radius from hexagon center to middle of the
+	public final static double r = 80; // the inner radius from hexagon center to outer corner
+	public final static double n = Math.sqrt(r * r * 0.75); // the inner radius from hexagon center to middle of the
 																// axis
 	private final static double TILE_HEIGHT = 2 * r;
 	private final static double TILE_WIDTH = 2 * n;
-	private Label coordinates;
-	private TileSelectButton mainButton;
-	private CitySelectButton rightButton;
-	private UnitSelectButton lowerLeftButton;
-	private UnitSelectButton higherLeftButton;
-
-	public static double getN() {
-		return n;
-	}
-
-	public static double getR() {
-		return r;
-	}
-
-	public Label getCoordinates() {
-		return coordinates;
-	}
-
-	public TileSelectButton getMainButton() {
-		return mainButton;
-	}
-
-	public CitySelectButton getRightButton() {
-		return rightButton;
-	}
-
-	public UnitSelectButton getHigherLeftButton() {
-		return higherLeftButton;
-	}
-
-	public UnitSelectButton getLowerLeftButton() {
-		return lowerLeftButton;
-	}
+	
+	public Label coordinates;
+	public Button mainButton;
+	public Button rightButton;
+	public Button lowerLeftButton;
+	public Button higherLeftButton;
 
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile) {
 		setCoordinates(x, y, j, i);
-		// setMainButton(x, y, j, i, tile);
-		// setRightButton(x, y, j, i, tile.getCityOnTile());
-		// setHigherLeftButton(x, y, j, i, tile);
-		// setLowerLeftButton(x, y, j, i, tile);
+		setMainButton(x, y, j, i, tile);
+		setRightButton(x, y, j, i, tile.getCityOnTile());
+		setHigherLeftButton(x, y, j, i, tile);
+		setLowerLeftButton(x, y, j, i, tile);
 		// creates the polygon using the corner coordinates
 		getPoints().addAll(x, y, x, y + r, x + n, y + r * 1.5, x + TILE_WIDTH, y + r, x + TILE_WIDTH, y, x + n,
 				y - r * 0.5);
@@ -67,7 +41,8 @@ public class HexagonGraphicTile extends Polygon {
 	}
 
 	public void setRightButton(double x, double y, int j, int i, City city) {
-		rightButton = new CitySelectButton(city);
+		// rightButton = new CitySelectButton(city);
+		rightButton = new Button();
 		rightButton.setLayoutX(x + 95);
 		rightButton.setLayoutY(y - 5);
 		rightButton.setPrefWidth(20);
