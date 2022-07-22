@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.spfa.ShortestPath;
+import com.example.Model.spfa.ShortestPathSmall;
 import com.example.Model.tile.Terrain;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.MilitaryUnit;
@@ -26,7 +27,7 @@ public class City {
 	private int production;
 	private ArrayList<CityProject> notActiveProjects = new ArrayList<>();
 	private CityProject activeProject;
-	private ShortestPath shortestPath;
+	private ShortestPathSmall shortestPath;
 
 	private double HP;
 	private boolean attackedInThisTurn; // TODO: remember to reset it
@@ -36,7 +37,7 @@ public class City {
 		this.center = tile;
 		this.owner = owner;
 		initializeCity();
-		this.shortestPath=new ShortestPath(Game.getInstance(), null, 2); // every city can buy tiles of radius 2
+		this.shortestPath=new ShortestPathSmall(Game.getInstance(), this.center, 2); // every city can buy tiles of radius 2
 	}
 	public void initializeCity(){
 		center.setCityOnTile(this);

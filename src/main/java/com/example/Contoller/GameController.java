@@ -25,7 +25,7 @@ public class GameController {
 			if (user == null) throw new Exception("no user with this username found: " + username);
 			players.add(user);
 		}
-		game=new Game(50, 50, players);
+		game=new Game(20, 25, players);
 		// TODO: create map, set up game, ...
 	}
 
