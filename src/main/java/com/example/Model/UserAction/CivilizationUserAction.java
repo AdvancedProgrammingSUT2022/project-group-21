@@ -3,6 +3,7 @@ package com.example.Model.UserAction;
 import com.example.Contoller.CivilizationActionController;
 import com.example.Model.Civilization;
 import com.example.Model.Technology;
+import com.google.gson.annotations.Expose;
 
 public class CivilizationUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, CivilizationUserAction civUserAction){
@@ -28,9 +29,9 @@ public class CivilizationUserAction extends UserAction{
 
 
 	
-	public CivilizationActionType actionType;
-	public Technology technology;
-	public String cheatString;
+	@Expose public CivilizationActionType actionType;
+	@Expose public Technology technology;
+	@Expose public String cheatString;
 
 	@Override
 	public void validateDoAction(Civilization civilization, boolean doAction) throws Exception {

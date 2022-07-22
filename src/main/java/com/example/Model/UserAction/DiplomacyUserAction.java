@@ -1,6 +1,7 @@
 package com.example.Model.UserAction;
 
 import com.example.Model.Civilization;
+import com.google.gson.annotations.Expose;
 
 public class DiplomacyUserAction extends UserAction{
 	
@@ -11,7 +12,7 @@ public class DiplomacyUserAction extends UserAction{
 		return new UserActionQuery(username1, null, diplomacyUserAction, null, null);
 	}
 
-	public String username2; // second players username
+	@Expose public String username2; // second players username
 
 	@Override
 	public void validateDoAction(Civilization civilization, boolean doAction) throws Exception {

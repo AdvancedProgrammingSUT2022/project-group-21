@@ -1,7 +1,9 @@
 package com.example.Contoller;
 
 import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.city.City;
+import com.example.Model.spfa.ShortestPathSmall;
 import com.example.Model.tile.Improvement;
 import com.example.Model.tile.Terrain;
 import com.example.Model.tile.TerrainFeature;
@@ -24,13 +26,18 @@ public class NonCombatUnitActionController {
 		if (tile.getOwner()!=null) throw new Exception("city tile should not have owner");
 		if (tile.getTerrain()==Terrain.MOUNTAIN || tile.getTerrain()==Terrain.OCEAN)
 			throw new Exception("cant build city on mountain and ocean");
-		// TODO: check distance of 4 from other cities
+		if (getNearestCityDistance(Game.getInstance(), tile)<=4)
+			throw new Exception("there cant be a city within radius of 4 of another city");
 		if (doAction){
 			Civilization civilization = unit.getOwner();
 			City city = new City(tile, civilization);
 			civilization.addCity(city);
 			unit.kill();
 		}
+	}
+
+	private int getNearestCityDistance(Game game, Tile tile){
+		return new ShortestPathSmall(game, tile, 4).getNearestCityDistance();
 	}
 
 	public void buildImprovement(Unit unit, Improvement improvement, boolean doAction) throws Exception{

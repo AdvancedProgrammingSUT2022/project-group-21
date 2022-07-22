@@ -1,5 +1,6 @@
 package com.example.Model.city;
 
+import com.example.Model.unit.CombatType;
 import com.example.Model.unit.UnitType;
 
 public abstract class CityProject{
@@ -25,10 +26,35 @@ public abstract class CityProject{
 		return productionMade;
 	}
 	public int getProductionRequired(){
-		return productionRequired;
+		int speed = 100;
+		if (city.hasBuilding(Building.STABLE)
+			&& (this instanceof CityProjectUnit)
+			&& ((CityProjectUnit) this).unitType.combatType==CombatType.MOUNTED)
+			speed+=25;
+			
+		if (city.hasBuilding(Building.FORGE)
+			&& (this instanceof CityProjectUnit))
+			speed+=15;
+		
+		if (city.hasBuilding(Building.WORKSHOP)
+			&& (this instanceof CityProjectUnit))
+			speed+=20;
+		
+		if (city.hasBuilding(Building.WINDMILL))
+			speed+=15;
+		
+		if (city.hasBuilding(Building.ARSENAL)
+			&& (this instanceof CityProjectUnit))
+			speed+=20;
+		
+		if (city.hasBuilding(Building.FACTORY))
+			speed+=50;
+
+		
+		return productionRequired*100/speed;
 	}
 	public boolean isFinnished(){
-		return productionMade>=productionRequired;
+		return getProductionMade()>=getProductionRequired();
 	}
 
 	public boolean isSettlerProject(){

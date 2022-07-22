@@ -56,7 +56,6 @@ public class Tile {
 	public Terrain getTerrain(){ return terrain;}
 	public TerrainFeature getTerrainFeature(){ return terrainFeature;}
 	public void setTerrainFeature(TerrainFeature terrainFeature){ this.terrainFeature = terrainFeature;}
-	// public void removeTerrainFeature(){ this.terrainFeature=null;} // used for remove Jungle
 	
 
 	public void setImprovement(Improvement improvement){ this.improvement = improvement;} // TODO: and maybe "setPillaged(false)"
@@ -91,7 +90,7 @@ public class Tile {
 		this.rivers = new boolean[6];
 	}
 
-	private int countRivers() {
+	public int countRivers() {
 		int res = 0;
 		for (int i = 0; i < 6; i++)
 			res += (rivers[i] ? 1 : 0);
@@ -121,13 +120,13 @@ public class Tile {
 		return countRivers() > 0;
 	}
 
-	// TODO: affect of Resource on food, production, gold
 	public int getFood() {
 		int res = terrain.food;
 		if (terrainFeature != null) res += terrainFeature.food;
 		if (terrainFeature == TerrainFeature.FOREST) res=1;
 		if (improvement != null && !isPillaged()) res+=improvement.food;
-		
+		if (resource!=null) res+=resource.food;
+
 		return res;
 	}
 
@@ -136,6 +135,8 @@ public class Tile {
 		if (terrainFeature != null) res += terrainFeature.production;
 		if (terrainFeature == TerrainFeature.FOREST) return 1;
 		if (improvement != null && !isPillaged()) res+=improvement.production;
+		if (resource!=null) res+=resource.production;
+
 		return res;
 	}
 
@@ -144,6 +145,7 @@ public class Tile {
 		if (terrainFeature != null) res += terrainFeature.gold;
 		if (improvement != null && !isPillaged()) res+=improvement.gold;
 		res += countRivers();
+		if (resource!=null) res+=resource.gold;
 		return res;
 	}
 

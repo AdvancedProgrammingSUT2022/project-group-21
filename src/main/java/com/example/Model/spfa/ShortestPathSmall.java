@@ -51,4 +51,14 @@ public class ShortestPathSmall {
 		if (res==null) return inf;
 		return res;
 	}
+
+	public int getNearestCityDistance(){
+		int res=inf;
+		for (Tile tile : dist.keySet()) {
+			if (tile.getCityOnTile()==null) continue ;
+			int d=dist.get(tile);
+			if (d<res) res=d;
+		}
+		return res;
+	}
 }

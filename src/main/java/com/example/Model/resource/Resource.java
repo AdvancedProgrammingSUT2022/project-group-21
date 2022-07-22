@@ -50,7 +50,6 @@ public enum Resource {
 	final public int food;
 	final public int production;
 	final public int gold;
-	// final public Terrain canBeFoundOn[];
 	final public Improvement improvementNeeded;
 	final public Technology technologyNeeded;
 
@@ -59,14 +58,13 @@ public enum Resource {
 		this.food=food;
 		this.production=production;
 		this.gold=gold;
-		// this.canBeFoundOn=canBeFoundOn;
 		this.improvementNeeded=improvementNeeded;
 		this.technologyNeeded=technologyNeeded;
 	}
 
 	public boolean isVisible(Civilization civilization) {
 		if (resourceType!=ResourceType.STRATEGIC) return true;
-		//TODO
+		if (civilization.hasTechnology(technologyNeeded)) return true;
 		return false;
 	}
 }

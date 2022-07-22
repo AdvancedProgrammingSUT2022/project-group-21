@@ -58,6 +58,19 @@ public class Civilization {
 	}
 
 
+	public int getScore(){
+		int res=tiles.size()*1000;
+		for (Unit unit : units) {
+			res+=unit.unitType.cost;
+		}
+		for (City city : cities) {
+			res+=city.getScore();
+		}
+		return res;
+	}
+
+
+
 	public void addTechnology(Technology technology){
 		technologies.add(technology);
 	}
@@ -71,6 +84,9 @@ public class Civilization {
 		}
 		return true;
 	}
+	public int countResearchedTechnologies(){
+		return technologies.size();
+	}
 	public ArrayList<Technology> getResearchableTechnologies(){
 		ArrayList<Technology> researchableTechnologies = new ArrayList<Technology>();
 		for (Technology technology : Technology.values()) {
@@ -80,6 +96,7 @@ public class Civilization {
 		}
 		return researchableTechnologies;
 	}
+
 
 	public void setCurrentResearchTech(Technology technology){
 		this.currentResearchTech = technology;
@@ -171,7 +188,7 @@ public class Civilization {
 		calculateVisibleTiles();
 	}
 	public void removeCity(City city){
-		// NOTE: used for destroyed cities
+		// NOTE: used for destroyed and puppeted cities
 		cities.remove(city);
 	}
 	public ArrayList<City> getCities(){
@@ -181,8 +198,8 @@ public class Civilization {
 
 	public int getScience(){ return science; }
 	public void addScience(int science){
-		this.science+=science;
-		// TODO: handle the gold<0 case
+		if (gold<0) gold+=science; // NOTE: science decline
+		else this.science+=science;
 	}
 
 	public int getHappiness(){ return happiness; }

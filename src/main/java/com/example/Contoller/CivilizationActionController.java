@@ -2,6 +2,7 @@ package com.example.Contoller;
 
 import com.example.Model.CheatCode;
 import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.Technology;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
@@ -24,6 +25,7 @@ public class CivilizationActionController {
 		// TODO: make sure everything is checked
 		if (doAction){
 			civilization.endTurn();
+			Game.getInstance().nextTurn();
 		}
 	}
 	

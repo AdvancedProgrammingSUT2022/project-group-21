@@ -38,7 +38,6 @@ public enum Terrain {
 		new ArrayList<TerrainFeature>(Arrays.asList(TerrainFeature.FOREST)),
 		new ArrayList<Resource>(Arrays.asList(Resource.IRON,Resource.HORSE,Resource.SILVER,Resource.GEMSTONE,Resource.MARBLE))
 	);
-	// TODO: complete possibleResources
 
 
 	public final int food;

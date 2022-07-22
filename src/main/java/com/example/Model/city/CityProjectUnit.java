@@ -28,8 +28,7 @@ public class CityProjectUnit extends CityProject{
 	@Override
 	public boolean isValid() {
 		if (!city.getOwner().hasTechnologies(unitType.technologyRequired)) return false;
-		if (unitType==UnitType.SETTLER && city.countCitizens()<2) return false; // SETTLER can be made at city with at least 2 citizens
-		return true;
+		return unitType.canBuildOnCity(city);
 	}
 	
 }

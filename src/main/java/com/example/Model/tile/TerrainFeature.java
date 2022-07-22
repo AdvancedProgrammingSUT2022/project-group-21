@@ -14,7 +14,6 @@ public enum TerrainFeature{
 	JUNGLE(1, -1, 0, +0.25, 2, new ArrayList<Resource>(Arrays.asList(Resource.BANANA,Resource.GEMSTONE,Resource.COLOR)), true, false, false),
 	MARSH(-1, 0, 0, -0.33, 2, new ArrayList<Resource>(Arrays.asList(Resource.SUGAR)), true, false, true),
 	OASIS(3, 0, 1, -0.33, 1, new ArrayList<Resource>(Arrays.asList()), true, false, true);
-	// TODO: complete possibleResources
 
 	
 	public final int food;

@@ -10,6 +10,7 @@ import com.example.Model.unit.CivilianUnit;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.Unit;
 import com.example.Model.unit.WorkerProject.WorkerProjectType;
+import com.google.gson.annotations.Expose;
 
 public class UnitUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, UnitUserAction unitUserAction){
@@ -73,14 +74,14 @@ public class UnitUserAction extends UserAction{
 
 
 
-	public int x1, y1; // unit coordinates
-	public int x2, y2; // destination coordinates(move, attack)
-	public boolean isMilitary; // combat or non-combat unit 
-	public UnitActionType actionType;
+	@Expose public int x1, y1; // unit coordinates
+	@Expose public int x2, y2; // destination coordinates(move, attack)
+	@Expose public boolean isMilitary; // combat or non-combat unit 
+	@Expose public UnitActionType actionType;
 	
 	// only for worker:
-	public WorkerProjectType workerProjectType;
-	public Improvement improvement;
+	@Expose public WorkerProjectType workerProjectType;
+	@Expose public Improvement improvement;
 
 
 	@Override

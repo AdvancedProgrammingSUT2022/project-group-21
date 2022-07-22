@@ -35,7 +35,6 @@ public abstract class Unit {
 	public Tile getTile(){ return tile;}
 	protected void setTile(Tile tile){ // NOTE: tile is adjacent to this.tile
 		this.tile=tile;
-		// TODO: maybe some graphis shit
 	}
 	public void moveSingleTile(Tile tile){
 		removeFromTile();
