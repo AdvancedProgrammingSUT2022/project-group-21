@@ -117,15 +117,7 @@ public class City {
 	public boolean hasBuilding(Building building){
 		return buildings.contains(building);
 	}
-	public ArrayList<Building> getAllPossibleBuildingsToBuild(){
-		ArrayList<Building> out = new ArrayList<>();
-		for (Building building : Building.values()) {
-			if (building.canBuildOnCity(this)){
-				out.add(building);
-			}
-		}
-		return out;
-	}
+	
 
 
 

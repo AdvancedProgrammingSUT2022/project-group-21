@@ -1,5 +1,7 @@
 package com.example.Model.city;
 
+import java.util.ArrayList;
+
 import com.example.Model.Technology;
 import com.example.Model.resource.Resource;
 import com.example.Model.tile.Terrain;
@@ -207,5 +209,14 @@ public enum Building{
 	public void addBuildingToCity(City city){
 		city.addBuilding(this);
 	}
-	
+
+	public ArrayList<Building> getAllPossibleBuildingsToBuild(City city){
+		ArrayList<Building> out = new ArrayList<>();
+		for (Building building : Building.values()) {
+			if (building.canBuildOnCity(city)){
+				out.add(building);
+			}
+		}
+		return out;
+	}
 }
