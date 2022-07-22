@@ -58,6 +58,19 @@ public class Civilization {
 	}
 
 
+	public int getScore(){
+		int res=tiles.size()*1000;
+		for (Unit unit : units) {
+			res+=unit.unitType.cost;
+		}
+		for (City city : cities) {
+			res+=city.getScore();
+		}
+		return res;
+	}
+
+
+
 	public void addTechnology(Technology technology){
 		technologies.add(technology);
 	}
@@ -71,6 +84,9 @@ public class Civilization {
 		}
 		return true;
 	}
+	public int countResearchedTechnologies(){
+		return technologies.size();
+	}
 	public ArrayList<Technology> getResearchableTechnologies(){
 		ArrayList<Technology> researchableTechnologies = new ArrayList<Technology>();
 		for (Technology technology : Technology.values()) {
@@ -80,6 +96,7 @@ public class Civilization {
 		}
 		return researchableTechnologies;
 	}
+
 
 	public void setCurrentResearchTech(Technology technology){
 		this.currentResearchTech = technology;

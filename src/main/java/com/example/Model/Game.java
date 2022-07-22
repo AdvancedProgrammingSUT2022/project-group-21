@@ -81,4 +81,18 @@ public class Game {
 		return year;
 	}
 
+	public ArrayList<User> getPlayers(){
+		return players;
+	}
+
+	public void removePlayer(User user){
+		if (user==currentPlayer) nextTurn();
+		players.remove(user);
+	}
+
+	public void endGame(){
+		instance = null;
+		// TODO: update scoreboard
+	}
+
 }

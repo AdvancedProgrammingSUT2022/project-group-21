@@ -51,6 +51,14 @@ public class City {
 	}
 
 
+	public int getScore(){
+		int res=5000;
+		for (Building building : buildings) {
+			res+=building.cost;
+		}
+		return res;
+	}
+
 	
 	public void endTurn(){
 		food+=getFoodOut();
