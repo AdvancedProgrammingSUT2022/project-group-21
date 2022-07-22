@@ -5,13 +5,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:id="pane" prefHeight="243.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" prefHeight="243.0" prefWidth="475.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.popupController.CitySelectedController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="271.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/pic/city.jpg" />
          </image>
       </ImageView>
+
+      <Button fx:id="LOCK_UNLOCK_CITIZEN" layoutX="86.0" layoutY="28.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Lock/Unlock citizen" />
+      <Button fx:id="SHOOT" layoutX="86.0" layoutY="63.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="shoot" />
+      <Button fx:id="UNIT_PRODUCTION" layoutX="86.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="unit  production" />
+      <Button fx:id="building_production" layoutX="86.0" layoutY="134.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="building production" />
+      <Button fx:id="buy_building" layoutX="86.0" layoutY="168.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="buy building" />
+      <Button fx:id="buy_unit" layoutX="86.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="buy unit" />
+      <Button fx:id="back" layoutX="9.0" layoutY="208.0" mnemonicParsing="false" onMouseClicked="#back" text="&lt;" />
+
    </children>
 </AnchorPane>

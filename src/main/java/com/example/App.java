@@ -12,6 +12,8 @@ import com.example.View.GamePage;
 import com.example.View.LoginPage;
 import com.example.View.TechnologyTree;
 import com.example.View.popup.CitySelectedView;
+import com.example.View.popup.TileSelectedView;
+import com.example.View.popup.UnitSelectedView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,7 +30,8 @@ public class App extends Application {
 //		TO run Game Page uncomment this
 //		GamePage.show(stage);
 
-		LoginPage.show();
+//		LoginPage.show();
+		UnitSelectedView.show();
 	}
 
 	public static void main(String[] args) throws Exception{

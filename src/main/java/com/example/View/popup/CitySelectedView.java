@@ -22,7 +22,7 @@ public class CitySelectedView extends Application {
 
     }
 
-    public static void show() throws IOException {;
+    public static void show() throws IOException {
 //        city = c;
         Stage stage = new Stage();
         Scene scene = new Scene(loadFXML("CitySelectedPopup"));

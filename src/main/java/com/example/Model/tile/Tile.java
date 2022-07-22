@@ -177,6 +177,4 @@ public class Tile {
 	public void setOwner(Civilization owner){ this.owner = owner; }
 	public Civilization getOwner(){ return this.owner; }
 
-
-
 }

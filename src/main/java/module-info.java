@@ -7,12 +7,15 @@ module com.example {
 
 	requires com.google.gson;
 
+
 	opens com.example.Model.user to com.google.gson;
 
 	opens com.example to javafx.fxml;
 	opens com.example.ViewController to javafx.fxml;
 
+	opens com.example.ViewController.popupController to javafx.fxml;
+
 	exports com.example;
 	exports com.example.View;
-	// exports com.example.ViewController;
+//	 exports com.example.ViewController;
 }
