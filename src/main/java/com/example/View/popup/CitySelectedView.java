@@ -19,7 +19,7 @@ public class CitySelectedView extends Application {
     public static City city;
     @Override
     public void start(Stage stage) throws Exception {
-        show();
+
     }
 
     public static void show() throws IOException {;
@@ -29,7 +29,7 @@ public class CitySelectedView extends Application {
         stage.setTitle("selected City");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UTILITY);
-        stage.setAlwaysOnTop(true);
+//        stage.setAlwaysOnTop(true);
         stage.show();
     }
     private static Parent loadFXML(String fxml) throws IOException {

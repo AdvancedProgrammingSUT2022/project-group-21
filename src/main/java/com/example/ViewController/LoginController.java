@@ -57,7 +57,6 @@ public class LoginController {
     }
     public void Register(MouseEvent mouseEvent) throws IOException {
         goToRegisterPage();
-//        CitySelectedView.show();
     }
 
     private void goToRegisterPage() throws IOException {

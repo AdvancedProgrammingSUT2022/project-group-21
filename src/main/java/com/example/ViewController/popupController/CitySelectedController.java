@@ -1,5 +1,9 @@
 package com.example.ViewController.popupController;
 
-public class CitySelectedController {
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 
+public class CitySelectedController {
+@FXML
+private AnchorPane pane;
 }

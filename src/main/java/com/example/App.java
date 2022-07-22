@@ -31,8 +31,6 @@ public class App extends Application {
 		LoginPage.show();
 	}
 
-
-
 	public static void main(String[] args) throws Exception{
 		launch();
 	}
