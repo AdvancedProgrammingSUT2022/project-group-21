@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import com.example.Model.Civilization;
 import com.example.Model.Game;
+import com.example.Model.resource.Resource;
 import com.example.Model.spfa.ShortestPath;
 import com.example.Model.spfa.ShortestPathSmall;
 import com.example.Model.tile.Terrain;
+import com.example.Model.tile.TerrainFeature;
 import com.example.Model.tile.Tile;
 import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.UnitType;
@@ -49,12 +51,13 @@ public class City {
 		}
 	}
 
+
 	
 	public void endTurn(){
 		food+=getFoodOut();
 		production+=getProductionOut();
-		if (food>=foodToGrow){
-			food-=foodToGrow;
+		if (food>=getFoodToGrow()){
+			food-=getFoodToGrow();
 			growCity();
 		}
 		activeProject.makeProduction(production);
@@ -110,11 +113,14 @@ public class City {
 
 	// TODO: not sure about the calculation, just made smth that depends on all that it should :(
 	public double getCombatStrength(){
-		double res=15;
+		double res=10;
 		MilitaryUnit unit = center.getMilitaryUnit();
 		if (unit!=null) res+=unit.getCombatStrength();
 		res*=center.getCombatModifier();
 		if (center.getTerrain()==Terrain.HILL) res*=1.1;
+		if (hasBuilding(Building.WALLS)) res+=5;
+		if (hasBuilding(Building.CASTLE)) res+=7.5;
+		if (hasBuilding(Building.MILITARY_BASE)) res+=12;
 		return res;
 	}
 
@@ -162,6 +168,16 @@ public class City {
 		attackedInThisTurn=val;
 	}
 	
+
+
+	public boolean hasImprovedResource(Resource resource){
+		for (Tile tile : tiles) {
+			if (tile.getResource()!=resource) continue ;
+			if (tile.getImprovement()!=resource.improvementNeeded) continue ;
+			return true;
+		}
+		return false;
+	}
 	
 
 
@@ -190,7 +206,10 @@ public class City {
 		population++;
 		foodToGrow*=1.5;
 	}
-
+	private int getFoodToGrow(){
+		if (hasBuilding(Building.HOSPITAL)) return foodToGrow/2;
+		return foodToGrow;
+	}
 
 
 
@@ -243,9 +262,8 @@ public class City {
 			res+=tile.getFood();
 		}
 		res+=center.getFood();
-		for (Building building : buildings) {
-			// TODO
-		}
+		if (hasBuilding(Building.GRANARY)) res+=2;
+		if (hasBuilding(Building.WATER_MILL)) res+=2;
 		res-=2*population;
 		if (res>0 && owner.getHappiness()<0) res/=3; // affect of unhappiness on food
 		if (res>0 && activeProject!=null && activeProject.isSettlerProject()) res=0; // affect of settler on food
@@ -258,30 +276,36 @@ public class City {
 			res+=tile.getProduction();
 		}
 		res+=center.getProduction();
-		for (Building building : buildings) {
-			// TODO
-		}
 		return res;
 	}
 
 	public int getGoldOut() {
-		int res=0;
+		double res=0;
 		for (Tile tile : lockedTiles) {
 			res+=tile.getProduction();
 		}
 		res+=center.getProduction();
-		for (Building building : buildings) {
-			// TODO
-		}
-		return res;
+		if (hasImprovedResource(Resource.GOLD)) res+=3;
+		if (hasImprovedResource(Resource.SILVER)) res+=3;
+		
+		if (hasBuilding(Building.MARKET)) res+=res/4;
+		if (hasBuilding(Building.BANK)) res+=res/4;
+		if (hasBuilding(Building.SATRAPS_COURT)) res+=res/4;
+		if (hasBuilding(Building.SATRAPS_COURT)) res+=res/3;
+		return (int) res;
 	}
 
 	public int getScienceOut() {
-		int res=countCitizens() + (isCapital()?3:0);
-		for (Building building : buildings) {
-			// TODO
+		double res=countCitizens() + (isCapital()?3:0);
+		if (hasBuilding(Building.LIBRARY)) res+=population/2;
+		if (hasBuilding(Building.UNIVERSITY)){
+			for (Tile tile : lockedTiles) {
+				if (tile.getTerrainFeature()==TerrainFeature.JUNGLE) res+=2;
+			}
 		}
-		return res;
+		if (hasBuilding(Building.UNIVERSITY)) res+=res/2;
+		if (hasBuilding(Building.PUBLIC_SCHOOL)) res+=res/2;
+		return (int) res;
 	}
 
 }

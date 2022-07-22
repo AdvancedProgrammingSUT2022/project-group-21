@@ -19,7 +19,8 @@ public class CityProjectBuilding extends CityProject{
 
 	@Override
 	public boolean doFinnishAction() {
-		city.addBuilding(building);
+		// city.addBuilding(building);
+		building.addBuildingToCity(city);
 		return true;
 	}
 

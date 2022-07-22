@@ -77,4 +77,8 @@ public class Game {
 		return players.contains(user);
 	}
 
+	public int getYear(){
+		return year;
+	}
+
 }
