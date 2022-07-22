@@ -31,7 +31,7 @@ public class City {
 	private ShortestPathSmall shortestPath;
 
 	private double HP;
-	private boolean attackedInThisTurn; // TODO: remember to reset it
+	private boolean attackedInThisTurn;
 
 
 	public City(Tile tile, Civilization owner){

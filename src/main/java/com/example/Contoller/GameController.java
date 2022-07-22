@@ -19,7 +19,6 @@ public class GameController {
 			players.add(user);
 		}
 		new Game(20, 20, players, 123456789);
-		// TODO: create map, set up game, ...
 	}
 
 	public boolean handleQueryFromView(UserActionQuery query){
