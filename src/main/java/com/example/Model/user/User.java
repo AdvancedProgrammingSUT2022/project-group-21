@@ -31,5 +31,8 @@ public class User {
 
 	public void setCivilization(Civilization civilization){ this.civilization=civilization;}
 	public Civilization getCivilization(){ return this.civilization;}
-	
+
+	public String getPassword() {
+		return password;
+	}
 }

@@ -34,5 +34,11 @@
             <version>4.11</version>
             <scope>test</scope>
           </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>19-ea+6</version>
+        </dependency>
     </dependencies>
 </project>

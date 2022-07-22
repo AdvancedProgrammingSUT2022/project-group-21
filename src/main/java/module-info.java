@@ -3,6 +3,8 @@ module com.example {
 	requires javafx.fxml;
 	requires java.xml;
 
+	requires javafx.media;
+
 	requires com.google.gson;
 
 	opens com.example.Model.user to com.google.gson;
