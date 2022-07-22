@@ -22,15 +22,17 @@ public class GameController {
 		// TODO: create map, set up game, ...
 	}
 
-	public void handleQueryFromView(UserActionQuery query){
+	public boolean handleQueryFromView(UserActionQuery query){
 		try {
 			query.validate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// TODO: show a graphic notification instead
+			return false;
 		}
 		Game.getInstance().gameHistory.addAction(query);
 		query.doAction();
+		return true;
 	}
 
 }

@@ -13,7 +13,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.example.App;
+import com.example.Contoller.GameController;
+import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.Technology;
+import com.example.Model.UserAction.CivilizationUserAction;
+import com.example.Model.UserAction.UserActionQuery;
+import com.example.Model.user.User;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -40,14 +46,13 @@ public class TechnologyTree {
 			e.printStackTrace();
 			return false;
 		}
+
 		return true;
 	}
 	
 	public static void putTechnologiesOnAnchorPane(AnchorPane anchorPane){
 		if (!initialize()) return ;
 		Element root = document.getDocumentElement();
-		System.out.println("root: "+root);
-		
 		
 		HashMap<Technology, Button> buttons = new HashMap<>();
 		
@@ -99,13 +104,17 @@ public class TechnologyTree {
 		button.setLayoutY((buttonH+gapH)*y);
 
 		
+		User user = Game.getInstance().getCurrentPlayer();
+		
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				// TODO: add button action
+				UserActionQuery query = CivilizationUserAction.setResearch(user.getUsername(), technology);
+				GameController.getInstance().handleQueryFromView(query);
 			}
 		});
+		applyCivilizationToButton(button, technology, user.getCivilization());
+
 		return button;
 	}
 
@@ -117,6 +126,14 @@ public class TechnologyTree {
 		line.setEndY(button2.getLayoutY()+buttonH/2);
 		line.setStrokeWidth(2);
 		return line;
+	}
+
+	private static void applyCivilizationToButton(Button button, Technology technology, Civilization civilization){		
+		if (technology.canBeResearchedBy(civilization)) button.setDisable(false);
+		else button.setDisable(true);
+		if (civilization.hasTechnology(technology)) button.setStyle("-fx-background-color: #12ed0b;");
+		else if (technology.canBeResearchedBy(civilization)) button.setStyle("-fx-background-color: #0be2ed;");
+		else button.setStyle("-fx-background-color: #c16573;");
 	}
 
 }

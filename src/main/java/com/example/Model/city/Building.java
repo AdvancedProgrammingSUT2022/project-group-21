@@ -199,6 +199,7 @@ public enum Building{
 	}
 
 	public boolean canBuildOnCity(City city){
+		if (technologyRequired==null) return true;
 		if (city.getOwner().hasTechnology(technologyRequired)) return true;
 		return false;
 	}

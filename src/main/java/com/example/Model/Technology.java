@@ -114,7 +114,7 @@ public enum Technology{
 	}
 
 	public boolean canBeResearchedBy(Civilization civilization){
-		return civilization.hasTechnologies(prequisiteTechs);
+		return civilization.hasTechnologies(prequisiteTechs) && !civilization.hasTechnology(this);
 	}
 
 	@Override

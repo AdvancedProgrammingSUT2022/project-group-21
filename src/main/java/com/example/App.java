@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.Contoller.GameController;
-import com.example.Contoller.UserController;
-import com.example.View.TechnologyTree;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +17,8 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		scene = new Scene(loadFXML("GamePage"));
+		scene = new Scene(loadFXML("TechnologyTreePage"));
+		// scene = new Scene(loadFXML("GamePage"));
 		stage.setScene(scene);
 		stage.show();
 

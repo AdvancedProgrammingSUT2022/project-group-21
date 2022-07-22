@@ -28,9 +28,7 @@ public class CityProjectBuilding extends CityProject{
 	@Override
 	public boolean isValid() {
 		if (city.hasBuilding(building)) return false;
-		// TODO: add many shit ifs
-		// TODO Auto-generated method stub
-		return false;
+		return building.canBuildOnCity(city);
 	}
 
 	

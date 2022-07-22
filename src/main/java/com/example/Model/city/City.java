@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.resource.Resource;
-import com.example.Model.spfa.ShortestPath;
 import com.example.Model.spfa.ShortestPathSmall;
 import com.example.Model.tile.Terrain;
 import com.example.Model.tile.TerrainFeature;
@@ -103,12 +102,24 @@ public class City {
 
 
 
+	
 	public void addBuilding(Building building){
 		buildings.add(building);
 	}
 	public boolean hasBuilding(Building building){
 		return buildings.contains(building);
 	}
+	public ArrayList<Building> getAllPossibleBuildingsToBuild(){
+		ArrayList<Building> out = new ArrayList<>();
+		for (Building building : Building.values()) {
+			if (building.canBuildOnCity(this)){
+				out.add(building);
+			}
+		}
+		return out;
+	}
+
+
 
 
 	// TODO: not sure about the calculation, just made smth that depends on all that it should :(
@@ -123,6 +134,7 @@ public class City {
 		if (hasBuilding(Building.MILITARY_BASE)) res+=12;
 		return res;
 	}
+
 
 
 	

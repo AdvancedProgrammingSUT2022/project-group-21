@@ -1,8 +1,11 @@
 package com.example.Model.unit;
 
+import java.util.ArrayList;
+
 import com.example.Model.Civilization;
 import com.example.Model.Technology;
 import com.example.Model.UserAction.UnitActionType;
+import com.example.Model.city.City;
 import com.example.Model.resource.Resource;
 import com.example.Model.tile.Tile;
 
@@ -224,5 +227,22 @@ public enum UnitType {
 			}
 		}
 		return false;
+	}
+
+	public boolean canBuildOnCity(City city){
+		if (this==SETTLER && city.countCitizens()<2) return false; // SETTLER can be made at city with at least 2 citizens
+		if (!city.getOwner().hasTechnologies(technologyRequired)) return false;
+		if (resourceRequired!=null && !city.hasImprovedResource(resourceRequired)) return false;
+		return true;
+	}
+
+	public ArrayList<UnitType> getAllPossibleUnitsForCity(City city){
+		ArrayList<UnitType> units = new ArrayList<>();
+		for (UnitType unitType : units) {
+			if (unitType.canBuildOnCity(city)){
+				units.add(unitType);
+			}
+		}
+		return units;
 	}
 }
