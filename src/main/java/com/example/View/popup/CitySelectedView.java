@@ -25,12 +25,11 @@ public class CitySelectedView extends Application {
     public static void show() throws IOException {;
 //        city = c;
         Stage stage = new Stage();
-        Scene scene = new Scene(loadFXML("citySelectedPopup"));
+        Scene scene = new Scene(loadFXML("CitySelectedPopup"));
         stage.setTitle("selected City");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UTILITY);
         stage.setAlwaysOnTop(true);
-
         stage.show();
     }
     private static Parent loadFXML(String fxml) throws IOException {

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -11,9 +8,9 @@
    <children>
       <Label layoutX="9.0" layoutY="8.0" text="selected city" />
       <Label layoutX="28.0" layoutY="55.0" text="selected city" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="317.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="294.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assets/pic/Login.jpg" />
+            <Image url="@../assets/pic/city.jpg" />
          </image>
       </ImageView>
    </children>
