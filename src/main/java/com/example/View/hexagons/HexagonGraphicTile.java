@@ -30,15 +30,14 @@ public class HexagonGraphicTile extends Polygon {
 	public Rectangle rightButton;
 	public Rectangle lowerLeftButton;
 	public Rectangle higherLeftButton;
-
+    public Tile tile;
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile, Civilization civilization) {
+		this.tile=tile;
 		setCoordinates(x, y, j, i);
-        if(tile.getOwner()==civilization) {
 			setMainButton(x, y, j, i, tile);
 			setRightButton(x, y, j, i, tile.getCityOnTile());
 			setHigherLeftButton(x, y, j, i, tile);
 			setLowerLeftButton(x, y, j, i, tile);
-		}
 		// creates the polygon using the corner coordinates
 		getPoints().addAll(x, y, x, y + r, x + n, y + r * 1.5, x + TILE_WIDTH, y + r, x + TILE_WIDTH, y, x + n,
 				y - r * 0.5);
