@@ -1,5 +1,6 @@
 package com.example.View.hexagons;
 
+import com.example.Model.Civilization;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.View.button.TileSelectButton;
@@ -30,12 +31,14 @@ public class HexagonGraphicTile extends Polygon {
 	public Rectangle lowerLeftButton;
 	public Rectangle higherLeftButton;
 
-	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile) {
+	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile, Civilization civilization) {
 		setCoordinates(x, y, j, i);
-		setMainButton(x, y, j, i, tile);
-		setRightButton(x, y, j, i, tile.getCityOnTile());
-		setHigherLeftButton(x, y, j, i, tile);
-		setLowerLeftButton(x, y, j, i, tile);
+        if(tile.getOwner()==civilization) {
+			setMainButton(x, y, j, i, tile);
+			setRightButton(x, y, j, i, tile.getCityOnTile());
+			setHigherLeftButton(x, y, j, i, tile);
+			setLowerLeftButton(x, y, j, i, tile);
+		}
 		// creates the polygon using the corner coordinates
 		getPoints().addAll(x, y, x, y + r, x + n, y + r * 1.5, x + TILE_WIDTH, y + r, x + TILE_WIDTH, y, x + n,
 				y - r * 0.5);
