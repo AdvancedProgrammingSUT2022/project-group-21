@@ -50,6 +50,7 @@ public class Game {
 		return 0<=x && x<WIDTH && 0<=y && y<HEIGHT;
 	}
 	public Tile getTile(int x, int y){
+		if (!checkTileCoordinates(x, y)) return null;
 		return tiles[x][y];
 	}
 	
