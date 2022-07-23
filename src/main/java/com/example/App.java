@@ -28,10 +28,10 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 //		TO run Game Page uncomment this
-//		GamePage.show(stage);
+		GamePage.show(stage);
 
 //		LoginPage.show();
-		UnitSelectedView.show();
+		//UnitSelectedView.show();
 	}
 
 	public static void main(String[] args) throws Exception{

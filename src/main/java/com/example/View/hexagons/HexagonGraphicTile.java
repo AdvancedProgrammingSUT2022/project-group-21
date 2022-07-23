@@ -41,6 +41,7 @@ public class HexagonGraphicTile extends Polygon {
 				y - r * 0.5);
 		setFill(new ImagePattern(new Image(getClass().getResource("/Terrain/"+
 				tile.getTerrain().name().toLowerCase()+".png").toExternalForm())));
+		setOpacity(0.7);
 		setStrokeWidth(1);
 		setStroke(Color.BLACK);
 	}
@@ -48,16 +49,16 @@ public class HexagonGraphicTile extends Polygon {
 	public void setRightButton(double x, double y, int j, int i, City city) {
 		// rightButton = new CitySelectButton(city);
 		rightButton = new Rectangle();
-		rightButton.setLayoutX(x + 95);
-		rightButton.setLayoutY(y - 5);
+		rightButton.setLayoutX(x + 60);
+		rightButton.setLayoutY(y +10);
 		rightButton.setWidth(20);
-		rightButton.setHeight(90);
+		rightButton.setHeight(60);
 		rightButton.setFill(Color.PALETURQUOISE);
 	}
 
 	private void setMainButton(double x, double y, int j, int i, Tile tile) {
 		mainButton = new TileSelectButton(tile);
-		mainButton.setLayoutX(x + 48);
+		mainButton.setLayoutX(x + 90);
 		mainButton.setLayoutY(y + 20);
 		mainButton.setWidth(40);
 		mainButton.setHeight(40);
