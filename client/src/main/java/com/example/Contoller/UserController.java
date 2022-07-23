@@ -5,15 +5,17 @@ import com.example.Model.user.UserDatabase;
 
 public class UserController {
 	private static UserController instance;
-	public static UserController getInstance() {
+	private synchronized static void setInstance(){
 		if (instance==null) instance = new UserController();
+	}
+	public static UserController getInstance() {
+		if (instance==null) setInstance();
 		return instance;
 	}
 	
 	private User loggedInUser;
 
 	public User getLoggedInUser(){ return loggedInUser; }
-	public void setLoggedInUser(User user){ loggedInUser = user; }
 
 	public void registerUser(String username, String password, String nickname) throws Exception {
 		if (username.isEmpty() || password.isEmpty() || nickname.isEmpty()) throw new Exception("username, password, nickname cant be empty");

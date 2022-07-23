@@ -43,4 +43,9 @@ public class Request{
 		return (Request) gson.fromJson(json, Request.class);
 	}	
 	
+
+	public Response handle() throws Exception{
+		// TODO
+		return null;
+	}
 }
