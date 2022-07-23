@@ -46,7 +46,9 @@ public class MapPaneMaker {
 				  addButton(pane, hex.higherLeftButton);
 				  addButton(pane, hex.lowerLeftButton);
 			  }
-				
+			  /////////////////////////NeighbourTest
+			  if(game.getTile(5, 7).isNeighbourWith(game.getTile(i, j)))
+				  hex.setCoordinatesText();
 			}
 	}
 	private static void addButton(Pane pane, Rectangle button){

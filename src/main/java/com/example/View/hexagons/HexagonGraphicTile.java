@@ -107,4 +107,8 @@ public class HexagonGraphicTile extends Polygon {
 		// Because I like it, that's why :)
 		coordinates.setTextFill(Color.DEEPPINK);
 	}
+    ////////////////////////////For Neighbour test
+	public void setCoordinatesText() {
+		coordinates.setText("Neighbour");
+	}
 }
