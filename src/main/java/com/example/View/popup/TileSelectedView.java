@@ -10,12 +10,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class TileSelectedView extends Application {
+public class TileSelectedView extends Application implements Popup {
     @Override
     public void start(Stage stage) throws Exception {
 
     }
-    public static void show() throws IOException {
+    public void show() throws IOException {
         Scene scene = new Scene(loadFXML("TileSelectedPopup"));
         Stage stage = new Stage();
         stage.setTitle("selected tile");

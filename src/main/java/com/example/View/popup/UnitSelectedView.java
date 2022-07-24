@@ -10,12 +10,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class UnitSelectedView extends Application {
+public class UnitSelectedView extends Application implements Popup {
     @Override
     public void start(Stage stage) throws Exception {
 
     }
-    public static void show() throws IOException {
+    public void show() throws IOException {
         Scene scene = new Scene(loadFXML("UnitSelectedPopup"));
         Stage stage = new Stage();
         stage.setTitle("selected unit");

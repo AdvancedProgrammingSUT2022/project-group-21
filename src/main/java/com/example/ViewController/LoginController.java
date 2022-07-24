@@ -1,6 +1,10 @@
 package com.example.ViewController;
 
 import com.example.App;
+import com.example.Model.Civilization;
+import com.example.Model.city.City;
+import com.example.Model.tile.Terrain;
+import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
 import com.example.View.LoginPage;
@@ -56,8 +60,7 @@ public class LoginController {
         }
     }
     public void Register(MouseEvent mouseEvent) throws IOException {
-//        goToRegisterPage();
-        CitySelectedView.show();
+        goToRegisterPage();
     }
 
     private void goToRegisterPage() throws IOException {

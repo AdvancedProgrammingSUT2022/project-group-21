@@ -12,6 +12,7 @@ import com.example.View.GamePage;
 import com.example.View.LoginPage;
 import com.example.View.TechnologyTree;
 import com.example.View.popup.CitySelectedView;
+import com.example.View.popup.Popup;
 import com.example.View.popup.TileSelectedView;
 import com.example.View.popup.UnitSelectedView;
 import com.google.gson.Gson;
@@ -28,7 +29,11 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 //		TO run Game Page uncomment this
-		GamePage.show(stage);
+//		GamePage.show(stage);
+
+//		Popup popup = new UnitSelectedView();
+//		popup.show();
+
 
 //		LoginPage.show();
 		//UnitSelectedView.show();
