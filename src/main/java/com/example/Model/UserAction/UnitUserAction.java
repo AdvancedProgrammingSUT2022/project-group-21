@@ -16,7 +16,8 @@ public class UnitUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, UnitUserAction unitUserAction){
 		return new UserActionQuery(username, null, null, null, unitUserAction);
 	}
-	public static UserActionQuery workerAction(String username, int x1, int y1, WorkerProjectType projectType, Improvement improvement){
+	public static UserActionQuery workerAction(
+			String username, int x1, int y1, WorkerProjectType projectType, Improvement improvement){
 		UnitUserAction unitUserAction = new UnitUserAction();
 		unitUserAction.x1=x1;
 		unitUserAction.y1=y1;

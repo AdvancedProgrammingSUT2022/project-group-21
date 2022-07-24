@@ -4,6 +4,8 @@ import com.example.Model.tile.Improvement;
 import com.example.Model.tile.TerrainFeature;
 import com.example.Model.tile.Tile;
 
+import java.util.ArrayList;
+
 public class WorkerProject {
 	private Tile tile;
 	private WorkerProjectType projectType;
@@ -60,8 +62,33 @@ public class WorkerProject {
 	}
 
 	public enum WorkerProjectType{
-		REMOVE_JUNGLE,
-		REPAIR_IMPROVEMENT,
-		BUILD_IMPROVEMENT,
+		REMOVE_JUNGLE
+				{
+					@Override
+					public String toString() {
+						return "REMOVE_JUNGLE";
+					}
+				},
+		REPAIR_IMPROVEMENT
+				{
+					@Override
+					public String toString() {
+						return "REPAIR_IMPROVEMENT";
+					}
+				},
+		BUILD_IMPROVEMENT
+				{
+					@Override
+					public String toString() {
+						return "BUILD_IMPROVEMENT";
+					}
+				};
+		public static ArrayList<WorkerProjectType> getAllType() {
+			ArrayList<WorkerProjectType> out = new ArrayList<>();
+			for (WorkerProjectType workerProjectType : WorkerProjectType.values()) {
+				out.add(workerProjectType);
+			}
+			return out;
+		}
 	}
 }

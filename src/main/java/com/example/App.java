@@ -36,7 +36,7 @@ public class App extends Application {
 //		TO run Game Page uncomment this
 //		GamePage.show(stage);
 
-		Popup popup = new CitySelectedView();
+		Popup popup = new UnitSelectedView();
 		popup.show();
 
 //		LoginPage.show();
