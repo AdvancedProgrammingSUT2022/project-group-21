@@ -21,7 +21,6 @@ public class TileSelectedView extends Application implements Popup {
         stage.setTitle("selected tile");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UTILITY);
-        stage.setAlwaysOnTop(true);
         stage.show();
     }
     private static Parent loadFXML(String fxml) throws IOException {

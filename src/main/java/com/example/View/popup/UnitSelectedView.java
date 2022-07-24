@@ -21,7 +21,6 @@ public class UnitSelectedView extends Application implements Popup {
         stage.setTitle("selected unit");
         stage.setScene(scene);
         stage.initStyle(StageStyle.UTILITY);
-        stage.setAlwaysOnTop(true);
         stage.show();
     }
     private static Parent loadFXML(String fxml) throws IOException {

@@ -8,7 +8,7 @@ import com.example.Model.Technology;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
-import com.example.View.Notifier;
+import com.example.ViewController.Dialog;
 
 public class GameController {
 	private static GameController instance = new GameController();
@@ -29,7 +29,7 @@ public class GameController {
 			query.validate();
 		} catch (Exception e) {
 //			System.out.println(e.getMessage());
-			Notifier.error_message("Error", e.getMessage());
+			Dialog.error_message("Error", e.getMessage());
 			// TODO: show a graphic notification instead :::: Do it :D
 			return false;
 		}
