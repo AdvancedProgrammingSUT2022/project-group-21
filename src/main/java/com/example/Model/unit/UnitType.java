@@ -420,4 +420,12 @@ public enum UnitType {
 		}
 		return units;
 	}
+	public static ArrayList<UnitType> getAllPossibleUnitsForCity(){
+		ArrayList<UnitType> units = new ArrayList<>();
+//		todo: check plz, I change this foreach to values()
+		for (UnitType unitType : UnitType.values()) {
+			units.add(unitType);
+		}
+		return units;
+	}
 }

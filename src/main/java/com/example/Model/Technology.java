@@ -1,5 +1,11 @@
 package com.example.Model;
 
+import com.example.Model.city.Building;
+import com.example.Model.city.City;
+
+import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+
 public enum Technology{
 	AGRICULTURE("Agriculture", 20, Era.ANCIENT,
 			new Technology[] {}),
@@ -120,5 +126,22 @@ public enum Technology{
 	@Override
 	public String toString(){
 		return name;
+	}
+
+	public static ArrayList<Technology> getAllPossibleTechnology(){
+		ArrayList<Technology> out = new ArrayList<>();
+		for (Technology technology : Technology.values()) {
+			out.add(technology);
+		}
+		return out;
+	}
+	public static ArrayList<Technology> getAllPossibleTechnology(Civilization civilization){
+		ArrayList<Technology> out = new ArrayList<>();
+		for (Technology technology : Technology.values()) {
+			if (technology.canBeResearchedBy(civilization)){
+				out.add(technology);
+			}
+		}
+		return out;
 	}
 }

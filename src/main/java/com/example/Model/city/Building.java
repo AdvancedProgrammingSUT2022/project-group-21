@@ -388,4 +388,12 @@ public enum Building{
 		}
 		return out;
 	}
+
+	public static ArrayList<Building> getAllPossibleBuildingsToBuild(){
+		ArrayList<Building> out = new ArrayList<>();
+		for (Building building : Building.values()) {
+			out.add(building);
+		}
+		return out;
+	}
 }
