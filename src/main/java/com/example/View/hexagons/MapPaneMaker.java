@@ -6,8 +6,10 @@ import com.example.Model.Game;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
-public class MapPaneMaker {
+import java.util.ArrayList;
 
+public class MapPaneMaker {
+	private static ArrayList<HexagonGraphicTile> hexagonGraphicTiles=new ArrayList<>();
 	public static Pane createScrollPane(Game game, Civilization civilization) {
 		// ScrollPane scrollPane = new ScrollPane();
 		// scrollPane.setPrefSize(960, 680);
@@ -28,7 +30,7 @@ public class MapPaneMaker {
 			for (int i = 0; i < game.WIDTH; i++) {
 				HexagonGraphicTile hex;
 				if (j % 2 == 0){
-					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(i, j));
+					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(i, j),civilization);
 				}
 				else{
 					hex = new HexagonGraphicTile(200 +
@@ -36,21 +38,45 @@ public class MapPaneMaker {
 									HexagonGraphicTile.n,
 							200 +
 									HexagonGraphicTile.r * 1.5 * j,
-							j, i, game.getTile(i, j));
+							j, i, game.getTile(i, j),civilization);
 				}
 				pane.getChildren().add(hex);
 				pane.getChildren().add(hex.coordinates);
-
 				addButton(pane, hex.mainButton);
 				addButton(pane, hex.rightButton);
 				addButton(pane, hex.higherLeftButton);
 				addButton(pane, hex.lowerLeftButton);
-				
+              if(game.getTile(i, j).getOwner()!=civilization) {
+				  hex.rightButton.setVisible(false);
+				  hex.higherLeftButton.setVisible(false);
+				  hex.lowerLeftButton.setVisible(false);
+			  }
+			  hexagonGraphicTiles.add(hex);
+			  /////////////////////////NeighbourTest
+			  if(game.getTile(5, 7).isNeighbourWith(game.getTile(i, j)))
+				  hex.setCoordinatesText();
 			}
 	}
 	private static void addButton(Pane pane, Rectangle button){
 		if (button==null) return ;
 		pane.getChildren().add(button);
 	}
-
+   public void updateButtons(Civilization civilization)
+	{
+		for(HexagonGraphicTile hexagonGraphicTile:hexagonGraphicTiles)
+		{
+			if(hexagonGraphicTile.tile.getOwner()!=civilization)
+			{
+				hexagonGraphicTile.rightButton.setVisible(false);
+				hexagonGraphicTile.higherLeftButton.setVisible(false);
+				hexagonGraphicTile.lowerLeftButton.setVisible(false);
+			}
+			else
+			{
+				hexagonGraphicTile.rightButton.setVisible(true);
+				hexagonGraphicTile.higherLeftButton.setVisible(true);
+				hexagonGraphicTile.lowerLeftButton.setVisible(true);
+			}
+		}
+	}
 }

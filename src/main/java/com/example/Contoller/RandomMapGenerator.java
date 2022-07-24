@@ -30,31 +30,28 @@ public class RandomMapGenerator {
 		setResources(game, tiles, random);
 	}
 	private void setAdjTiles(Game game, Tile[][] tiles){
-		for (int i=0; i<game.WIDTH; i++){
-			for (int j=0; j<game.HEIGHT; j++){
-				if (j>0){
-					tiles[i][j].setAdjTile(0, tiles[i][j-1]);
-					tiles[i][j-1].setAdjTile(3, tiles[i][j]);
+		for (int x=0; x<game.WIDTH; x++){
+			for (int y=0; y<game.HEIGHT; y++){
+				setAdjTile(game, x, y, 0, x+1, y);
+				setAdjTile(game, x, y, 3, x-1, y);
+				if (y%2==1){
+					setAdjTile(game, x, y, 1, x+1, y+1);
+					setAdjTile(game, x, y, 2, x, y+1);
+					setAdjTile(game, x, y, 4, x, y-1);
+					setAdjTile(game, x, y, 5, x+1, y-1);
 				}
-				if (i%2==1) continue ;
-				if (i+1<game.WIDTH){
-					tiles[i][j].setAdjTile(1, tiles[i+1][j]);
-					tiles[i+1][j].setAdjTile(4, tiles[i][j]);
-				}
-				if (i+1<game.WIDTH && j+1<game.HEIGHT){
-					tiles[i][j].setAdjTile(2, tiles[i+1][j+1]);
-					tiles[i+1][j+1].setAdjTile(5, tiles[i][j]);
-				}
-				if (i>0 && j+1<game.HEIGHT){
-					tiles[i][j].setAdjTile(4, tiles[i-1][j+1]);
-					tiles[i-1][j+1].setAdjTile(1, tiles[i][j]);
-				}
-				if (i>0){
-					tiles[i][j].setAdjTile(5, tiles[i-1][j]);
-					tiles[i-1][j].setAdjTile(2, tiles[i][j]);
+				else{
+					setAdjTile(game, x, y, 1, x, y+1);
+					setAdjTile(game, x, y, 2, x-1, y+1);
+					setAdjTile(game, x, y, 4, x-1, y-1);
+					setAdjTile(game, x, y, 5, x, y-1);
 				}
 			}
 		}
+	}
+
+	private void setAdjTile(Game game, int x, int y, int i, int x2, int y2){
+		game.getTile(x, y).setAdjTile(i, game.getTile(x2, y2));
 	}
 
 	private void setRivers(Game game, Tile[][] tiles, Random random, int prob){
