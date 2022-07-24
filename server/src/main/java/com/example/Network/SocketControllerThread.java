@@ -28,12 +28,7 @@ public class SocketControllerThread extends Thread{
 			while (true){
 				String input=dataInputStream.readUTF();
 				Request request = Request.fromJson(input);
-				Response response;
-				try {
-					response = request.handle();
-				} catch (Exception e) {
-					response = new Response(1, e.getMessage());
-				}
+				Response response = request.handle();
 				
 				dataOutputStream.writeUTF(response.toJson());
 				dataOutputStream.flush();

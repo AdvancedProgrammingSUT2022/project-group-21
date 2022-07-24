@@ -7,12 +7,15 @@ import com.example.Model.user.UserDatabase;
 
 public class UserController {
 	private static UserController instance;
-	public static UserController getInstance() {
+	private static synchronized void setInstance(){
 		if (instance==null) instance = new UserController();
+	}
+	public static UserController getInstance() {
+		if (instance==null) setInstance();
 		return instance;
 	}
 
-	private HashMap<String, User> uuids;
+	private HashMap<String, User> uuids = new HashMap<>();
 
 	public User getUserByUUID(String uuid){
 		return uuids.get(uuid);
@@ -29,6 +32,11 @@ public class UserController {
 		if (user == null) throw new Exception("username does not exist");
 		if (!user.isPasswordEqualTo(password)) throw new Exception("wrong password");
 		uuids.put(uuid, user);
+	}
+	public synchronized void logout(String uuid) throws Exception{
+		User user = getUserByUUID(uuid);
+		if (user==null) throw new Exception("you are not logged in!"); // TODO: maybe remove this
+		uuids.remove(uuid);
 	}
 
 	// public void changePassword(User user, String currentPassword, String newPassword) throws Exception {

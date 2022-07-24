@@ -44,8 +44,13 @@ public class Request{
 	}	
 	
 
-	public Response handle() throws Exception{
-		// TODO
-		return null;
+	public Response handle(){
+		Response response;
+		try {
+			response = requestType.handle(this);
+		} catch (Exception e) {
+			response = new Response(1, e.getMessage());
+		}
+		return response;
 	}
 }

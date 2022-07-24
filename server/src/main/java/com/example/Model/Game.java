@@ -1,6 +1,7 @@
 package com.example.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import com.example.Contoller.RandomMapGenerator;
@@ -11,6 +12,7 @@ public class Game {
 	private static Game instance;
 	public static Game getInstance(){ return instance;} // TODO: maybe I should remove singleton?
 
+	private HashMap<String, Civilization> civilizations = new HashMap<>();
 	public final GameHistory gameHistory;
 	public final int WIDTH;
 	public final int HEIGHT;
@@ -25,13 +27,21 @@ public class Game {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		this.players = players;
-		this.gameHistory = new GameHistory(WIDTH, HEIGHT, players, seed);
+		this.gameHistory = new GameHistory(WIDTH, HEIGHT, getUsernamesOfPlayers(players), seed);
 		this.tiles = new Tile[WIDTH][HEIGHT];
 		Random random = new Random(System.nanoTime());
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
 
 		currentPlayer = players.get(0);
+	}
+
+	private static ArrayList<String> getUsernamesOfPlayers(ArrayList<User> players){
+		ArrayList<String> usernames = new ArrayList<>();
+		for (User user : players) {
+			usernames.add(user.getUsername());
+		}
+		return usernames;
 	}
 	
 	private void putPlayersOnMap(Random random){
@@ -41,11 +51,16 @@ public class Game {
 				int y=random.nextInt(WIDTH);
 				if (tiles[x][y].getOwner()!=null) continue ;
 				Civilization civilization = new Civilization(tiles[x][y], WIDTH, HEIGHT);
-				user.setCivilization(civilization);
+				civilizations.put(user.getUsername(), civilization);
 				break ;
 			}
 		}
 	}
+	public Civilization getCivilization(String username){
+		return civilizations.get(username);
+	}
+
+
 	public boolean checkTileCoordinates(int x, int y){
 		return 0<=x && x<WIDTH && 0<=y && y<HEIGHT;
 	}

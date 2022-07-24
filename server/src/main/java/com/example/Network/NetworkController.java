@@ -7,7 +7,7 @@ import java.net.Socket;
 public class NetworkController {
 	private ServerSocket serverSocket;
 	
-	private NetworkController(int port) throws IOException{
+	public NetworkController(int port) throws IOException{
 		try {
 			serverSocket = new ServerSocket(port);
 			System.out.println("listening on port "+port);
