@@ -36,7 +36,7 @@ public class MainMenuController {
             return;
         }
         for (int i = 0; i < n; i++) {
-          String string=Dialog.AskQuestion("Username","Enter "+  (i+1) +"th username please!");
+          String string=Dialog.AskQuestion("Username","Enter "+ (i+1) +"th username please!");
           if(UserDatabase.getInstance().getUserByUsername(string)==null) {
               Dialog.error_message(":(", "No such user!");
               return;
