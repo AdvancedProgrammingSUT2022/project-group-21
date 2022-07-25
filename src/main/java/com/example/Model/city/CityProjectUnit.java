@@ -30,5 +30,9 @@ public class CityProjectUnit extends CityProject{
 		if (!city.getOwner().hasTechnologies(unitType.technologyRequired)) return false;
 		return unitType.canBuildOnCity(city);
 	}
+
+	public UnitType getUnitType(){
+		return unitType;
+	}
 	
 }
