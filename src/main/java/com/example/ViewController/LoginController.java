@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+    public Button exit_btn;
     private AudioClip audioClip;
     @FXML
     private TextField username;
@@ -81,5 +82,9 @@ public class LoginController {
         else {
             Clear();
         }
+    }
+
+    public void exit(MouseEvent mouseEvent) {
+        System.exit(0);
     }
 }

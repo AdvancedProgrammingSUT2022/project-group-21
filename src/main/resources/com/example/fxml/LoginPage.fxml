@@ -19,13 +19,14 @@
             <Label layoutX="43.0" layoutY="124.0" text="Password" />
             <TextField fx:id="username" layoutX="105.0" layoutY="65.0" onKeyPressed="#checkEnterPressed" prefHeight="25.0" prefWidth="263.0" promptText="username" />
             <PasswordField fx:id="password" layoutX="105.0" layoutY="120.0" onKeyPressed="#checkEnterPressed" prefHeight="25.0" prefWidth="261.0" promptText="password" />
-            <Button fx:id="submit" layoutX="91.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#Submit" style="-: ;" text="Login" />
-            <Button fx:id="register" layoutX="148.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#Register" prefHeight="25.0" prefWidth="74.0" text="Register" />
+            <Button fx:id="submit" layoutX="145.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#Submit" prefHeight="20.0" prefWidth="80.0" style="-: ;" text="Login " />
+            <Button fx:id="register" layoutX="233.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#Register" prefHeight="20.0" prefWidth="80.0" text="Register" />
             <Label fx:id="error" layoutX="105.0" layoutY="157.0" prefHeight="17.0" prefWidth="215.0" text="incorrect username or password!" textFill="#eb0e0e" visible="false">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <Button fx:id="exit_btn" layoutX="81.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="25.0" prefWidth="57.0" text="exit !" />
          </children></AnchorPane>
    </left>
    <right>

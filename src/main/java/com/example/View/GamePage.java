@@ -6,6 +6,7 @@ import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.unit.UnitType;
 import com.example.Model.user.User;
+import com.example.ViewController.Dialog;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +23,7 @@ public class GamePage extends Application {
     }
 
     public static void show(ArrayList<String> users) throws Exception {
+        Dialog.information_message("", "please wait to loading...");
         Stage stage=new Stage();
         GameController.getInstance().startNewGame(users);
         Civilization civ = Game.getInstance().getCurrentPlayer().getCivilization();
