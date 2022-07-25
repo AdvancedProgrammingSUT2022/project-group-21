@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.TechnologyTreeMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0"
+            prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ViewController.TechnologyTreeMenu">
    <children>
       <ScrollPane hbarPolicy="ALWAYS" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="680.0" prefWidth="960.0" vbarPolicy="NEVER">
          <content>
