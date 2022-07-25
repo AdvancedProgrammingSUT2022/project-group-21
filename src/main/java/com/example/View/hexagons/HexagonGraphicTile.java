@@ -1,6 +1,7 @@
 package com.example.View.hexagons;
 
 import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.View.button.CitySelectButton;
@@ -59,7 +60,6 @@ public class HexagonGraphicTile extends Polygon {
 		setOpacity(0.7);
 		setStrokeWidth(1);
 		setStroke(Color.BLACK);
-
 	}
 
 	public void setRightButton(double x, double y, int j, int i, City city) {
@@ -71,6 +71,7 @@ public class HexagonGraphicTile extends Polygon {
 		rightButton.setHeight(60);
 		rightButton.setFill(Color.PALETURQUOISE);
 
+		rightButton.setCursor(Cursor.HAND);
 		rightButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -106,6 +107,17 @@ public class HexagonGraphicTile extends Polygon {
 		mainButton.setFill(new ImagePattern(
 				new Image(getClass().getResource("/status.png").toExternalForm())));
 //		todo: show information like gold and ... , every body can clicked it
+		mainButton.setCursor(Cursor.HAND);
+		mainButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+//				todo: terrain, terin feature,recouse, improvement, ownner
+				String test = "";
+				test +=  tile.getTerrain().name() + "\n";
+				test +=  "(" + tile.X + ", " + tile.Y + ")\n";
+				Dialog.information_message("status", test);
+			}
+		});
 	}
 
 	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
@@ -122,6 +134,7 @@ public class HexagonGraphicTile extends Polygon {
 		{
 			higherLeftButton.setFill(Color.TRANSPARENT);
 		}
+		setCursor(Cursor.HAND);
 		higherLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -135,7 +148,6 @@ public class HexagonGraphicTile extends Polygon {
 			}
 		});
 		//		todo: open unit popup for military unit
-		setCursor(Cursor.HAND);
 	}
 
 	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
@@ -151,6 +163,7 @@ public class HexagonGraphicTile extends Polygon {
 			lowerLeftButton.setFill(Color.TRANSPARENT);
 		}
 		//		todo: open unit popup for Civilian unit
+		setCursor(Cursor.HAND);
 		lowerLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -163,7 +176,6 @@ public class HexagonGraphicTile extends Polygon {
 				}
 			}
 		});
-		setCursor(Cursor.HAND);
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {
