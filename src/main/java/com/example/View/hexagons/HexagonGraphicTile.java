@@ -6,6 +6,8 @@ import com.example.Model.Civilization;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.View.button.CitySelectButton;
+import com.example.View.button.CivilianUnitSelectButton;
+import com.example.View.button.MilitaryUnitSelectButton;
 import com.example.View.button.TileSelectButton;
 import com.example.View.button.UnitSelectButton;
 import com.example.View.popup.CitySelectedView;
@@ -39,8 +41,8 @@ public class HexagonGraphicTile extends Polygon {
 	public Label coordinates;
 	public TileSelectButton mainButton; // دایره قرمز :) اطلاعات
 	public CitySelectButton rightButton;// نوار آبی دراز وسط که تایل سلکت میشه فقط برای اونر میاد
-	public UnitSelectButton lowerLeftButton; // سمت چپ پایینه اگر باشه فقط برای اونور ، و سیویلیان یونیت انتخاب میشه
-	public UnitSelectButton higherLeftButton; // عین بالا برای میلیتاری یونیت ها
+	public CivilianUnitSelectButton lowerLeftButton; // سمت چپ پایینه اگر باشه فقط برای اونور ، و سیویلیان یونیت انتخاب میشه
+	public MilitaryUnitSelectButton higherLeftButton; // عین بالا برای میلیتاری یونیت ها
     public Tile tile;
 	
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile) throws IOException {

@@ -3,7 +3,9 @@ package com.example.View.button;
 import com.example.Model.Civilization;
 import com.example.Model.tile.Tile;
 
-public abstract class CustomGameButton {
+import javafx.scene.shape.Rectangle;
+
+public abstract class CustomGameButton extends Rectangle{
 	protected Tile tile;
 	
 	public CustomGameButton(Tile tile){

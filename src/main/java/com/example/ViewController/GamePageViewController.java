@@ -25,7 +25,7 @@ public class GamePageViewController {
 	@FXML
 	private void initialize() throws IOException {
 		instance=this;
-		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization()));
+		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance()));
 
 	}
 
