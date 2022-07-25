@@ -11,7 +11,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class MainMenu extends Application {
-    public final static Stage stage = new Stage();
 
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MainMenu/" + fxml + ".fxml"));
@@ -22,8 +21,10 @@ public class MainMenu extends Application {
         show();
     }
     public static void show() throws IOException {
+        Stage stage = new Stage();
         Scene scene = new Scene(loadFXML("MainMenu"));
         stage.setTitle("MainMenu");
+        stage.initStyle(StageStyle.UTILITY);
         stage.setScene(scene);
         stage.show();
     }

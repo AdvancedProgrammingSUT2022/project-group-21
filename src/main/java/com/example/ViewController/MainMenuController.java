@@ -1,6 +1,7 @@
 package com.example.ViewController;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,5 +35,13 @@ public class MainMenuController {
 
     @FXML
     public void loadFunction(MouseEvent mouseEvent) {
+    }
+
+    public void mouseEnter(MouseEvent mouseEvent) {
+        startButton.setCursor(Cursor.HAND);
+    }
+
+    public void mouseExit(MouseEvent mouseEvent) {
+        startButton.setCursor(Cursor.DEFAULT);
     }
 }
