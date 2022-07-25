@@ -1,5 +1,6 @@
 package com.example.ViewController;
 
+import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
@@ -14,7 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class GamePageViewController {
-	public static GamePageViewController instance;
+	private static GamePageViewController instance;
+
 
 	@FXML
 	private AnchorPane infoAnchorPane;
@@ -28,13 +30,15 @@ public class GamePageViewController {
 		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance()));
 		
 		System.out.println("initialize done");
+		GameController.getInstance().updateGraphic();
 	}
 
-	public void addInfo(User user) {
+	private void addInfo(User user) {
 		Label Label = new Label(user.getNickname());
 		if (UserController.getInstance().getLoggedInUser() == user){
 			Label.setText(Label.getText() + " (you)");
 		}
+		infoAnchorPane.getChildren().clear();
 		Label.setLayoutX(0);
 		Label.setLayoutY(infoAnchorPane.getHeight() / 2);
 		infoAnchorPane.getChildren().add(Label);
@@ -54,6 +58,10 @@ public class GamePageViewController {
 		Label.setLayoutX(infoAnchorPane.getWidth() * 4 / 5);
 		Label.setLayoutY(infoAnchorPane.getHeight() / 2);
 		infoAnchorPane.getChildren().add(Label);
+	}
+
+	public static void showInfo(){
+		instance.addInfo(Game.getInstance().getCurrentPlayer());
 	}
 
 }

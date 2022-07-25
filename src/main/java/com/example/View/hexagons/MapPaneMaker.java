@@ -17,7 +17,6 @@ public class MapPaneMaker {
 		content.setPrefSize(HexagonGraphicTile.TILE_WIDTH * game.WIDTH + 400,
 				HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400);
 		addHexagons(content, game);
-		updateButtons(game.getCurrentPlayer().getCivilization());
 		
 		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
 		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
@@ -47,11 +46,6 @@ public class MapPaneMaker {
 				addButton(pane, hex.rightButton);
 				addButton(pane, hex.higherLeftButton);
 				addButton(pane, hex.lowerLeftButton);
-				// if (game.getTile(i, j).getOwner() != civilization) {
-				// 	hex.rightButton.setVisible(false);
-				// 	hex.higherLeftButton.setVisible(false);
-				// 	hex.lowerLeftButton.setVisible(false);
-				// }
 				hexagonGraphicTiles.add(hex);
 			}
 	}

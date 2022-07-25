@@ -45,26 +45,20 @@ public class MainMenuController {
 			if (string==null) return ;
 			if (UserDatabase.getInstance().getUserByUsername(string) == null) {
 				Dialog.error_message(":(", "No such user!");
-				i--;
-				continue ;
+				return ;
 			}
 			if (users.contains(string)){
 				Dialog.error_message(":(", "Duplicate User");
-				i--;
-				continue ;
+				return ;
 			}
 			users.add(string);
 		}
 		try {
 			GameController.getInstance().startNewGame(users);
 			App.setRootFromFXML("GamePage");
-			System.out.println("MainMenuController.startFunction()");
-			// GamePage.show(users);
 		} catch (Exception e) {
-			Dialog.error_message("Error", e.getMessage());
 			e.printStackTrace();
 		}
-		// exitFunction(null);
 	}
 
 	@FXML

@@ -15,6 +15,12 @@ public class TileSelectButton extends CustomGameButton {
 
 	@Override
 	public void update(Civilization civilization) {
+		if (!civilization.isTileRevealed(tile.X, tile.Y)){
+			setVisible(false);
+			setOnMouseClicked(null);
+			return ;
+		}
+		setVisible(true);
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -25,7 +31,6 @@ public class TileSelectButton extends CustomGameButton {
 				Dialog.information_message("status", test);
 			}
 		});
-		
 	}
 	
 	

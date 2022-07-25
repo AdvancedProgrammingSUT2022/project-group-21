@@ -104,5 +104,6 @@ public class HexagonGraphicTile extends Polygon {
 		higherLeftButton.update(civilization);
 		mainButton.update(civilization);
 		rightButton.update(civilization);
+		// TODO: FOG OF WAR
 	}
 }
