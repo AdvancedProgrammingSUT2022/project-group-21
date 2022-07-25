@@ -30,9 +30,10 @@ public class HexagonGraphicTile extends Polygon {
 														// میشه
 	public MilitaryUnitSelectButton higherLeftButton; // عین بالا برای میلیتاری یونیت ها
 	public Tile tile;
-
+    public FogOfWar fogOfWar;
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile){
 		this.tile = tile;
+		fogOfWar=new FogOfWar(x,y);
 		setCoordinates(x, y, j, i);
 		setMainButton(x, y, j, i);
 		setRightButton(x, y, j, i);
@@ -104,6 +105,9 @@ public class HexagonGraphicTile extends Polygon {
 		higherLeftButton.update(civilization);
 		mainButton.update(civilization);
 		rightButton.update(civilization);
-		// TODO: FOG OF WAR
+		if(civilization.isTileRevealed(tile.X,tile.Y))
+			fogOfWar.setVisible(false);
+		else
+			fogOfWar.setVisible(true);
 	}
 }

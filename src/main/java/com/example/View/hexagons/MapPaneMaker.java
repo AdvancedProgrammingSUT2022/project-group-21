@@ -41,6 +41,7 @@ public class MapPaneMaker {
 							j, i, game.getTile(i, j));
 				}
 				pane.getChildren().add(hex);
+				pane.getChildren().add(hex.fogOfWar);
 				pane.getChildren().add(hex.coordinates);
 				addButton(pane, hex.mainButton);
 				addButton(pane, hex.rightButton);
