@@ -8,7 +8,10 @@ import com.example.ViewController.Dialog;
 import com.example.ViewController.popupController.UnitSelectedController;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 
 import java.io.IOException;
 
@@ -18,6 +21,14 @@ public class MilitaryUnitSelectButton extends CustomGameButton{
 		super(tile);
 	}
 	public void update(Civilization civilization) {
+		try {
+		setFill(new ImagePattern(new Image(getClass().getResource("/Unit/"+
+					tile.getMilitaryUnit().unitType.name().toLowerCase()+".png").toExternalForm())));
+		}
+		catch (Exception e)
+		{
+			setFill(Color.TRANSPARENT);
+		}
 		if(!civilization.isTileRevealed(tile.X, tile.Y))
 		{
 			this.setVisible(false);
