@@ -98,7 +98,7 @@ public class GamePageViewController {
 		}
 		cheatCode.apply(Game.getInstance().getCurrentPlayer().getCivilization());
 		Dialog.information_message("", "cheated successfully!");
-		System.out.println(Game.getInstance().getCurrentPlayer().getUsername());
+		GameController.getInstance().updateGraphic();
     }
 
     public void endTurn(MouseEvent mouseEvent) {
@@ -107,6 +107,7 @@ public class GamePageViewController {
 		);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
 			Dialog.information_message("", "end turned successfully!");
+			GameController.getInstance().updateGraphic();
 		}
     }
 
@@ -142,6 +143,7 @@ public class GamePageViewController {
 		);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
 			Dialog.information_message("", "done successfully!");
+			GameController.getInstance().updateGraphic();
 		}
 	}
 }

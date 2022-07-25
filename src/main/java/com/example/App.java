@@ -35,7 +35,7 @@ public class App extends Application {
 
 	public static void setRootFromFXML(String fxml) throws IOException {
 		if (fxml.equals("MainMenu")) stage.setWidth(960);
-		if (fxml.equals("MainMenu")) stage.setHeight(680);
+		if (fxml.equals("MainMenu")) stage.setHeight(600);
 		scene.setRoot(loadFXML(fxml));
 	}
 
