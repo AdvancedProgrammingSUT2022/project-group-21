@@ -44,12 +44,20 @@ public class UnitUserAction extends UserAction{
 		unitUserAction.actionType=UnitActionType.MOVE;
 		return createAction(username, unitUserAction);
 	}
-	public static UserActionQuery sleepWake(String username, int x1, int y1, int x2, int y2, boolean isMilitary){
+	public static UserActionQuery sleepWake(String username, int x1, int y1, boolean isMilitary){
 		UnitUserAction unitUserAction = new UnitUserAction();
 		unitUserAction.x1=x1;
 		unitUserAction.y1=y1;
 		unitUserAction.isMilitary=isMilitary;
 		unitUserAction.actionType=UnitActionType.SLEEP_WAKE;
+		return createAction(username, unitUserAction);
+	}
+	public static UserActionQuery delete(String username, int x1, int y1, boolean isMilitary){
+		UnitUserAction unitUserAction = new UnitUserAction();
+		unitUserAction.x1=x1;
+		unitUserAction.y1=y1;
+		unitUserAction.isMilitary=isMilitary;
+		unitUserAction.actionType=UnitActionType.DELETE;
 		return createAction(username, unitUserAction);
 	}
 	public static UserActionQuery rangeAttack(String username, int x1, int y1, int x2, int y2){
