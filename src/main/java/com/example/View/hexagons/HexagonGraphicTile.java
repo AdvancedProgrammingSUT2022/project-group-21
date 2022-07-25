@@ -122,11 +122,20 @@ public class HexagonGraphicTile extends Polygon {
 		{
 			higherLeftButton.setFill(Color.TRANSPARENT);
 		}
+		higherLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				UnitSelectedController.setUnit(tile.getMilitaryUnit());
+				Popup popup = new UnitSelectedView();
+				try {
+					popup.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		//		todo: open unit popup for military unit
 		setCursor(Cursor.HAND);
-		UnitSelectedController.setUnit(tile.getMilitaryUnit());
-		Popup popup = new UnitSelectedView();
-		popup.show();
 	}
 
 	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
@@ -142,10 +151,19 @@ public class HexagonGraphicTile extends Polygon {
 			lowerLeftButton.setFill(Color.TRANSPARENT);
 		}
 		//		todo: open unit popup for Civilian unit
+		lowerLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				UnitSelectedController.setUnit(tile.getCivilianUnit());
+				Popup popup = new UnitSelectedView();
+				try {
+					popup.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		setCursor(Cursor.HAND);
-		UnitSelectedController.setUnit(tile.getCivilianUnit());
-		Popup popup = new UnitSelectedView();
-		popup.show();
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {

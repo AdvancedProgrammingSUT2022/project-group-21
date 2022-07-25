@@ -3,7 +3,17 @@ package com.example.View.hexagons;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 
+import com.example.View.popup.CitySelectedView;
+import com.example.View.popup.Popup;
+import com.example.View.popup.TileSelectedView;
+import com.example.View.popup.UnitSelectedView;
+import com.example.ViewController.Dialog;
+import com.example.ViewController.popupController.CitySelectedController;
+import com.example.ViewController.popupController.TileSelectedController;
+import com.example.ViewController.popupController.UnitSelectedController;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
@@ -89,8 +99,55 @@ public class MapPaneMaker {
 //				todo: bayad begi chikar konam :D
 
 				hexagonGraphicTile.rightButton.setVisible(true);
+				hexagonGraphicTile.rightButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						if (mouseEvent.isShiftDown()) {
+							CitySelectedController.setCity(hexagonGraphicTile.tile.getCityOnTile());
+							Popup popup = new CitySelectedView();
+							try {
+								popup.show();
+							} catch (Exception e) {
+								Dialog.error_message("Error", e.getMessage());
+							}
+						}
+						else {
+							TileSelectedController.setCivilization(hexagonGraphicTile.tile.getOwner());
+							Popup popup = new TileSelectedView();
+							try {
+								popup.show();
+							} catch (Exception e) {
+								Dialog.error_message("Error", e.getMessage());
+							}
+						}
+					}
+				});
 				hexagonGraphicTile.higherLeftButton.setVisible(true);
+				hexagonGraphicTile.higherLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						UnitSelectedController.setUnit(hexagonGraphicTile.tile.getMilitaryUnit());
+						Popup popup = new UnitSelectedView();
+						try {
+							popup.show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
 				hexagonGraphicTile.lowerLeftButton.setVisible(true);
+				hexagonGraphicTile.lowerLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						UnitSelectedController.setUnit(hexagonGraphicTile.tile.getCivilianUnit());
+						Popup popup = new UnitSelectedView();
+						try {
+							popup.show();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		}
 	}
