@@ -4,16 +4,21 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.UUID;
 
 public class SocketControllerThread extends Thread{
 	private final Socket socket;
 	private final DataInputStream dataInputStream;
 	private final DataOutputStream dataOutputStream;
+	private final String uuid;
 
 	public SocketControllerThread(Socket socket) throws IOException{
 		this.socket = socket;
-		this.dataInputStream = new DataInputStream(socket.getInputStream());
-		this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
+		dataInputStream = new DataInputStream(socket.getInputStream());
+		dataOutputStream = new DataOutputStream(socket.getOutputStream());
+		uuid = UUID.randomUUID().toString();
+		dataOutputStream.writeUTF(uuid);
+		dataOutputStream.flush();
 	}
 
 	private void close() throws IOException{
