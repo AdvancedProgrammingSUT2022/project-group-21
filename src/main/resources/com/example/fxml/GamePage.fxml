@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.GamePageViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#updateGraphicForFirstTime" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.GamePageViewController">
    <center>
       <ScrollPane fx:id="scrollPane" prefHeight="395.0" prefWidth="595.0" BorderPane.alignment="CENTER" />
    </center>
@@ -15,10 +18,10 @@
    <right>
       <AnchorPane prefHeight="600.0" prefWidth="80.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="End Turn" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button layoutX="3.0" layoutY="420.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tech Tree" />
-            <Button layoutX="3.0" layoutY="260.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Cheat" />
-            <Button layoutX="3.0" layoutY="340.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Research" />
+            <Button layoutX="2.0" mnemonicParsing="false" onMouseClicked="#endTurn" prefHeight="80.0" prefWidth="80.0" text="End Turn" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button layoutX="2.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#TechTreeFunc" prefHeight="80.0" prefWidth="80.0" text="Tech Tree" />
+            <Button layoutX="2.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#cheatFunc" prefHeight="80.0" prefWidth="80.0" text="Cheat" />
+            <Button layoutX="2.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#researchFun" prefHeight="80.0" prefWidth="80.0" text="Research" />
          </children>
       </AnchorPane>
    </right>

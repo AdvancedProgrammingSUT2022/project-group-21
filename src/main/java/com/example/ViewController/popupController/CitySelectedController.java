@@ -46,7 +46,6 @@ public class CitySelectedController {
 		stage.close();
 	}
 
-	// TODO: قبلش به ایف بزار اگه اون یونیت/سیتی برا پلیر فعلی بود باز نکنه
 	public void LOCK_UNLOCK_CITIZEN_func(MouseEvent mouseEvent) {
 		if (city == null) {
 			Dialog.error_message("Error", "please select a city first!");
@@ -67,7 +66,9 @@ public class CitySelectedController {
 		}
 		UserActionQuery userAction = CityUserAction
 				.lockUnlockCitizenToTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
-		GameController.getInstance().handleQueryFromView(userAction);
+		if (GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void SHOOT_func(MouseEvent mouseEvent) {
@@ -90,7 +91,9 @@ public class CitySelectedController {
 		}
 		UserActionQuery userAction = CityUserAction.shootTile(Game.getInstance().getCurrentPlayer().getUsername(), x1,
 				y1, x2, y2);
-		GameController.getInstance().handleQueryFromView(userAction);
+		if (GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void UNIT_PRODUCTION_func(MouseEvent mouseEvent) {
@@ -121,7 +124,9 @@ public class CitySelectedController {
 		}
 		UserActionQuery userAction = CityUserAction.produceUnit(Game.getInstance().getCurrentPlayer().getUsername(), x1,
 				y1, unitType);
-		GameController.getInstance().handleQueryFromView(userAction);
+		if(GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void building_production_func(MouseEvent mouseEvent) {
@@ -137,7 +142,6 @@ public class CitySelectedController {
 			ArrayList<Building> bf = Building.getAllPossibleBuildingsToBuild(city);
 			for (Building b : bf) {
 				list.add(b.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a building type", list);
 			for (Building b : bf) {
@@ -150,9 +154,11 @@ public class CitySelectedController {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction.produceBuilding(Game.getInstance().getCurrentPlayer().getUsername(),
-				x1, y1, building);
-		GameController.getInstance().handleQueryFromView(userAction);
+		UserActionQuery userAction = CityUserAction.produceBuilding(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, building);
+		if (GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void buy_tile_func(MouseEvent mouseEvent) {
@@ -175,7 +181,9 @@ public class CitySelectedController {
 		}
 		UserActionQuery userAction = CityUserAction.buyTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,
 				x2, y2);
-		GameController.getInstance().handleQueryFromView(userAction);
+		if(GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void buy_building_func(MouseEvent mouseEvent) {
@@ -206,7 +214,9 @@ public class CitySelectedController {
 		}
 		UserActionQuery userAction = CityUserAction.buyBuilding(Game.getInstance().getCurrentPlayer().getUsername(), x1,
 				y1, building);
-		GameController.getInstance().handleQueryFromView(userAction);
+		if (GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 
 	public void buy_unit_func(MouseEvent mouseEvent) {
@@ -222,7 +232,6 @@ public class CitySelectedController {
 			ArrayList<UnitType> bf = UnitType.getAllPossibleUnitsForCity(city);
 			for (UnitType u : bf) {
 				list.add(u.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a unit type", list);
 			for (UnitType u : bf) {
@@ -235,8 +244,10 @@ public class CitySelectedController {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction.buyUnit(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,
-				unitType);
-		GameController.getInstance().handleQueryFromView(userAction);
+		UserActionQuery userAction = CityUserAction.buyUnit(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, unitType);
+		if (GameController.getInstance().handleQueryFromView(userAction)) {
+			Dialog.information_message("", "done successfully");
+		}
 	}
 }

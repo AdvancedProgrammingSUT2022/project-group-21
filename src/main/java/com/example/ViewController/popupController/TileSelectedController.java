@@ -55,7 +55,6 @@ public class TileSelectedController {
             ArrayList<Technology> bf = Technology.getAllPossibleTechnology(civilization);
             for (Technology t : bf) {
                 list.add(t.name());
-//                todo: check to work correctly
             }
             String type = Dialog.selectFromComboBox("select a Technology", list);
             for (Technology t : bf) {
@@ -81,7 +80,7 @@ public class TileSelectedController {
                 Game.getInstance().getCurrentPlayer().getUsername()
         );
         if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
-            Dialog.information_message("", "next turned successfully!");
+            Dialog.information_message("", "end turned successfully!");
         }
     }
     @FXML

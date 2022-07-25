@@ -53,6 +53,10 @@ public class MainMenuController {
 			}
 			users.add(string);
 		}
+		if (users.size() < 2) {
+			Dialog.error_message("Error", "at least 2 player required!");
+			return;
+		}
 		try {
 			GameController.getInstance().startNewGame(users);
 			App.setRootFromFXML("GamePage");
