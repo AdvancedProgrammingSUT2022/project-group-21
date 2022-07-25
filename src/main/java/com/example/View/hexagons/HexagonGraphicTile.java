@@ -1,13 +1,13 @@
 package com.example.View.hexagons;
 
+import java.io.IOException;
+
 import com.example.Model.Civilization;
-import com.example.Model.Game;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
 import com.example.View.button.CitySelectButton;
 import com.example.View.button.TileSelectButton;
 import com.example.View.button.UnitSelectButton;
-
 import com.example.View.popup.CitySelectedView;
 import com.example.View.popup.Popup;
 import com.example.View.popup.TileSelectedView;
@@ -16,9 +16,9 @@ import com.example.ViewController.Dialog;
 import com.example.ViewController.popupController.CitySelectedController;
 import com.example.ViewController.popupController.TileSelectedController;
 import com.example.ViewController.popupController.UnitSelectedController;
+
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -29,9 +29,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
-import java.io.IOException;
-import java.util.Locale;
-
 public class HexagonGraphicTile extends Polygon {
 	public final static double r = 80; // the inner radius from hexagon center to outer corner
 	public final static double n = Math.sqrt(r * r * 0.75); // the inner radius from hexagon center to middle of the
@@ -40,12 +37,13 @@ public class HexagonGraphicTile extends Polygon {
 	public final static double TILE_WIDTH = 2 * n;
 	
 	public Label coordinates;
-	public Rectangle mainButton; // دایره قرمز :) اطلاعات
-	public Rectangle rightButton;// نوار آبی دراز وسط که تایل سلکت میشه فقط برای اونر میاد
-	public Rectangle lowerLeftButton; // سمت چپ پایینه اگر باشه فقط برای اونور ، و سیویلیان یونیت انتخاب میشه
-	public Rectangle higherLeftButton; // عین بالا برای میلیتاری یونیت ها
+	public TileSelectButton mainButton; // دایره قرمز :) اطلاعات
+	public CitySelectButton rightButton;// نوار آبی دراز وسط که تایل سلکت میشه فقط برای اونر میاد
+	public UnitSelectButton lowerLeftButton; // سمت چپ پایینه اگر باشه فقط برای اونور ، و سیویلیان یونیت انتخاب میشه
+	public UnitSelectButton higherLeftButton; // عین بالا برای میلیتاری یونیت ها
     public Tile tile;
-	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile, Civilization civilization) throws IOException {
+	
+	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile) throws IOException {
 		this.tile=tile;
 		setCoordinates(x, y, j, i);
 			setMainButton(x, y, j, i, tile);
@@ -63,7 +61,7 @@ public class HexagonGraphicTile extends Polygon {
 	}
 
 	public void setRightButton(double x, double y, int j, int i, City city) {
-		 rightButton = new CitySelectButton(city);
+		rightButton = new CitySelectButton(city);
 		rightButton = new Rectangle();
 		rightButton.setLayoutX(x + 60);
 		rightButton.setLayoutY(y +10);
@@ -108,16 +106,7 @@ public class HexagonGraphicTile extends Polygon {
 				new Image(getClass().getResource("/status.png").toExternalForm())));
 //		todo: show information like gold and ... , every body can clicked it
 		mainButton.setCursor(Cursor.HAND);
-		mainButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-//				todo: terrain, terin feature,recouse, improvement, ownner
-				String test = "";
-				test +=  tile.getTerrain().name() + "\n";
-				test +=  "(" + tile.X + ", " + tile.Y + ")\n";
-				Dialog.information_message("status", test);
-			}
-		});
+		
 	}
 
 	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
@@ -164,6 +153,7 @@ public class HexagonGraphicTile extends Polygon {
 		}
 		//		todo: open unit popup for Civilian unit
 		setCursor(Cursor.HAND);
+		
 		lowerLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
@@ -176,6 +166,7 @@ public class HexagonGraphicTile extends Polygon {
 				}
 			}
 		});
+
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {
@@ -190,6 +181,76 @@ public class HexagonGraphicTile extends Polygon {
     ////////////////////////////For Neighbour test
 	public void setCoordinatesText() {
 		coordinates.setText("Neighbour");
+	}
+
+
+	public void update(Civilization civilization){
+		
+		if (this.tile.getOwner() != civilization) {
+			this.rightButton.setVisible(false);
+			this.rightButton.setOnMouseClicked(null);
+			this.rightButton.setCursor(Cursor.DEFAULT);
+
+			this.higherLeftButton.setVisible(false);
+			this.higherLeftButton.setOnMouseClicked(null);
+			this.higherLeftButton.setCursor(Cursor.DEFAULT);
+
+			this.lowerLeftButton.setVisible(false);
+			this.lowerLeftButton.setOnMouseClicked(null);
+			this.lowerLeftButton.setCursor(Cursor.DEFAULT);
+		}
+		else {
+			this.rightButton.setVisible(true);
+			this.rightButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					if (mouseEvent.isShiftDown()) {
+						CitySelectedController.setCity(this.tile.getCityOnTile());
+						Popup popup = new CitySelectedView();
+						try {
+							popup.show();
+						} catch (Exception e) {
+							Dialog.error_message("Error", e.getMessage());
+						}
+					} else {
+						TileSelectedController.setCivilization(this.tile.getOwner());
+						Popup popup = new TileSelectedView();
+						try {
+							popup.show();
+						} catch (Exception e) {
+							Dialog.error_message("Error", e.getMessage());
+						}
+					}
+				}
+			});
+
+			this.higherLeftButton.setVisible(true);
+			this.higherLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					UnitSelectedController.setUnit(this.tile.getMilitaryUnit());
+					Popup popup = new UnitSelectedView();
+					try {
+						popup.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			this.lowerLeftButton.setVisible(true);
+			this.lowerLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					UnitSelectedController.setUnit(this.tile.getCivilianUnit());
+					Popup popup = new UnitSelectedView();
+					try {
+						popup.show();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		}
 	}
 }
 

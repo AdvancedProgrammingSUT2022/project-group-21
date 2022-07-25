@@ -1,15 +1,29 @@
 package com.example.View.button;
 
+import com.example.Model.Civilization;
 import com.example.Model.tile.Tile;
+import com.example.ViewController.Dialog;
 
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
-
-public class TileSelectButton extends Rectangle {
-	private Tile tile;
+public class TileSelectButton extends CustomGameButton {
 
 	public TileSelectButton(Tile tile) {
-		this.tile = tile;
+		super(tile);
 	}
+	
+		// setOnMouseClicked(new EventHandler<MouseEvent>() {
+		// 	@Override
+		// 	public void handle(MouseEvent mouseEvent) {
+		// 		// todo: terrain, terin feature, resource, improvement, ownner
+		// 		String test = "";
+		// 		test += tile.getTerrain().name() + "\n";
+		// 		test += "(" + tile.X + ", " + tile.Y + ")\n";
+		// 		Dialog.information_message("status", test);
+		// 	}
+		// });
+	
 
 }
