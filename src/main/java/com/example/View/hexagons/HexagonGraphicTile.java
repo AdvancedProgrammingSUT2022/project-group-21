@@ -9,7 +9,6 @@ import com.example.View.button.CitySelectButton;
 import com.example.View.button.CivilianUnitSelectButton;
 import com.example.View.button.MilitaryUnitSelectButton;
 import com.example.View.button.TileSelectButton;
-import com.example.View.button.UnitSelectButton;
 import com.example.View.popup.CitySelectedView;
 import com.example.View.popup.Popup;
 import com.example.View.popup.TileSelectedView;
@@ -72,29 +71,6 @@ public class HexagonGraphicTile extends Polygon {
 		rightButton.setFill(Color.PALETURQUOISE);
 
 		rightButton.setCursor(Cursor.HAND);
-		rightButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (mouseEvent.isShiftDown()) {
-					CitySelectedController.setCity(city);
-					Popup popup = new CitySelectedView();
-					try {
-						popup.show();
-					} catch (Exception e) {
-						Dialog.error_message("Error", e.getMessage());
-					}
-				}
-				else {
-					TileSelectedController.setCivilization(city.getOwner());
-					Popup popup = new TileSelectedView();
-					try {
-						popup.show();
-					} catch (Exception e) {
-						Dialog.error_message("Error", e.getMessage());
-					}
-				}
-			}
-		});
 
 	}
 
@@ -126,18 +102,6 @@ public class HexagonGraphicTile extends Polygon {
 			higherLeftButton.setFill(Color.TRANSPARENT);
 		}
 		setCursor(Cursor.HAND);
-		higherLeftButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				UnitSelectedController.setUnit(tile.getMilitaryUnit());
-				Popup popup = new UnitSelectedView();
-				try {
-					popup.show();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
 		//		todo: open unit popup for military unit
 	}
 
