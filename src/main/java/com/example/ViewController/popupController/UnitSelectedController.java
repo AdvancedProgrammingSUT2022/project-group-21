@@ -2,6 +2,7 @@ package com.example.ViewController.popupController;
 
 import com.example.Contoller.GameController;
 import com.example.Model.Game;
+import com.example.Model.UserAction.UnitActionType;
 import com.example.Model.UserAction.UnitUserAction;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.city.Building;
@@ -38,15 +39,63 @@ public class UnitSelectedController {
     }
 
     public void meleeAttack(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.MELEE_ATTACK
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "melee attack done successfully");
+        }
     }
 
     public void preAttackSetUp(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PRE_ATTACK_SETUP
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "pre attack setup done successfully");
+        }
     }
 
     public void alert(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.ALERT
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "alert done successfully");
+        }
     }
 
     public void pillage(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PILLAGE
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "pillage done successfully");
+        }
     }
 
     public void move(MouseEvent mouseEvent) {
