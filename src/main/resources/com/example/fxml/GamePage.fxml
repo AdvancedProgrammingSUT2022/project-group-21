@@ -10,14 +10,15 @@
       <ScrollPane fx:id="scrollPane" prefHeight="395.0" prefWidth="595.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
-      <AnchorPane fx:id="infoAcnchorPane" prefHeight="80.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="infoAnchorPane" prefHeight="80.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
    </top>
    <right>
       <AnchorPane prefHeight="600.0" prefWidth="80.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="End Turn" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button layoutX="3.0" layoutY="420.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Technology" />
-            <Button layoutX="3.0" layoutY="332.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Cheat" />
+            <Button layoutX="3.0" layoutY="420.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Tech Tree" />
+            <Button layoutX="3.0" layoutY="260.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Cheat" />
+            <Button layoutX="3.0" layoutY="340.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="Research" />
          </children>
       </AnchorPane>
    </right>

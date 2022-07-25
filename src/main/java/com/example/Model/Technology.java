@@ -1,9 +1,5 @@
 package com.example.Model;
 
-import com.example.Model.city.Building;
-import com.example.Model.city.City;
-
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 
 public enum Technology{

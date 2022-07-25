@@ -8,7 +8,9 @@ import com.example.Model.Technology;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
+import com.example.View.hexagons.MapPaneMaker;
 import com.example.ViewController.Dialog;
+import com.example.ViewController.GamePageViewController;
 
 public class GameController {
 	private static GameController instance = new GameController();
@@ -39,6 +41,7 @@ public class GameController {
 		if (Game.getInstance()!=null){
 			// TODO: must update graphics
 		}
+		updateGraphic();
 		return true;
 	}
 
@@ -87,4 +90,8 @@ public class GameController {
 		// TODO: on phase3, show notification
 	}
 
+	public void updateGraphic(){
+		MapPaneMaker.updateButtons(Game.getInstance().getCurrentPlayer().getCivilization());
+		GamePageViewController.showInfo();
+	}
 }
