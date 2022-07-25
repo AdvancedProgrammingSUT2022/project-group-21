@@ -42,8 +42,16 @@ public class UnitSelectedController {
         }
         int x1 = unit.getTile().X;
         int y1 = unit.getTile().Y;
-        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
-                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.DELETE
+        boolean isMilitary = false;
+        try {
+            String militaryOrNot =
+                    Dialog.selectFromComboBox("is Military ?" , new ArrayList<>(Arrays.asList("Yes", "No")));
+            isMilitary = militaryOrNot.endsWith("YES") ? true : false;
+        }catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+        }
+        UserActionQuery userActionQuery = UnitUserAction.delete(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, isMilitary
         );
         if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
             Dialog.information_message("", "delete done successfully");
@@ -177,16 +185,8 @@ public class UnitSelectedController {
         }
         int x1 = unit.getTile().X;
         int y1 = unit.getTile().Y;
-        int x2;
-        int y2;
         boolean isMilitary;
         try {
-            x2 = Integer.parseInt(
-                    Dialog.AskQuestion("", "x2:")
-            );
-            y2 = Integer.parseInt(
-                    Dialog.AskQuestion("", "y2:")
-            );
             String militaryOrNot =
             Dialog.selectFromComboBox("is Military ?" , new ArrayList<>(Arrays.asList("Yes", "No")));
             isMilitary = militaryOrNot.endsWith("YES") ? true : false;
@@ -195,7 +195,7 @@ public class UnitSelectedController {
             return;
         }
         UserActionQuery userActionQuery = UnitUserAction.sleepWake(
-                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2, isMilitary
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, isMilitary
         );
         if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
             Dialog.information_message("", "done successfully");
