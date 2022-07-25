@@ -1,5 +1,6 @@
 package com.example.ViewController;
 
+import com.example.App;
 import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
 import com.example.Model.CheatCode;
@@ -36,6 +37,9 @@ public class GamePageViewController {
 		
 		System.out.println("initialize done");
 		GameController.getInstance().updateGraphic();
+
+		App.getStage().setWidth(960);
+		App.getStage().setHeight(680);
 	}
 
 	private boolean pdateGraphicForFirstTime = false;
@@ -112,6 +116,7 @@ public class GamePageViewController {
     }
 
 	public void TechTreeFunc(MouseEvent mouseEvent) {
+		TechnologyTreeMenu.show();
 	}
 
 	public void researchFun(MouseEvent mouseEvent) {
