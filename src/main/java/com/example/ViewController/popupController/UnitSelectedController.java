@@ -36,6 +36,18 @@ public class UnitSelectedController {
         unit = u;
     }
     public void Delete(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.DELETE
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "delete done successfully");
+        }
     }
 
     public void meleeAttack(MouseEvent mouseEvent) {
