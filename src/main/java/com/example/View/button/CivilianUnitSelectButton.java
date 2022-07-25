@@ -29,6 +29,8 @@ public class CivilianUnitSelectButton extends CustomGameButton{
 			this.setVisible(true);
 		}
 		if(tile.getOwner()!=civilization) {
+			this.setOnMouseClicked(null);
+			this.setCursor(Cursor.DEFAULT);
 			return;
 		}
 		else{
