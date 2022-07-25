@@ -20,7 +20,8 @@ public class GamePageViewController {
 
 	@FXML
 	private void initialize(){
-		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization()));
+		scrollPane.
+                setContent(MapPaneMaker.createScrollPane(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization()));
 	
 	}
     public void addInfo(User user,User currentUser)

@@ -20,14 +20,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoginController {
     public Button exit_btn;
-    private AudioClip audioClip;
     @FXML
     private TextField username;
     @FXML
@@ -41,6 +39,7 @@ public class LoginController {
 
     @FXML
     private Label error;
+
 
     public void Submit(MouseEvent mouseEvent) throws Exception {
         login();

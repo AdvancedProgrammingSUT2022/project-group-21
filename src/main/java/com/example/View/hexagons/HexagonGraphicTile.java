@@ -3,12 +3,21 @@ package com.example.View.hexagons;
 import com.example.Model.Civilization;
 import com.example.Model.city.City;
 import com.example.Model.tile.Tile;
+import com.example.View.button.CitySelectButton;
 import com.example.View.button.TileSelectButton;
 import com.example.View.button.UnitSelectButton;
 
+import com.example.View.popup.CitySelectedView;
+import com.example.View.popup.Popup;
+import com.example.View.popup.UnitSelectedView;
+import com.example.ViewController.Dialog;
+import com.example.ViewController.popupController.CitySelectedController;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
@@ -16,6 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class HexagonGraphicTile extends Polygon {
@@ -43,13 +53,29 @@ public class HexagonGraphicTile extends Polygon {
 				y - r * 0.5);
 		setFill(new ImagePattern(new Image(getClass().getResource("/Terrain/"+
 				tile.getTerrain().name().toLowerCase()+".png").toExternalForm())));
+		setCursor(Cursor.HAND);
+		setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				Dialog.information_message("", "iam a " + tile.getTerrain().name());
+				Popup popup = new CitySelectedView();
+				CitySelectedController.setCity(tile.getCityOnTile());
+				try {
+					popup.show();
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		});
 		setOpacity(0.7);
 		setStrokeWidth(1);
 		setStroke(Color.BLACK);
+
+
 	}
 
 	public void setRightButton(double x, double y, int j, int i, City city) {
-		// rightButton = new CitySelectButton(city);
+		 rightButton = new CitySelectButton(city);
 		rightButton = new Rectangle();
 		rightButton.setLayoutX(x + 60);
 		rightButton.setLayoutY(y +10);

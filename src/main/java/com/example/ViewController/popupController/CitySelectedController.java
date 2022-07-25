@@ -40,7 +40,7 @@ public class CitySelectedController{
 
     private static City city;
 
-    public void setCity(City c) {
+    public static void setCity(City c) {
         city = c;
     }
 
