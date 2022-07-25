@@ -40,7 +40,7 @@ public class App extends Application {
 		ArrayList<String> users = new ArrayList<>();
 		users.add("test");
 		users.add("test2");
-		GameController.getInstance().startNewGame(users);
+		GameController.getInstance().startNewGame(users, 1234);
 
 
 		launch();
