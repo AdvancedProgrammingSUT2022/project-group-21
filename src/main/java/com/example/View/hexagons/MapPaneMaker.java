@@ -30,7 +30,10 @@ public class MapPaneMaker {
 			for (int i = 0; i < game.WIDTH; i++) {
 				HexagonGraphicTile hex;
 				if (j % 2 == 0){
-					hex = new HexagonGraphicTile(200 + i * 2 * HexagonGraphicTile.n, 200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(i, j),civilization);
+					hex = new HexagonGraphicTile(
+							200 + i * 2 * HexagonGraphicTile.n,
+							200 + HexagonGraphicTile.r * 1.5 * j, j, i, game.getTile(i, j),
+							civilization);
 				}
 				else{
 					hex = new HexagonGraphicTile(200 +

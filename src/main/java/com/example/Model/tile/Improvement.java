@@ -1,6 +1,9 @@
 package com.example.Model.tile;
 
 import com.example.Model.Technology;
+import com.example.Model.unit.WorkerProject;
+
+import java.util.ArrayList;
 
 public enum Improvement{
 	
@@ -12,6 +15,10 @@ public enum Improvement{
 			if (feature==TerrainFeature.FOREST || feature==TerrainFeature.JUNGLE) return true;
 			return false;
 		}
+		@Override
+		public String toString() {
+			return "CAMP";
+		}
 	},
 
 	FARM(1, 0, 0, Technology.AGRICULTURE){
@@ -20,12 +27,20 @@ public enum Improvement{
 			if (terrain==Terrain.DESERT || terrain==Terrain.PLAINS || terrain==Terrain.GRASSLAND) return true;
 			return false;
 		}
+		@Override
+		public String toString() {
+			return "FARM";
+		}
 	},
 	LUMBER_MILL(0, 1, 0, Technology.ENGINEERING){
 		public boolean canBeBuiltOn(Tile tile){
 			TerrainFeature feature=tile.getTerrainFeature();
 			if (feature==TerrainFeature.FOREST || feature==TerrainFeature.JUNGLE) return true;
 			return false;
+		}
+		@Override
+		public String toString() {
+			return "LUMBER_MILL";
 		}
 	},
 	MINE(0, 1, 0, Technology.MINING){
@@ -36,12 +51,20 @@ public enum Improvement{
 			if (feature==TerrainFeature.FOREST || feature==TerrainFeature.JUNGLE || feature==TerrainFeature.MARSH) return true;
 			return false;
 		}
+		@Override
+		public String toString() {
+			return "MINE";
+		}
 	},
 	PASTURE(0, 0, 0, Technology.ANIMAL_HUSBANDRY){
 		public boolean canBeBuiltOn(Tile tile){
 			Terrain terrain=tile.getTerrain();
 			if (terrain==Terrain.TUNDRA || terrain==Terrain.HILL || terrain==Terrain.PLAINS || terrain==Terrain.DESERT || terrain==Terrain.GRASSLAND || terrain==Terrain.SNOW) return true;
 			return false;
+		}
+		@Override
+		public String toString() {
+			return "PASTURE";
 		}
 	},
 	PLANTATION(0, 0, 0, Technology.CALENDAR){
@@ -52,12 +75,20 @@ public enum Improvement{
 			if (feature==TerrainFeature.FOREST || feature==TerrainFeature.JUNGLE || feature==TerrainFeature.MARSH || feature==TerrainFeature.FLOOD_PLAINS) return true;
 			return false;
 		}
+		@Override
+		public String toString() {
+			return "PLANTATION";
+		}
 	},
 	QUARRY(0, 0, 0, Technology.MASONRY){
 		public boolean canBeBuiltOn(Tile tile){
 			Terrain terrain=tile.getTerrain();
 			if (terrain==Terrain.PLAINS || terrain==Terrain.TUNDRA || terrain==Terrain.GRASSLAND || terrain==Terrain.DESERT || terrain==Terrain.HILL) return true;
 			return false;
+		}
+		@Override
+		public String toString() {
+			return "QUARRY";
 		}
 	},
 	TRADING_POST(0, 0, 1, Technology.TRAPPING){
@@ -66,12 +97,20 @@ public enum Improvement{
 			if (terrain==Terrain.PLAINS || terrain==Terrain.TUNDRA || terrain==Terrain.GRASSLAND || terrain==Terrain.DESERT) return true;
 			return false;
 		}
+		@Override
+		public String toString() {
+			return "TRADING_POST";
+		}
 	},
 	MANUFACTORY(0, 2, 0, Technology.ENGINEERING){
 		public boolean canBeBuiltOn(Tile tile){
 			Terrain terrain=tile.getTerrain();
 			if (terrain==Terrain.PLAINS || terrain==Terrain.TUNDRA || terrain==Terrain.GRASSLAND || terrain==Terrain.DESERT || terrain==Terrain.SNOW) return true;
 			return false;
+		}
+		@Override
+		public String toString() {
+			return "TRADING_POST";
 		}
 	};
 	
@@ -95,5 +134,11 @@ public enum Improvement{
 		if (tile.getImprovement()!=null) return 4;
 		return 3;
 	}
-
+	public static ArrayList<Improvement> getAllType() {
+		ArrayList<Improvement> out = new ArrayList<>();
+		for (Improvement improvement : Improvement.values()) {
+			out.add(improvement);
+		}
+		return out;
+	}
 }

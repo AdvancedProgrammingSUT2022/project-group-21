@@ -13,6 +13,7 @@ module com.example {
 	opens com.example to javafx.fxml;
 	opens com.example.ViewController to javafx.fxml;
 
+
 	opens com.example.ViewController.popupController to javafx.fxml;
 
 	exports com.example;

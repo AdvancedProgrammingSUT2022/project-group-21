@@ -1,5 +1,6 @@
 package com.example.ViewController;
 
+import com.example.Contoller.UserController;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
 import com.example.View.LoginPage;
@@ -49,22 +50,13 @@ public class RegisterController {
             error.setVisible(true);
             return;
         }
-        if (UserDatabase.getInstance().getUserByUsername(username) != null) {
-            Alert errormess = new Alert(Alert.AlertType.ERROR);
-            errormess.setHeaderText(null);
-            errormess.setContentText("already " + username + " is exist");
-            errormess.showAndWait();
+        try {
+            UserController.getInstance().registerUser(username, password, nickname);
+        }catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
             return;
         }
-        User user = new User(username, password, nickname);
-        UserDatabase.getInstance().addUser(user);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("register");
-        alert.setHeaderText(null);
-        alert.setContentText("register successfully");
-        alert.showAndWait();
-        clear();
-//        TODO save SAVE DATABASE IN JSON FILE
+        Dialog.information_message("", "You are register successfully");
     }
 
 

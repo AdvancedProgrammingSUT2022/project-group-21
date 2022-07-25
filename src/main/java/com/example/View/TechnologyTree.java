@@ -111,7 +111,7 @@ public class TechnologyTree {
 			public void handle(ActionEvent arg0) {
 				UserActionQuery query = CivilizationUserAction.setResearch(user.getUsername(), technology);
 				GameController.getInstance().handleQueryFromView(query);
-			}
+            }
 		});
 		applyCivilizationToButton(button, technology, user.getCivilization());
 
