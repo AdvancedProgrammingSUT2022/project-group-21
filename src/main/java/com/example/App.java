@@ -33,14 +33,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-//		TO run Game Page uncomment this
-//		GamePage.show(stage);
-
-		Popup popup = new UnitSelectedView();
-		popup.show();
-
-//		LoginPage.show();
-		//UnitSelectedView.show();
+		LoginPage.show();
 	}
 
 	public static void main(String[] args) throws Exception{

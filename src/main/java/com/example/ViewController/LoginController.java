@@ -1,6 +1,7 @@
 package com.example.ViewController;
 
 import com.example.App;
+import com.example.Contoller.UserController;
 import com.example.Model.Civilization;
 import com.example.Model.city.City;
 import com.example.Model.tile.Terrain;
@@ -8,6 +9,7 @@ import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
 import com.example.View.LoginPage;
+import com.example.View.MainMenu;
 import com.example.View.popup.CitySelectedView;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -19,6 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -45,19 +48,17 @@ public class LoginController {
     public void login() throws Exception {
         String username = this.username.getText().toString();
         String password = this.password.getText().toString();
-        User user = UserDatabase.getInstance().getUserByUsername(username);
-        if (user == null) {
-            error.setVisible(true);
+        try {
+            UserController.getInstance().loginUser(username, password);
+        }catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+            return;
         }
-        else {
-            if (user.getPassword().equals(password)) {
-//              TODO save logged in user in a there
-                App.launch();
-            }
-            else {
-                error.setVisible(true);
-            }
-        }
+        Dialog.information_message("", "You are LoggedIn successfully!\n" +
+                "wait to go to Main menu...");
+        Stage stage = (Stage) submit.getScene().getWindow();
+        stage.close();
+        MainMenu.show();
     }
     public void Register(MouseEvent mouseEvent) throws IOException {
         goToRegisterPage();

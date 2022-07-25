@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class UnitSelectedController {
     public Button Delete_btn;
@@ -36,16 +37,76 @@ public class UnitSelectedController {
     public void Delete(MouseEvent mouseEvent) {
     }
 
-    public void move(MouseEvent mouseEvent) {
-    }
-
     public void meleeAttack(MouseEvent mouseEvent) {
     }
 
-    public void rangeAttack(MouseEvent mouseEvent) {
+    public void preAttackSetUp(MouseEvent mouseEvent) {
     }
 
-    public void preAttackSetUp(MouseEvent mouseEvent) {
+    public void alert(MouseEvent mouseEvent) {
+    }
+
+    public void pillage(MouseEvent mouseEvent) {
+    }
+
+    public void move(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        int x2;
+        int y2;
+        boolean isMilitary;
+        try {
+            x2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "x2:")
+            );
+            y2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "y2:")
+            );
+            String militaryOrNot =
+                    Dialog.selectFromComboBox("is Military ?" , new ArrayList<>(Arrays.asList("Yes", "No")));
+            isMilitary = militaryOrNot.endsWith("YES") ? true : false;
+        } catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+            return;
+        }
+        UserActionQuery userActionQuery = UnitUserAction.move(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2, isMilitary
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "move successfully");
+        }
+    }
+
+    public void rangeAttack(MouseEvent mouseEvent) {
+        if (unit == null) {
+            Dialog.error_message("Error", "please select a unit first!");
+            return;
+        }
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        int x2;
+        int y2;
+        try {
+            x2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "x2:")
+            );
+            y2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "y2:")
+            );
+        } catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+            return;
+        }
+        UserActionQuery userActionQuery = UnitUserAction.rangeAttack(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "range attack successfully");
+        }
     }
 
     public void sleep_wake(MouseEvent mouseEvent) {
@@ -57,13 +118,27 @@ public class UnitSelectedController {
         int y1 = unit.getTile().Y;
         int x2;
         int y2;
-
-    }
-
-    public void alert(MouseEvent mouseEvent) {
-    }
-
-    public void pillage(MouseEvent mouseEvent) {
+        boolean isMilitary;
+        try {
+            x2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "x2:")
+            );
+            y2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "y2:")
+            );
+            String militaryOrNot =
+            Dialog.selectFromComboBox("is Military ?" , new ArrayList<>(Arrays.asList("Yes", "No")));
+            isMilitary = militaryOrNot.endsWith("YES") ? true : false;
+        } catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+            return;
+        }
+        UserActionQuery userActionQuery = UnitUserAction.sleepWake(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2, isMilitary
+        );
+        if(GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "done successfully");
+        }
     }
 
     public void foundCity(MouseEvent mouseEvent) {
