@@ -1,26 +1,19 @@
 package com.example.ViewController;
 
+import java.io.IOException;
+
+import com.example.App;
 import com.example.Contoller.UserController;
-import com.example.Model.user.User;
-import com.example.Model.user.UserDatabase;
-import com.example.View.LoginPage;
+
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.*;
-import java.util.Random;
 
 public class RegisterController {
     @FXML
@@ -80,8 +73,6 @@ public class RegisterController {
     }
 
     public void Back(MouseEvent mouseEvent) throws IOException {
-        LoginPage.stage.setScene(
-                new Scene(LoginPage.loadFXML("LoginPage"))
-        );
+        App.setRootFromFXML("LoginPage");
     }
 }

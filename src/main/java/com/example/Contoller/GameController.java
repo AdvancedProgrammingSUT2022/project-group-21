@@ -8,6 +8,7 @@ import com.example.Model.Technology;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
+import com.example.View.hexagons.MapPaneMaker;
 import com.example.ViewController.Dialog;
 
 public class GameController {
@@ -39,6 +40,7 @@ public class GameController {
 		if (Game.getInstance()!=null){
 			// TODO: must update graphics
 		}
+		MapPaneMaker.updateButtons(Game.getInstance().getCurrentPlayer().getCivilization());
 		return true;
 	}
 

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class GamePage {
-	
+	// TODO: remove class
 	public static void show(ArrayList<String> users) throws Exception {
 		// Dialog.information_message("", "please wait to loading...");
 		Stage stage = new Stage();

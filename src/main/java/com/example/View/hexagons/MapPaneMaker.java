@@ -1,24 +1,13 @@
 package com.example.View.hexagons;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 
-import com.example.View.popup.CitySelectedView;
-import com.example.View.popup.Popup;
-import com.example.View.popup.TileSelectedView;
-import com.example.View.popup.UnitSelectedView;
-import com.example.ViewController.Dialog;
-import com.example.ViewController.popupController.CitySelectedController;
-import com.example.ViewController.popupController.TileSelectedController;
-import com.example.ViewController.popupController.UnitSelectedController;
-import javafx.event.EventHandler;
-import javafx.scene.Cursor;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class MapPaneMaker {
 	private static ArrayList<HexagonGraphicTile> hexagonGraphicTiles = new ArrayList<>();
@@ -27,9 +16,12 @@ public class MapPaneMaker {
 		Pane content = new Pane();
 		content.setPrefSize(HexagonGraphicTile.TILE_WIDTH * game.WIDTH + 400,
 				HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400);
-		// scrollPane.setContent(content);
 		addHexagons(content, game);
-		// return scrollPane;
+		updateButtons(game.getCurrentPlayer().getCivilization());
+		
+		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
+		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
+
 		return content;
 	}
 

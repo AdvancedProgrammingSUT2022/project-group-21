@@ -3,10 +3,10 @@ package com.example.ViewController;
 import java.util.ArrayList;
 
 import com.example.App;
+import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
 import com.example.Model.GameHistory;
 import com.example.Model.user.UserDatabase;
-import com.example.View.GamePage;
 
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
@@ -55,13 +55,16 @@ public class MainMenuController {
 			}
 			users.add(string);
 		}
-		exitFunction(null);
 		try {
+			GameController.getInstance().startNewGame(users);
+			App.setRootFromFXML("GamePage");
+			System.out.println("MainMenuController.startFunction()");
 			// GamePage.show(users);
-			App.loadFXML("GamePage");
 		} catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
+			e.printStackTrace();
 		}
+		// exitFunction(null);
 	}
 
 	@FXML

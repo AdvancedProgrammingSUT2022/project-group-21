@@ -26,7 +26,8 @@ public class GamePageViewController {
 	private void initialize() throws IOException {
 		instance=this;
 		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance()));
-
+		
+		System.out.println("initialize done");
 	}
 
 	public void addInfo(User user) {

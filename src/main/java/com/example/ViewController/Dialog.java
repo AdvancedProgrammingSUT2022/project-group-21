@@ -25,6 +25,7 @@ public class Dialog {
     }
 
     public static void error_message(String title, String message) {
+        System.out.println(message); // TODO: comment
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
