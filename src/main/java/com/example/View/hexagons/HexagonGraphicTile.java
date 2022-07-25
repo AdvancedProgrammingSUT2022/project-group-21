@@ -9,9 +9,12 @@ import com.example.View.button.UnitSelectButton;
 
 import com.example.View.popup.CitySelectedView;
 import com.example.View.popup.Popup;
+import com.example.View.popup.TileSelectedView;
 import com.example.View.popup.UnitSelectedView;
 import com.example.ViewController.Dialog;
 import com.example.ViewController.popupController.CitySelectedController;
+import com.example.ViewController.popupController.TileSelectedController;
+import com.example.ViewController.popupController.UnitSelectedController;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -36,12 +39,12 @@ public class HexagonGraphicTile extends Polygon {
 	public final static double TILE_WIDTH = 2 * n;
 	
 	public Label coordinates;
-	public Rectangle mainButton;
-	public Rectangle rightButton;
-	public Rectangle lowerLeftButton;
-	public Rectangle higherLeftButton;
+	public Rectangle mainButton; // دایره قرمز :) اطلاعات
+	public Rectangle rightButton;// نوار آبی دراز وسط که تایل سلکت میشه فقط برای اونر میاد
+	public Rectangle lowerLeftButton; // سمت چپ پایینه اگر باشه فقط برای اونور ، و سیویلیان یونیت انتخاب میشه
+	public Rectangle higherLeftButton; // عین بالا برای میلیتاری یونیت ها
     public Tile tile;
-	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile, Civilization civilization) {
+	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile, Civilization civilization) throws IOException {
 		this.tile=tile;
 		setCoordinates(x, y, j, i);
 			setMainButton(x, y, j, i, tile);
@@ -53,24 +56,9 @@ public class HexagonGraphicTile extends Polygon {
 				y - r * 0.5);
 		setFill(new ImagePattern(new Image(getClass().getResource("/Terrain/"+
 				tile.getTerrain().name().toLowerCase()+".png").toExternalForm())));
-		setCursor(Cursor.HAND);
-		setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent mouseEvent) {
-				Dialog.information_message("", "iam a " + tile.getTerrain().name());
-				Popup popup = new CitySelectedView();
-				CitySelectedController.setCity(tile.getCityOnTile());
-				try {
-					popup.show();
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		});
 		setOpacity(0.7);
 		setStrokeWidth(1);
 		setStroke(Color.BLACK);
-
 
 	}
 
@@ -82,18 +70,45 @@ public class HexagonGraphicTile extends Polygon {
 		rightButton.setWidth(20);
 		rightButton.setHeight(60);
 		rightButton.setFill(Color.PALETURQUOISE);
+
+		rightButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent mouseEvent) {
+				if (mouseEvent.isShiftDown()) {
+					CitySelectedController.setCity(city);
+					Popup popup = new CitySelectedView();
+					try {
+						popup.show();
+					} catch (Exception e) {
+						Dialog.error_message("Error", e.getMessage());
+					}
+				}
+				else {
+					TileSelectedController.setCivilization(city.getOwner());
+					Popup popup = new TileSelectedView();
+					try {
+						popup.show();
+					} catch (Exception e) {
+						Dialog.error_message("Error", e.getMessage());
+					}
+				}
+			}
+		});
+
 	}
 
-	private void setMainButton(double x, double y, int j, int i, Tile tile) {
+	private void setMainButton(double x, double y, int j, int i, Tile tile) 	{
 		mainButton = new TileSelectButton(tile);
 		mainButton.setLayoutX(x + 90);
 		mainButton.setLayoutY(y + 20);
 		mainButton.setWidth(40);
 		mainButton.setHeight(40);
-		mainButton.setFill(new ImagePattern(new Image(getClass().getResource("/status.png").toExternalForm())));
+		mainButton.setFill(new ImagePattern(
+				new Image(getClass().getResource("/status.png").toExternalForm())));
+//		todo: show information like gold and ... , every body can clicked it
 	}
 
-	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) {
+	private void setHigherLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
 		higherLeftButton = new UnitSelectButton(tile.getMilitaryUnit());
 		higherLeftButton.setLayoutX(x + 10);
 		higherLeftButton.setLayoutY(y + 5);
@@ -107,9 +122,14 @@ public class HexagonGraphicTile extends Polygon {
 		{
 			higherLeftButton.setFill(Color.TRANSPARENT);
 		}
+		//		todo: open unit popup for military unit
+		setCursor(Cursor.HAND);
+		UnitSelectedController.setUnit(tile.getMilitaryUnit());
+		Popup popup = new UnitSelectedView();
+		popup.show();
 	}
 
-	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) {
+	private void setLowerLeftButton(double x, double y, int j, int i, Tile tile) throws IOException {
 		lowerLeftButton = new UnitSelectButton(tile.getCivilianUnit());
 		lowerLeftButton.setLayoutX(x + 10);
 		lowerLeftButton.setLayoutY(y + 45);
@@ -121,6 +141,11 @@ public class HexagonGraphicTile extends Polygon {
 		} catch (Exception e) {
 			lowerLeftButton.setFill(Color.TRANSPARENT);
 		}
+		//		todo: open unit popup for Civilian unit
+		setCursor(Cursor.HAND);
+		UnitSelectedController.setUnit(tile.getCivilianUnit());
+		Popup popup = new UnitSelectedView();
+		popup.show();
 	}
 
 	private void setCoordinates(double x, double y, int j, int i) {
@@ -137,3 +162,5 @@ public class HexagonGraphicTile extends Polygon {
 		coordinates.setText("Neighbour");
 	}
 }
+
+

@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+
 public class GamePageViewController {
 
     @FXML
@@ -19,7 +21,7 @@ public class GamePageViewController {
     private ScrollPane scrollPane;
 
 	@FXML
-	private void initialize(){
+	private void initialize() throws IOException {
 		scrollPane.
                 setContent(MapPaneMaker.createScrollPane(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization()));
 	
