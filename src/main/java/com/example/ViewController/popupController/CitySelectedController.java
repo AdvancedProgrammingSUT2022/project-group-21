@@ -8,6 +8,7 @@ import com.example.Model.UserAction.CityUserAction;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.city.Building;
 import com.example.Model.city.City;
+import com.example.Model.tile.Tile;
 import com.example.Model.unit.UnitType;
 import com.example.ViewController.Dialog;
 
@@ -53,16 +54,29 @@ public class CitySelectedController {
 		}
 		int x1 = city.getCenter().X;
 		int y1 = city.getCenter().Y;
-		int x2;
-		int y2;
+		int x2 = 0;
+		int y2 = 0;
 		try {
-			x2 = Integer.parseInt(
-					Dialog.AskQuestion("", "x2:"));
-			y2 = Integer.parseInt(
-					Dialog.AskQuestion("", "y2:"));
-		} catch (Exception e) {
+			ArrayList<Tile> tiles = city.getLockedTiles();
+			ArrayList<String> str = new ArrayList<>();
+			for (Tile tile : tiles) {
+				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
+			}
+			String selected = Dialog.selectFromComboBox("select a tile", str);
+			for (int i = 0; i < str.size(); i++) {
+				String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
+				if (s.equals(selected)) {
+					x2 = tiles.get(i).X;
+					y2 = tiles.get(i).Y;
+					break;
+				}
+			}
+			if (selected.equals("") || selected.equals("null") || selected == null) {
+				Dialog.error_message("Error", "some error occur!");
+				return;
+			}
+		}catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
-			return;
 		}
 		UserActionQuery userAction = CityUserAction
 				.lockUnlockCitizenToTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
@@ -168,19 +182,32 @@ public class CitySelectedController {
 		}
 		int x1 = city.getCenter().X;
 		int y1 = city.getCenter().Y;
-		int x2;
-		int y2;
+		int x2 = 0;
+		int y2 = 0;
 		try {
-			x2 = Integer.parseInt(
-					Dialog.AskQuestion("", "x2:"));
-			y2 = Integer.parseInt(
-					Dialog.AskQuestion("", "y2:"));
-		} catch (Exception e) {
+			ArrayList<Tile> tiles = city.getPossibleTilesToBuy();
+			ArrayList<String> str = new ArrayList<>();
+			for (Tile tile : tiles) {
+				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
+			}
+			String selected = Dialog.selectFromComboBox("select a tile to buy", str);
+			for (int i = 0; i < str.size(); i++) {
+				String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
+				if (s.equals(selected)) {
+					x2 = tiles.get(i).X;
+					y2 = tiles.get(i).Y;
+					break;
+				}
+			}
+			if (selected.equals("") || selected.equals("null") || selected == null) {
+				Dialog.error_message("Error", "some error occur!");
+				return;
+			}
+		}catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
-			return;
 		}
-		UserActionQuery userAction = CityUserAction.buyTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,
-				x2, y2);
+		UserActionQuery userAction = CityUserAction.buyTile(Game.getInstance().getCurrentPlayer(
+		).getUsername(), x1, y1, x2, y2);
 		if(GameController.getInstance().handleQueryFromView(userAction)) {
 			Dialog.information_message("", "done successfully");
 		}
