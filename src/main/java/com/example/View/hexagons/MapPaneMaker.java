@@ -63,4 +63,8 @@ public class MapPaneMaker {
 			hexagonGraphicTile.update(civilization);
 		}
 	}
+
+	public static void setCenterCapitalCity(int tileX, int tileY) {
+//		todo: for mamad
+	}
 }
