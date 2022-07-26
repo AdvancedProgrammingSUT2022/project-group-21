@@ -75,6 +75,9 @@ public class GameController {
 
 	private void setWinner(User user){
 		// TODO: show notification
+		Dialog.information_message("",
+				"Congratulation to " + user.getUsername() + "You are Win the Game!");
+
 		System.out.println("Winner is " + user.getUsername());
 		try {
 			Thread.sleep(3000);
