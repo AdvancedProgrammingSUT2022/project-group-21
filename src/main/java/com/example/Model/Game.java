@@ -100,4 +100,11 @@ public class Game {
 		// TODO: update scoreboard
 	}
 
+	public User getUserByCivilization(Civilization civilization){
+		for (User user : players) {
+			if (user.getCivilization()==civilization)
+				return user;
+		}
+		return null;
+	}
 }
