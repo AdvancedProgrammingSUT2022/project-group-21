@@ -192,7 +192,9 @@ public class City {
 	}
 	
 
-
+	public ArrayList<Tile> getLockedTiles(){
+		return lockedTiles;
+	}
 	public boolean hasLockedCitizen(Tile tile){
 		return lockedTiles.contains(tile) || tile==center;
 	}

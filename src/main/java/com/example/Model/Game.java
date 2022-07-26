@@ -27,7 +27,7 @@ public class Game {
 		this.players = players;
 		this.gameHistory = new GameHistory(WIDTH, HEIGHT, players, seed);
 		this.tiles = new Tile[WIDTH][HEIGHT];
-		Random random = new Random(System.nanoTime());
+		Random random = new Random(seed);
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
 

@@ -36,6 +36,8 @@ public class GameController {
 			return false;
 		}
 		Game.getInstance().gameHistory.addAction(query);
+		Game.getInstance().gameHistory.saveOnFile();
+		
 		query.doAction();
 		checkWinLoseConditions();
 		if (Game.getInstance()!=null){

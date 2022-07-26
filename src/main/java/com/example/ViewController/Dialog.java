@@ -43,7 +43,7 @@ public class Dialog {
 
     public static String selectFromComboBox(String title, ArrayList<String> list) {
         Stage stage = new Stage();
-        ComboBox comboBox = new ComboBox();
+        ComboBox<String> comboBox = new ComboBox<>();
         for (String string : list)
             comboBox.getItems().add(string);
 
