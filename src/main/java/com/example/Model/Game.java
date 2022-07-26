@@ -73,7 +73,7 @@ public class Game {
 		}
 		currentPlayer=players.get(currentTurn);
 		Tile tile = currentPlayer.getCivilization().getCapitalCity().getCenter();
-		MapPaneMaker.setCenterCapitalCity(tile.X, tile.Y);
+		MapPaneMaker.setCenterCapitalCity(this,tile.X, tile.Y);
 //		todo: check to work
 		// TODO?
 	}

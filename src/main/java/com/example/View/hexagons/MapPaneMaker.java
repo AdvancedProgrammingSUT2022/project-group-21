@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
@@ -64,7 +65,9 @@ public class MapPaneMaker {
 		}
 	}
 
-	public static void setCenterCapitalCity(int tileX, int tileY) {
-//		todo: for mamad
+	public static void setCenterCapitalCity(Game game,ScrollPane scrollPane,int tileX, int tileY) {
+           scrollPane.setVvalue((200 +
+						   HexagonGraphicTile.r * 1.5 * tileY)/(HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
+		   scrollPane.setHvalue((200 + tileX * 2 * HexagonGraphicTile.n)/(HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
 	}
 }
