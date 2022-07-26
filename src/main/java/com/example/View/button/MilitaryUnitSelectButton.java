@@ -50,7 +50,8 @@ public class MilitaryUnitSelectButton extends CustomGameButton{
 			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent mouseEvent) {
-					UnitSelectedController.setUnit(tile.getMilitaryUnit());
+					UnitSelectedController.setMilitaryUnit(tile.getMilitaryUnit());
+					UnitSelectedController.setCivilianUnit(tile.getCivilianUnit());
 					Popup popup = new UnitSelectedView();
 					try {
 						popup.show();

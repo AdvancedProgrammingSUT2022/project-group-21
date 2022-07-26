@@ -54,7 +54,6 @@ public class CitySelectButton extends CustomGameButton {
 					else if (project instanceof CityProjectBuilding) text+="Building " + ((CityProjectBuilding) project).getBuilding().name;
 					else text+="Unit " + ((CityProjectUnit) project).getUnitType();
 					text+="\n";
-
 					Dialog.information_message("City Info", text);
 				}
 				else{
