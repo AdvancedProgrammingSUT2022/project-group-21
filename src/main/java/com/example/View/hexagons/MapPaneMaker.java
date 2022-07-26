@@ -19,8 +19,8 @@ public class MapPaneMaker {
 		addHexagons(content, game);
 
 //		todo: to show capital city can uncomment
-//		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
-//		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
+		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
+		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
 
 		return content;
 	}
