@@ -1,6 +1,7 @@
 package com.example.View.hexagons;
 
 import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.tile.Tile;
 import com.example.View.button.CitySelectButton;
 import com.example.View.button.CivilianUnitSelectButton;
@@ -111,5 +112,12 @@ public class HexagonGraphicTile extends Polygon {
 			fogOfWar.setVisible(false);
 		else
 			fogOfWar.setVisible(true);
+		boolean[][] visibles=civilization.getVisibleTiles();
+		for (int j = 0; j < Game.getInstance().HEIGHT; j++)
+			for (int i = 0; i < Game.getInstance().WIDTH; i++)
+				if(visibles[i][j])
+					this.setOpacity(0.2);
+		else
+			this.setOpacity(1);
 	}
 }
