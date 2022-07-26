@@ -1,6 +1,7 @@
 package com.example.View.button;
 
 import com.example.Model.Civilization;
+import com.example.Model.Game;
 import com.example.Model.tile.Tile;
 import com.example.ViewController.Dialog;
 
@@ -63,6 +64,9 @@ public class TileSelectButton extends CustomGameButton {
 				}catch (Exception e) {}
 				try{
 					test += "movement cost: " + tile.getMovementCost() + "\n";
+				}catch (Exception e) {}
+				try{
+					test += "owner username: " + Game.getInstance().getUserByCivilization(tile.getOwner()) + "\n";
 				}catch (Exception e) {}
 				Dialog.information_message("status", test);
 			}
