@@ -22,6 +22,8 @@ public class HexagonGraphicTile extends Polygon {
 															// axis
 	public final static double TILE_HEIGHT = 2 * r;
 	public final static double TILE_WIDTH = 2 * n;
+    public static final ImagePattern cityImage=new ImagePattern(new Image(HexagonGraphicTile.class.getResource("/city.png").toExternalForm()));
+	public static final ImagePattern statusImage=new ImagePattern(new Image(HexagonGraphicTile.class.getResource("/status.png").toExternalForm()));
 
 	public Label coordinates;
 	public TileSelectButton mainButton; // دایره قرمز :) اطلاعات
@@ -51,12 +53,11 @@ public class HexagonGraphicTile extends Polygon {
 
 	public void setRightButton(double x, double y, int j, int i) {
 		rightButton = new CitySelectButton(tile);
-		rightButton.setLayoutX(x + 60);
-		rightButton.setLayoutY(y + 10);
-		rightButton.setWidth(20);
-		rightButton.setHeight(60);
-		rightButton.setFill(Color.PALETURQUOISE);
-		
+		rightButton.setLayoutX(x + 50);
+		rightButton.setLayoutY(y + 20);
+		rightButton.setWidth(40);
+		rightButton.setHeight(40);
+		rightButton.setFill(cityImage);
 		rightButton.setCursor(Cursor.HAND);
 	}
 
@@ -66,7 +67,7 @@ public class HexagonGraphicTile extends Polygon {
 		mainButton.setLayoutY(y + 20);
 		mainButton.setWidth(40);
 		mainButton.setHeight(40);
-		mainButton.setFill(new ImagePattern(new Image(getClass().getResource("/status.png").toExternalForm())));
+		mainButton.setFill(statusImage);
 		// todo: show information like gold and ... , every body can clicked it
 		mainButton.setCursor(Cursor.HAND);
 
