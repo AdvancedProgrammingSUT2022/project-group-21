@@ -101,12 +101,12 @@ public class Tile {
 	public void setAdjTile(int i, Tile val){ adjTiles[i] = val;}
 	public boolean isRiver(int i){ return rivers[i];}
 	public Tile getAdjTile(int i){ return adjTiles[i];}
-	public boolean isNeighbourWith(Tile tile){
-		for (Tile tile2 : adjTiles) {
-			if (tile2==tile)
-				return true;
+	public int getNeighbourDirection(Tile tile){
+		for (int i = 0; i < 6; i++) {
+			if (adjTiles[i]==tile)
+				return i;
 		}
-		return false;
+		return -1;
 	}
 
 	
@@ -178,7 +178,5 @@ public class Tile {
 
 	public void setOwner(Civilization owner){ this.owner = owner; }
 	public Civilization getOwner(){ return this.owner; }
-
-
 
 }
