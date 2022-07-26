@@ -17,9 +17,10 @@ public class MapPaneMaker {
 		content.setPrefSize(HexagonGraphicTile.TILE_WIDTH * game.WIDTH + 400,
 				HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400);
 		addHexagons(content, game);
-		
-		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
-		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
+
+//		todo: to show capital city can uncomment
+//		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
+//		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
 
 		return content;
 	}

@@ -20,6 +20,7 @@ public class UnitSelectedView extends Application implements Popup {
         Stage stage = new Stage();
         stage.setTitle("selected unit");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }

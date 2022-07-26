@@ -20,6 +20,7 @@ public class TileSelectedView extends Application implements Popup {
         Stage stage = new Stage();
         stage.setTitle("selected tile");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
