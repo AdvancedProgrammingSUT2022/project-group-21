@@ -1,9 +1,6 @@
 package com.example.View.hexagons;
 
-import com.example.Model.tile.Tile;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 
 public class FogOfWar extends Polygon {

@@ -36,6 +36,8 @@ public class GameController {
 			return false;
 		}
 		Game.getInstance().gameHistory.addAction(query);
+		Game.getInstance().gameHistory.saveOnFile();
+		
 		query.doAction();
 		checkWinLoseConditions();
 		if (Game.getInstance()!=null){
@@ -96,5 +98,6 @@ public class GameController {
 	public void updateGraphic(){
 		MapPaneMaker.updateButtons(Game.getInstance().getCurrentPlayer().getCivilization());
 		GamePageViewController.showInfo();
+		GamePageViewController.recenterMap(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization().getCapitalCity().getCenter());
 	}
 }

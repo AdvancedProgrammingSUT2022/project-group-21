@@ -6,7 +6,7 @@ import java.util.Random;
 import com.example.Contoller.RandomMapGenerator;
 import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
-import com.example.View.hexagons.MapPaneMaker;
+import com.example.ViewController.GamePageViewController;
 
 public class Game {
 	private static Game instance;
@@ -28,7 +28,7 @@ public class Game {
 		this.players = players;
 		this.gameHistory = new GameHistory(WIDTH, HEIGHT, players, seed);
 		this.tiles = new Tile[WIDTH][HEIGHT];
-		Random random = new Random(System.nanoTime());
+		Random random = new Random(seed);
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
 
@@ -73,7 +73,7 @@ public class Game {
 		}
 		currentPlayer=players.get(currentTurn);
 		Tile tile = currentPlayer.getCivilization().getCapitalCity().getCenter();
-		MapPaneMaker.setCenterCapitalCity(this,tile.X, tile.Y);
+		GamePageViewController.recenterMap(this, tile);
 //		todo: check to work
 		// TODO?
 	}

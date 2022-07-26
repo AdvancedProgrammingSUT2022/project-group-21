@@ -1,5 +1,6 @@
 package com.example.ViewController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.example.App;
@@ -81,6 +82,11 @@ public class MainMenuController {
 	@FXML
 	public void loadFunction(MouseEvent mouseEvent) {
 		GameHistory.loadFromFile();
+		try {
+			App.setRootFromFXML("GamePage");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		// TODO: debug
 	}
 	public void mouseEnter(MouseEvent mouseEvent) {
