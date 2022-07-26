@@ -66,7 +66,7 @@ public class TileSelectButton extends CustomGameButton {
 					test += "movement cost: " + tile.getMovementCost() + "\n";
 				}catch (Exception e) {}
 				try{
-					test += "owner username: " + Game.getInstance().getUserByCivilization(tile.getOwner()) + "\n";
+					test += "owner username: " + Game.getInstance().getUserByCivilization(tile.getOwner()).getUsername() + "\n";
 				}catch (Exception e) {}
 				Dialog.information_message("status", test);
 			}
