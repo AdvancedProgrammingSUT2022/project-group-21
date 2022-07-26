@@ -67,7 +67,7 @@ public class UnitActionController {
 		
 		Tile tile = militaryUnit.getTile();
 		Tile tile2 = Game.getInstance().getTile(x2, y2);
-		if (!tile.isNeighbourWith(tile2)) throw new Exception("target tile should be adjacent for Melee Attack");
+		if (tile.getNeighbourDirection(tile2)==-1) throw new Exception("target tile should be adjacent for Melee Attack");
 		checkDiplomacyShit(militaryUnit.getOwner(), tile2);
 		
 		if (tile2.getCityOnTile()!=null){

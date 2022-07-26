@@ -69,9 +69,14 @@ public abstract class Unit {
 
 	public void setPath(ArrayList<Tile> path){ this.path=path;}
 	public void moveOnPath(){
-		int l=path.lastIndexOf(getTile()), r=l+1;
+		int l=path.lastIndexOf(getTile()), r=l;
 		int cost=0;
-		while (r<path.size() && cost<getMP()) r++;
+		while (r+1<path.size() && cost<getMP()){
+			Tile tile1=path.get(r);
+			r++;
+			Tile tile2=path.get(r);
+			cost+=tile1.getMovementCostForUnit(this, tile1.getNeighbourDirection(tile2));
+		}
 		while (r>l && !path.get(r).canPutUnit(this)) r--;
 		if (l==r){
 			path=null; // abort movement
