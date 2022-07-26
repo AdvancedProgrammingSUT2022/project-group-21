@@ -38,7 +38,7 @@ public class UnitSelectedController {
 	public static void setUnit(Unit unit){
 		UnitSelectedController.unit = unit;
 	}
-	public static void setInMilitary(boolean isMilitary){
+	public static void setIsMilitary(boolean isMilitary){
 		UnitSelectedController.isMilitary = isMilitary;
 	}
 	// TODO: aryan fix everything from here carefully
