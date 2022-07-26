@@ -7,6 +7,8 @@ import com.example.Model.UserAction.UnitUserAction;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.city.Building;
 import com.example.Model.tile.Improvement;
+import com.example.Model.unit.CivilianUnit;
+import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.Unit;
 import com.example.Model.unit.WorkerProject;
 import com.example.ViewController.Dialog;
@@ -30,18 +32,19 @@ public class UnitSelectedController {
     public Button workerAction_btn;
     public Button back_btn;
 
-    private static Unit unit;
+    private static MilitaryUnit militaryUnit;
+    private static CivilianUnit civilianUnit;
 
-    public static void setUnit(Unit u) {
-        unit = u;
+    public static void setMilitaryUnit(MilitaryUnit u) {
+        militaryUnit = u;
+    }
+
+    public static void setCivilianUnit(CivilianUnit c) {
+        civilianUnit = c;
     }
     public void Delete(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = civilianUnit.getTile().X;
+        int y1 = civilianUnit.getTile().Y;
         boolean isMilitary = false;
         try {
             String militaryOrNot =
@@ -59,12 +62,8 @@ public class UnitSelectedController {
     }
 
     public void meleeAttack(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
                 Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.MELEE_ATTACK
         );
@@ -74,12 +73,8 @@ public class UnitSelectedController {
     }
 
     public void preAttackSetUp(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
                 Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PRE_ATTACK_SETUP
         );
@@ -89,12 +84,8 @@ public class UnitSelectedController {
     }
 
     public void alert(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
                 Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.ALERT
         );
@@ -104,12 +95,8 @@ public class UnitSelectedController {
     }
 
     public void pillage(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
                 Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PILLAGE
         );
@@ -119,12 +106,8 @@ public class UnitSelectedController {
     }
 
     public void move(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         int x2;
         int y2;
         boolean isMilitary;
@@ -151,12 +134,8 @@ public class UnitSelectedController {
     }
 
     public void rangeAttack(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         int x2;
         int y2;
         try {
@@ -179,12 +158,8 @@ public class UnitSelectedController {
     }
 
     public void sleep_wake(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         boolean isMilitary;
         try {
             String militaryOrNot =
@@ -203,12 +178,8 @@ public class UnitSelectedController {
     }
 
     public void foundCity(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = militaryUnit.getTile().X;
+        int y1 = militaryUnit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.foundCity(
                 Game.getInstance().getCurrentPlayer().getUsername(), x1, y1
         );
@@ -218,12 +189,8 @@ public class UnitSelectedController {
     }
 
     public void woerkerAction(MouseEvent mouseEvent) {
-        if (unit == null) {
-            Dialog.error_message("Error", "please select a unit first!");
-            return;
-        }
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
+        int x1 = civilianUnit.getTile().X;
+        int y1 = civilianUnit.getTile().Y;
         WorkerProject.WorkerProjectType workerProjectType = null;
         try {
             ArrayList<String> list = new ArrayList<>();
