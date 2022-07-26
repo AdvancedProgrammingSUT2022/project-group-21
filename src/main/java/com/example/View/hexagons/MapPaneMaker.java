@@ -19,10 +19,6 @@ public class MapPaneMaker {
 				HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400);
 		addHexagons(content, game);
 
-//		todo: to show capital city can uncomment
-		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().X);
-		System.out.println(game.getCurrentPlayer().getCivilization().getCapitalCity().getCenter().Y);
-
 		return content;
 	}
 
@@ -65,9 +61,10 @@ public class MapPaneMaker {
 		}
 	}
 
-	public static void setCenterCapitalCity(Game game,ScrollPane scrollPane,int tileX, int tileY) {
-           scrollPane.setVvalue((200 +
-						   HexagonGraphicTile.r * 1.5 * tileY)/(HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
-		   scrollPane.setHvalue((200 + tileX * 2 * HexagonGraphicTile.n)/(HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
+	public static void setCenterCapitalCity(Game game, ScrollPane scrollPane, int tileX, int tileY) {
+		scrollPane.setVvalue((200 +
+				HexagonGraphicTile.r * 1.5 * tileY) / (HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
+		scrollPane.setHvalue((200 + tileX * 2 * HexagonGraphicTile.n)
+				/ (HexagonGraphicTile.TILE_HEIGHT * 3 * game.HEIGHT / 4 + 400));
 	}
 }

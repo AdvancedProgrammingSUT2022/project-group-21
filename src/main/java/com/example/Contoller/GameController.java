@@ -98,5 +98,6 @@ public class GameController {
 	public void updateGraphic(){
 		MapPaneMaker.updateButtons(Game.getInstance().getCurrentPlayer().getCivilization());
 		GamePageViewController.showInfo();
+		GamePageViewController.recenterMap(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization().getCapitalCity().getCenter());
 	}
 }

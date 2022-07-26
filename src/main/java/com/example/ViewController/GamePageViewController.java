@@ -1,14 +1,17 @@
 package com.example.ViewController;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.example.App;
 import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
-import com.example.Model.CheatCode;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.Technology;
 import com.example.Model.UserAction.CivilizationUserAction;
 import com.example.Model.UserAction.UserActionQuery;
+import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
 import com.example.View.hexagons.MapPaneMaker;
 
@@ -16,11 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class GamePageViewController {
 	private static GamePageViewController instance;
@@ -40,12 +39,12 @@ public class GamePageViewController {
 		GameController.getInstance().updateGraphic();
 	}
 
-	private boolean pdateGraphicForFirstTime = false;
+	private boolean updateGraphicForFirstTime = false;
 	@FXML
 	private void updateGraphicForFirstTime() throws IOException {
-		if (pdateGraphicForFirstTime)return;
+		if (updateGraphicForFirstTime)return;
 		GameController.getInstance().updateGraphic();
-		pdateGraphicForFirstTime = true;
+		updateGraphicForFirstTime = true;
 	}
 
 	private void addInfo(User user) {
@@ -137,5 +136,9 @@ public class GamePageViewController {
 			Dialog.information_message("", "done successfully!");
 			GameController.getInstance().updateGraphic();
 		}
+	}
+
+	public static void recenterMap(Game game, Tile tile){
+		MapPaneMaker.setCenterCapitalCity(game, instance.scrollPane, tile.X, tile.Y);
 	}
 }
