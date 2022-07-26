@@ -84,28 +84,13 @@ public class GamePageViewController {
 	}
 
     public void cheatFunc(MouseEvent mouseEvent) {
-		CheatCode cheatCode = null;
 		try {
-			ArrayList<String> list = new ArrayList<>();
-			ArrayList<CheatCode> bf = CheatCode.getAllCheated();
-			for (CheatCode c : bf) {
-				list.add(c.name());
-			}
-			String type = Dialog.selectFromComboBox("select a Cheat", list);
-			for (CheatCode c : bf) {
-				if (c.name().equals(type)) {
-					cheatCode = c;
-					break;
-				}
-			}
-		} catch (Exception e) {
+			Cheat.show();
+		} catch (IOException e) {
 			Dialog.error_message("Error", e.getMessage());
-			return;
+			e.printStackTrace();
 		}
-		cheatCode.apply(Game.getInstance().getCurrentPlayer().getCivilization());
-		Dialog.information_message("", "cheated successfully!");
-		GameController.getInstance().updateGraphic();
-    }
+	}
 
     public void endTurn(MouseEvent mouseEvent) {
 		UserActionQuery userActionQuery = CivilizationUserAction.endTurn(

@@ -50,6 +50,7 @@ public class RegisterController {
             return;
         }
         Dialog.information_message("", "You are register successfully");
+        App.setRootFromFXML("LoginPage");
     }
 
 

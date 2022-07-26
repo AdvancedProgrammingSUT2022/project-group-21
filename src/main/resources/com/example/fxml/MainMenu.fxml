@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -7,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="mainMenuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.MainMenuController">
+<Pane fx:id="mainMenuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.MainMenuController">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="224.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="680.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
@@ -15,7 +21,7 @@
             <Image url="@../MainMenu/MenuBackGround.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="loadButton" fitHeight="80.0" fitWidth="228.0" layoutX="42.0" layoutY="132.0" onMouseClicked="#loadFunction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="loadButton" fitHeight="80.0" fitWidth="228.0" layoutX="42.0" layoutY="132.0" onMouseClicked="#loadFunction" onMouseEntered="#laodMouseEnter" onMouseExited="#laodMouseExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../MainMenu/Button.png" />
          </image>
@@ -33,32 +39,32 @@
             <Image url="@../MainMenu/Button.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="extraButton" fitHeight="80.0" fitWidth="222.0" layoutX="42.0" layoutY="237.0" onMouseClicked="#extraFunction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="extraButton" fitHeight="80.0" fitWidth="222.0" layoutX="42.0" layoutY="237.0" onMouseClicked="#extraFunction" onMouseEntered="#ScoreBoardMouse_Enter" onMouseExited="#ScoreBoardMouse_Exit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../MainMenu/Button.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="exitButton" fitHeight="80.0" fitWidth="222.0" layoutX="42.0" layoutY="330.0" onMouseClicked="#exitFunction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exitButton" fitHeight="80.0" fitWidth="222.0" layoutX="42.0" layoutY="330.0" onMouseClicked="#exitFunction" onMouseEntered="#ExitMouseEnter" onMouseExited="#ExitMouseExit" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../MainMenu/Button.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="86.0" layoutY="28.0" prefHeight="96.0" prefWidth="123.0" text="Start" textFill="#793232">
+      <Label fx:id="start_label" alignment="CENTER" layoutX="86.0" layoutY="28.0" onMouseClicked="#startFunction" onMouseEntered="#mouseEnter" onMouseExited="#mouseExit" prefHeight="96.0" prefWidth="123.0" text="Start" textFill="#793232">
          <font>
             <Font name="Vivaldi Italic" size="48.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="80.0" layoutY="124.0" prefHeight="96.0" prefWidth="123.0" text="Load" textFill="#793232">
+      <Label fx:id="load_label" alignment="CENTER" layoutX="80.0" layoutY="124.0" onMouseClicked="#loadFunction" onMouseEntered="#laodMouseEnter" onMouseExited="#laodMouseExit" prefHeight="96.0" prefWidth="123.0" text="Load" textFill="#793232">
          <font>
             <Font name="Vivaldi Italic" size="48.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="32.0" layoutY="249.0" prefHeight="64.0" prefWidth="232.0" text="Scoreboard" textFill="#793232">
+      <Label fx:id="extraLabel" alignment="CENTER" layoutX="32.0" layoutY="249.0" onMouseExited="#ScoreBoardMouse_Enter" onMouseMoved="#ScoreBoardMouse_Exit" prefHeight="64.0" prefWidth="232.0" text="Scoreboard" textFill="#793232">
          <font>
             <Font name="Vivaldi Italic" size="48.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="87.0" layoutY="321.0" prefHeight="96.0" prefWidth="123.0" text="Exit" textFill="#793232">
+      <Label fx:id="exit_label" alignment="CENTER" layoutX="87.0" layoutY="321.0" onMouseClicked="#exitFunction" onMouseEntered="#ExitMouseEnter" onMouseExited="#ExitMouseExit" prefHeight="96.0" prefWidth="123.0" text="Exit" textFill="#793232">
          <font>
             <Font name="Vivaldi Italic" size="48.0" />
          </font>

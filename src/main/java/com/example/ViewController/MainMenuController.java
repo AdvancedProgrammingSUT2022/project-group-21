@@ -10,6 +10,7 @@ import com.example.Model.user.UserDatabase;
 
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -26,6 +27,10 @@ public class MainMenuController {
 	public ImageView loadButton;
 	@FXML
 	public ImageView extraButton;
+	public Label start_label;
+	public Label load_label;
+	public Label extraLabel;
+	public Label exit_label;
 
 	@FXML
 	public void startFunction(MouseEvent mouseEvent){
@@ -80,9 +85,41 @@ public class MainMenuController {
 	}
 	public void mouseEnter(MouseEvent mouseEvent) {
 		startButton.setCursor(Cursor.HAND);
+		start_label.setCursor(Cursor.HAND);
 	}
 
 	public void mouseExit(MouseEvent mouseEvent) {
 		startButton.setCursor(Cursor.DEFAULT);
+		start_label.setCursor(Cursor.DEFAULT);
+	}
+
+	public void laodMouseEnter(MouseEvent mouseEvent) {
+		loadButton.setCursor(Cursor.HAND);
+		load_label.setCursor(Cursor.HAND);
+	}
+
+	public void ScoreBoardMouse_Enter(MouseEvent mouseEvent) {
+		extraLabel.setCursor(Cursor.HAND);
+		extraButton.setCursor(Cursor.HAND);
+	}
+
+	public void ExitMouseEnter(MouseEvent mouseEvent) {
+		exitButton.setCursor(Cursor.HAND);
+		exit_label.setCursor(Cursor.HAND);
+	}
+
+	public void laodMouseExit(MouseEvent mouseEvent) {
+		load_label.setCursor(Cursor.DEFAULT);
+		loadButton.setCursor(Cursor.DEFAULT);
+	}
+
+	public void ExitMouseExit(MouseEvent mouseEvent) {
+		exitButton.setCursor(Cursor.DEFAULT);
+		exit_label.setCursor(Cursor.DEFAULT);
+	}
+
+	public void ScoreBoardMouse_Exit(MouseEvent mouseEvent) {
+		extraLabel.setCursor(Cursor.DEFAULT);
+		extraButton.setCursor(Cursor.DEFAULT);
 	}
 }
