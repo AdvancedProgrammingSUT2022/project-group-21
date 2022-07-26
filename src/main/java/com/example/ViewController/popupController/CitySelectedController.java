@@ -57,7 +57,7 @@ public class CitySelectedController {
 		int x2 = 0;
 		int y2 = 0;
 		try {
-			ArrayList<Tile> tiles = city.getLockedTiles();
+			ArrayList<Tile> tiles = city.getTiles();
 			ArrayList<String> str = new ArrayList<>();
 			for (Tile tile : tiles) {
 				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
