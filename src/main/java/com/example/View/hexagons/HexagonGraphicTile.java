@@ -24,7 +24,7 @@ public class HexagonGraphicTile extends Polygon {
 	public final static double TILE_WIDTH = 2 * n;
     public static final ImagePattern cityImage=new ImagePattern(new Image(HexagonGraphicTile.class.getResource("/city.png").toExternalForm()));
 	public static final ImagePattern statusImage=new ImagePattern(new Image(HexagonGraphicTile.class.getResource("/status.png").toExternalForm()));
-
+	public static final ImagePattern fogImage=new ImagePattern(new Image(HexagonGraphicTile.class.getResource("/fog.png").toExternalForm()));
 	public Label coordinates;
 	public TileSelectButton mainButton; // دایره قرمز :) اطلاعات
 	public CitySelectButton rightButton;// نوار آبی دراز وسط که تایل سلکت میشه فقط برای اونر میاد
@@ -36,6 +36,7 @@ public class HexagonGraphicTile extends Polygon {
 	public HexagonGraphicTile(double x, double y, int j, int i, Tile tile){
 		this.tile = tile;
 		fogOfWar=new FogOfWar(x,y);
+		fogOfWar.setFill(fogImage);
 		setCoordinates(x, y, j, i);
 		setMainButton(x, y, j, i);
 		setRightButton(x, y, j, i);
