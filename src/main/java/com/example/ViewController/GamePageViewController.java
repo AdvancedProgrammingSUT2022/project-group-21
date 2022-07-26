@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class GamePageViewController {
 	private static GamePageViewController instance;
 
 	@FXML
-	private AnchorPane infoAnchorPane;
+	private Pane infoAnchorPane;
 
 	@FXML
 	private ScrollPane scrollPane;
@@ -33,29 +34,29 @@ public class GamePageViewController {
 	@FXML
 	private void initialize() throws IOException {
 		instance=this;
-		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance()));
-		
-		System.out.println("initialize done");
-		GameController.getInstance().updateGraphic();
-
 		App.getStage().setWidth(960);
 		App.getStage().setHeight(680);
+		scrollPane.setContent(MapPaneMaker.createScrollPane(Game.getInstance()));
+		GameController.getInstance().updateGraphic();
 	}
 
 	private boolean pdateGraphicForFirstTime = false;
 	@FXML
-	private void updateGraphicForFirstTime() {
+	private void updateGraphicForFirstTime() throws IOException {
 		if (pdateGraphicForFirstTime)return;
 		GameController.getInstance().updateGraphic();
 		pdateGraphicForFirstTime = true;
 	}
 
 	private void addInfo(User user) {
+		infoAnchorPane.getChildren().clear();
+//		infoAnchorPane.setPrefWidth(960);
+//		infoAnchorPane.setPrefWidth(80);
 		Label Label = new Label(user.getNickname());
 		if (UserController.getInstance().getLoggedInUser() == user){
 			Label.setText(Label.getText() + " (you)");
 		}
-		infoAnchorPane.getChildren().clear();
+		Label.setText(Label.getText() + "|  " + "Year: " + Game.getInstance().getYear());
 		Label.setLayoutX(0);
 		Label.setLayoutY(infoAnchorPane.getHeight() / 2);
 		infoAnchorPane.getChildren().add(Label);
@@ -75,6 +76,7 @@ public class GamePageViewController {
 		Label.setLayoutX(infoAnchorPane.getWidth() * 4 / 5);
 		Label.setLayoutY(infoAnchorPane.getHeight() / 2);
 		infoAnchorPane.getChildren().add(Label);
+
 	}
 
 	public static void showInfo(){

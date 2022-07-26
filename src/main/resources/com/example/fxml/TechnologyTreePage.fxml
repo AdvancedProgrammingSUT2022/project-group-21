@@ -14,6 +14,6 @@
             <AnchorPane fx:id="anchorPane" prefHeight="660.0" prefWidth="2100.0" />
          </content>
       </ScrollPane>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="32.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="32.0" prefWidth="60.0" text="Back" />
    </children>
 </AnchorPane>

@@ -24,6 +24,7 @@ public class App extends Application {
 		scene = new Scene(loadFXML("LoginPage"));
 		stage.setTitle("Login to game");
 		stage.initStyle(StageStyle.UTILITY);
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 	}

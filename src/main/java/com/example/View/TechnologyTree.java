@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import javafx.scene.Cursor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -79,6 +80,7 @@ public class TechnologyTree {
 			}
 		}
 		for (Button button : buttons.values()) {
+			button.setCursor(Cursor.HAND);
 			anchorPane.getChildren().add(button);
 		}
 	}

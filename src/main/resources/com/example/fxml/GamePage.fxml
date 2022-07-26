@@ -8,21 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#updateGraphicForFirstTime" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.GamePageViewController">
-   <center>
-      <ScrollPane fx:id="scrollPane" prefHeight="395.0" prefWidth="595.0" BorderPane.alignment="CENTER" />
-   </center>
-   <top>
-      <AnchorPane fx:id="infoAnchorPane" prefHeight="80.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
-   </top>
-   <right>
-      <AnchorPane prefHeight="600.0" prefWidth="80.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="2.0" mnemonicParsing="false" onMouseClicked="#endTurn" prefHeight="80.0" prefWidth="80.0" text="End Turn" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button layoutX="2.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#TechTreeFunc" prefHeight="80.0" prefWidth="80.0" text="Tech Tree" />
-            <Button layoutX="2.0" layoutY="243.0" mnemonicParsing="false" onMouseClicked="#cheatFunc" prefHeight="80.0" prefWidth="80.0" text="Cheat" />
-            <Button layoutX="2.0" layoutY="332.0" mnemonicParsing="false" onMouseClicked="#researchFun" prefHeight="80.0" prefWidth="80.0" text="Research" />
-         </children>
-      </AnchorPane>
-   </right>
-</BorderPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.GamePageViewController">
+   <children>
+      <Button layoutX="870.0" layoutY="204.0" mnemonicParsing="false" onMouseClicked="#researchFun" prefHeight="50.0" prefWidth="64.0" text="Research" />
+      <Button layoutX="870.0" layoutY="117.0" mnemonicParsing="false" onMouseClicked="#cheatFunc" prefHeight="50.0" prefWidth="64.0" text="Cheat" />
+      <Button layoutX="870.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#TechTreeFunc" prefHeight="50.0" prefWidth="64.0" text="TechTree" />
+      <Button layoutX="870.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#endTurn" prefHeight="50.0" prefWidth="64.0" text="EndTurn" />
+      <ScrollPane fx:id="scrollPane" layoutX="32.0" layoutY="95.0" onMouseEntered="#updateGraphicForFirstTime" prefHeight="501.0" prefWidth="825.0" />
+      <Pane fx:id="infoAnchorPane" onMouseEntered="#updateGraphicForFirstTime" prefHeight="90.0" prefWidth="960.0" />
+   </children>
+</Pane>
