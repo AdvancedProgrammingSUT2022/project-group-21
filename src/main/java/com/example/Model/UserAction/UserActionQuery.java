@@ -10,11 +10,11 @@ import com.google.gson.annotations.Expose;
 public class UserActionQuery {
 	private static Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
-	@Expose public String username;
-	@Expose public CityUserAction cityUserAction;
-	@Expose public DiplomacyUserAction diplomacyUserAction;
-	@Expose public CivilizationUserAction civUserAction;
-	@Expose public UnitUserAction unitUserAction;
+	@Expose private String username;
+	@Expose private CityUserAction cityUserAction;
+	@Expose private DiplomacyUserAction diplomacyUserAction;
+	@Expose private CivilizationUserAction civUserAction;
+	@Expose private UnitUserAction unitUserAction;
 
 	public UserActionQuery(String username, CityUserAction cityUserAction, DiplomacyUserAction diplomacyUserAction, CivilizationUserAction civUserAction, UnitUserAction unitUserAction){
 		this.username=username;

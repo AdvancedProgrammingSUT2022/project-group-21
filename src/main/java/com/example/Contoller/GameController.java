@@ -27,6 +27,7 @@ public class GameController {
 	}
 
 	public boolean handleQueryFromView(UserActionQuery query){
+		System.out.println(query.toJson());
 		try {
 			query.validate();
 		} catch (Exception e) {
