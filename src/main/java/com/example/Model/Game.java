@@ -6,6 +6,7 @@ import java.util.Random;
 import com.example.Contoller.RandomMapGenerator;
 import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
+import com.example.View.hexagons.MapPaneMaker;
 
 public class Game {
 	private static Game instance;
@@ -71,6 +72,9 @@ public class Game {
 			year+=10;
 		}
 		currentPlayer=players.get(currentTurn);
+		Tile tile = currentPlayer.getCivilization().getCapitalCity().getCenter();
+		MapPaneMaker.setCenterCapitalCity(tile.X, tile.Y);
+//		todo: check to work
 		// TODO?
 	}
 
