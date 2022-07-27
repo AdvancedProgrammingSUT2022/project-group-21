@@ -1,8 +1,11 @@
 package com.example.Network;
 
-public enum RequestType {
+public enum RequestType{
 	LOGIN,
 	REGISTER,
 	START_GAME,
-	GAME_ACTION;
+	JOIN_GAME,
+	GAME_ACTION,
+	GET_ACTIONS;
+
 }
