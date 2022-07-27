@@ -4,6 +4,9 @@ import com.example.App;
 import com.example.Contoller.GameController;
 import com.example.Model.CheatCode;
 import com.example.Model.Game;
+import com.example.Model.UserAction.CivilizationActionType;
+import com.example.Model.UserAction.CivilizationUserAction;
+import com.example.Model.UserAction.UserActionQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -46,21 +49,17 @@ public class Cheat{
     }
 
     private void checkToCheat() {
-        CheatCode cheatCode = null;
-        for (CheatCode c : CheatCode.getAllCheated()) {
-            if (c.name().equals(CheatText.getText())) {
-                cheatCode = c;
-                break;
-            }
-        }
-        if (cheatCode == null) {
+        String cheatStr = CheatText.getText();
+        if (!cheat.contains(cheatStr)) {
             Dialog.error_message("Error", "Cheat not found!");
             return;
         }
-        cheatCode.apply(Game.getInstance().getCurrentPlayer().getCivilization());
-        Dialog.information_message("", "cheated successfully!");
-        GameController.getInstance().updateGraphic();
-        close();
+        UserActionQuery userActionQuery = CivilizationUserAction.enterCheatCode(
+                Game.getInstance().getCurrentPlayer().getUsername(), cheatStr);
+        if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "cheated successfully!");
+            close();
+        }
     }
 
     public void OnKeyPressedCheatText(KeyEvent keyEvent) {
