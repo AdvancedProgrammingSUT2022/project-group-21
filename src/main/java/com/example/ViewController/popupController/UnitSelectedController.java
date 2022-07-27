@@ -66,16 +66,6 @@ public class UnitSelectedController {
         }
     }
 
-    public void meleeAttack(MouseEvent mouseEvent) {
-        int x1 = unit.getTile().X;
-        int y1 = unit.getTile().Y;
-        UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
-                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.MELEE_ATTACK);
-        if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
-            Dialog.information_message("", "melee attack done successfully");
-        }
-    }
-
     public void preAttackSetUp(MouseEvent mouseEvent) {
         int x1 = unit.getTile().X;
         int y1 = unit.getTile().Y;
@@ -142,7 +132,26 @@ public class UnitSelectedController {
             Dialog.information_message("", "move successfully");
         }
     }
-
+    public void meleeAttack(MouseEvent mouseEvent) {
+        int x1 = unit.getTile().X;
+        int y1 = unit.getTile().Y;
+        int x2;
+        int y2;
+        try {
+            x2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "x2:"));
+            y2 = Integer.parseInt(
+                    Dialog.AskQuestion("", "y2:"));
+        } catch (Exception e) {
+            Dialog.error_message("Error", e.getMessage());
+            return;
+        }
+        UserActionQuery userActionQuery = UnitUserAction.meleeAttack(
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,x2,y2);
+        if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
+            Dialog.information_message("", "melee attack done successfully");
+        }
+    }
     public void rangeAttack(MouseEvent mouseEvent) {
         int x1 = unit.getTile().X;
         int y1 = unit.getTile().Y;
