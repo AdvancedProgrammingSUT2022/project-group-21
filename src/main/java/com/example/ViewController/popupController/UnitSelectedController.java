@@ -14,6 +14,7 @@ import com.example.Model.unit.MilitaryUnit;
 import com.example.Model.unit.Unit;
 import com.example.Model.unit.WorkerProject;
 import com.example.ViewController.Dialog;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,6 +37,16 @@ public class UnitSelectedController {
 
     private static Unit unit;
     private static boolean isMilitary;
+
+
+    private boolean checked_checkButtonVisibility = false;
+    public void checkButtonVisibility() {
+        if (checked_checkButtonVisibility) return;
+        checked_checkButtonVisibility = true;
+        if (isMilitary) {
+            workerAction_btn.setVisible(false);
+        }
+    }
 
     public static void setUnit(Unit unit){
         UnitSelectedController.unit = unit;
@@ -85,7 +96,7 @@ public class UnitSelectedController {
         }
     }
 
-    public void pillage(MouseEvent mouseEvent) {
+    public void pillage(MouseEvent mouseEvent   ) {
         int x1 = unit.getTile().X;
         int y1 = unit.getTile().Y;
         UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
@@ -226,4 +237,4 @@ public class UnitSelectedController {
         Stage stage = (Stage) back_btn.getScene().getWindow();
         stage.close();
     }
-}g
+}

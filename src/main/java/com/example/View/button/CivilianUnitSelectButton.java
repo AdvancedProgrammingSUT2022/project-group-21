@@ -8,10 +8,13 @@ import com.example.Model.unit.Unit;
 import com.example.View.popup.Popup;
 import com.example.View.popup.UnitSelectedView;
 
+import com.example.ViewController.popupController.UnitSelectedController;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+
+import static com.example.ViewController.popupController.UnitSelectedController.*;
 
 public class CivilianUnitSelectButton extends CustomGameButton {
 
@@ -41,8 +44,8 @@ public class CivilianUnitSelectButton extends CustomGameButton {
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				UnitSelectedController.setIsMilitary(false);
-				UnitSelectedController.setUnit(unit);
+				setIsMilitary(false);
+				setUnit(unit);
 				Popup popup = new UnitSelectedView();
 				try {
 					popup.show();
