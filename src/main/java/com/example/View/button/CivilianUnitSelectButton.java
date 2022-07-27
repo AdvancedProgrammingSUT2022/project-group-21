@@ -7,7 +7,6 @@ import com.example.Model.tile.Tile;
 import com.example.Model.unit.Unit;
 import com.example.View.popup.Popup;
 import com.example.View.popup.UnitSelectedView;
-import com.example.ViewController.popupController.UnitSelectedController;
 
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
