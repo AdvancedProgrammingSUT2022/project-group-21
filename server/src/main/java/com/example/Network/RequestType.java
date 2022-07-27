@@ -32,21 +32,32 @@ public enum RequestType{
 		}
 	},
 	START_GAME {
-		@Override
-		public Response handle(Request request) throws Exception {
-			String usernamesJson = request.getParameter("usernamesJson");
-			long seed = Long.parseLong(request.getParameter("seed"));
-			Gson gson = new Gson();
-			ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
-			GameController.getInstance().startNewGame(usernames, seed);
-			return null; // TODO
-		}
+		// @Override
+		// public Response handle(Request request) throws Exception {
+		// 	String usernamesJson = request.getParameter("usernamesJson");
+		// 	long seed = Long.parseLong(request.getParameter("seed"));
+		// 	Gson gson = new Gson();
+		// 	ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
+		// 	GameController.getInstance().startNewGame(usernames, seed);
+		// 	return null; // TODO
+		// }
+	},
+	JOIN_GAME {
+		// @Override
+		// public Response handle(Request request) throws Exception {
+		// 	String usernamesJson = request.getParameter("usernamesJson");
+		// 	long seed = Long.parseLong(request.getParameter("seed"));
+		// 	Gson gson = new Gson();
+		// 	ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
+		// 	GameController.getInstance().startNewGame(usernames, seed);
+		// 	return null; // TODO
+		// }
 	},
 	GAME_ACTION {
 		@Override
 		public Response handle(Request request) throws Exception {
 			User user = UserController.getInstance().getUserByUUID(request.getUUID());
-			String queryJson = request.getParameter("query");
+			String queryJson = request.getParameter("queryJson");
 			UserActionQuery query = UserActionQuery.fromJson(queryJson);
 			String username = query.username;
 			if (!user.getUsername().equals(username)) throw new Exception("you("+username+") cant do action for user: "+user.getUsername());

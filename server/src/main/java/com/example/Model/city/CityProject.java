@@ -58,7 +58,7 @@ public abstract class CityProject{
 	}
 
 	public boolean isSettlerProject(){
-		if (!(this instanceof CityProjectBuilding)) return false;
+		if ((this instanceof CityProjectBuilding)) return false;
 		return ((CityProjectUnit) this).unitType==UnitType.SETTLER;
 	}
 
