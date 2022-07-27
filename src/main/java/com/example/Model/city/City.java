@@ -218,7 +218,7 @@ public class City {
 	}
 	public void growCity(){
 		population++;
-		foodToGrow*=1.5;
+		foodToGrow*=1.2;
 	}
 	private int getFoodToGrow(){
 		if (hasBuilding(Building.HOSPITAL)) return foodToGrow/2;
@@ -271,7 +271,7 @@ public class City {
 
 
 	public int getFoodOut() {
-		int res=0;
+		int res=10;
 		for (Tile tile : lockedTiles) {
 			res+=tile.getFood();
 		}
