@@ -98,8 +98,8 @@ public class UnitSelectedController {
 	public void move(MouseEvent mouseEvent) {
 		int x1 = unit.getTile().X;
 		int y1 = unit.getTile().Y;
-		int x2;
-		int y2;
+		int x2 = 0;
+		int y2 = 0;
 		try {
 			ArrayList<Tile> tiles = new ShortestPath(
 					Game.getInstance(), unit, unit.getMP()).getReachableTiles();
@@ -107,7 +107,7 @@ public class UnitSelectedController {
 			for (Tile tile : tiles) {
 				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
 			}
-			String selected = Dialog.selectFromComboBox("select a tile to buy", str);
+			String selected = Dialog.selectFromComboBox("select a tile to move", str);
 			for (int i = 0; i < str.size(); i++) {
 				String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
 				if (s.equals(selected)) {
