@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.example.App;
 import com.example.Contoller.GameController;
 import com.example.Contoller.UserController;
+import com.example.Model.Game;
 import com.example.Model.GameHistory;
 import com.example.Model.user.UserDatabase;
 
@@ -49,10 +50,6 @@ public class MainMenuController {
 		for (int i = 2; i <= n; i++) {
 			String string = Dialog.AskQuestion("Username", "Enter " + i + "th username please!");
 			if (string==null) return ;
-			if (UserDatabase.getInstance().getUserByUsername(string) == null) {
-				Dialog.error_message(":(", "No such user!");
-				return ;
-			}
 			if (users.contains(string)){
 				Dialog.error_message(":(", "Duplicate User");
 				return ;
@@ -64,7 +61,7 @@ public class MainMenuController {
 			return;
 		}
 		try {
-			GameController.getInstance().startNewGame(users);
+			GameController.getInstance().startNewGame(users,1234);
 			App.setRootFromFXML("GamePage");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,14 +77,8 @@ public class MainMenuController {
 		stage.close();
 	}
 	@FXML
-	public void loadFunction(MouseEvent mouseEvent) {
-		GameHistory.loadFromFile();
-		try {
-			App.setRootFromFXML("GamePage");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// TODO: debug
+	public void loadFunction(MouseEvent mouseEvent) throws Exception {
+		GameController.getInstance().joinGame();
 	}
 	public void mouseEnter(MouseEvent mouseEvent) {
 		startButton.setCursor(Cursor.HAND);
