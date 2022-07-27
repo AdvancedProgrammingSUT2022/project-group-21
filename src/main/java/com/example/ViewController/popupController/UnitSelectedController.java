@@ -119,6 +119,7 @@ public class UnitSelectedController {
                 str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
             }
             String selected = Dialog.selectFromComboBox("select a tile to move", str);
+            if (selected == null) return;
             for (int i = 0; i < str.size(); i++) {
                 String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
                 if (s.equals(selected)) {
@@ -194,6 +195,7 @@ public class UnitSelectedController {
                 list.add(w.name());
             }
             String type = Dialog.selectFromComboBox("select a worker project type", list);
+            if (type == null) return;
             for (WorkerProject.WorkerProjectType w : bf) {
                 if (w.name().equals(type)) {
                     workerProjectType = w;
@@ -212,6 +214,7 @@ public class UnitSelectedController {
                 list.add(i.name());
             }
             String type = Dialog.selectFromComboBox("select a worker project type", list);
+            if (type == null) return;
             for (Improvement i : bf) {
                 if (i.name().equals(type)) {
                     improvement = i;

@@ -63,6 +63,7 @@ public class CitySelectedController {
 				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
 			}
 			String selected = Dialog.selectFromComboBox("select a tile", str);
+			if (selected == null) return;
 			for (int i = 0; i < str.size(); i++) {
 				String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
 				if (s.equals(selected)) {
@@ -77,6 +78,7 @@ public class CitySelectedController {
 			}
 		}catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
+			return;
 		}
 		UserActionQuery userAction = CityUserAction
 				.lockUnlockCitizenToTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
@@ -126,6 +128,7 @@ public class CitySelectedController {
 				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a unit type", list);
+			if (type == null) return;
 			for (UnitType u : bf) {
 				if (u.name().equals(type)) {
 					unitType = u;
@@ -158,6 +161,7 @@ public class CitySelectedController {
 				list.add(b.name());
 			}
 			String type = Dialog.selectFromComboBox("select a building type", list);
+			if (type == null) return;
 			for (Building b : bf) {
 				if (b.name().equals(type)) {
 					building = b;
@@ -191,6 +195,7 @@ public class CitySelectedController {
 				str.add("Tile on(" + tile.X + ", " + tile.Y + ")");
 			}
 			String selected = Dialog.selectFromComboBox("select a tile to buy", str);
+			if (selected == null) return;
 			for (int i = 0; i < str.size(); i++) {
 				String s = "Tile on(" + tiles.get(i).X + ", " + tiles.get(i).Y + ")";
 				if (s.equals(selected)) {
@@ -226,9 +231,9 @@ public class CitySelectedController {
 			ArrayList<Building> bf = Building.getAllPossibleBuildingsToBuild(city);
 			for (Building b : bf) {
 				list.add(b.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a building type", list);
+			if (type == null) return;
 			for (Building b : bf) {
 				if (b.name().equals(type)) {
 					building = b;
@@ -239,8 +244,8 @@ public class CitySelectedController {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction.buyBuilding(Game.getInstance().getCurrentPlayer().getUsername(), x1,
-				y1, building);
+		UserActionQuery userAction = CityUserAction.buyBuilding(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, building);
 		if (GameController.getInstance().handleQueryFromView(userAction)) {
 			Dialog.information_message("", "done successfully");
 		}
@@ -261,6 +266,7 @@ public class CitySelectedController {
 				list.add(u.name());
 			}
 			String type = Dialog.selectFromComboBox("select a unit type", list);
+			if (type == null) return;
 			for (UnitType u : bf) {
 				if (u.name().equals(type)) {
 					unitType = u;
