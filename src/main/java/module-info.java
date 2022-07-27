@@ -15,6 +15,8 @@ module com.example {
 	opens com.example.Model.unit to com.google.gson;
 	opens com.example.Model.city to com.google.gson;
 	opens com.example.Model to com.google.gson;
+	
+	opens com.example.Network;
 
 	opens com.example;
 	opens com.example.ViewController to javafx.fxml;

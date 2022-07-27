@@ -10,6 +10,8 @@ public class Response {
 	private String message;
 	private String output;
 
+	public Response(){}
+
 	public Response(int status_code, String message) {
 		this.status_code = status_code;
 		this.message = message;

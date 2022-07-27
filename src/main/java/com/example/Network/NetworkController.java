@@ -30,12 +30,18 @@ public class NetworkController {
 		}
 	}
 
-	public static synchronized Response makeQuery(Request request) throws IOException{
-		request.setUUID(uuid);
-		dataOutputStream.writeUTF(request.toJson());
-		dataOutputStream.flush();
-		String result = dataInputStream.readUTF();
-		return Response.fromJson(result);
+	public static synchronized Response makeQuery(Request request){
+		try {
+			request.setUUID(uuid);
+			dataOutputStream.writeUTF(request.toJson());
+			dataOutputStream.flush();
+			String result = dataInputStream.readUTF();
+			return Response.fromJson(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

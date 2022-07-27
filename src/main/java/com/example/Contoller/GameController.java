@@ -2,6 +2,7 @@ package com.example.Contoller;
 
 import java.util.ArrayList;
 
+import com.example.App;
 import com.example.Model.Civilization;
 import com.example.Model.Game;
 import com.example.Model.GameHistory;
@@ -23,15 +24,35 @@ public class GameController {
 	public void startNewGame(ArrayList<String> usernames, long seed) throws Exception{
 		Request request = Request.startGameRequest(seed, usernames);
 		Response response = NetworkController.makeQuery(request);
-		new Game(20, 25, usernames, seed);
-
+		if (response.getStatus_code()!=0) throw new Exception(response.getMessage());
+		new Game(20, 20, usernames, seed);
+		App.openGamePage();
 	}
-
+	
 	public void joinGame() throws Exception{
-
+		Request request = Request.joinGameRequest();
+		Response response = NetworkController.makeQuery(request);
+		if (response.getStatus_code()!=0) throw new Exception(response.getMessage());
+		updateGameFromHistory(GameHistory.fromJson(response.getOutput()));
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (true){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Request request = Request.getActionsRequest();
+					Response response = NetworkController.makeQuery(request);
+					updateGameFromHistory(GameHistory.fromJson(response.getOutput()));
+				}
+			}
+		}).start();
 	}
 
-	public boolean handleQueryFromView(UserActionQuery query){
+	public synchronized boolean handleQueryFromView(UserActionQuery query){
 		try {
 			query.validate();
 			Request request = Request.gameActionRequest(query);

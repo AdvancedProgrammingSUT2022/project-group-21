@@ -76,7 +76,9 @@ public class Request{
 		request.setParameter("queryJson", queryJson);
 		return request;
 	}
-
-	
+	public static Request getActionsRequest(){
+		Request request = new Request(RequestType.GET_ACTIONS);
+		return request;
+	}
 
 }

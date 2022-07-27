@@ -25,11 +25,11 @@ public class GameHistory {
 		allActions = new ArrayList<>();
 	}
 
-	public void addAction(UserActionQuery query){
+	public synchronized void addAction(UserActionQuery query){
 		allActions.add(query);
 	}
 
-	public void updateFromNewHistory(GameHistory gameHistory){
+	public synchronized void updateFromNewHistory(GameHistory gameHistory){
 		for (int i = allActions.size(); i < gameHistory.allActions.size(); i++) {
 			UserActionQuery query = gameHistory.allActions.get(i);
 			GameController.getInstance().handleQueryFromView(query);
@@ -40,7 +40,7 @@ public class GameHistory {
 	public String toJson(){
 		return gson.toJson(this);
 	}
-	public static GameHistory gameHistory(String json){
+	public static GameHistory fromJson(String json){
 		return gson.fromJson(json, GameHistory.class);
 	}
 

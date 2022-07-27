@@ -9,6 +9,8 @@ public class User {
 	@Expose private String nickname;
 	private Civilization civilization;
 
+	public User(){}
+
 	public User(String username, String nickname) {
 		this.username = username;
 		this.nickname = nickname;

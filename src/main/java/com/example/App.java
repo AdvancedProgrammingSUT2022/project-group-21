@@ -1,11 +1,8 @@
 package com.example;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import com.example.Contoller.GameController;
-import com.example.Model.Game;
+import com.example.Network.NetworkController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -32,10 +29,15 @@ public class App extends Application {
 		stage.setScene(scene);
 		stage.show();
 
-		// GameController.getInstance().startNewGame(new ArrayList<>(Arrays.asList("ali", "aryan")));
-		// Game.getInstance().getPlayers().get(0).getCivilization().addGold(1000);
-		// setRootFromFXML("GamePage");
-
+	}
+	
+	public static void openGamePage(){
+		try {
+			setRootFromFXML("GamePage");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static Parent loadFXML(String fxml) throws IOException {
@@ -50,6 +52,7 @@ public class App extends Application {
 	}
 
 	public static void main(String[] args) throws Exception{
+		NetworkController.initializeNetwork(8080);
 		launch();
 	}
 

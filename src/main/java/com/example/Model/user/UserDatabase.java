@@ -48,7 +48,8 @@ public class UserDatabase {
 			if (user.getUsername().equals(username))
 				return user;
 		}
-		return null;
+		addUser(new User(username, username));
+		return getUserByUsername(username);
 	}
 
 	public ArrayList<User> getUserList() {
