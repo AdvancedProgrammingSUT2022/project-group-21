@@ -79,6 +79,7 @@ public abstract class Unit {
 		if (this instanceof Worker){
 			((Worker) this).work();
 		}
+		resetMP();
 	}
 
 
