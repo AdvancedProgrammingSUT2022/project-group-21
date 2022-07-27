@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.example.Model.Civilization;
 import com.example.Model.Game;
+import com.example.Model.GameHistory;
 import com.example.Model.Technology;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.user.User;
@@ -106,5 +107,12 @@ public class GameController {
 		MapPaneMaker.updateButtons(Game.getInstance().getCurrentPlayer().getCivilization());
 		GamePageViewController.showInfo();
 		GamePageViewController.recenterMap(Game.getInstance(), Game.getInstance().getCurrentPlayer().getCivilization().getCapitalCity().getCenter());
+	}
+
+	public void updateGameFromHistory(GameHistory gameHistory){
+		if (Game.getInstance()==null){
+			new Game(gameHistory.width, gameHistory.height, gameHistory.usernames, gameHistory.seed);
+		}
+		Game.getInstance().gameHistory.updateFromNewHistory(gameHistory);
 	}
 }
