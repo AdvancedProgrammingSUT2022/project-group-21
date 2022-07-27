@@ -120,6 +120,9 @@ public class UnitSelectedController {
 				Dialog.error_message("Error", "some error occur!");
 				return;
 			}
+		}catch (Exception e) {
+			Dialog.error_message("error", e.getMessage());
+		}
 		UserActionQuery userActionQuery = UnitUserAction.move(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2, isMilitary);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
