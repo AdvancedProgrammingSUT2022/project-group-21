@@ -46,7 +46,7 @@ public enum Building{
 	WATER_MILL("Water Mill", 120, 2, Technology.THE_WHEEL){
 		@Override
 		public boolean canBuildOnCity(City city) {
-			if (city.getCenter().countRivers()==0) return false; 
+			if (city.getCenter().countRivers()==0) return false	;
 			return super.canBuildOnCity(city);
 		}
 		@Override

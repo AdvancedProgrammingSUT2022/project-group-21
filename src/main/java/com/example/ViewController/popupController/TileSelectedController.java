@@ -36,6 +36,9 @@ public class TileSelectedController {
     @FXML
     public void cheat(MouseEvent mouseEvent) {
         String cheatString = Dialog.AskQuestion("cheat", "enter cheatString");
+        if (cheatString == null) {
+            return;
+        }
         UserActionQuery userActionQuery = CivilizationUserAction.enterCheatCode(
                 Game.getInstance().getCurrentPlayer().getUsername(), cheatString
         );

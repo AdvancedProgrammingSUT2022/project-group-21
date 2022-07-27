@@ -80,8 +80,8 @@ public class CitySelectedController {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction
-				.lockUnlockCitizenToTile(Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
+		UserActionQuery userAction = CityUserAction.lockUnlockCitizenToTile(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
 		if (GameController.getInstance().handleQueryFromView(userAction)) {
 			Dialog.information_message("", "done successfully");
 		}
@@ -97,16 +97,18 @@ public class CitySelectedController {
 		int x2;
 		int y2;
 		try {
-			x2 = Integer.parseInt(
-					Dialog.AskQuestion("", "x2:"));
-			y2 = Integer.parseInt(
-					Dialog.AskQuestion("", "y2:"));
+			String sX2 = Dialog.AskQuestion("", "x2:");
+			if (sX2 == null) return;
+			String sY2 = Dialog.AskQuestion("", "y2:");
+			if (sY2 == null) return;
+			x2 = Integer.parseInt(sX2);
+			y2 = Integer.parseInt(sY2);
 		} catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction.shootTile(Game.getInstance().getCurrentPlayer().getUsername(), x1,
-				y1, x2, y2);
+		UserActionQuery userAction = CityUserAction.shootTile(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, x2, y2);
 		if (GameController.getInstance().handleQueryFromView(userAction)) {
 			Dialog.information_message("", "done successfully");
 		}
@@ -125,7 +127,6 @@ public class CitySelectedController {
 			ArrayList<UnitType> bf = UnitType.getAllPossibleUnitsForCity(city);
 			for (UnitType u : bf) {
 				list.add(u.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a unit type", list);
 			if (type == null) return;
@@ -135,12 +136,13 @@ public class CitySelectedController {
 					break;
 				}
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}
-		UserActionQuery userAction = CityUserAction.produceUnit(Game.getInstance().getCurrentPlayer().getUsername(), x1,
-				y1, unitType);
+		UserActionQuery userAction = CityUserAction.produceUnit(
+				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, unitType);
 		if(GameController.getInstance().handleQueryFromView(userAction)) {
 			Dialog.information_message("", "done successfully");
 		}
