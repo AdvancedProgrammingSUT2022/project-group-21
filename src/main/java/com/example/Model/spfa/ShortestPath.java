@@ -54,4 +54,7 @@ public class ShortestPath {
 	public ArrayList<Tile> getReachableTiles(){
 		return reachableTiles;
 	}
+	public int getCost(Tile tile){
+		return dist.get(tile);
+	}
 }

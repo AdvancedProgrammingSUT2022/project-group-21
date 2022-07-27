@@ -1,7 +1,5 @@
 package com.example.Model.unit;
 
-import java.util.ArrayList;
-
 import com.example.Model.Civilization;
 import com.example.Model.tile.Tile;
 
@@ -14,10 +12,8 @@ public abstract class Unit {
 	protected double HP;
 	protected int MP;
 	protected UnitState unitState;
-	private ArrayList<Tile> path; // multiple-turn movement
 	
 	public void setUnitState(UnitState unitState){
-		path=null; // abort movement
 		this.unitState=unitState;
 	}
 	public UnitState getUnitState(){ return unitState;}
@@ -67,35 +63,16 @@ public abstract class Unit {
 	protected abstract void removeFromTile() ;
 	protected abstract void addToTile() ;
 
-	public void setPath(ArrayList<Tile> path){ this.path=path;}
-	public void moveOnPath(){
-		int l=path.lastIndexOf(getTile()), r=l;
-		int cost=0;
-		while (r+1<path.size() && cost<getMP()){
-			Tile tile1=path.get(r);
-			r++;
-			Tile tile2=path.get(r);
-			cost+=tile1.getMovementCostForUnit(this, tile1.getNeighbourDirection(tile2));
-		}
-		while (r>l && !path.get(r).canPutUnit(this)) r--;
-		if (l==r){
-			path=null; // abort movement
-			return ;
-		}
+	public void moveToTile(Tile tile){
 		removeFromTile();
-		while (l<r){
-			setTile(path.get(++l));
-		}
+		setTile(tile);
 		addToTile();
-		setMP(getMP()-cost);
-		if (r==path.size()-1) path=null; // task done
 	}
 	
 	
 	public void endTurn(){
 		if (getUnitState()==UnitState.SLEEP) setMP(0);
 		if (getMP()==0) return ; // without MP, unit wont heal
-		if (getUnitState()==UnitState.WAKE && path!=null) moveOnPath();
 		if (this instanceof MilitaryUnit){
 			((MilitaryUnit) this).heal();
 		}
