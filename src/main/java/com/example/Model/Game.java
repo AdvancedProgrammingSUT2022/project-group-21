@@ -6,6 +6,7 @@ import java.util.Random;
 import com.example.Contoller.RandomMapGenerator;
 import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
+import com.example.Model.user.UserDatabase;
 import com.example.ViewController.GamePageViewController;
 
 public class Game {
@@ -20,13 +21,15 @@ public class Game {
 	private User currentPlayer;
 	private int totalTurnsCount, year;
 
-	public Game(int WIDTH, int HEIGHT, ArrayList<User> players, long seed) {
+	public Game(int WIDTH, int HEIGHT, ArrayList<String> usernames, long seed) {
 		instance=this;
-		
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.players = players;
-		this.gameHistory = new GameHistory(WIDTH, HEIGHT, players, seed);
+		this.players = new ArrayList<>();
+		for (String username : usernames) {
+			players.add(UserDatabase.getInstance().getUserByUsername(username));
+		}
+		this.gameHistory = new GameHistory(WIDTH, HEIGHT, usernames, seed);
 		this.tiles = new Tile[WIDTH][HEIGHT];
 		Random random = new Random(seed);
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);

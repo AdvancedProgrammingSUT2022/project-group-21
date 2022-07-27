@@ -17,13 +17,11 @@ public class GameController {
 	public static GameController getInstance(){ return instance;}
 
 	public void startNewGame(ArrayList<String> usernames) throws Exception{
-		ArrayList<User> players = new ArrayList<>();
 		for (String username : usernames) {
 			User user = UserDatabase.getInstance().getUserByUsername(username);
 			if (user == null) throw new Exception("no user with this username found: " + username);
-			players.add(user);
 		}
-		new Game(20, 25, players, 123456789);
+		new Game(20, 25, usernames, 123456789);
 	}
 
 	public boolean handleQueryFromView(UserActionQuery query){

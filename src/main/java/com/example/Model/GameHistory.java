@@ -20,11 +20,11 @@ public class GameHistory {
 
 	@Expose public int width;
 	@Expose public int height;
-	@Expose public ArrayList<User> players;
+	@Expose public ArrayList<String> players;
 	@Expose public long seed;
 	@Expose public ArrayList<UserActionQuery> allActions;
 
-	public GameHistory(int width, int height, ArrayList<User> players, long seed) {
+	public GameHistory(int width, int height, ArrayList<String> players, long seed) {
 		this.width = width;
 		this.height = height;
 		this.players = players;
