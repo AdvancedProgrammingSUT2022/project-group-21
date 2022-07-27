@@ -1,8 +1,12 @@
 package com.example;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-import com.example.Model.CheatCode;
+import com.example.Contoller.GameController;
+import com.example.Model.Game;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +31,11 @@ public class App extends Application {
 		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
+
+		GameController.getInstance().startNewGame(new ArrayList<>(Arrays.asList("ali", "aryan")));
+		Game.getInstance().getPlayers().get(0).getCivilization().addGold(1000);
+		setRootFromFXML("GamePage");
+
 	}
 
 	public static Parent loadFXML(String fxml) throws IOException {
