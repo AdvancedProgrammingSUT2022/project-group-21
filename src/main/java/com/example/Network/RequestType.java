@@ -34,12 +34,13 @@ public enum RequestType{
 	START_GAME {
 		@Override
 		public Response handle(Request request) throws Exception {
+			if (Game.getInstance()!=null) return new Response(1, "a game has already started");
 			String usernamesJson = request.getParameter("usernamesJson");
 			long seed = Long.parseLong(request.getParameter("seed"));
 			Gson gson = new Gson();
 			ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
 			GameController.getInstance().startNewGame(usernames, seed);
-			// return null; // TODO
+			return new Response(1, "game started successfully");
 		}
 	},
 	JOIN_GAME {

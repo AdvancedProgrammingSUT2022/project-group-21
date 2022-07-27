@@ -62,6 +62,16 @@ public class UnitUserAction extends UserAction{
 		unitUserAction.actionType=UnitActionType.RANGE_ATTACK;
 		return createAction(username, unitUserAction);
 	}
+	public static UserActionQuery meleeAttack(String username, int x1, int y1, int x2, int y2){
+		UnitUserAction unitUserAction = new UnitUserAction();
+		unitUserAction.x1=x1;
+		unitUserAction.y1=y1;
+		unitUserAction.x2=x2;
+		unitUserAction.y2=y2;
+		unitUserAction.isMilitary=true;
+		unitUserAction.actionType=UnitActionType.MELEE_ATTACK;
+		return createAction(username, unitUserAction);
+	}
 	// pre-attack, allert, fortify, pillage
 	public static UserActionQuery singleTileMilitary(String username, int x1, int y1, UnitActionType actionType){
 		UnitUserAction unitUserAction = new UnitUserAction();
