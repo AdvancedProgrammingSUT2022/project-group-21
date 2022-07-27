@@ -147,7 +147,7 @@ public class UnitSelectedController {
             return;
         }
         UserActionQuery userActionQuery = UnitUserAction.meleeAttack(
-                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,x2,y2;
+                Game.getInstance().getCurrentPlayer().getUsername(), x1, y1,x2,y2);
         if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
             Dialog.information_message("", "melee attack done successfully");
         }
