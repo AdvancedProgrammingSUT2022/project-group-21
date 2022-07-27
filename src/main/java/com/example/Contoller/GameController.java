@@ -40,6 +40,7 @@ public class GameController {
 		Game.getInstance().gameHistory.saveOnFile();
 		
 		query.doAction();
+		Game.getInstance().getCurrentPlayer().getCivilization().calculateVisibleTiles();
 		checkWinLoseConditions();
 		if (Game.getInstance()!=null){
 			// TODO: must update graphics

@@ -34,7 +34,7 @@ public class MilitaryUnitSelectButton extends CustomGameButton {
 			return;
 		}
 		setVisible(true);
-		if (tile.getOwner() != civilization)
+		if (tile.getMilitaryUnit().getOwner() != civilization)
 			return;
 
 		setVisible(true);
