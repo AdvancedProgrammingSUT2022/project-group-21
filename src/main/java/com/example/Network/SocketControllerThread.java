@@ -32,6 +32,7 @@ public class SocketControllerThread extends Thread{
 		try {
 			while (true){
 				String input=dataInputStream.readUTF();
+				System.out.println(input);
 				Request request = Request.fromJson(input);
 				Response response = request.handle();
 				

@@ -10,6 +10,8 @@ public class User {
 	@Expose private String nickname;
 	private Civilization civilization;
 
+	public User(){}
+
 	public User(String username, String password, String nickname) {
 		this.username = username;
 		this.password = password;

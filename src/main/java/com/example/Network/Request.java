@@ -9,6 +9,9 @@ public class Request{
 	private String uuid;
 	private HashMap<String, String> params;
 	
+	public Request(){
+	}
+
 	public Request(RequestType requestType, String uuid) {
 		this.requestType = requestType;
 		this.uuid = uuid;

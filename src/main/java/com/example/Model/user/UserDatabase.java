@@ -74,6 +74,7 @@ public class UserDatabase {
 	}
 
 	public synchronized void addUser(User user){
+		System.out.println("Added User" + user.getUsername());
 		allUsers.add(user);
 		saveUsersToFile();
 	}
