@@ -31,6 +31,11 @@ public class CityProjectBuilding extends CityProject{
 		return building.canBuildOnCity(city);
 	}
 
+
+	public Building getBuilding() {
+		return building;
+	}
+
 	
 	
 }

@@ -1,2 +1,6 @@
 target
 src/main/java/com/example/.idea
+client/target
+server/target
+saved-game.json
+users.json

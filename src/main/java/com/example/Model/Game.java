@@ -7,6 +7,8 @@ import java.util.Random;
 import com.example.Contoller.RandomMapGenerator;
 import com.example.Model.tile.Tile;
 import com.example.Model.user.User;
+import com.example.Model.user.UserDatabase;
+import com.example.ViewController.GamePageViewController;
 
 public class Game {
 	private static Game instance;
@@ -21,15 +23,17 @@ public class Game {
 	private User currentPlayer;
 	private int totalTurnsCount, year;
 
-	public Game(int WIDTH, int HEIGHT, ArrayList<User> players, long seed) {
+	public Game(int WIDTH, int HEIGHT, ArrayList<String> usernames, long seed) {
 		instance=this;
-		
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
-		this.players = players;
-		this.gameHistory = new GameHistory(WIDTH, HEIGHT, getUsernamesOfPlayers(players), seed);
+		this.players = new ArrayList<>();
+		for (String username : usernames) {
+			players.add(UserDatabase.getInstance().getUserByUsername(username));
+		}
+		this.gameHistory = new GameHistory(WIDTH, HEIGHT, usernames, seed);
 		this.tiles = new Tile[WIDTH][HEIGHT];
-		Random random = new Random(System.nanoTime());
+		Random random = new Random(seed);
 		RandomMapGenerator.getInstance().generateRandomMap(this, this.tiles, seed);
 		putPlayersOnMap(random);
 
@@ -86,6 +90,9 @@ public class Game {
 			year+=10;
 		}
 		currentPlayer=players.get(currentTurn);
+		Tile tile = currentPlayer.getCivilization().getCapitalCity().getCenter();
+		GamePageViewController.recenterMap(this, tile);
+//		todo: check to work
 		// TODO?
 	}
 
@@ -111,4 +118,11 @@ public class Game {
 		// TODO: update scoreboard
 	}
 
+	public User getUserByCivilization(Civilization civilization){
+		for (User user : players) {
+			if (user.getCivilization()==civilization)
+				return user;
+		}
+		return null;
+	}
 }

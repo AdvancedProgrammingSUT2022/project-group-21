@@ -11,7 +11,8 @@ import com.google.gson.annotations.Expose;
 
 public class CityUserAction extends UserAction{
 	private static UserActionQuery createAction(String username, CityUserAction cityUserAction){
-		return new UserActionQuery(username, cityUserAction, null, null, null);
+		return new UserActionQuery(username, cityUserAction, null,
+				null, null);
 	}
 	public static UserActionQuery shootTile(String username, int x1, int y1, int x2, int y2){
 		CityUserAction cityUserAction = new CityUserAction();
@@ -127,8 +128,5 @@ public class CityUserAction extends UserAction{
 			default:
 				break;
 		}
-
 	}
-
-
 }

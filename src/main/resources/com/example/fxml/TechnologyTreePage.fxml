@@ -5,13 +5,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.TechnologyTreeMenu">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0"
+            prefWidth="960.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.ViewController.TechnologyTreeMenu">
    <children>
       <ScrollPane hbarPolicy="ALWAYS" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="680.0" prefWidth="960.0" vbarPolicy="NEVER">
          <content>
             <AnchorPane fx:id="anchorPane" prefHeight="660.0" prefWidth="2100.0" />
          </content>
       </ScrollPane>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="32.0" prefWidth="60.0" text="Back" />
+      <Button fx:id="back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButtonPressed" prefHeight="32.0" prefWidth="60.0" text="Back" />
    </children>
 </AnchorPane>

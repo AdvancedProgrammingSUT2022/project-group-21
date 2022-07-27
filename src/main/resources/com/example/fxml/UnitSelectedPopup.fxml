@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane onMouseEntered="#checkButtonVisibility" prefHeight="245.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ViewController.popupController.UnitSelectedController">
+   <children>
+      <Label layoutX="14.0" layoutY="6.0" text="unit Selected" />
+      <Button fx:id="Delete_btn" layoutX="59.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#Delete" prefHeight="25.0" prefWidth="106.0" text="Delete" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="304.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/pic/unit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="move_btn" layoutX="59.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#move" prefHeight="25.0" prefWidth="106.0" text="move" />
+      <Button fx:id="meleeAttack_btn" layoutX="59.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#meleeAttack" prefHeight="25.0" prefWidth="106.0" text="melee attack" />
+      <Button fx:id="rangeAttack_btn" layoutX="59.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#rangeAttack" prefHeight="25.0" prefWidth="106.0" text="range attack" />
+      <Button fx:id="preAttackSetup_btn" layoutX="59.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#preAttackSetUp" prefHeight="25.0" prefWidth="106.0" text="pre attack setup" />
+      <Button fx:id="sleep_wake_btn" layoutX="179.0" layoutY="38.0" mnemonicParsing="false" onMouseClicked="#sleep_wake" prefHeight="25.0" prefWidth="106.0" text="sleep wake" />
+      <Button fx:id="alert_btn" layoutX="179.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#alert" prefHeight="25.0" prefWidth="106.0" text="alert" />
+      <Button fx:id="pillage_btn" layoutX="179.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#pillage" prefHeight="25.0" prefWidth="106.0" text="pillage" />
+      <Button fx:id="foundcity_btn" layoutX="179.0" layoutY="143.0" mnemonicParsing="false" onMouseClicked="#foundCity" prefHeight="25.0" prefWidth="106.0" text="found city" />
+      <Button fx:id="workerAction_btn" layoutX="179.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#woerkerAction" prefHeight="25.0" prefWidth="106.0" text="worker action" />
+      <Button fx:id="back_btn" layoutX="9.0" layoutY="211.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="25.0" prefWidth="34.0" text="&lt;" />
+   </children>
+</AnchorPane>

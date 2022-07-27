@@ -86,6 +86,14 @@ public enum CheatCode {
 		}
 	};
 
+	public static ArrayList<CheatCode> getAllCheated() {
+		ArrayList<CheatCode> out = new ArrayList<>();
+		for (CheatCode cheatCode : CheatCode.values()) {
+			out.add(cheatCode);
+		}
+		return out;
+	}
+
 	public abstract void apply(Civilization civilization);
 
 }

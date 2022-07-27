@@ -1,6 +1,7 @@
 package com.example.Model.UserAction;
 
-public enum UnitActionType{
+public enum
+UnitActionType{
 	DELETE,
 
 	MOVE,

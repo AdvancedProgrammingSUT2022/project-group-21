@@ -127,12 +127,14 @@ public class UnitActionController {
 			throw new Exception("destination tile is not revealed");
 		if (!tile2.canPutUnit(unit))
 			throw new Exception("destination contains another unit/city");
-		ArrayList<Tile> path = new ShortestPath(Game.getInstance(), unit, -1).getPath(tile2);
-		if (path==null) throw new Exception("no path found");
+		
+		ShortestPath shortestPath = new ShortestPath(Game.getInstance(), unit);
+		ArrayList<Tile> reachableTiles = shortestPath.getReachableTiles();
+		if (!reachableTiles.contains(tile2)) throw new Exception("no path found");
 		if (doAction){
 			unit.setUnitState(UnitState.WAKE);
-			unit.setPath(path);
-			unit.moveOnPath();
+			unit.moveToTile(tile2);
+			unit.setMP(unit.getMP()-shortestPath.getCost(tile2));
 		}
 	}
 

@@ -21,5 +21,15 @@ public class User {
 
 	public void setCivilization(Civilization civilization){ this.civilization=civilization;}
 	public Civilization getCivilization(){ return this.civilization;}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj==null) return this==null;
+		if (!(obj instanceof User)) return false;
+		return ((User) obj).username.equals(username);
+	}
 }
