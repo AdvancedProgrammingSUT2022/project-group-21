@@ -213,4 +213,12 @@ public class Civilization {
 	public ArrayList<Unit> getUnits(){ return this.units;}
 
 	public City getCapitalCity(){ return capitalCity;}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj==null) return this==null;
+		if (!(obj instanceof Civilization)) return false;
+		return Game.getInstance().getUserByCivilization(this).equals(Game.getInstance().getUserByCivilization(((Civilization) obj)));
+	}
 }

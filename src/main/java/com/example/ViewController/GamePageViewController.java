@@ -126,6 +126,7 @@ public class GamePageViewController {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace(); // TODO: remove line
 			Dialog.error_message("Error", e.getMessage());
 			return;
 		}

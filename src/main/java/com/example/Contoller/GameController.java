@@ -28,6 +28,13 @@ public class GameController {
 
 	public boolean handleQueryFromView(UserActionQuery query){
 		System.out.println(query.toJson());
+		System.out.println("current user: " + Game.getInstance().getCurrentPlayer().getUsername());
+		for (User user : Game.getInstance().getPlayers()) {
+			System.out.println(user.getUsername());
+		}
+		System.out.println();
+
+
 		try {
 			query.validate();
 		} catch (Exception e) {

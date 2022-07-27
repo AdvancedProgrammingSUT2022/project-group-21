@@ -32,9 +32,9 @@ public class App extends Application {
 		stage.setScene(scene);
 		stage.show();
 
-		GameController.getInstance().startNewGame(new ArrayList<>(Arrays.asList("ali", "aryan")));
-		Game.getInstance().getPlayers().get(0).getCivilization().addGold(1000);
-		setRootFromFXML("GamePage");
+		// GameController.getInstance().startNewGame(new ArrayList<>(Arrays.asList("ali", "aryan")));
+		// Game.getInstance().getPlayers().get(0).getCivilization().addGold(1000);
+		// setRootFromFXML("GamePage");
 
 	}
 
