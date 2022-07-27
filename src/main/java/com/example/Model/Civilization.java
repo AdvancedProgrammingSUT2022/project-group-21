@@ -41,6 +41,7 @@ public class Civilization {
 
 
 	public void endTurn(){
+		System.out.println("civilization end turn");
 		for (City city : cities) {
 			city.endTurn();
 			addGold(city.getGoldOut());

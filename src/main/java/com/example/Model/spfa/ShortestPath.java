@@ -39,7 +39,8 @@ public class ShortestPath {
 			if (dist.get(v)>=maxDistance) continue ;
 			for (int i=0; i<6; i++){
 				Tile u=v.getAdjTile(i);
-				if (u==null || !u.canSeeOver()) continue ;
+				// if (u==null || !u.canSeeOver()) continue ;
+				if (u==null) continue ;
 				int w=(unit==null?1:v.getMovementCostForUnit(unit, i));
 				if (dist.get(u)==null || dist.get(u)>dist.get(v)+w){
 					dist.put(u, dist.get(v)+w);

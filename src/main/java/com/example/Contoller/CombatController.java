@@ -87,6 +87,7 @@ public class CombatController {
 
 	private static void gainDamageCity(City city, double damage){
 		damage/=city.getCombatStrength();
+		damage*=100000; // TODO: remove line
 		city.setHP(city.getHP()-damage);
 	}
 

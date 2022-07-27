@@ -71,13 +71,15 @@ public abstract class Unit {
 	
 	
 	public void endTurn(){
+		System.out.println("end turn for unit at " + getTile().X + ", " + getTile().Y);
 		if (getUnitState()==UnitState.SLEEP) setMP(0);
-		if (getMP()==0) return ; // without MP, unit wont heal
-		if (this instanceof MilitaryUnit){
-			((MilitaryUnit) this).heal();
-		}
-		if (this instanceof Worker){
-			((Worker) this).work();
+		if (getMP()==0){
+			if (this instanceof MilitaryUnit){
+				((MilitaryUnit) this).heal();
+			}
+			if (this instanceof Worker){
+				((Worker) this).work();
+			}
 		}
 		resetMP();
 	}
