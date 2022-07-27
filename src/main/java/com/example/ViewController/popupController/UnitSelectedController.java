@@ -44,16 +44,8 @@ public class UnitSelectedController {
 	// TODO: aryan fix everything from here carefully
 	
 	public void Delete(MouseEvent mouseEvent) {
-		int x1 = civilianUnit.getTile().X;
-		int y1 = civilianUnit.getTile().Y;
-		boolean isMilitary = false;
-		try {
-			String militaryOrNot = Dialog.selectFromComboBox("is Military ?",
-					new ArrayList<>(Arrays.asList("Yes", "No")));
-			isMilitary = militaryOrNot.endsWith("YES") ? true : false;
-		} catch (Exception e) {
-			Dialog.error_message("Error", e.getMessage());
-		}
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.delete(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, isMilitary);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -62,8 +54,8 @@ public class UnitSelectedController {
 	}
 
 	public void meleeAttack(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.MELEE_ATTACK);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -72,8 +64,8 @@ public class UnitSelectedController {
 	}
 
 	public void preAttackSetUp(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PRE_ATTACK_SETUP);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -82,8 +74,8 @@ public class UnitSelectedController {
 	}
 
 	public void alert(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.ALERT);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -92,8 +84,8 @@ public class UnitSelectedController {
 	}
 
 	public void pillage(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.singleTileMilitary(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, UnitActionType.PILLAGE);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -102,19 +94,15 @@ public class UnitSelectedController {
 	}
 
 	public void move(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		int x2;
 		int y2;
-		boolean isMilitary;
 		try {
 			x2 = Integer.parseInt(
 					Dialog.AskQuestion("", "x2:"));
 			y2 = Integer.parseInt(
 					Dialog.AskQuestion("", "y2:"));
-			String militaryOrNot = Dialog.selectFromComboBox("is Military ?",
-					new ArrayList<>(Arrays.asList("Yes", "No")));
-			isMilitary = militaryOrNot.endsWith("YES") ? true : false;
 		} catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
 			return;
@@ -127,8 +115,8 @@ public class UnitSelectedController {
 	}
 
 	public void rangeAttack(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		int x2;
 		int y2;
 		try {
@@ -148,17 +136,8 @@ public class UnitSelectedController {
 	}
 
 	public void sleep_wake(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
-		boolean isMilitary;
-		try {
-			String militaryOrNot = Dialog.selectFromComboBox("is Military ?",
-					new ArrayList<>(Arrays.asList("Yes", "No")));
-			isMilitary = militaryOrNot.endsWith("YES") ? true : false;
-		} catch (Exception e) {
-			Dialog.error_message("Error", e.getMessage());
-			return;
-		}
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.sleepWake(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1, isMilitary);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -167,8 +146,8 @@ public class UnitSelectedController {
 	}
 
 	public void foundCity(MouseEvent mouseEvent) {
-		int x1 = militaryUnit.getTile().X;
-		int y1 = militaryUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		UserActionQuery userActionQuery = UnitUserAction.foundCity(
 				Game.getInstance().getCurrentPlayer().getUsername(), x1, y1);
 		if (GameController.getInstance().handleQueryFromView(userActionQuery)) {
@@ -177,15 +156,14 @@ public class UnitSelectedController {
 	}
 
 	public void woerkerAction(MouseEvent mouseEvent) {
-		int x1 = civilianUnit.getTile().X;
-		int y1 = civilianUnit.getTile().Y;
+		int x1 = unit.getTile().X;
+		int y1 = unit.getTile().Y;
 		WorkerProject.WorkerProjectType workerProjectType = null;
 		try {
 			ArrayList<String> list = new ArrayList<>();
 			ArrayList<WorkerProject.WorkerProjectType> bf = WorkerProject.WorkerProjectType.getAllType();
 			for (WorkerProject.WorkerProjectType w : bf) {
 				list.add(w.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a worker project type", list);
 			for (WorkerProject.WorkerProjectType w : bf) {
@@ -204,7 +182,6 @@ public class UnitSelectedController {
 			ArrayList<Improvement> bf = Improvement.getAllType();
 			for (Improvement i : bf) {
 				list.add(i.name());
-				// todo: check to work correctly
 			}
 			String type = Dialog.selectFromComboBox("select a worker project type", list);
 			for (Improvement i : bf) {
@@ -215,6 +192,10 @@ public class UnitSelectedController {
 			}
 		} catch (Exception e) {
 			Dialog.error_message("Error", e.getMessage());
+			return;
+		}
+		if (improvement == null || workerProjectType == null) {
+			Dialog.error_message("Error", "some error was occur");
 			return;
 		}
 		UserActionQuery userActionQuery = UnitUserAction.workerAction(
