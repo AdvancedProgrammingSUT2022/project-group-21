@@ -9,6 +9,9 @@ import com.example.Model.Technology;
 import com.example.Model.UserAction.UserActionQuery;
 import com.example.Model.user.User;
 import com.example.Model.user.UserDatabase;
+import com.example.Network.NetworkController;
+import com.example.Network.Request;
+import com.example.Network.Response;
 import com.example.View.hexagons.MapPaneMaker;
 import com.example.ViewController.Dialog;
 import com.example.ViewController.GamePageViewController;
@@ -18,33 +21,28 @@ public class GameController {
 	public static GameController getInstance(){ return instance;}
 
 	public void startNewGame(ArrayList<String> usernames, long seed) throws Exception{
-		for (String username : usernames) {
-			User user = UserDatabase.getInstance().getUserByUsername(username);
-			if (user == null) throw new Exception("no user with this username found: " + username);
-		}
+		Request request = Request.startGameRequest(seed, usernames);
+		Response response = NetworkController.makeQuery(request);
 		new Game(20, 25, usernames, seed);
+
+	}
+
+	public void joinGame() throws Exception{
+
 	}
 
 	public boolean handleQueryFromView(UserActionQuery query){
-		System.out.println(query.toJson());
-		System.out.println("current user: " + Game.getInstance().getCurrentPlayer().getUsername());
-		for (User user : Game.getInstance().getPlayers()) {
-			System.out.println(user.getUsername());
-		}
-		System.out.println();
-
-
 		try {
 			query.validate();
+			Request request = Request.gameActionRequest(query);
+			Response response = NetworkController.makeQuery(request);
+			if (response.getStatus_code()!=0) throw new Exception(response.getMessage());
 		} catch (Exception e) {
-//			System.out.println(e.getMessage());
 			Dialog.error_message("Error", e.getMessage());
-			// TODO: show a graphic notification instead :::: Do it :D
 			return false;
 		}
 		Game.getInstance().gameHistory.addAction(query);
-		Game.getInstance().gameHistory.saveOnFile();
-		
+
 		query.doAction();
 		Game.getInstance().getCurrentPlayer().getCivilization().calculateVisibleTiles();
 		checkWinLoseConditions();
