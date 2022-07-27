@@ -51,7 +51,7 @@ public enum RequestType{
 			if (user==null) return new Response(1, "invalid uuid");
 			if (game==null) return new Response(1, "game hasn't started yet");
 			if (!game.isUserPlayingGame(user)) return new Response(1, "you are not invited to this game");
-			return new Response(0, "Welcome to this Game!");
+			return new Response(0, "Welcome to this Game!", game.gameHistory.toJson());
 		}
 	},
 	GAME_ACTION {

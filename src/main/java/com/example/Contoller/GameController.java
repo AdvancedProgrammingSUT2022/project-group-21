@@ -20,7 +20,7 @@ public class GameController {
 			if (user == null) throw new Exception("no user with this username found: " + username);
 			players.add(user);
 		}
-		new Game(25, 20, players, seed);
+		new Game(20, 20, players, seed);
 	}
 
 	public boolean handleQueryFromView(UserActionQuery query){
