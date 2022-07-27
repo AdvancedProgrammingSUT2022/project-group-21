@@ -32,26 +32,26 @@ public enum RequestType{
 		}
 	},
 	START_GAME {
-		// @Override
-		// public Response handle(Request request) throws Exception {
-		// 	String usernamesJson = request.getParameter("usernamesJson");
-		// 	long seed = Long.parseLong(request.getParameter("seed"));
-		// 	Gson gson = new Gson();
-		// 	ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
-		// 	GameController.getInstance().startNewGame(usernames, seed);
-		// 	return null; // TODO
-		// }
+		@Override
+		public Response handle(Request request) throws Exception {
+			String usernamesJson = request.getParameter("usernamesJson");
+			long seed = Long.parseLong(request.getParameter("seed"));
+			Gson gson = new Gson();
+			ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
+			GameController.getInstance().startNewGame(usernames, seed);
+			// return null; // TODO
+		}
 	},
 	JOIN_GAME {
-		// @Override
-		// public Response handle(Request request) throws Exception {
-		// 	String usernamesJson = request.getParameter("usernamesJson");
-		// 	long seed = Long.parseLong(request.getParameter("seed"));
-		// 	Gson gson = new Gson();
-		// 	ArrayList<String> usernames = new ArrayList<>(Arrays.asList(gson.fromJson(usernamesJson, String[].class)));
-		// 	GameController.getInstance().startNewGame(usernames, seed);
-		// 	return null; // TODO
-		// }
+		@Override
+		public Response handle(Request request) throws Exception {
+			Game game = Game.getInstance();
+			User user = UserController.getInstance().getUserByUUID(request.getUUID());
+			if (user==null) return new Response(1, "invalid uuid");
+			if (game==null) return new Response(1, "game hasn't started yet");
+			if (!game.isUserPlayingGame(user)) return new Response(1, "you are not invited to this game");
+			return new Response(0, "Welcome to this Game!");
+		}
 	},
 	GAME_ACTION {
 		@Override
